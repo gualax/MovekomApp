@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="prefix__move_1_" width="43.002" height="43.002" data-name="move (1)" viewBox="0 0 43.002 43.002">
+    <defs>
+        <style>
+            .prefix__cls-1{fill:rgba(122,122,122,.59)}
+        </style>
+    </defs>
+    <g id="prefix__Grupo_6" data-name="Grupo 6" transform="translate(0 21.979)">
+        <path id="prefix__Trazado_8" d="M22.52 33.444H4.364c-2.224 0-4.778-1.6-4.778-3.822V16.243c0-2.222 2.554-3.822 4.778-3.822H22.52c2.224 0 4.778 1.6 4.778 3.822v13.378c.002 2.222-2.554 3.823-4.778 3.823zM4.364 14.332a2.521 2.521 0 0 0-1.911 1.911v13.378c0 .74 1.169.956 1.911.956H22.52c.742 0 1.911-.216 1.911-.956V16.243a2.521 2.521 0 0 0-1.911-1.911z" class="prefix__cls-1" data-name="Trazado 8" transform="translate(.414 -12.421)"/>
+    </g>
+    <g id="prefix__Grupo_7" data-name="Grupo 7" transform="translate(0 27.712)">
+        <path id="prefix__Trazado_9" d="M25.387 18.238H1.5c-.742 0-1.911-.214-1.911-.956A2.518 2.518 0 0 1 1.5 15.371h23.89a2.518 2.518 0 0 1 1.91 1.912c0 .741-1.171.955-1.913.955z" class="prefix__cls-1" data-name="Trazado 9" transform="translate(.414 -15.371)"/>
+    </g>
+    <g id="prefix__Grupo_8" data-name="Grupo 8">
+        <path id="prefix__Trazado_10" d="M37.81 39.1h-5.734c-.742 0-1.911-.214-1.911-.956s1.169-.956 1.911-.956h5.734a3.466 3.466 0 0 0 2.867-2.867V4.7c0-1.235-1.632-1.911-2.867-1.911H5.32c-1.235 0-2.867.677-2.867 1.911v11.466c0 .742-.214 1.911-.956 1.911a2.518 2.518 0 0 1-1.911-1.911V4.7C-.414 1.981 2.6-.079 5.32-.079h32.49A4.68 4.68 0 0 1 42.588 4.7v29.622A4.68 4.68 0 0 1 37.81 39.1z" class="prefix__cls-1" data-name="Trazado 10" transform="translate(.414 .079)"/>
+    </g>
+    <g id="prefix__Grupo_9" data-name="Grupo 9" transform="translate(0 6.689)">
+        <path id="prefix__Trazado_11" d="M41.632 5.769H1.5c-.742 0-1.911-.214-1.911-.956S.755 3.858 1.5 3.858h40.132c.742 0 .956.214.956.956s-.214.955-.956.955z" class="prefix__cls-1" data-name="Trazado 11" transform="translate(.414 -3.858)"/>
+    </g>
+    <g id="prefix__Grupo_10" data-name="Grupo 10" transform="translate(29.23 12.985)">
+        <path id="prefix__Trazado_12" d="M17.523 16.379c-.344 0-.694-.692-.956-.956a1.356 1.356 0 0 1 0-1.911L22.3 7.779a1.351 1.351 0 1 1 1.912 1.911l-5.734 5.734c-.261.263-.611.955-.955.955z" class="prefix__cls-1" data-name="Trazado 12" transform="translate(-16.174 -7.385)"/>
+    </g>
+    <g id="prefix__Grupo_11" data-name="Grupo 11" transform="translate(30.579 12.423)">
+        <path id="prefix__Trazado_13" d="M22.445 14.441c-.742 0-.956-1.169-.956-1.911V9.663h-2.867c-.742 0-1.911-.214-1.911-.956A2.518 2.518 0 0 1 18.622 6.8h3.822a2.518 2.518 0 0 1 1.911 1.911v3.822a2.518 2.518 0 0 1-1.91 1.908z" class="prefix__cls-1" data-name="Trazado 13" transform="translate(-16.711 -6.796)"/>
+    </g>
+</svg>

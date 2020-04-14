@@ -1,6 +1,9 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:movekomapp/widgets/box137x137.dart';
+import 'package:movekomapp/widgets/box137x64.dart';
+import 'package:movekomapp/widgets/box230x137.dart';
 
 class PrincipalHome extends StatefulWidget {
   @override
@@ -11,28 +14,38 @@ class _PrincipalHomeState extends State<PrincipalHome> {
   @override
   Widget build(BuildContext context) {
     return
-      SafeArea(
-        child: Row( /// elementos uno al lado del otro
-            children: <Widget>[
-              leftSection(),
-              rigtSection(),
-            ],
-        ),
+      Scaffold(
+        backgroundColor: Colors.black,
+        body:Column(
+          children: <Widget>[
+            moveTitle(),
+            Expanded(
+              child: Container(
+                child: Row( /// elementos uno al lado del otro
+                  children: <Widget>[
+                    leftSection(),
+                    rightSection(),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        )
       );
   }
 
-  Widget rigtSection(){
+  Widget rightSection(){
     return
       Expanded(
         child: Container (
-          padding: const EdgeInsets.all(15),
+          margin: EdgeInsets.only(left: 15),
           child:
           Column(  /// Elementos uno arriba del otro
             children: <Widget>[
-              status(),
-              electricSystem("Electric System"),
-              electricSystem("Water System"),
-              conectionBoxes(),
+              principalRightRow1(),
+              principalRightRow2(),
+              principalRightRow3(),
+              principalRightRow4(),
             ],
           ),
         ),
@@ -40,197 +53,268 @@ class _PrincipalHomeState extends State<PrincipalHome> {
   }
 
 
-  Widget status(){
-    return
-      Expanded(
-        child:   Row (
-          children: <Widget>[
-            conectionBox(),
-             Container(
-              decoration: BoxDecoration(
-                  color: Colors.grey,
-                  borderRadius: BorderRadius.all(Radius.circular(10.0))),
-              margin:EdgeInsets.all(5),
-              child: Column (
-                  children: <Widget>[
-                    Container (
-                      child:Text("         Status         "),
-                    ),
-                  ]),
-            ),
-          ],
-        ),
-      );
-  }
-
-  Widget electricSystem(text){
-    return
-      Expanded(
-          child: Container(
-            margin: EdgeInsets.all(5),
-            decoration: BoxDecoration(
-                color: Colors.grey,
-                borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                  child: Column (
-                        children: <Widget>[
-                          Text(text),
-                          Row(
-                              children: <Widget>[
-                                Icon(Icons.radio_button_unchecked,size: 100, color: Colors.green),
-                                Icon(Icons.radio_button_unchecked,size: 100, color: Colors.green),
-                                Icon(Icons.radio_button_unchecked,size: 100, color: Colors.green),
-                                Icon(Icons.radio_button_unchecked,size: 100, color: Colors.green),
-                              ],
-                          ),
-                        ],
-                ),
-          ),
-      );
-  }
-  
 
   Widget leftSection(){
     return
     Expanded(
       child: Container (
-      padding: const EdgeInsets.all(15),
-      child:
+        margin: EdgeInsets.only(left: 15),
+        child:
       Column(  /// Elementos uno arriba del otro
         children: <Widget>[
-          movekomTitle(),
-          imageRow(),
-          accesoriesAndOutsideWeather(),
-          conectionBoxes(),
+          principalLeftRow1(),
+          principalLeftRow2(),
+          principalLeftRow3(),
+          principalLeftRow4(),
         ],
       ),
     ),
     );
   }
 
-  Widget movekomTitle() {
+
+  Widget moveTitle(){
     return
-      //       Expanded (
-      Column(
-        //    crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          /*2*/
-          Container(
-        //    padding: const EdgeInsets.only(bottom: 8),
-            child: Text(
-              'MOVEKOM',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          Text(
-            'Nutic and Automotive control systems',
-            style: TextStyle(
-              color: Colors.grey[500],
-            ),
-          ),
-        ],
-        //       ),
+      Container(
+        alignment: Alignment.topLeft,
+        child: RichText(
+          text: new TextSpan(
+              children: [
+                new TextSpan(
+                    text: "HOME ",
+                    style: TextStyle(
+                      fontFamily: 'Mada',
+                      color: Color(0xffffffff),
+                      fontSize: 40,
+                      fontWeight: FontWeight.w700,
+                      fontStyle: FontStyle.normal,
+                    )
+                ),
+                new TextSpan(
+                    text: "PANTALLA GENERAL",
+                    style: TextStyle(
+                      fontFamily: 'Mada',
+                      color: Color(0xff9d9d9d),
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                      fontStyle: FontStyle.normal,
+                    )
+                ),
+              ]
+          )
+    ),
       );
   }
 
-  Widget imageRow(){
-  return
-    Expanded(
-     child: Image.asset( 'assets/images/CamperResizedImage.jpg'),
-   );
-  }
 
-  Widget accesoriesAndOutsideWeather(){
-    return
-     Expanded(
-      child:   Row (
-           children: <Widget>[
-             accesories(),
-             weather(),
-           ],
-          ),
-      );
-  }
-
-  Widget accesories(){
-    return
-     Expanded(
-     child: Container(
-       decoration: BoxDecoration(
-           color: Colors.grey,
-           borderRadius: BorderRadius.all(Radius.circular(10.0))),
-       margin:EdgeInsets.all(5),
-       child: Column (
-          children: <Widget>[
-            Container (
-                child:Text("Accesories"),
-            ),
-
-            Container(
-              child: GridView.count(
-              shrinkWrap: true,
-              crossAxisCount: 3,
-              childAspectRatio: 2,
-              children: List.generate(6, (index) {
-                  return Center(
-                  child: Icon(Icons.home),
-                  );
-                }),
-              ),
-            ),
-          ],
-    ),
-     ),
-     );
-
-  }
-
-  Widget weather(){
-  return Expanded(
-    child: Container(
-      decoration: BoxDecoration(
-          color: Colors.grey,
-          borderRadius: BorderRadius.all(Radius.circular(10.0))),
-      margin:EdgeInsets.all(5),
-          child: Column (
-              children: <Widget>[
-                  Container (
-                  child:Text("weather"),
-               ),
-              ]),
-    ),
-  );
-  }
-
-  Widget conectionBoxes(){
+  Widget principalLeftRow1(){
     return
       Expanded(
-        child:   Row (
-          children: <Widget>[
-            conectionBox(),
-            conectionBox(),
-          ],
+        child: Container(
+          child: Row (
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              box137x137(),
+              box137x137(),
+              box137x137(),
+            ],
+          ),
         ),
       );
   }
 
-  Widget conectionBox(){
-    return  Expanded(
-      child: Container(
-        decoration: BoxDecoration(
-            color: Colors.grey,
-            borderRadius: BorderRadius.all(Radius.circular(10.0))),
-        margin:EdgeInsets.all(5),
-        child: Column (
+  Widget principalLeftRow4(){
+    return
+      Expanded(
+        child: Container(
+          child: Row (
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Container (
-                child:Text("Conection box"),
-              ),
-            ]),
+              box230x137(),
+              box230x137(),
+             ],
+          ),
+        ),
+      );
+  }
+
+
+  Widget principalLeftRow2(){
+    return
+      Expanded(
+        child: Container(
+          child: Row (
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              box137x137(),
+              columnOfHalfBoxes(),
+              columnOfHalfBoxes(),
+            ],
+          ),
+        ),
+      );
+  }
+
+  Widget principalLeftRow3(){
+    return
+      Expanded(
+        child: Container(
+          child: Row (
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              box137x137(),
+              box137x137(),
+              box137x137(),
+            ],
+          ),
+        ),
+      );
+  }
+
+
+Widget columnOfHalfBoxes(){
+    return Container(
+      alignment: Alignment.center,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          box137x64(),
+          box137x64(),
+        ],
       ),
     );
+}
 
+
+  Widget principalRightRow1(){
+    return
+      Expanded(
+        child: Container(
+          child: Row (
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              columnOfHalfBoxes(),
+              box137x137(),
+              box137x137(),
+            ],
+          ),
+        ),
+      );
   }
+
+  Widget principalRightRow2(){
+    return
+      Expanded(
+        child: Container(
+          child: Row (
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              box137x137(),
+              box137x137(),
+              box137x137(),
+            ],
+          ),
+        ),
+      );
+  }
+
+
+
+  Widget principalRightRow3(){
+    return
+      Expanded(
+        child: Container(
+          child: Row (
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              box137x137(),
+              box290x137(),
+            ],
+          ),
+        ),
+      );
+  }
+
+
+  Widget principalRightRow4(){
+    return
+      Expanded(
+        child: Container(
+          child: Row (
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              box230x137(),
+              box230x137(),
+            ],
+          ),
+        ),
+      );
+  }
+
+
+    Widget box290x137(){
+    return  Container(
+        margin: EdgeInsets.all(7),
+        width: 295,
+          height: 137,
+          decoration: BoxDecoration(
+              color: const Color(0xff2d3033)
+          ),
+          child: Stack(children: [
+            // Valvulas (Todas)
+            PositionedDirectional(
+              top: 4,
+              start: 10,
+                  child:   RichText(
+                      text: TextSpan(
+                          children: [
+                            TextSpan(
+                                style:estilo(),
+                                text: "Valvulas ("),
+                            TextSpan(
+                                style:estilo(),
+                                text: "(Todas)")
+                          ]
+                      )
+              ),
+            ),
+            // OFF
+            PositionedDirectional(
+              bottom: 4,
+              start: 24,
+                  child:   Text(
+                      "OFF",
+                      style: estilo(),
+                      textAlign: TextAlign.center
+              ),
+            ),
+            // 2.65 A
+            PositionedDirectional(
+              bottom: 4,
+              end: 10,
+                  child:   Text(
+                      "2.65 A ",
+                      style: estilo(),
+                      textAlign: TextAlign.center
+                  )
+            )
+          ])
+      );
+    }
+
+
+
+  TextStyle estilo(){
+     return TextStyle(
+         color:  const Color(0xffffffff),
+         fontWeight: FontWeight.w300,
+         fontFamily: "Mada",
+         fontStyle:  FontStyle.normal,
+         fontSize: 15.0
+     );
+   }
+
+
+
 }
 

@@ -19,10 +19,24 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Movekom application"),
-      ),
+   appBar:   PreferredSize(
+     preferredSize: Size.fromHeight(45.0), // here the desired height
+     child: AppBar(
+        backgroundColor: Colors.black,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'assets/images/drawable-mdpi/fondo_negro_e_verde.png',
+                fit: BoxFit.contain,
+                height: 45,
+              ),
+            ],
+          ),
+        ),
+   ),
       bottomNavigationBar: new BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
           backgroundColor: Colors.black87,
           onTap: onTabTapped,
           currentIndex: _currentIndex,
@@ -34,7 +48,43 @@ class _HomePageState extends State<HomePage> {
             new BottomNavigationBarItem(
               icon: new Icon(Icons.menu,color: Colors.white),
               title: new Text("Menu"),
-            )
+            ),
+            new BottomNavigationBarItem(
+              icon: new Icon(Icons.menu,color: Colors.white),
+              title: new Text("Menu"),
+            ),
+            new BottomNavigationBarItem(
+              icon: new Icon(Icons.menu,color: Colors.white),
+              title: new Text("Menu"),
+            ),
+            new BottomNavigationBarItem(
+              icon: new Icon(Icons.menu,color: Colors.white),
+              title: new Text("Menu"),
+            ),
+            new BottomNavigationBarItem(
+              icon: new Icon(Icons.menu,color: Colors.white),
+              title: new Text("Menu"),
+            ),
+            new BottomNavigationBarItem(
+              icon: new Icon(Icons.menu,color: Colors.white),
+              title: new Text("Menu"),
+            ),
+            new BottomNavigationBarItem(
+              icon: new Icon(Icons.menu,color: Colors.white),
+              title: new Text("Menu"),
+            ),
+            new BottomNavigationBarItem(
+              icon: new Icon(Icons.menu,color: Colors.white),
+              title: new Text("Menu"),
+            ),
+            new BottomNavigationBarItem(
+              icon: new Icon(Icons.menu,color: Colors.white),
+              title: new Text("Menu"),
+            ),
+            new BottomNavigationBarItem(
+              icon: new Icon(Icons.menu,color: Colors.white),
+              title: new Text("Menu"),
+            ),
           ]),
       body: show(_currentIndex, context), // new
     );
