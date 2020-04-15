@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 Widget box137x137(){
   return
     Container(
-        margin: EdgeInsets.all(10),
+        margin: EdgeInsets.all(7),
         width: 137,
         height: 137,
         decoration: new BoxDecoration(

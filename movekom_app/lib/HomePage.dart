@@ -85,6 +85,38 @@ class _HomePageState extends State<HomePage> {
               icon: new Icon(Icons.menu,color: Colors.white),
               title: new Text("Menu"),
             ),
+            new BottomNavigationBarItem(
+              icon: new Icon(Icons.menu,color: Colors.white),
+              title: new Text("Menu"),
+            ),
+            new BottomNavigationBarItem(
+              icon: new Icon(Icons.menu,color: Colors.white),
+              title: new Text("Menu"),
+            ),
+            new BottomNavigationBarItem(
+              icon: new Icon(Icons.menu,color: Colors.white),
+              title: new Text("Menu"),
+            ),
+            new BottomNavigationBarItem(
+              icon: new Icon(Icons.menu,color: Colors.white),
+              title: new Text("Menu"),
+            ),
+            new BottomNavigationBarItem(
+              icon: new Icon(Icons.menu,color: Colors.white),
+              title: new Text("Menu"),
+            ),
+            new BottomNavigationBarItem(
+              icon: new Icon(Icons.menu,color: Colors.white),
+              title: new Text("Menu"),
+            ),
+            new BottomNavigationBarItem(
+              icon: new Icon(Icons.menu,color: Colors.white),
+              title: new Text("Menu"),
+            ),
+            new BottomNavigationBarItem(
+              icon: new Icon(Icons.menu,color: Colors.white),
+              title: new Text("Menu"),
+            ),
           ]),
       body: show(_currentIndex, context), // new
     );

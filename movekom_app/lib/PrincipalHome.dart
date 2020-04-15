@@ -19,64 +19,132 @@ class _PrincipalHomeState extends State<PrincipalHome> {
         body:Column(
           children: <Widget>[
             moveTitle(),
-            Expanded(
-              child: Container(
-                child: Row( /// elementos uno al lado del otro
-                  children: <Widget>[
-                    leftSection(),
-                    rightSection(),
-                  ],
-                ),
-              ),
-            ),
+            contenido(),
+            carruselDispositivos(),
           ],
         )
       );
   }
 
-  Widget rightSection(){
-    return
-      Expanded(
-        child: Container (
-          margin: EdgeInsets.only(left: 15),
-          child:
-          Column(  /// Elementos uno arriba del otro
+  Widget carruselDispositivos(){
+      return Expanded(
+        child: Container(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              principalRightRow1(),
-              principalRightRow2(),
-              principalRightRow3(),
+              principalLeftRow4(),
               principalRightRow4(),
             ],
           ),
         ),
       );
   }
+  
+
+  Widget contenido(){
+    return Container(
+      child: Row( /// elementos uno al lado del otro
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          leftSection(),
+          midleLeftSection(),
+          midleRigthSection(),
+          rightSection(),
+        ],
+      ),
+    );
+  }
+
+  Widget midleLeftSection(){
+  return
+  Container (
+    margin: EdgeInsets.all(5),
+    child:
+    Column(  /// Elementos uno arriba del otro
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        columnOfHalfBoxes(),
+        box137x137(),
+        //    principalLeftRow3(),
+        //   principalLeftRow4(),
+      ],
+    ),
+  );
+  }
+
+  Widget midleRigthSection(){
+    return
+      Container (
+        margin: EdgeInsets.all(5),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Row(
+              children: <Widget>[
+                box137x137(),
+                box137x137(),
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                box137x137(),
+                box137x137(),
+              ],
+            ),
+          ],
+        ),
+        );
+  }
+
+  Widget rightSection(){
+      return
+        Container (
+          margin: EdgeInsets.all(5),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+
+              Row(
+                children: <Widget>[
+                  box137x137(),
+                  box137x137(),
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  box137x137(),
+                  box137x137(),
+                ],
+              ),
+            ],
+          ),
+        );
+    }
 
 
 
   Widget leftSection(){
     return
-    Expanded(
-      child: Container (
-        margin: EdgeInsets.only(left: 15),
-        child:
-      Column(  /// Elementos uno arriba del otro
-        children: <Widget>[
-          principalLeftRow1(),
-          principalLeftRow2(),
-          principalLeftRow3(),
-          principalLeftRow4(),
-        ],
-      ),
+    Container (
+      margin: EdgeInsets.all(5),
+      child:
+    Column(  /// Elementos uno arriba del otro
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        principalLeftRow1(),
+        principalLeftRow2(),
+      ],
     ),
     );
   }
 
+  
 
   Widget moveTitle(){
     return
       Container(
         alignment: Alignment.topLeft,
+        height: 100,
         child: RichText(
           text: new TextSpan(
               children: [
@@ -109,16 +177,14 @@ class _PrincipalHomeState extends State<PrincipalHome> {
 
   Widget principalLeftRow1(){
     return
-      Expanded(
-        child: Container(
-          child: Row (
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              box137x137(),
-              box137x137(),
-              box137x137(),
-            ],
-          ),
+      Container(
+        child: Row (
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            box137x137(),
+            box137x137(),
+            box137x137(),
+          ],
         ),
       );
   }
@@ -141,16 +207,14 @@ class _PrincipalHomeState extends State<PrincipalHome> {
 
   Widget principalLeftRow2(){
     return
-      Expanded(
-        child: Container(
-          child: Row (
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              box137x137(),
-              columnOfHalfBoxes(),
-              columnOfHalfBoxes(),
-            ],
-          ),
+      Container(
+        child: Row (
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            box137x137(),
+            columnOfHalfBoxes(),
+            columnOfHalfBoxes(),
+          ],
         ),
       );
   }
