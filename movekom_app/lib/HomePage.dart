@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'FloatingMenu.dart';
 import 'PrincipalHome.dart';
@@ -46,59 +47,59 @@ class _HomePageState extends State<HomePage> {
               title: new Text("Home"),
             ),
             new BottomNavigationBarItem(
-              icon: new Icon(Icons.menu,color: Colors.white),
+              icon: iconSvg("assets/images/idea.svg", Colors.grey),
               title: new Text("Menu"),
             ),
             new BottomNavigationBarItem(
-              icon: new Icon(Icons.menu,color: Colors.white),
+              icon: iconSvg("assets/images/move_1.svg", Colors.grey),
               title: new Text("Menu"),
             ),
             new BottomNavigationBarItem(
-              icon: new Icon(Icons.menu,color: Colors.white),
+              icon: iconSvg("assets/images/manual.svg", Colors.grey),
               title: new Text("Menu"),
             ),
             new BottomNavigationBarItem(
-              icon: new Icon(Icons.menu,color: Colors.white),
+              icon: iconSvg("assets/images/toolbox_1.svg", Colors.grey),
               title: new Text("Menu"),
             ),
             new BottomNavigationBarItem(
-              icon: new Icon(Icons.menu,color: Colors.white),
+              icon: iconSvg("assets/images/caution_sign.svg", Colors.grey),
               title: new Text("Menu"),
             ),
             new BottomNavigationBarItem(
-              icon: new Icon(Icons.menu,color: Colors.white),
+              icon: iconSvg("assets/images/cog.svg", Colors.grey),
               title: new Text("Menu"),
             ),
             new BottomNavigationBarItem(
-              icon: new Icon(Icons.menu,color: Colors.white),
+              icon: iconSvg("assets/images/360_degrees.svg", Colors.grey),
               title: new Text("Menu"),
             ),
             new BottomNavigationBarItem(
-              icon: new Icon(Icons.menu,color: Colors.white),
+              icon: iconSvg("assets/images/gas.svg", Colors.grey),
               title: new Text("Menu"),
             ),
             new BottomNavigationBarItem(
-              icon: new Icon(Icons.menu,color: Colors.white),
+              icon: iconSvg("assets/images/page_1.svg", Colors.grey),
               title: new Text("Menu"),
             ),
             new BottomNavigationBarItem(
-              icon: new Icon(Icons.menu,color: Colors.white),
+              icon: iconSvg("assets/images/xmlid_1689.svg", Colors.grey),
               title: new Text("Menu"),
             ),
             new BottomNavigationBarItem(
-              icon: new Icon(Icons.menu,color: Colors.white),
+              icon: iconSvg("assets/images/lock.svg", Colors.grey),
               title: new Text("Menu"),
             ),
             new BottomNavigationBarItem(
-              icon: new Icon(Icons.menu,color: Colors.white),
+              icon: iconSvg("assets/images/suspension.svg", Colors.grey),
               title: new Text("Menu"),
             ),
             new BottomNavigationBarItem(
-              icon: new Icon(Icons.menu,color: Colors.white),
+              icon: iconSvg("assets/images/tyre.svg", Colors.grey),
               title: new Text("Menu"),
             ),
             new BottomNavigationBarItem(
-              icon: new Icon(Icons.menu,color: Colors.white),
+              icon: iconSvg("assets/images/reset.svg", Colors.grey),
               title: new Text("Menu"),
             ),
             new BottomNavigationBarItem(
@@ -139,6 +140,12 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  Widget  iconSvg(assetName,color){
+     return  SvgPicture.asset(
+        assetName,
+        color: color,
+    );
+  }
 
 
 

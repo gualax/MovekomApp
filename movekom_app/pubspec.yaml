@@ -44,6 +44,20 @@ flutter:
   assets:
     - assets/images/CamperResizedImage.jpg
     - assets/images/drawable-mdpi/fondo_negro_e_verde.png
+    - assets/images/idea.svg
+    - assets/images/360_degrees.svg
+    - assets/images/caution_sign.svg
+    - assets/images/cog.svg
+    - assets/images/gas.svg
+    - assets/images/lock.svg
+    - assets/images/manual.svg
+    - assets/images/move_1.svg
+    - assets/images/page_1.svg
+    - assets/images/reset.svg
+    - assets/images/suspension.svg
+    - assets/images/toolbox_1.svg
+    - assets/images/tyre.svg
+    - assets/images/xmlid_1689.svg
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="prefix__manual" width="33.446" height="43.002" viewBox="0 0 33.446 43.002">
+    <defs>
+        <style>
+            .prefix__cls-1{fill:rgba(122,122,122,.59)}
+        </style>
+    </defs>
+    <path id="prefix__Trazado_14" d="M60.719 39.185a3.858 3.858 0 0 0 3.822 3.822h29.624v-43H64.541a3.858 3.858 0 0 0-3.822 3.822zm30.579.956H64.541c-.695 0-.956-.261-.956-.956V7.651c.394.14.514 0 .956 0H91.3zM64.541 2.873H91.3v1.911H64.541c-.695 0-.956-.261-.956-.956s.261-.955.956-.955z" class="prefix__cls-1" data-name="Trazado 14" transform="translate(-60.719 -.006)"/>
+    <path id="prefix__Trazado_15" d="M131.957 173.669a11.467 11.467 0 1 0 0-22.934c-6.252 0-10.512 5.215-10.512 11.467s4.255 11.467 10.512 11.467zm0-20.068c4.863 0 9.556 3.738 9.556 8.6s-4.693 8.6-9.556 8.6a8.6 8.6 0 0 1 0-17.2z" class="prefix__cls-1" data-name="Trazado 15" transform="translate(-115.712 -138.312)"/>
+    <path id="prefix__Trazado_16" d="M240.9 271.187h2.867v7.645H240.9z" class="prefix__cls-1" data-name="Trazado 16" transform="translate(-225.609 -248.253)"/>
+    <path id="prefix__Trazado_17" d="M240.9 211.461h2.867v1.911H240.9z" class="prefix__cls-1" data-name="Trazado 17" transform="translate(-225.609 -193.305)"/>
+</svg>

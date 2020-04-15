@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movekomapp/widgets/box137x137.dart';
 import 'package:movekomapp/widgets/box137x64.dart';
-import 'package:movekomapp/widgets/box230x137.dart';
+import 'package:movekomapp/widgets/box225x137.dart';
 
 class PrincipalHome extends StatefulWidget {
   @override
@@ -32,8 +32,10 @@ class _PrincipalHomeState extends State<PrincipalHome> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              principalLeftRow4(),
-              principalRightRow4(),
+              box225x137("Valvulas(Todas)","OFF","2.65 A",""),
+              box225x137("Inversor de corriente","OFF","",""),
+              box225x137("Calefaccion","OFF","",""),
+              box225x137("Boiler","ON","Consumo:2.65A",""),
             ],
           ),
         ),
@@ -64,7 +66,7 @@ class _PrincipalHomeState extends State<PrincipalHome> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         columnOfHalfBoxes(),
-        box137x137(),
+        box137x137_parms("Pronostico","","",null),
         //    principalLeftRow3(),
         //   principalLeftRow4(),
       ],
@@ -81,14 +83,14 @@ class _PrincipalHomeState extends State<PrincipalHome> {
           children: <Widget>[
             Row(
               children: <Widget>[
-                box137x137(),
-                box137x137(),
+               box137x137_parms("Luz general","OFF","2.65A",null),
+                box137x137_parms("Luz general","OFF","2.65A",null),
               ],
             ),
             Row(
               children: <Widget>[
-                box137x137(),
-                box137x137(),
+                box137x137_parms("Downligth","OFF","2.65A",null),
+                box137x137_parms("Uplight","OFF","2.65A",null),
               ],
             ),
           ],
@@ -106,14 +108,14 @@ class _PrincipalHomeState extends State<PrincipalHome> {
 
               Row(
                 children: <Widget>[
-                  box137x137(),
-                  box137x137(),
+                  box137x137_parms("Aguas limpias","","",null),
+                  box137x137_parms("Aguas negras","","",null),
                 ],
               ),
               Row(
                 children: <Widget>[
-                  box137x137(),
-                  box137x137(),
+                  box137x137_parms("Aguas sucias","","",null),
+                  box137x137_parms("Bomba de agua","","",null),
                 ],
               ),
             ],
@@ -143,6 +145,7 @@ class _PrincipalHomeState extends State<PrincipalHome> {
   Widget moveTitle(){
     return
       Container(
+        margin: EdgeInsets.only(left: 8),
         alignment: Alignment.topLeft,
         height: 100,
         child: RichText(
@@ -181,25 +184,10 @@ class _PrincipalHomeState extends State<PrincipalHome> {
         child: Row (
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            box137x137(),
-            box137x137(),
-            box137x137(),
+            box137x137_parms("Bateria motor","12.45v","23.65A", null),
+            box137x137_parms("Bateria Auxiliar 1","12.45v","23.65A", null),
+            box137x137_parms("Bateria Auxiliar 2","12.45v","23.65A", null),
           ],
-        ),
-      );
-  }
-
-  Widget principalLeftRow4(){
-    return
-      Expanded(
-        child: Container(
-          child: Row (
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              box230x137(),
-              box230x137(),
-             ],
-          ),
         ),
       );
   }
@@ -211,7 +199,7 @@ class _PrincipalHomeState extends State<PrincipalHome> {
         child: Row (
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            box137x137(),
+            box137x137_parms("Totalizador","Cargando","",null),
             columnOfHalfBoxes(),
             columnOfHalfBoxes(),
           ],
@@ -219,21 +207,6 @@ class _PrincipalHomeState extends State<PrincipalHome> {
       );
   }
 
-  Widget principalLeftRow3(){
-    return
-      Expanded(
-        child: Container(
-          child: Row (
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              box137x137(),
-              box137x137(),
-              box137x137(),
-            ],
-          ),
-        ),
-      );
-  }
 
 
 Widget columnOfHalfBoxes(){
@@ -242,141 +215,17 @@ Widget columnOfHalfBoxes(){
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          box137x64(),
-          box137x64(),
+          box137x64_params("Interior","Humedad","36%",null),
+          box137x64_params("Exterior","Humedad","36%",null),
         ],
       ),
     );
 }
 
 
-  Widget principalRightRow1(){
-    return
-      Expanded(
-        child: Container(
-          child: Row (
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              columnOfHalfBoxes(),
-              box137x137(),
-              box137x137(),
-            ],
-          ),
-        ),
-      );
-  }
-
-  Widget principalRightRow2(){
-    return
-      Expanded(
-        child: Container(
-          child: Row (
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              box137x137(),
-              box137x137(),
-              box137x137(),
-            ],
-          ),
-        ),
-      );
-  }
 
 
 
-  Widget principalRightRow3(){
-    return
-      Expanded(
-        child: Container(
-          child: Row (
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              box137x137(),
-              box290x137(),
-            ],
-          ),
-        ),
-      );
-  }
-
-
-  Widget principalRightRow4(){
-    return
-      Expanded(
-        child: Container(
-          child: Row (
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              box230x137(),
-              box230x137(),
-            ],
-          ),
-        ),
-      );
-  }
-
-
-    Widget box290x137(){
-    return  Container(
-        margin: EdgeInsets.all(7),
-        width: 295,
-          height: 137,
-          decoration: BoxDecoration(
-              color: const Color(0xff2d3033)
-          ),
-          child: Stack(children: [
-            // Valvulas (Todas)
-            PositionedDirectional(
-              top: 4,
-              start: 10,
-                  child:   RichText(
-                      text: TextSpan(
-                          children: [
-                            TextSpan(
-                                style:estilo(),
-                                text: "Valvulas ("),
-                            TextSpan(
-                                style:estilo(),
-                                text: "(Todas)")
-                          ]
-                      )
-              ),
-            ),
-            // OFF
-            PositionedDirectional(
-              bottom: 4,
-              start: 24,
-                  child:   Text(
-                      "OFF",
-                      style: estilo(),
-                      textAlign: TextAlign.center
-              ),
-            ),
-            // 2.65 A
-            PositionedDirectional(
-              bottom: 4,
-              end: 10,
-                  child:   Text(
-                      "2.65 A ",
-                      style: estilo(),
-                      textAlign: TextAlign.center
-                  )
-            )
-          ])
-      );
-    }
-
-
-
-  TextStyle estilo(){
-     return TextStyle(
-         color:  const Color(0xffffffff),
-         fontWeight: FontWeight.w300,
-         fontFamily: "Mada",
-         fontStyle:  FontStyle.normal,
-         fontSize: 15.0
-     );
-   }
 
 
 

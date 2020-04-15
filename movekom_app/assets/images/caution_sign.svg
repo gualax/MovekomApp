@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="prefix__caution-sign" width="47.252" height="43.002" viewBox="0 0 47.252 43.002">
+    <defs>
+        <style>
+            .prefix__cls-1{fill:rgba(122,122,122,.59)}
+        </style>
+    </defs>
+    <g id="prefix__Grupo_12" data-name="Grupo 12">
+        <path id="prefix__Trazado_18" d="M47.118 55.646L25.139 16.467a2.64 2.64 0 0 0-1.911-.956c-.593 0-.67.436-.956.956L.293 55.646a2.243 2.243 0 0 0 0 1.911c.293.5.38.956.956.956h43.957a2.78 2.78 0 0 0 1.911-.956 2.243 2.243 0 0 0 .001-1.911zm-43-.956l19.112-34.4 19.112 34.4z" class="prefix__cls-1" data-name="Trazado 18" transform="translate(-.08 -15.511)"/>
+        <path id="prefix__Trazado_19" d="M164.74 129.235v12.423a1.911 1.911 0 0 0 3.822 0v-12.423a1.911 1.911 0 1 0-3.822 0z" class="prefix__cls-1" data-name="Trazado 19" transform="translate(-143.503 -112.99)"/>
+        <path id="prefix__Trazado_20" d="M165.93 265.482a1.911 1.911 0 0 0 0 3.822c1.184 0 2.867-.727 2.867-1.911s-1.683-1.911-2.867-1.911z" class="prefix__cls-1" data-name="Trazado 20" transform="translate(-142.782 -232.991)"/>
+    </g>
+</svg>
