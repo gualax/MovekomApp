@@ -3,7 +3,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'FloatingMenu.dart';
-import 'PrincipalHome.dart';
+import 'pantallas/PrincipalHome.dart';
 
 class HomeButtonNavBar extends StatefulWidget {
   @override

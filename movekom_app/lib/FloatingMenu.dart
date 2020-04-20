@@ -2,7 +2,6 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:movekomapp/Menu1.dart';
 import 'package:movekomapp/MenuMapping.dart';
 
 class FloatingMenu extends StatefulWidget {
@@ -52,8 +51,8 @@ class FloatingMenuState extends State<FloatingMenu> {
    goToSelectedScreen(index) async{
     print("index:" + index.toString());
     print("go to :" +  MenuMapping.getMenuStringRoute(index));
-    final result = await Navigator.pushNamed(
-      context, "/menu1");
+   // final result = await Navigator.pushNamed(
+    //  context, "/menu1");
 
    }
 

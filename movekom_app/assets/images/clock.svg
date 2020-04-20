@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="prefix__clock" width="88.32" height="88.32" viewBox="0 0 88.32 88.32">
+    <defs>
+        <style>
+            .prefix__cls-1{fill:#949494}
+        </style>
+    </defs>
+    <path id="prefix__Trazado_461" d="M79.027 23.239a3.68 3.68 0 0 0-1.71 4.914A36.425 36.425 0 0 1 80.96 44.16a36.8 36.8 0 1 1-36.8-36.8 36.357 36.357 0 0 1 22.846 7.94 3.68 3.68 0 1 0 4.579-5.761A44.166 44.166 0 1 0 88.32 44.16a43.709 43.709 0 0 0-4.379-19.211 3.676 3.676 0 0 0-4.914-1.71zm0 0" class="prefix__cls-1" data-name="Trazado 461"/>
+    <path id="prefix__Trazado_462" d="M179.68 64a3.681 3.681 0 0 0-3.68 3.68v25.76a3.681 3.681 0 0 0 3.68 3.68h18.4a3.68 3.68 0 1 0 0-7.36h-14.72V67.68a3.681 3.681 0 0 0-3.68-3.68zm0 0" class="prefix__cls-1" data-name="Trazado 462" transform="translate(-135.52 -49.28)"/>
+</svg>

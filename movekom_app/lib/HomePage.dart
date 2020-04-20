@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:movekomapp/app.localizations.dart';
+import 'package:movekomapp/pantallas/LigthsMenuPage.dart';
+import 'package:movekomapp/pantallas/WaterMenuPage.dart';
+import 'package:movekomapp/pantallas/WheaterMenuPage.dart';
+import 'package:movekomapp/pantallas/ElectricityMenuPage.dart';
+import 'package:movekomapp/widgets/MyTextStyle.dart';
 
 import 'FloatingMenu.dart';
-import 'PrincipalHome.dart';
+import 'pantallas/PrincipalHome.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -16,25 +22,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
-
+  String barTitle = "HOME";
+  String barSubTitle = "HOME";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
    appBar:   PreferredSize(
-     preferredSize: Size.fromHeight(45.0), // here the desired height
-     child: AppBar(
-        backgroundColor: Colors.black,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                'assets/images/drawable-mdpi/fondo_negro_e_verde.png',
-                fit: BoxFit.contain,
-                height: 45,
-              ),
-            ],
-          ),
-        ),
+     preferredSize: Size.fromHeight(70), // here the desired height
+     child: CustomBar(),
    ),
       bottomNavigationBar: new BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
@@ -43,8 +38,20 @@ class _HomePageState extends State<HomePage> {
           currentIndex: _currentIndex,
           items: [
             new BottomNavigationBarItem(
-              icon: new Icon(Icons.home, color: Colors.white ),
+              icon: iconSvg("assets/images/home.svg", Colors.grey),
               title: new Text("Home"),
+            ),
+            new BottomNavigationBarItem(
+              icon: iconSvg("assets/iconos/clima.svg", Colors.grey),
+              title: new Text("clima"),
+            ),
+            new BottomNavigationBarItem(
+              icon: iconSvg("assets/iconos/electricidad.svg", Colors.grey),
+              title: new Text("Menu"),
+            ),
+            new BottomNavigationBarItem(
+              icon: iconSvg("assets/images/water_gout.svg", Colors.grey),
+              title: new Text("Menu"),
             ),
             new BottomNavigationBarItem(
               icon: iconSvg("assets/images/idea.svg", Colors.grey),
@@ -91,6 +98,10 @@ class _HomePageState extends State<HomePage> {
               title: new Text("Menu"),
             ),
             new BottomNavigationBarItem(
+              icon: iconSvg("assets/icons/slide_out.svg", Colors.grey),
+              title: new Text("Menu"),
+            ),
+            new BottomNavigationBarItem(
               icon: iconSvg("assets/images/suspension.svg", Colors.grey),
               title: new Text("Menu"),
             ),
@@ -99,23 +110,7 @@ class _HomePageState extends State<HomePage> {
               title: new Text("Menu"),
             ),
             new BottomNavigationBarItem(
-              icon: iconSvg("assets/images/reset.svg", Colors.grey),
-              title: new Text("Menu"),
-            ),
-            new BottomNavigationBarItem(
-              icon: new Icon(Icons.menu,color: Colors.white),
-              title: new Text("Menu"),
-            ),
-            new BottomNavigationBarItem(
-              icon: new Icon(Icons.menu,color: Colors.white),
-              title: new Text("Menu"),
-            ),
-            new BottomNavigationBarItem(
-              icon: new Icon(Icons.menu,color: Colors.white),
-              title: new Text("Menu"),
-            ),
-            new BottomNavigationBarItem(
-              icon: new Icon(Icons.menu,color: Colors.white),
+              icon: iconSvg("assets/images/capa_2.svg", Colors.grey),
               title: new Text("Menu"),
             ),
           ]),
@@ -127,7 +122,10 @@ class _HomePageState extends State<HomePage> {
   Widget show(int index, context){
     List<Widget> _children = [
       PrincipalHome(),
-      FloatingMenu(),
+      ClimaPage(),
+      ElectricityPage(),
+      WaterMenuPage(),
+      LightsMenuPage(),
     ];
     return _children[index];
   }
@@ -136,6 +134,7 @@ class _HomePageState extends State<HomePage> {
     print("HomePage -> onTabTapped");
     setState(() {
       _currentIndex = index;
+      changeBarTitle(_currentIndex);
       print("index is : " + index.toString());
     });
   }
@@ -143,10 +142,75 @@ class _HomePageState extends State<HomePage> {
   Widget  iconSvg(assetName,color){
      return  SvgPicture.asset(
         assetName,
+        height: 40,
+        width: 40,
         color: color,
     );
   }
 
+void changeBarTitle(index){
+  List<String> titles = [
+    "HOME",
+    "CLIMA",
+    "ELECTRICIDAD",
+  ];
+  List<String> subtitles = [
+    "HOME",
+    "CLIMA",
+    "ELECTRICIDAD",
+  ];
+  setBarTitle(titles[index], subtitles[index]);
+}
 
 
+  void setBarTitle(title,subtitle){
+    setState(() {
+      barTitle = title;
+      barSubTitle = subtitle;
+    });
+}
+
+
+Widget CustomBar(){
+  return AppBar(
+    backgroundColor: Colors.black,
+    bottom: PreferredSize(child: Container(color: Colors.lightGreen, height: 4.0,), preferredSize: Size.fromHeight(4.0)),
+    title: Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          BarTitle(barTitle,barSubTitle),
+          Image.asset(
+            'assets/images/drawable-mdpi/fondo_negro_e_verde.png',
+            fit: BoxFit.contain,
+            height: 50,
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+ Widget BarTitle(title, subtitle){
+     return
+       Container(
+         margin: EdgeInsets.only(left: 30,top:30),
+         alignment: Alignment.topLeft,
+         height: 70,
+         child: RichText(
+             text: new TextSpan(
+                 children: [
+                   new TextSpan(
+                       text: title,
+                       style: MyTextStyle.estiloBold(40, Colors.white),
+                   ),
+                   new TextSpan(
+                       text:subtitle,
+                       style: MyTextStyle.estilo(20, Colors.grey),
+                   ),
+                 ]
+             )
+         ),
+       );
+   }
 }

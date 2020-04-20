@@ -1,0 +1,18 @@
+{
+  "home" : "home",
+  "pantalla_general": "PANTALLA GENERAL",
+  "bateria motor": "Bateria motor",
+  "bateria_aux_1": "Bateria Auxiliar 1",
+  "bateria_aux_2": "Bateria Auxiliar 2",
+  "totalizador": "Totalizador",
+  "cargando": "Cargando",
+  "interior": "Interior",
+  "exterior": "Exterior",
+  "humedad": "Humedad",
+  "aguas_limpias": "AGUAS LIMPIAS",
+  "aguas_sucias": "AGUAS SUCIAS",
+  "aguas_negras": "AGUAS NEGRAS",
+  "bomba_de_agua": "Bomba de agua",
+  "luz_general": "Luz general"
+
+}

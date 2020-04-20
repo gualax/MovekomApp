@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="10.242" height="23.334" viewBox="0 0 10.242 23.334">
+    <defs>
+        <style>
+            .prefix__cls-1{fill:#fff}
+        </style>
+    </defs>
+    <g id="prefix__temperature_1_" data-name="temperature (1)" transform="translate(-21.333)">
+        <g id="prefix__Grupo_430" data-name="Grupo 430" transform="translate(21.333)">
+            <g id="prefix__Grupo_429" data-name="Grupo 429">
+                <path id="prefix__Trazado_398" d="M112.253 2.431a2.33 2.33 0 1 0-4.655 0v15.134a3.478 3.478 0 0 0-.931 2.367 3.262 3.262 0 1 0 6.517 0 3.478 3.478 0 0 0-.931-2.367zm-2.328 18.959a1.43 1.43 0 0 1-1.4-1.458 1.453 1.453 0 0 1 .931-1.369v-8.354a.466.466 0 1 1 .931 0v8.354a1.453 1.453 0 0 1 .931 1.369 1.43 1.43 0 0 1-1.392 1.457z" class="prefix__cls-1" data-name="Trazado 398" transform="translate(-102.943)"/>
+                <path id="prefix__Trazado_399" d="M24.592 341.333H21.8a.487.487 0 0 0 0 .972h2.793a.487.487 0 0 0 0-.972z" class="prefix__cls-1" data-name="Trazado 399" transform="translate(-21.333 -325.777)"/>
+                <path id="prefix__Trazado_400" d="M65.4 298.667h-.931a.487.487 0 0 0 0 .972h.931a.487.487 0 0 0 0-.972z" class="prefix__cls-1" data-name="Trazado 400" transform="translate(-62.138 -285.056)"/>
+                <path id="prefix__Trazado_401" d="M65.4 256h-.931a.487.487 0 0 0 0 .972h.931a.487.487 0 0 0 0-.972z" class="prefix__cls-1" data-name="Trazado 401" transform="translate(-62.138 -244.333)"/>
+                <path id="prefix__Trazado_402" d="M21.8 214.305h2.793a.487.487 0 0 0 0-.972H21.8a.487.487 0 0 0 0 .972z" class="prefix__cls-1" data-name="Trazado 402" transform="translate(-21.333 -203.611)"/>
+                <path id="prefix__Trazado_403" d="M21.8 86.305h2.793a.487.487 0 0 0 0-.972H21.8a.487.487 0 0 0 0 .972z" class="prefix__cls-1" data-name="Trazado 403" transform="translate(-21.333 -81.444)"/>
+                <path id="prefix__Trazado_404" d="M65.4 170.667h-.931a.487.487 0 0 0 0 .972h.931a.487.487 0 0 0 0-.972z" class="prefix__cls-1" data-name="Trazado 404" transform="translate(-62.138 -162.889)"/>
+                <path id="prefix__Trazado_405" d="M65.4 128h-.931a.487.487 0 0 0 0 .972h.931a.487.487 0 0 0 0-.972z" class="prefix__cls-1" data-name="Trazado 405" transform="translate(-62.138 -122.167)"/>
+            </g>
+        </g>
+    </g>
+</svg>
