@@ -14,7 +14,7 @@ class _ClimaPageState extends State<ClimaPage> {
           backgroundColor: Colors.black,
           body:Column(
             children: <Widget>[
-              moveTitle(),
+    //          moveTitle(),
               contenido(),
             ],
           )

@@ -1,9 +1,16 @@
 
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:getflutter/components/carousel/gf_items_carousel.dart';
+import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/app.localizations.dart';
+import 'package:movekomapp/widgets/IconSvg.dart';
+import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/box137x137.dart';
 import 'package:movekomapp/widgets/box137x64.dart';
 import 'package:movekomapp/widgets/box225x137.dart';
+
 
 class PrincipalHome extends StatefulWidget {
   @override
@@ -11,40 +18,70 @@ class PrincipalHome extends StatefulWidget {
 }
 
 class _PrincipalHomeState extends State<PrincipalHome> {
+
+  List<Widget> carouselList = new List();
+  List<String> lista = new List();
+  CarouselSlider instance;
+
+  BuildContext mContext;
   @override
   Widget build(BuildContext context) {
+    print("build");
+    mContext = context;
     return
       Scaffold(
         backgroundColor: Colors.black,
         body:Column(
           children: <Widget>[
-            moveTitle(),
             contenido(),
-            carruselDispositivos(),
+            horizontalList(),
           ],
         )
       );
   }
+//Widget box225x140_boiler(title, textAbajoIzq, textAbajoDer,
+//    iconRoute, textValue, state){
+Widget carouselDispositivos(){
+  return  Container(
+    alignment: Alignment.center,
+    margin: EdgeInsets.all(20),
+   color: Colors.blue,
+   child:  GFItemsCarousel(
+        itemHeight: 180,
+        rowCount: 5,
+        children: <Widget>[
+          box225x140_1icon_text("BOILER",2.65 , "assets/icons/ducha.svg","70ºC",true),
+          box225x140_1icon_text("CALEFACCION",2.65 , "assets/icons/fire.svg","20ºC",true),
+          box225x140_1icon("INVERSOR DE CORRIENTE",2.65 , "assets/icons/bat_enchufe.svg",true),
+          box225x140_1icon("VALVULAS",2.65 , "assets/iconos/valvula agua.svg",false),
+          box225x140_add_device(),
+        ],
+      )
+  );
+}
 
-  Widget carruselDispositivos(){
-      return Expanded(
-        child: Container(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              box225x137("Valvulas(Todas)","OFF","2.65 A",""),
-              box225x137("Inversor de corriente","OFF","",""),
-              box225x137("Calefaccion","OFF","",""),
-              box225x137("Boiler","ON","Consumo:2.65A",""),
-            ],
-          ),
-        ),
-      );
-  }
-  
+Widget horizontalList(){
+    return Container(
+      alignment: Alignment.center,
+      height: 180,
+      margin: EdgeInsets.only(left: 40,top: 20),
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        children: <Widget>[
+          box225x140_1icon_text("BOILER",2.65 , "assets/icons/ducha.svg","70ºC",true),
+          box225x140_1icon_text("CALEFACCION",2.65 , "assets/icons/fire.svg","20ºC",true),
+          box225x140_1icon("INVERSOR DE CORRIENTE",2.65 , "assets/icons/bat_enchufe.svg",true),
+          box225x140_1icon("VALVULAS",2.65 , "assets/iconos/valvula agua.svg",false),
+          box225x140_add_device(),
+        ],
+      ),
+    );
+}
+
 
   Widget contenido(){
     return Container(
+      margin: EdgeInsets.only(top: 20),
       child: Row( /// elementos uno al lado del otro
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -65,10 +102,8 @@ class _PrincipalHomeState extends State<PrincipalHome> {
     Column(  /// Elementos uno arriba del otro
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        columnOfHalfBoxes(),
-        box137x137_parms("Pronostico","","",null),
-        //    principalLeftRow3(),
-        //   principalLeftRow4(),
+        box137x137_Temperatura(mContext,"TEMP. INTERIOR","30%","21.5C"),
+        box137x137_Temperatura(mContext,"TEMP. EXTERIOR","30%","26.5C"),
       ],
     ),
   );
@@ -83,14 +118,14 @@ class _PrincipalHomeState extends State<PrincipalHome> {
           children: <Widget>[
             Row(
               children: <Widget>[
-               box137x137_parms("Luz general","OFF","2.65A",null),
-                box137x137_parms("Luz general","OFF","2.65A",null),
+                box137x137_Pronostico(mContext,"assets/icons/sol_nubes.svg"),
+                box137x137_Fecha_Hora(mContext,"12 ABRIL","17:05"),
               ],
             ),
             Row(
               children: <Widget>[
-                box137x137_parms("Downligth","OFF","2.65A",null),
-                box137x137_parms("Uplight","OFF","2.65A",null),
+                  verticalHalfBoxesIlumination(),
+                  verticalHalfBoxesLed(),
               ],
             ),
           ],
@@ -108,14 +143,14 @@ class _PrincipalHomeState extends State<PrincipalHome> {
 
               Row(
                 children: <Widget>[
-                  box137x137_parms("Aguas limpias","","",null),
-                  box137x137_parms("Aguas negras","","",null),
+                  box137x137_Aguas(AppLocalizations.of(mContext).translate("aguas_limpias"),"95%",true),
+                  box137x137_Aguas(AppLocalizations.of(mContext).translate("aguas_sucias"),"50%",true),
                 ],
               ),
               Row(
                 children: <Widget>[
-                  box137x137_parms("Aguas sucias","","",null),
-                  box137x137_parms("Bomba de agua","","",null),
+                  box137x137_Bomba_Agua(mContext,"2.65A",true),
+                  box137x137_Aguas(AppLocalizations.of(mContext).translate("aguas_negras"),"50%",true),
                 ],
               ),
             ],
@@ -140,43 +175,6 @@ class _PrincipalHomeState extends State<PrincipalHome> {
     );
   }
 
-  
-
-  Widget moveTitle(){
-    return
-      Container(
-        margin: EdgeInsets.only(left: 8),
-        alignment: Alignment.topLeft,
-        height: 100,
-        child: RichText(
-          text: new TextSpan(
-              children: [
-                new TextSpan(
-                    text: "HOME ",
-                    style: TextStyle(
-                      fontFamily: 'Mada',
-                      color: Color(0xffffffff),
-                      fontSize: 40,
-                      fontWeight: FontWeight.w700,
-                      fontStyle: FontStyle.normal,
-                    )
-                ),
-                new TextSpan(
-                    text: "PANTALLA GENERAL",
-                    style: TextStyle(
-                      fontFamily: 'Mada',
-                      color: Color(0xff9d9d9d),
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700,
-                      fontStyle: FontStyle.normal,
-                    )
-                ),
-              ]
-          )
-    ),
-      );
-  }
-
 
   Widget principalLeftRow1(){
     return
@@ -184,9 +182,9 @@ class _PrincipalHomeState extends State<PrincipalHome> {
         child: Row (
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            box137x137_parms("Bateria motor","12.45v","23.65A", null),
-            box137x137_parms("Bateria Auxiliar 1","12.45v","23.65A", null),
-            box137x137_parms("Bateria Auxiliar 2","12.45v","23.65A", null),
+            box137x137_Bateria(AppLocalizations.of(mContext).translate("bateria motor"),75,"12.45v","23.65A", true),
+            box137x137_Bateria(AppLocalizations.of(mContext).translate("bateria_aux_1"),50,"12.45v","23.65A", true),
+            box137x137_Bateria(AppLocalizations.of(mContext).translate("bateria_aux_2"),25,"12.45v","23.65A", false),
           ],
         ),
       );
@@ -199,24 +197,157 @@ class _PrincipalHomeState extends State<PrincipalHome> {
         child: Row (
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            box137x137_parms("Totalizador","Cargando","",null),
-            columnOfHalfBoxes(),
-            columnOfHalfBoxes(),
+            box137x137_parms(AppLocalizations.of(mContext).translate("totalizador"),AppLocalizations.of(mContext).translate("cargando"),"",null),
+            columnCargas(),
+            columnTiempoDeUso(),
           ],
         ),
       );
   }
 
+  Widget verticalIluminationBox(firstIcon,secondIcon,bool state){
+      Color color;
+      String text;
+      print(state);
+      if(state == true){
+        color = Colors.lightGreen;
+        text = "ON";
+      }else {
+        color = Colors.grey;
+        text = "OFF";
+      }
+     return Container(
+            margin: EdgeInsets.all(5),
+            width: 66,
+            height: 137,
+            decoration: new BoxDecoration(
+                color: MyColors.ContainerColor,
+            ),
+         child: Stack(
+           children: <Widget>[
+             Positioned.fill(
+               top: 5,
+                 child: Align(
+                   alignment: Alignment.topCenter,
+                   child: iconSvgD(firstIcon, color, 35),
+                 )
+             ),Positioned.fill(
+                 child: Align(
+                   alignment: Alignment.center,
+                   child: iconSvgD(secondIcon, color, 35),
+                 )
+             ),Positioned.fill(
+               bottom: 8,
+                 child: Align(
+                   alignment: Alignment.bottomCenter,
+                   child:   RichText(
+                       text: TextSpan(
+                           children: [
+                             TextSpan(
+                                 style: MyTextStyle.estiloBold(20,color),
+                                 text: text ),
+                           ]
+                       )
+                   ),
+                 )
+             )
+           ],
+           ),
+     );
+  }
 
+  Widget verticalHalfBoxesIlumination(){
+    return Container(
+      child: Row (
+        children: <Widget>[
+          verticalIluminationBox("assets/icons/luz.svg","assets/icons/exterior.svg",false),
+          verticalIluminationBox("assets/icons/luz.svg","assets/icons/todas_luces.svg",true),
+        ],
+      )
+      ,
+    );
+  }
 
-Widget columnOfHalfBoxes(){
+  Widget verticalHalfBoxesLed(){
+    return Container(
+      child: Row (
+        children: <Widget>[
+          verticalLedBox("assets/icons/todas_luces.svg",false),
+          verticalLedBox("assets/icons/todas_luces.svg",true),
+        ],
+      )
+      ,
+    );
+  }
+
+  Widget verticalLedBox(firstIcon,bool state){
+    Color color;
+    String text;
+    print(state);
+    if(state == true){
+      color = Colors.lightGreen;
+      text = "ON";
+    }else {
+      color = Colors.grey;
+      text = "OFF";
+    }
+    return Container(
+      margin: EdgeInsets.all(5),
+      width: 66,
+      height: 137,
+      decoration: new BoxDecoration(
+        color: MyColors.ContainerColor,
+      ),
+      child: Stack(
+        children: <Widget>[
+          Positioned.fill(
+              top: 5,
+              child: Align(
+                alignment: Alignment.topCenter,
+                child:  RichText(
+                    text: TextSpan(
+                        children: [
+                          TextSpan(
+                              style: MyTextStyle.estiloBold(20,color),
+                              text: "LED" ),
+                        ]
+                    )
+                ),
+              )
+          ),Positioned.fill(
+              child: Align(
+                alignment: Alignment.center,
+                child: iconSvgD(firstIcon, color, 35),
+              )
+          ),Positioned.fill(
+              bottom: 8,
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child:   RichText(
+                    text: TextSpan(
+                        children: [
+                          TextSpan(
+                              style: MyTextStyle.estiloBold(20,color),
+                              text: text ),
+                        ]
+                    )
+                ),
+              )
+          )
+        ],
+      ),
+    );
+  }
+
+Widget columnCargas(){
     return Container(
       alignment: Alignment.center,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        //Widget box137x64_carga(title,iconRoute,valueAh,state){
         children: <Widget>[
-          box137x64_params("Interior","Humedad","36%",null),
-          box137x64_params("Exterior","Humedad","36%",null),
+          box137x64_carga("CARGA MOTOR","assets/iconos/motor.svg","25.5Ah",true),
+          box137x64_Tiempo_uso("CARGA DE 220","___Ah",false),
         ],
       ),
     );
@@ -224,10 +355,19 @@ Widget columnOfHalfBoxes(){
 
 
 
-
-
-
-
+  Widget columnTiempoDeUso(){
+    return Container(
+      alignment: Alignment.center,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        //Widget box137x64_carga(title,iconRoute,valueAh,state){
+        children: <Widget>[
+          box137x64_carga("CARGA SOLAR","assets/iconos/panel solar 2.svg","12.5Ah",true),
+          box137x64_Tiempo_uso("TIEMPO DE USO",">100Hr",true),
+        ],
+      ),
+    );
+  }
 
 }
 

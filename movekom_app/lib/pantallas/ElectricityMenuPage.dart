@@ -13,7 +13,7 @@ class _ElectricityPageState extends State<ElectricityPage> {
         backgroundColor: Colors.black,
         body:Column(
           children: <Widget>[
-              title(),
+    //          title(),
             rowOfboxes(),
             rowOfboxes(),
             graphic("GRAFICO DE CARGA"),
