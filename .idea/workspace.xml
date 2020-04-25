@@ -1,7 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6e800661-3c28-48b2-b76a-e1471defa01e" name="Default Changelist" comment="" />
+    <list default="true" id="6e800661-3c28-48b2-b76a-e1471defa01e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/movekom_app/assets/icons/cable.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/movekom_app/assets/icons/cable_1.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/movekom_app/assets/icons/enchufe.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/movekom_app/assets/icons/energy.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/movekom_app/assets/icons/energy_1.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/movekom_app/assets/icons/energy_2.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/movekom_app/assets/icons/engine_motor_car_power.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/movekom_app/assets/icons/fan.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/movekom_app/assets/icons/solar_panel_1.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/movekom_app/lib/pantallas/Electricity/ElectricityDataView.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/movekom_app/lib/pantallas/Electricity/ElectricityEquipmentView.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/movekom_app/lib/pantallas/Electricity/ElectricitySettingsView.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/movekom_app/lib/pantallas/Electricity/ElectricityStateView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/MovekomApp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MovekomApp.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movekom_app/lib/HomePage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/movekom_app/lib/HomePage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movekom_app/lib/Utils/DrawCircle.dart" beforeDir="false" afterPath="$PROJECT_DIR$/movekom_app/lib/Utils/DrawCircle.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movekom_app/lib/pantallas/ElectricityMenuPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/movekom_app/lib/pantallas/Electricity/ElectricityMenuPage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movekom_app/lib/pantallas/PrincipalHome.dart" beforeDir="false" afterPath="$PROJECT_DIR$/movekom_app/lib/pantallas/PrincipalHome.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movekom_app/lib/pantallas/WaterMenuPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/movekom_app/lib/pantallas/WaterMenuPage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movekom_app/lib/pantallas/WheaterMenuPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/movekom_app/lib/pantallas/WheaterMenuPage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movekom_app/lib/widgets/box137x137.dart" beforeDir="false" afterPath="$PROJECT_DIR$/movekom_app/lib/widgets/box137x137.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movekom_app/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/movekom_app/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movekom_app/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/movekom_app/pubspec.yaml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,6 +39,7 @@
   <component name="ProjectId" id="1aazrhRmVn7yFhUUDGjToLQsXhT" />
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -39,5 +65,16 @@
       <updated>1586988692462</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

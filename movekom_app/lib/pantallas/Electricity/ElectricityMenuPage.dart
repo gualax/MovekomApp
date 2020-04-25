@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movekomapp/widgets/MyTextStyle.dart';
 
 
 class ElectricityPage extends StatefulWidget {
@@ -11,56 +12,23 @@ class _ElectricityPageState extends State<ElectricityPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.black,
-        body:Column(
-          children: <Widget>[
-    //          title(),
-            rowOfboxes(),
-            rowOfboxes(),
-            graphic("GRAFICO DE CARGA"),
-            graphic("GRAFICO DE DESCARGA"),
-            bottomTextMenu()
-          ],
+        body:Container(
+          margin: EdgeInsets.only(top:25),
+          child: Column(
+            children: <Widget>[
+              rowOfboxes(),
+              rowOfboxes(),
+              graphic("GRAFICO DE CARGA"),
+              graphic("GRAFICO DE DESCARGA"),
+              buttonTabTextMenu()
+            ],
+          ),
         )
     );
   }
 
 
 
-  Widget title(){
-    return
-      Container(
-     //   color: Colors.blueGrey,
-        margin: EdgeInsets.only(left: 30),
-        alignment: Alignment.topLeft,
-        height: 60,
-        child: RichText(
-            text: new TextSpan(
-                children: [
-                  new TextSpan(
-                      text: "ELECTRICIDAD ",
-                      style: TextStyle(
-                        fontFamily: 'Mada',
-                        color: Color(0xffffffff),
-                        fontSize: 40,
-                        fontWeight: FontWeight.w700,
-                        fontStyle: FontStyle.normal,
-                      )
-                  ),
-                  new TextSpan(
-                      text: "GRAFICOS Y CONSUMOS",
-                      style: TextStyle(
-                        fontFamily: 'Mada',
-                        color: Color(0xff9d9d9d),
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
-                        fontStyle: FontStyle.normal,
-                      )
-                  ),
-                ]
-            )
-        ),
-      );
-  }
 
  Widget rowOfboxes(){
     return Container(
@@ -87,7 +55,28 @@ class _ElectricityPageState extends State<ElectricityPage> {
        height: 67,
        decoration: new BoxDecoration(
            color: Color(0xff2d3033)
-       )
+       ),
+     child: Stack(
+        children: <Widget>[
+          Positioned.fill(
+            left: 5,
+              top:3,
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Text("Carga de solar",
+                style: MyTextStyle.estiloBold(15, Colors.white),),
+              )
+          ),
+          Positioned.fill(
+            top: 5,
+              child: Align(
+                alignment: Alignment.center,
+                child: Text("12.5",
+                  style: MyTextStyle.estiloBold(25, Colors.lightGreenAccent),),
+              )
+          )
+        ],
+     ),
    );
  }
 
@@ -151,3 +140,34 @@ class _ElectricityPageState extends State<ElectricityPage> {
   }
 
 }
+
+Widget buttonTabTextMenu(){
+  return DefaultTabController(
+    length: 4,
+    child: Container(
+        alignment: Alignment.center,
+        margin: EdgeInsets.only(right: 100, left: 100),
+      //color: Colors.blueGrey,
+      child: TabBar(
+        onTap:(index){
+          changePage(index);
+        },
+        indicatorColor: Colors.lightGreenAccent,
+        unselectedLabelColor: Colors.white,
+        labelColor: Colors.lightGreenAccent,
+        tabs: [
+          Tab(text: "ESTADO"),
+          Tab(text: "EQUIPOS"),
+          Tab(text: "DATOS"),
+          Tab(text: "AJUSTE"),
+        ],
+      ),
+    ),
+  );
+}
+
+
+changePage(int index){
+  print("change page" + index.toString());
+}
+

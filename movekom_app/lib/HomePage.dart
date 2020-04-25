@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movekomapp/app.localizations.dart';
+import 'package:movekomapp/blocs/bateria_motor_bloc.dart';
 import 'package:movekomapp/pantallas/LigthsMenuPage.dart';
-import 'package:movekomapp/pantallas/WaterMenuPage.dart';
-import 'package:movekomapp/pantallas/WheaterMenuPage.dart';
-import 'package:movekomapp/pantallas/ElectricityMenuPage.dart';
+import 'package:movekomapp/pantallas/Water/WaterMenuPage.dart';
+import 'package:movekomapp/pantallas/Wheater/WheaterMenuPage.dart';
+import 'package:movekomapp/pantallas/Electricity/ElectricityMenuPage.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
 import 'FloatingMenu.dart';
@@ -26,95 +28,105 @@ class _HomePageState extends State<HomePage> {
   String barSubTitle = "HOME";
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-   appBar:   PreferredSize(
-     preferredSize: Size.fromHeight(70), // here the desired height
-     child: CustomBar(),
+    final bateriaMotorBloc = BlocProvider.of<BateriaMotorBloc>(context);
+    return BlocListenerTree(
+      blocListeners: [
+        BlocListener<BateriaMotorEvent, BateriaMotorState>(
+          bloc: bateriaMotorBloc,
+          listener: (BuildContext context, BateriaMotorState state) {
+          },
+        ),
+      ],
+      child: Scaffold(
+        appBar:   PreferredSize(
+            preferredSize: Size.fromHeight(70), // here the desired height
+          child: CustomBar(),
    ),
-      bottomNavigationBar: new BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: Colors.black87,
-          onTap: onTabTapped,
-          currentIndex: _currentIndex,
-          items: [
-            new BottomNavigationBarItem(
-              icon: iconSvg("assets/images/home.svg", Colors.grey),
-              title: new Text("Home"),
-            ),
-            new BottomNavigationBarItem(
-              icon: iconSvg("assets/iconos/clima.svg", Colors.grey),
-              title: new Text("clima"),
-            ),
-            new BottomNavigationBarItem(
-              icon: iconSvg("assets/iconos/electricidad.svg", Colors.grey),
-              title: new Text("Menu"),
-            ),
-            new BottomNavigationBarItem(
-              icon: iconSvg("assets/images/water_gout.svg", Colors.grey),
-              title: new Text("Menu"),
-            ),
-            new BottomNavigationBarItem(
-              icon: iconSvg("assets/images/idea.svg", Colors.grey),
-              title: new Text("Menu"),
-            ),
-            new BottomNavigationBarItem(
-              icon: iconSvg("assets/images/move_1.svg", Colors.grey),
-              title: new Text("Menu"),
-            ),
-            new BottomNavigationBarItem(
-              icon: iconSvg("assets/images/manual.svg", Colors.grey),
-              title: new Text("Menu"),
-            ),
-            new BottomNavigationBarItem(
-              icon: iconSvg("assets/images/toolbox_1.svg", Colors.grey),
-              title: new Text("Menu"),
-            ),
-            new BottomNavigationBarItem(
-              icon: iconSvg("assets/images/caution_sign.svg", Colors.grey),
-              title: new Text("Menu"),
-            ),
-            new BottomNavigationBarItem(
-              icon: iconSvg("assets/images/cog.svg", Colors.grey),
-              title: new Text("Menu"),
-            ),
-            new BottomNavigationBarItem(
-              icon: iconSvg("assets/images/360_degrees.svg", Colors.grey),
-              title: new Text("Menu"),
-            ),
-            new BottomNavigationBarItem(
-              icon: iconSvg("assets/images/gas.svg", Colors.grey),
-              title: new Text("Menu"),
-            ),
-            new BottomNavigationBarItem(
-              icon: iconSvg("assets/images/page_1.svg", Colors.grey),
-              title: new Text("Menu"),
-            ),
-            new BottomNavigationBarItem(
-              icon: iconSvg("assets/images/xmlid_1689.svg", Colors.grey),
-              title: new Text("Menu"),
-            ),
-            new BottomNavigationBarItem(
-              icon: iconSvg("assets/images/lock.svg", Colors.grey),
-              title: new Text("Menu"),
-            ),
-            new BottomNavigationBarItem(
-              icon: iconSvg("assets/icons/slide_out.svg", Colors.grey),
-              title: new Text("Menu"),
-            ),
-            new BottomNavigationBarItem(
-              icon: iconSvg("assets/images/suspension.svg", Colors.grey),
-              title: new Text("Menu"),
-            ),
-            new BottomNavigationBarItem(
-              icon: iconSvg("assets/images/tyre.svg", Colors.grey),
-              title: new Text("Menu"),
-            ),
-            new BottomNavigationBarItem(
-              icon: iconSvg("assets/images/capa_2.svg", Colors.grey),
-              title: new Text("Menu"),
-            ),
-          ]),
-      body: show(_currentIndex, context), // new
+        bottomNavigationBar: new BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            backgroundColor: Colors.black87,
+            onTap: onTabTapped,
+            currentIndex: _currentIndex,
+            items: [
+              new BottomNavigationBarItem(
+                icon: iconSvg("assets/images/home.svg", Colors.grey),
+                title: new Text("Home"),
+              ),
+              new BottomNavigationBarItem(
+                icon: iconSvg("assets/iconos/clima.svg", Colors.grey),
+                title: new Text("clima"),
+              ),
+              new BottomNavigationBarItem(
+                icon: iconSvg("assets/iconos/electricidad.svg", Colors.grey),
+                title: new Text("Menu"),
+              ),
+              new BottomNavigationBarItem(
+                icon: iconSvg("assets/images/water_gout.svg", Colors.grey),
+                title: new Text("Menu"),
+              ),
+              new BottomNavigationBarItem(
+                icon: iconSvg("assets/images/idea.svg", Colors.grey),
+                title: new Text("Menu"),
+              ),
+              new BottomNavigationBarItem(
+                icon: iconSvg("assets/images/move_1.svg", Colors.grey),
+                title: new Text("Menu"),
+              ),
+              new BottomNavigationBarItem(
+                icon: iconSvg("assets/images/manual.svg", Colors.grey),
+                title: new Text("Menu"),
+              ),
+              new BottomNavigationBarItem(
+                icon: iconSvg("assets/images/toolbox_1.svg", Colors.grey),
+                title: new Text("Menu"),
+              ),
+              new BottomNavigationBarItem(
+                icon: iconSvg("assets/images/caution_sign.svg", Colors.grey),
+                title: new Text("Menu"),
+              ),
+              new BottomNavigationBarItem(
+                icon: iconSvg("assets/images/cog.svg", Colors.grey),
+                title: new Text("Menu"),
+              ),
+              new BottomNavigationBarItem(
+                icon: iconSvg("assets/images/360_degrees.svg", Colors.grey),
+                title: new Text("Menu"),
+              ),
+              new BottomNavigationBarItem(
+                icon: iconSvg("assets/images/gas.svg", Colors.grey),
+                title: new Text("Menu"),
+              ),
+              new BottomNavigationBarItem(
+                icon: iconSvg("assets/images/page_1.svg", Colors.grey),
+                title: new Text("Menu"),
+              ),
+              new BottomNavigationBarItem(
+                icon: iconSvg("assets/images/xmlid_1689.svg", Colors.grey),
+                title: new Text("Menu"),
+              ),
+              new BottomNavigationBarItem(
+                icon: iconSvg("assets/images/lock.svg", Colors.grey),
+                title: new Text("Menu"),
+              ),
+              new BottomNavigationBarItem(
+                icon: iconSvg("assets/icons/slide_out.svg", Colors.grey),
+                title: new Text("Menu"),
+              ),
+              new BottomNavigationBarItem(
+                icon: iconSvg("assets/images/suspension.svg", Colors.grey),
+                title: new Text("Menu"),
+              ),
+              new BottomNavigationBarItem(
+                icon: iconSvg("assets/images/tyre.svg", Colors.grey),
+                title: new Text("Menu"),
+              ),
+              new BottomNavigationBarItem(
+                icon: iconSvg("assets/images/capa_2.svg", Colors.grey),
+                title: new Text("Menu"),
+              ),
+            ]),
+        body: show(_currentIndex, context), // new
+      ),
     );
   }
 
@@ -153,11 +165,13 @@ void changeBarTitle(index){
     "HOME",
     "CLIMA",
     "ELECTRICIDAD",
+    "AGUA",
   ];
   List<String> subtitles = [
-    "HOME",
-    "CLIMA",
-    "ELECTRICIDAD",
+    "PANTALLA GENERAL",
+    "PANTALLA GENERAL",
+    "ESTADO DE BATERIAS",
+    "NIVELES DEPOSITOS Y VALVULAS",
   ];
   setBarTitle(titles[index], subtitles[index]);
 }
@@ -206,7 +220,7 @@ Widget CustomBar(){
                    ),
                    new TextSpan(
                        text:subtitle,
-                       style: MyTextStyle.estilo(20, Colors.grey),
+                       style: MyTextStyle.estiloBold(20, Colors.grey),
                    ),
                  ]
              )

@@ -263,3 +263,6 @@ TextStyle estiloBold(){
       fontSize: 15.0
   );
 }
+
+
+

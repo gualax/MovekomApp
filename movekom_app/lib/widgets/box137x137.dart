@@ -65,7 +65,7 @@ Widget box137x137_parms(title, textAbajoIzq, textAbajoDer, textArribaDer){
                   style: estilo(),
                   textAlign: TextAlign.center
               )
-          )
+          ),
         ])
     );
 }
@@ -600,7 +600,7 @@ Widget box137x137_Aguas(title,value,state){
 Widget circulito(size, color){
   //this is base circle
   return Container(
-    child: CustomPaint(painter: DrawCircle(size,color) ),
+    child: CustomPaint(painter: DrawCircle(size,color,PaintingStyle.stroke,1.0) ),
   );
 }
 
@@ -639,3 +639,64 @@ Widget _switch(value,color){
     }
   );
 }
+
+
+Widget box_imagen(title, textAbajoIzq, int valueAmp){
+  return
+    Container(
+        margin: EdgeInsets.all(7),
+        width: 137, height: 137,
+        decoration: new BoxDecoration(
+            color: Color(0xff2d3033)
+        ), child: Stack(
+        children: [
+          // Valvulas (Todas)
+          PositionedDirectional(
+            top: 4, start: 10,
+            child:   RichText(
+                text: TextSpan(
+                    children: [
+                      TextSpan(
+                          style:estiloBold(),
+                          text: title ),
+                    ]
+                )
+            ),
+          ),
+          // OFF
+          PositionedDirectional(
+            bottom: 4, start: 10,
+            child:   Text(
+                textAbajoIzq,
+                style: estilo(),
+                textAlign: TextAlign.center
+            ),
+          ),
+          // 2.65 A
+          Positioned.fill(
+            left: 10, right: 10,
+            child:  Align(
+              alignment: Alignment.center,
+              child: Container(
+                  decoration: new BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/images/indicador_amarillo.png"),
+                      fit: BoxFit.contain,
+                    ),
+                  )
+              ),
+            ),
+          ),
+          Positioned.fill(
+            top: 35,
+            left: 10,
+            child:  Align(
+              alignment: Alignment.center,
+              child:Text(valueAmp.toString() +"Ah",
+                style: MyTextStyle.estiloBold(30, Colors.white) ,),
+            ),
+          ),
+        ])
+    );
+}
+

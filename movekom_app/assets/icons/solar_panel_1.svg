@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="33.5" height="33.5" viewBox="0 0 33.5 33.5">
+    <defs>
+        <style>
+            .prefix__cls-1{fill:#fff}
+        </style>
+    </defs>
+    <g id="prefix__solar-panel_1_" data-name="solar-panel (1)">
+        <g id="prefix__Grupo_439" data-name="Grupo 439" transform="translate(0 18.911)">
+            <g id="prefix__Grupo_438" data-name="Grupo 438">
+                <path id="prefix__Trazado_422" d="M33.394 302.187l-6.378-12.626a.982.982 0 0 0-.876-.539H7.36a.982.982 0 0 0-.876.539L.107 302.187a.982.982 0 0 0 .876 1.424h31.535a.982.982 0 0 0 .876-1.424zm-15.662-11.2h7.8l2.2 4.35h-10zm-1.963 10.664H2.578l2.2-4.35h10.991zm0-6.313h-10l2.2-4.35h7.8zm1.963 6.313V297.3h10.993l2.2 4.35z" class="prefix__cls-1" data-name="Trazado 422" transform="translate(0 -289.022)"/>
+            </g>
+        </g>
+        <g id="prefix__Grupo_441" data-name="Grupo 441" transform="translate(13.152 5.039)">
+            <g id="prefix__Grupo_440" data-name="Grupo 440">
+                <path id="prefix__Trazado_423" d="M204.6 77.011a3.6 3.6 0 1 0 3.6 3.6 3.6 3.6 0 0 0-3.6-3.6zm0 5.234a1.636 1.636 0 1 1 1.636-1.636 1.638 1.638 0 0 1-1.636 1.636z" class="prefix__cls-1" data-name="Trazado 423" transform="translate(-201.002 -77.011)"/>
+            </g>
+        </g>
+        <g id="prefix__Grupo_443" data-name="Grupo 443" transform="translate(15.769)">
+            <g id="prefix__Grupo_442" data-name="Grupo 442">
+                <path id="prefix__Trazado_424" d="M241.981 0a.981.981 0 0 0-.981.981v2.16a.981.981 0 1 0 1.963 0V.981a.981.981 0 0 0-.982-.981z" class="prefix__cls-1" data-name="Trazado 424" transform="translate(-241)"/>
+            </g>
+        </g>
+        <g id="prefix__Grupo_445" data-name="Grupo 445" transform="translate(15.769 13.152)">
+            <g id="prefix__Grupo_444" data-name="Grupo 444">
+                <path id="prefix__Trazado_425" d="M241.981 201.016A.981.981 0 0 0 241 202v2.16a.981.981 0 1 0 1.963 0V202a.981.981 0 0 0-.982-.984z" class="prefix__cls-1" data-name="Trazado 425" transform="translate(-241 -201.016)"/>
+            </g>
+        </g>
+        <g id="prefix__Grupo_447" data-name="Grupo 447" transform="translate(10.356 2.242)">
+            <g id="prefix__Grupo_446" data-name="Grupo 446">
+                <path id="prefix__Trazado_426" d="M161.469 36.087l-1.527-1.527a.981.981 0 1 0-1.388 1.388l1.527 1.527a.981.981 0 1 0 1.388-1.388z" class="prefix__cls-1" data-name="Trazado 426" transform="translate(-158.266 -34.273)"/>
+            </g>
+        </g>
+        <g id="prefix__Grupo_449" data-name="Grupo 449" transform="translate(19.655 11.543)">
+            <g id="prefix__Grupo_448" data-name="Grupo 448">
+                <path id="prefix__Trazado_427" d="M303.6 178.226l-1.527-1.527a.981.981 0 0 0-1.388 1.388l1.527 1.527a.981.981 0 0 0 1.388-1.388z" class="prefix__cls-1" data-name="Trazado 427" transform="translate(-300.396 -176.412)"/>
+            </g>
+        </g>
+        <g id="prefix__Grupo_451" data-name="Grupo 451" transform="translate(8.113 7.656)">
+            <g id="prefix__Grupo_450" data-name="Grupo 450">
+                <path id="prefix__Trazado_428" d="M127.136 117.011h-2.16a.981.981 0 0 0 0 1.963h2.16a.981.981 0 0 0 0-1.963z" class="prefix__cls-1" data-name="Trazado 428" transform="translate(-123.995 -117.011)"/>
+            </g>
+        </g>
+        <g id="prefix__Grupo_453" data-name="Grupo 453" transform="translate(21.265 7.656)">
+            <g id="prefix__Grupo_452" data-name="Grupo 452">
+                <path id="prefix__Trazado_429" d="M328.141 117.011h-2.159a.981.981 0 0 0 0 1.963h2.159a.981.981 0 0 0 0-1.963z" class="prefix__cls-1" data-name="Trazado 429" transform="translate(-325 -117.011)"/>
+            </g>
+        </g>
+        <g id="prefix__Grupo_455" data-name="Grupo 455" transform="translate(10.356 11.543)">
+            <g id="prefix__Grupo_454" data-name="Grupo 454">
+                <path id="prefix__Trazado_430" d="M161.468 176.7a.981.981 0 0 0-1.388 0l-1.527 1.527a.981.981 0 1 0 1.388 1.388l1.527-1.527a.981.981 0 0 0 0-1.388z" class="prefix__cls-1" data-name="Trazado 430" transform="translate(-158.266 -176.411)"/>
+            </g>
+        </g>
+        <g id="prefix__Grupo_457" data-name="Grupo 457" transform="translate(19.655 2.242)">
+            <g id="prefix__Grupo_456" data-name="Grupo 456">
+                <path id="prefix__Trazado_431" d="M303.6 34.56a.981.981 0 0 0-1.388 0l-1.527 1.527a.981.981 0 0 0 1.388 1.388l1.527-1.527a.981.981 0 0 0 0-1.388z" class="prefix__cls-1" data-name="Trazado 431" transform="translate(-300.396 -34.273)"/>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -5,14 +5,16 @@ import 'package:flutter/material.dart';
 class DrawCircle extends CustomPainter {
   Paint _paint;
   double _size;
+  PaintingStyle _style;
 
-  DrawCircle(size,color) {
+  DrawCircle(size,color,style,strokeWidth) {
     _size = size;
     _paint = Paint()
       ..color = color
-      ..strokeWidth = 1
-      ..style =  PaintingStyle.stroke;
+      ..strokeWidth = strokeWidth
+      ..style =  style;
   }
+
 
   @override
   void paint(Canvas canvas, Size size) {

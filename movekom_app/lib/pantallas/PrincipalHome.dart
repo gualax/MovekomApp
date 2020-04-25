@@ -2,9 +2,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:getflutter/components/carousel/gf_items_carousel.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/app.localizations.dart';
+import 'package:movekomapp/blocs/bateria_motor_bloc.dart';
+import 'package:movekomapp/controladores/electricidad/BateriaMotor.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/box137x137.dart';
@@ -22,10 +25,11 @@ class _PrincipalHomeState extends State<PrincipalHome> {
   List<Widget> carouselList = new List();
   List<String> lista = new List();
   CarouselSlider instance;
-
   BuildContext mContext;
   @override
   Widget build(BuildContext context) {
+  final  bateriaMotorBloc = BlocProvider.of<BateriaMotorBloc>(context);
+
     print("build");
     mContext = context;
     return
@@ -33,7 +37,7 @@ class _PrincipalHomeState extends State<PrincipalHome> {
         backgroundColor: Colors.black,
         body:Column(
           children: <Widget>[
-            contenido(),
+            contenido(bateriaMotorBloc),
             horizontalList(),
           ],
         )
@@ -71,7 +75,8 @@ Widget horizontalList(){
           box225x140_1icon_text("BOILER",2.65 , "assets/icons/ducha.svg","70ºC",true),
           box225x140_1icon_text("CALEFACCION",2.65 , "assets/icons/fire.svg","20ºC",true),
           box225x140_1icon("INVERSOR DE CORRIENTE",2.65 , "assets/icons/bat_enchufe.svg",true),
-          box225x140_1icon("VALVULAS",2.65 , "assets/iconos/valvula agua.svg",false),
+          box225x140_1icon("VALVULAS",2.65 , "assets/icons/valvula.svg",false),
+          box225x140_1icon("VALVULAS",2.65 , "assets/icons/valvula.svg",false),
           box225x140_add_device(),
         ],
       ),
@@ -79,13 +84,13 @@ Widget horizontalList(){
 }
 
 
-  Widget contenido(){
+  Widget contenido(bateriaMotorBloc){
     return Container(
       margin: EdgeInsets.only(top: 20),
       child: Row( /// elementos uno al lado del otro
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          leftSection(),
+          leftSection(bateriaMotorBloc),
           midleLeftSection(),
           midleRigthSection(),
           rightSection(),
@@ -160,7 +165,7 @@ Widget horizontalList(){
 
 
 
-  Widget leftSection(){
+  Widget leftSection(bateriaMotorBloc){
     return
     Container (
       margin: EdgeInsets.all(5),
@@ -168,7 +173,7 @@ Widget horizontalList(){
     Column(  /// Elementos uno arriba del otro
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        principalLeftRow1(),
+        principalLeftRow1(bateriaMotorBloc),
         principalLeftRow2(),
       ],
     ),
@@ -176,13 +181,18 @@ Widget horizontalList(){
   }
 
 
-  Widget principalLeftRow1(){
+  Widget principalLeftRow1(bateriaMotorBloc){
     return
       Container(
         child: Row (
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            box137x137_Bateria(AppLocalizations.of(mContext).translate("bateria motor"),75,"12.45v","23.65A", true),
+            BlocBuilder(
+              bloc: bateriaMotorBloc,
+              builder: (BuildContext context, BateriaMotorState state) {
+                return BateriaMotor(1,state.isEnabled, state.valueBat);
+              },
+            ),
             box137x137_Bateria(AppLocalizations.of(mContext).translate("bateria_aux_1"),50,"12.45v","23.65A", true),
             box137x137_Bateria(AppLocalizations.of(mContext).translate("bateria_aux_2"),25,"12.45v","23.65A", false),
           ],
@@ -197,7 +207,7 @@ Widget horizontalList(){
         child: Row (
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            box137x137_parms(AppLocalizations.of(mContext).translate("totalizador"),AppLocalizations.of(mContext).translate("cargando"),"",null),
+            box_imagen(AppLocalizations.of(mContext).translate("totalizador"),AppLocalizations.of(mContext).translate("cargando"),20),
             columnCargas(),
             columnTiempoDeUso(),
           ],
@@ -272,8 +282,8 @@ Widget horizontalList(){
     return Container(
       child: Row (
         children: <Widget>[
-          verticalLedBox("assets/icons/todas_luces.svg",false),
-          verticalLedBox("assets/icons/todas_luces.svg",true),
+          verticalLedBox("assets/icons/tira_led.svg",false),
+          verticalLedBox("assets/icons/tira_led.svg",true),
         ],
       )
       ,
@@ -317,7 +327,7 @@ Widget horizontalList(){
           ),Positioned.fill(
               child: Align(
                 alignment: Alignment.center,
-                child: iconSvgD(firstIcon, color, 35),
+                child: iconSvgD(firstIcon, color, 45),
               )
           ),Positioned.fill(
               bottom: 8,

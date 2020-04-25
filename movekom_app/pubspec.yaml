@@ -32,7 +32,15 @@ dependencies:
   carousel_slider: ^2.0.0
   getflutter: ^1.0.11
   dotted_border: ^1.0.5
-
+  speedometer: "^1.0.1"
+  flutter_speedometer: 1.0.2
+  flutter_circular_slider: ^2.5.0
+  circle_list: ^0.0.6
+  circle_wheel_scroll: ^0.0.1+1
+  rxdart: ^0.22.0
+  equatable: ^0.2.6
+  bloc: ^0.14.2
+  flutter_bloc: ^0.17.0
 
 
 dev_dependencies:
