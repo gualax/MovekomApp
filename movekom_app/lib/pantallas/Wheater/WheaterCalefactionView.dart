@@ -12,14 +12,13 @@ class WheaterCalefactionView extends StatefulWidget {
 class _WheaterCalefactionViewState extends State<WheaterCalefactionView> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return contenido();
   }
 
 
 
   Widget contenido() {
-    return Expanded(
-      child: Container(
+    return Container(
         margin: EdgeInsets.only(top: 50),
         // color: Colors.green,
         child: Row(
@@ -30,7 +29,6 @@ class _WheaterCalefactionViewState extends State<WheaterCalefactionView> {
             container(),
           ],
         ),
-      ),
     );
   }
 
