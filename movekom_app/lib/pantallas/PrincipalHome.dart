@@ -6,8 +6,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:getflutter/components/carousel/gf_items_carousel.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/app.localizations.dart';
-import 'package:movekomapp/blocs/bateria_motor_bloc.dart';
 import 'package:movekomapp/blocs/stopwatch_bloc.dart';
+import 'package:movekomapp/controladores/electricidad/BateriaAux1.dart';
+import 'package:movekomapp/controladores/electricidad/BateriaAux2.dart';
 import 'package:movekomapp/controladores/electricidad/BateriaMotor.dart';
 import 'package:movekomapp/controladores/electricidad/BateriaMotor2.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
@@ -30,8 +31,6 @@ class _PrincipalHomeState extends State<PrincipalHome> {
   BuildContext mContext;
   @override
   Widget build(BuildContext context) {
-  final  bateriaMotorBloc = BlocProvider.of<BateriaMotorBloc>(context);
-  //final  stopWatch = BlocProvider.of<StopwatchBloc>(context);
     print("build");
     mContext = context;
     return
@@ -189,11 +188,9 @@ Widget horizontalList(){
         child: Row (
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-
-            BateriaMotor2(),
-       //     box137x137_Bateria(AppLocalizations.of(mContext).translate("bateria_aux_1"),50,"12.45v","23.65A", true),
-            BateriaMotor2(),
-            box137x137_Bateria(AppLocalizations.of(mContext).translate("bateria_aux_2"),25,"12.45v","23.65A", false),
+            BateriaMotor(1),
+            BateriaMotorAux1(1),
+            BateriaMotorAux2(1),
           ],
         ),
       );

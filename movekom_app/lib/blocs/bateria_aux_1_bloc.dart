@@ -1,31 +1,32 @@
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
-abstract class BateriaMotorEvent extends Equatable {
-  BateriaMotorEvent([List props = const []]) : super(props);
+abstract class BateriaAux1Event extends Equatable {
+  BateriaAux1Event([List props = const []]) : super(props);
 }
 
-class EnableBatery extends BateriaMotorEvent {  /// Habilita la bateria
+class EnableBatery extends BateriaAux1Event {  /// Habilita la bateria
   @override
   String toString() => 'EnableBatery';
 }
 
-class DisableBatery extends BateriaMotorEvent { /// Deshabilita la bateria
+class DisableBatery extends BateriaAux1Event { /// Deshabilita la bateria
   @override
   String toString() => 'DisableBatery';
 }
 /// Fin declaracion de eventos
 
 
-class BateriaMotorState extends Equatable {
+class BateriaAux1State extends Equatable {
   final bool isInitial;
   final bool isEnabled;
-  int valueBat;
+  final int valueBat;
   double valueVolt;
   double valueAmp;
 
-  BateriaMotorState({
+  BateriaAux1State({
     @required this.isInitial,
     @required this.isEnabled,
     @required this.valueBat,
@@ -35,22 +36,25 @@ class BateriaMotorState extends Equatable {
   }) : super([ isInitial, isEnabled]);
 
   /// Valores iniciales
-  factory BateriaMotorState.initial() {
-    return BateriaMotorState(
+  factory BateriaAux1State.initial() {
+    return BateriaAux1State(
       isInitial: true,
       isEnabled: true,
-      valueBat: 75,
-      valueVolt: 11.46,
-      valueAmp: 20.65,
+      valueBat: 40,
+      valueVolt: 12.46,
+      valueAmp: 23.65,
     );
   }
 
-  BateriaMotorState copyWith({
+  BateriaAux1State copyWith({
     bool isInitial,
     bool isEnabled,
     int valueBat,
+    int valueVolt,
+    int valueAmp,
+
   }) {
-    return BateriaMotorState(
+    return BateriaAux1State(
       isInitial: isInitial ?? this.isInitial,
       isEnabled: isEnabled ?? this.isEnabled,
       valueBat: valueBat ?? this.valueBat,
@@ -65,26 +69,28 @@ class BateriaMotorState extends Equatable {
 }
 /// FIN  declaracion de STATE
 
-class BateriaMotorBloc extends Bloc <BateriaMotorEvent, BateriaMotorState> {
+class BateriaAux1Bloc extends Bloc <BateriaAux1Event, BateriaAux1State> {
 
 
 
   @override
   // TODO: implement initialState
-  BateriaMotorState get initialState => BateriaMotorState.initial();
+  BateriaAux1State get initialState => BateriaAux1State.initial();
 
 
   @override
-  Stream<BateriaMotorState> mapEventToState(BateriaMotorEvent event) async* {
+  Stream<BateriaAux1State> mapEventToState(BateriaAux1Event event) async* {
     if (event is EnableBatery) {
-      yield BateriaMotorState.initial();
+      yield BateriaAux1State.initial();
     } else if (event is DisableBatery) {
-      yield BateriaMotorState(
+      yield BateriaAux1State(
         valueBat: 0,
         valueAmp: 0.0,
         valueVolt: 0.0,
         isEnabled: false,
       );
+    //  yield currentState.copyWith(valueBat: 0);
+     // yield currentState.copyWith(isEnabled: false);
     }
   }
 }

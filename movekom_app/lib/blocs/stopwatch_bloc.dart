@@ -106,6 +106,7 @@ class StopwatchBloc extends Bloc<StopwatchEvent, StopwatchState> {
 
   @override
   Stream<StopwatchState> mapEventToState(StopwatchEvent event) async* {
+
     if (event is StartStopwatch) {
       if (_streamPeriodicSubscription == null) {
         _streamPeriodicSubscription =
@@ -120,6 +121,7 @@ class StopwatchBloc extends Bloc<StopwatchEvent, StopwatchState> {
           },
         );
       }
+
     } else if (event is UpdateStopwatch) {
       final bool isSpecial = event.time.inMilliseconds % 3000 == 0;
 
@@ -134,6 +136,7 @@ class StopwatchBloc extends Bloc<StopwatchEvent, StopwatchState> {
       _streamPeriodicSubscription = null;
 
       yield currentState.copyWith(isRunning: false);
+
     } else if (event is ResetStopwatch) {
       _elapsedTimeInMilliseconds = 0;
       if (!currentState.isRunning) {

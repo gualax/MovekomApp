@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movekomapp/app.localizations.dart';
-import 'package:movekomapp/blocs/bateria_motor_bloc.dart';
 import 'package:movekomapp/pantallas/LigthsMenuPage.dart';
 import 'package:movekomapp/pantallas/Water/WaterMenuPage.dart';
 import 'package:movekomapp/pantallas/Wheater/WheaterMenuPage.dart';
@@ -28,16 +27,8 @@ class _HomePageState extends State<HomePage> {
   String barSubTitle = "HOME";
   @override
   Widget build(BuildContext context) {
-    final bateriaMotorBloc = BlocProvider.of<BateriaMotorBloc>(context);
-    return BlocListenerTree(
-      blocListeners: [
-        BlocListener<BateriaMotorEvent, BateriaMotorState>(
-          bloc: bateriaMotorBloc,
-          listener: (BuildContext context, BateriaMotorState state) {
-          },
-        ),
-      ],
-      child: Scaffold(
+    return
+     Scaffold(
         appBar:   PreferredSize(
             preferredSize: Size.fromHeight(70), // here the desired height
           child: CustomBar(),
@@ -126,7 +117,6 @@ class _HomePageState extends State<HomePage> {
               ),
             ]),
         body: show(_currentIndex, context), // new
-      ),
     );
   }
 

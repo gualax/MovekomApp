@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/FloatingMenu.dart';
-import 'package:movekomapp/blocs/bateria_motor_bloc.dart';
-import 'package:movekomapp/blocs/stopwatch_bloc.dart';
+import 'package:movekomapp/blocs/bateria_aux_1_bloc.dart';
+import 'package:movekomapp/blocs/calefaccion_bloc.dart';
+import 'package:movekomapp/blocs/cargador_baterias_bloc.dart';
+import 'package:movekomapp/blocs/inversor_bloc.dart';
 import 'package:movekomapp/pantallas/PrincipalHome.dart';
 import 'app.localizations.dart';
+import 'blocs/bateria_aux_2_bloc.dart';
+import 'blocs/bateria_motor_bloc.dart';
 import 'pantallas/Wheater/WheaterMenuPage.dart';
 import 'HomePage.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -18,7 +22,12 @@ class MyApp extends StatelessWidget {
     return BlocProviderTree(
       blocProviders: [
         BlocProvider<BateriaMotorBloc>(builder: (context) => BateriaMotorBloc()),
-        BlocProvider<StopwatchBloc>(builder:(context)=>StopwatchBloc()),
+        BlocProvider<BateriaAux1Bloc>(builder:(context)=> BateriaAux1Bloc()),
+        BlocProvider<BateriaAux2Bloc>(builder:(context)=> BateriaAux2Bloc()),
+        BlocProvider<InversorBloc>(builder:(context)=> InversorBloc()),
+        BlocProvider<CargadorBateriaBloc>(builder:(context)=> CargadorBateriaBloc()),
+        BlocProvider<CalefaccionBloc>(builder:(context)=> CalefaccionBloc()),
+
       ],
       child: MaterialApp(
         initialRoute: '/',
