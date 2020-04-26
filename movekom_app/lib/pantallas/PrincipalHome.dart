@@ -7,7 +7,9 @@ import 'package:getflutter/components/carousel/gf_items_carousel.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/app.localizations.dart';
 import 'package:movekomapp/blocs/bateria_motor_bloc.dart';
+import 'package:movekomapp/blocs/stopwatch_bloc.dart';
 import 'package:movekomapp/controladores/electricidad/BateriaMotor.dart';
+import 'package:movekomapp/controladores/electricidad/BateriaMotor2.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/box137x137.dart';
@@ -29,7 +31,7 @@ class _PrincipalHomeState extends State<PrincipalHome> {
   @override
   Widget build(BuildContext context) {
   final  bateriaMotorBloc = BlocProvider.of<BateriaMotorBloc>(context);
-
+  //final  stopWatch = BlocProvider.of<StopwatchBloc>(context);
     print("build");
     mContext = context;
     return
@@ -37,7 +39,7 @@ class _PrincipalHomeState extends State<PrincipalHome> {
         backgroundColor: Colors.black,
         body:Column(
           children: <Widget>[
-            contenido(bateriaMotorBloc),
+            contenido(),
             horizontalList(),
           ],
         )
@@ -84,13 +86,13 @@ Widget horizontalList(){
 }
 
 
-  Widget contenido(bateriaMotorBloc){
+  Widget contenido(){
     return Container(
       margin: EdgeInsets.only(top: 20),
       child: Row( /// elementos uno al lado del otro
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          leftSection(bateriaMotorBloc),
+          leftSection(),
           midleLeftSection(),
           midleRigthSection(),
           rightSection(),
@@ -165,7 +167,7 @@ Widget horizontalList(){
 
 
 
-  Widget leftSection(bateriaMotorBloc){
+  Widget leftSection(){
     return
     Container (
       margin: EdgeInsets.all(5),
@@ -173,7 +175,7 @@ Widget horizontalList(){
     Column(  /// Elementos uno arriba del otro
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        principalLeftRow1(bateriaMotorBloc),
+        principalLeftRow1(),
         principalLeftRow2(),
       ],
     ),
@@ -181,19 +183,16 @@ Widget horizontalList(){
   }
 
 
-  Widget principalLeftRow1(bateriaMotorBloc){
+  Widget principalLeftRow1(){
     return
       Container(
         child: Row (
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            BlocBuilder(
-              bloc: bateriaMotorBloc,
-              builder: (BuildContext context, BateriaMotorState state) {
-                return BateriaMotor(1,state.isEnabled, state.valueBat);
-              },
-            ),
-            box137x137_Bateria(AppLocalizations.of(mContext).translate("bateria_aux_1"),50,"12.45v","23.65A", true),
+
+            BateriaMotor2(),
+       //     box137x137_Bateria(AppLocalizations.of(mContext).translate("bateria_aux_1"),50,"12.45v","23.65A", true),
+            BateriaMotor2(),
             box137x137_Bateria(AppLocalizations.of(mContext).translate("bateria_aux_2"),25,"12.45v","23.65A", false),
           ],
         ),
@@ -207,7 +206,7 @@ Widget horizontalList(){
         child: Row (
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            box_imagen(AppLocalizations.of(mContext).translate("totalizador"),AppLocalizations.of(mContext).translate("cargando"),20),
+            box_imagen("totalizador","cargando",20),
             columnCargas(),
             columnTiempoDeUso(),
           ],

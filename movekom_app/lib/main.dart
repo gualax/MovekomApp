@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/FloatingMenu.dart';
 import 'package:movekomapp/blocs/bateria_motor_bloc.dart';
+import 'package:movekomapp/blocs/stopwatch_bloc.dart';
 import 'package:movekomapp/pantallas/PrincipalHome.dart';
 import 'app.localizations.dart';
 import 'pantallas/Wheater/WheaterMenuPage.dart';
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
     return BlocProviderTree(
       blocProviders: [
         BlocProvider<BateriaMotorBloc>(builder: (context) => BateriaMotorBloc()),
+        BlocProvider<StopwatchBloc>(builder:(context)=>StopwatchBloc()),
       ],
       child: MaterialApp(
         initialRoute: '/',

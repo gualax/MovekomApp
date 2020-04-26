@@ -5,6 +5,7 @@ import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/blocs/bateria_motor_bloc.dart';
 import 'package:movekomapp/controladores/electricidad/BateriaMotor.dart';
+import 'package:movekomapp/controladores/electricidad/BateriaMotor2.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -19,7 +20,7 @@ class _ElectricityStateViewState extends State<ElectricityStateView> {
 
   @override
   Widget build(BuildContext context) {
-    final bateriaMotorBloc = BlocProvider.of<BateriaMotorBloc>(context);
+  //  final bateriaMotorBloc = BlocProvider.of<BateriaMotorBloc>(context);
 
 
     return BlocProvider<BateriaMotorBloc>(
@@ -35,7 +36,7 @@ class _ElectricityStateViewState extends State<ElectricityStateView> {
              //   color: Colors.lightGreen,
                 alignment: Alignment.center,
              //  color: Colors.orange,
-                child: baterias_cargadores(bateriaMotorBloc),
+                child: baterias_cargadores(),
               ),
             ),
             Expanded(
@@ -53,11 +54,11 @@ class _ElectricityStateViewState extends State<ElectricityStateView> {
     );
   }
 
-  Widget baterias_cargadores(bateriaMotorBloc){
+  Widget baterias_cargadores(){
     return  Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Row1(bateriaMotorBloc),
+        Row1(),
         Row2(),
       ],
     );
@@ -72,17 +73,12 @@ class _ElectricityStateViewState extends State<ElectricityStateView> {
       ],
     );
   }
-  Widget Row1(bateriaMotorBloc) {
+  Widget Row1() {
     return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          BlocBuilder(
-            bloc: bateriaMotorBloc,
-            builder: (BuildContext context, BateriaMotorState state) {
-              return BateriaMotor(2,state.isEnabled, state.valueBat);
-            },
-          ),
+          BateriaMotor2(),
           bateryBox("Bateria auxiliar 1", 70, 12.45, 23.5, true),
           bateryBox("Bateria auxiliar 2", 50, 12.45, 23.5, true),
           totalizador(),
@@ -97,6 +93,7 @@ class _ElectricityStateViewState extends State<ElectricityStateView> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           chargeBox("Carga de motor","assets/icons/engine_motor_car_power.svg",50,23.65),
+         // BateriaMotor2(),
           chargeBox("Carga de 220","assets/icons/energy_2.svg",50,23.65),
           chargeBox("Carga de panel solar","assets/icons/solar_panel_1.svg",50,23.65),
           chargeBox("Consumo instantaneo","assets/icons/electricidad.svg",50,23.65),

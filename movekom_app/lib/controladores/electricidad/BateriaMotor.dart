@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/app.localizations.dart';
+import 'package:movekomapp/blocs/bateria_motor_bloc.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
@@ -11,7 +13,7 @@ class BateriaMotor extends StatefulWidget {
   double valueBat;
   int widgetType;
 
-  BateriaMotor(this.widgetType,this.isEnabled,this.valueBat);
+  BateriaMotor(this.widgetType);
 
   @override
   _BateriaMotorState createState() => _BateriaMotorState();
@@ -40,6 +42,7 @@ class _BateriaMotorState extends State<BateriaMotor> {
 
   @override
   Widget build(BuildContext context) {
+    final stopwatchBloc = BlocProvider.of<BateriaMotorBloc>(context);
 
     _title = AppLocalizations.of(context).translate("bateria motor");
     if(_isEnabled){
