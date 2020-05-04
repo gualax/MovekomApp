@@ -2,15 +2,16 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:getflutter/components/carousel/gf_items_carousel.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/app.localizations.dart';
-import 'package:movekomapp/blocs/stopwatch_bloc.dart';
+import 'package:movekomapp/controladores/agua/AguasLimpias.dart';
+import 'package:movekomapp/controladores/agua/AguasNegras.dart';
+import 'package:movekomapp/controladores/agua/AguasSucias.dart';
+import 'package:movekomapp/controladores/agua/BombaAgua.dart';
 import 'package:movekomapp/controladores/electricidad/BateriaAux1.dart';
 import 'package:movekomapp/controladores/electricidad/BateriaAux2.dart';
 import 'package:movekomapp/controladores/electricidad/BateriaMotor.dart';
-import 'package:movekomapp/controladores/electricidad/BateriaMotor2.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/box137x137.dart';
@@ -44,9 +45,8 @@ class _PrincipalHomeState extends State<PrincipalHome> {
         )
       );
   }
-//Widget box225x140_boiler(title, textAbajoIzq, textAbajoDer,
-//    iconRoute, textValue, state){
-Widget carouselDispositivos(){
+
+  Widget carouselDispositivos(){
   return  Container(
     alignment: Alignment.center,
     margin: EdgeInsets.all(20),
@@ -149,14 +149,14 @@ Widget horizontalList(){
 
               Row(
                 children: <Widget>[
-                  box137x137_Aguas(AppLocalizations.of(mContext).translate("aguas_limpias"),"95%",true),
-                  box137x137_Aguas(AppLocalizations.of(mContext).translate("aguas_sucias"),"50%",true),
+                  AguasLimpias(1),
+                  AguasSucias(1),
                 ],
               ),
               Row(
                 children: <Widget>[
-                  box137x137_Bomba_Agua(mContext,"2.65A",true),
-                  box137x137_Aguas(AppLocalizations.of(mContext).translate("aguas_negras"),"50%",true),
+                  BombaAgua(1),
+                  AguasNegras(1),
                 ],
               ),
             ],
@@ -352,7 +352,7 @@ Widget columnCargas(){
         mainAxisAlignment: MainAxisAlignment.center,
         //Widget box137x64_carga(title,iconRoute,valueAh,state){
         children: <Widget>[
-          box137x64_carga("CARGA MOTOR","assets/iconos/motor.svg","25.5Ah",true),
+          box137x64_carga("CARGA MOTOR","assets/icons/engine_motor.svg","25.5Ah",true),
           box137x64_Tiempo_uso("CARGA DE 220","___Ah",false),
         ],
       ),
@@ -368,7 +368,7 @@ Widget columnCargas(){
         mainAxisAlignment: MainAxisAlignment.center,
         //Widget box137x64_carga(title,iconRoute,valueAh,state){
         children: <Widget>[
-          box137x64_carga("CARGA SOLAR","assets/iconos/panel solar 2.svg","12.5Ah",true),
+          box137x64_carga("CARGA SOLAR","assets/icons/solar_panel_1.svg","12.5Ah",true),
           box137x64_Tiempo_uso("TIEMPO DE USO",">100Hr",true),
         ],
       ),

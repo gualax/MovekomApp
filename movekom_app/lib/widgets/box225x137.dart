@@ -2,6 +2,7 @@
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
@@ -90,10 +91,17 @@ Widget box225x140_1icon_text(title, double valueAmp,
             ),
             ),
           ),
+          Positioned.fill(/// circulito
+              top: 10, right: 10,
+              child: Align(
+                alignment: Alignment.topRight,
+                child: circuloConSombra(17.0, color),
+              )
+          ),
           Positioned.fill(    ///textAbajoIzq
             left: 8,
             bottom: 6,
-            child:  Align(
+            child: Align(
               alignment: Alignment.bottomLeft,
               child: Text(
                   on_off,
@@ -107,7 +115,7 @@ Widget box225x140_1icon_text(title, double valueAmp,
             child:  Align(
               alignment: Alignment.bottomRight,
               child: Text(
-                "Consumo" + valueAmp.toString() + "A",
+                "Consumo " + valueAmp.toString() + "A",
                 style: MyTextStyle.estilo(18, colorText),
               ),
             ),

@@ -1,7 +1,10 @@
 
+import 'package:circle_list/circle_list.dart';
+import 'package:circle_wheel_scroll/circle_wheel_scroll_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
+import 'package:movekomapp/Utils/DrawCircle.dart';
 import 'package:movekomapp/blocs/calefaccion_bloc.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
@@ -106,11 +109,80 @@ class Calefaccion extends StatelessWidget {
                     alignment: Alignment.topLeft,
                     child: circuloConSombra(20.0, colorIcon),
                   ),
-                )
+                ),
+                Positioned(
+                  left: 340,
+                  bottom: 1, top:1,
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: iconSvgNc("assets/icons/circulo_boiler.svg",390 ),
+                  ),
+                ),
+                Positioned(
+                  left: 10,
+                  bottom: 1, top: 1,
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: circularList(),
+                  ),
+                ),
               ],
             ),
           );
         }
+    );
+  }
+
+
+
+
+  Widget circularList() {
+    PolarCoord _lastCord;
+    return Container(
+      child: CircleList(
+        dragAngleRange: DragAngleRange(2,1),
+       // centerWidget: iconSvgNc("assets/icons/circulo_boiler.svg",390 ),
+        onDragUpdate: (PolarCoord updatedCord){
+          print("updatedCord" + updatedCord.toString());
+          print("angle: " + updatedCord.angle.toString());
+        },
+        initialAngle: 2,
+        outerRadius: 200,
+        innerRadius: 170,
+        origin: Offset(0, 0),
+        children:[
+          circulito(10.0,Colors.lightGreenAccent),
+        ],
+      ),
+    );
+  }
+  Widget circulito(size, color) {
+    //this is base circle
+    return Container(
+      child: CustomPaint(
+          painter: DrawCircle(size, color, PaintingStyle.stroke, 3.0)),
+    );
+  }
+
+  Widget midleCircleWidget(){
+    return Container(
+      child: CircleListScrollView(
+        physics: CircleFixedExtentScrollPhysics(),
+        axis: Axis.vertical,
+        itemExtent: 50,
+           children: [
+             circulito(10.0,Colors.lightGreenAccent),
+             circulito(10.0,Colors.lightGreenAccent),
+             circulito(10.0,Colors.lightGreenAccent),
+             circulito(10.0,Colors.lightGreenAccent),
+             circulito(10.0,Colors.lightGreenAccent),
+             circulito(10.0,Colors.lightGreenAccent),
+             circulito(10.0,Colors.lightGreenAccent),
+             circulito(10.0,Colors.lightGreenAccent),
+
+           ],
+        radius: 360,
+      ),
     );
   }
 

@@ -60,9 +60,7 @@ Widget inversor(inversorBloc){
                   child: iconSvgD("assets/icons/cable.svg", colorTex, 60),
                 )
             ),
-            Positioned.fill(
-
-              ///  /// valueAmp
+            Positioned.fill(/// valueAmp
                 bottom: 20, left: 60,
                 child: Align(
                   alignment: Alignment.bottomLeft,
@@ -89,9 +87,7 @@ Widget inversor(inversorBloc){
                   },),
                 )
             ),
-            Positioned.fill(
-
-              ///  /// valueAmp
+            Positioned.fill(/// temporizacion
                 bottom: 20, left: 250, right: 20,
                 child: Align(
                   alignment: Alignment.bottomRight,
@@ -102,9 +98,7 @@ Widget inversor(inversorBloc){
                   ),
                 )
             ),
-            Positioned.fill(
-
-              ///  /// valueAmp
+            Positioned.fill(/// icono timer
                 bottom: 42, right: 38,
                 child: Align(
                   alignment: Alignment.bottomRight,
@@ -113,9 +107,7 @@ Widget inversor(inversorBloc){
                     color: colorTex, onPressed: () {},),
                 )
             ),
-            Positioned.fill(
-
-              ///  /// valueAmp
+            Positioned.fill(/// circulito
                 top: 20, right: 20,
                 child: Align(
                   alignment: Alignment.topRight,

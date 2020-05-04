@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:movekomapp/app.localizations.dart';
-import 'package:movekomapp/pantallas/LigthsMenuPage.dart';
+import 'package:movekomapp/Utils/SizeConfig.dart';
+import 'package:movekomapp/pantallas/ModesPage/ModesMenuPage.dart';
+import 'package:movekomapp/pantallas/ilumination/LigthsMenuPage.dart';
 import 'package:movekomapp/pantallas/Water/WaterMenuPage.dart';
 import 'package:movekomapp/pantallas/Wheater/WheaterMenuPage.dart';
 import 'package:movekomapp/pantallas/Electricity/ElectricityMenuPage.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
-
-import 'FloatingMenu.dart';
+import 'controladores/agua/AnimatedBoiler.dart';
 import 'pantallas/PrincipalHome.dart';
 
 
@@ -27,93 +26,102 @@ class _HomePageState extends State<HomePage> {
   String barSubTitle = "HOME";
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return
      Scaffold(
         appBar:   PreferredSize(
-            preferredSize: Size.fromHeight(70), // here the desired height
+          preferredSize: Size.fromHeight(SizeConfig.v * 7.5), // here the desired height
           child: CustomBar(),
    ),
         bottomNavigationBar: new BottomNavigationBar(
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
             type: BottomNavigationBarType.fixed,
             backgroundColor: Colors.black87,
             onTap: onTabTapped,
             currentIndex: _currentIndex,
             items: [
               new BottomNavigationBarItem(
-                icon: iconSvg("assets/images/home.svg", Colors.grey),
-                title: new Text("Home"),
+                icon: iconSvg("assets/icons/home.svg", true),
+                activeIcon: activeIcon("assets/icons/home.svg"),
+                title: new Text(""),
               ),
               new BottomNavigationBarItem(
-                icon: iconSvg("assets/iconos/clima.svg", Colors.grey),
-                title: new Text("clima"),
+                icon: iconSvg("assets/icons/fire.svg", true),
+                activeIcon: activeIcon("assets/icons/fire.svg"),
+                title: new Text(""),
               ),
               new BottomNavigationBarItem(
-                icon: iconSvg("assets/iconos/electricidad.svg", Colors.grey),
-                title: new Text("Menu"),
+                icon: iconSvg("assets/icons/electricidad.svg", true),
+                activeIcon: activeIcon("assets/icons/electricidad.svg"),
+                title: new Text(""),
               ),
               new BottomNavigationBarItem(
-                icon: iconSvg("assets/images/water_gout.svg", Colors.grey),
-                title: new Text("Menu"),
+                icon: iconSvg("assets/icons/gota_agua.svg",true),
+                activeIcon: activeIcon("assets/icons/gota_agua.svg"),
+                title: new Text(""),
               ),
               new BottomNavigationBarItem(
-                icon: iconSvg("assets/images/idea.svg", Colors.grey),
-                title: new Text("Menu"),
+                icon: iconSvg("assets/icons/luz.svg", true),
+                activeIcon: activeIcon("assets/icons/luz.svg"),
+                title: new Text(""),
               ),
               new BottomNavigationBarItem(
-                icon: iconSvg("assets/images/move_1.svg", Colors.grey),
-                title: new Text("Menu"),
+                icon: iconSvg("assets/icons/capa_2.svg", false),
+                activeIcon: activeIcon("assets/icons/capa_2.svg"),
+                title: new Text(""),
               ),
               new BottomNavigationBarItem(
-                icon: iconSvg("assets/images/manual.svg", Colors.grey),
-                title: new Text("Menu"),
+                icon: iconSvg("assets/icons/cuadro_alerta.svg", false),
+                title: new Text(""),
               ),
               new BottomNavigationBarItem(
-                icon: iconSvg("assets/images/toolbox_1.svg", Colors.grey),
-                title: new Text("Menu"),
+                icon: iconSvg("assets/icons/caja_herramientas.svg", false),
+                title: new Text(""),
               ),
               new BottomNavigationBarItem(
-                icon: iconSvg("assets/images/caution_sign.svg", Colors.grey),
-                title: new Text("Menu"),
+                icon: iconSvg("assets/icons/alerta_triangulo.svg", false),
+                title: new Text(""),
               ),
               new BottomNavigationBarItem(
-                icon: iconSvg("assets/images/cog.svg", Colors.grey),
-                title: new Text("Menu"),
+                icon: iconSvg("assets/icons/config2.svg", false),
+                title: new Text(""),
               ),
               new BottomNavigationBarItem(
-                icon: iconSvg("assets/images/360_degrees.svg", Colors.grey),
-                title: new Text("Menu"),
+                icon: iconSvg("assets/icons/360.svg", false),
+                title: new Text(""),
               ),
               new BottomNavigationBarItem(
-                icon: iconSvg("assets/images/gas.svg", Colors.grey),
-                title: new Text("Menu"),
+                icon: iconSvg("assets/icons/matafuego.svg", false),
+                title: new Text(""),
               ),
               new BottomNavigationBarItem(
-                icon: iconSvg("assets/images/page_1.svg", Colors.grey),
-                title: new Text("Menu"),
+                icon: iconSvg("assets/icons/play.svg",false),
+                title: new Text(""),
               ),
               new BottomNavigationBarItem(
-                icon: iconSvg("assets/images/xmlid_1689.svg", Colors.grey),
-                title: new Text("Menu"),
+                icon: iconSvg("assets/icons/volante.svg",false),
+                title: new Text(""),
               ),
               new BottomNavigationBarItem(
-                icon: iconSvg("assets/images/lock.svg", Colors.grey),
-                title: new Text("Menu"),
+                icon: iconSvg("assets/icons/candado.svg", false),
+                title: new Text(""),
               ),
               new BottomNavigationBarItem(
-                icon: iconSvg("assets/icons/slide_out.svg", Colors.grey),
-                title: new Text("Menu"),
+                icon: iconSvg("assets/icons/slide_out.svg",false),
+                title: new Text(""),
               ),
               new BottomNavigationBarItem(
-                icon: iconSvg("assets/images/suspension.svg", Colors.grey),
-                title: new Text("Menu"),
+                icon: iconSvg("assets/icons/suspension.svg",false),
+                title: new Text(""),
               ),
               new BottomNavigationBarItem(
-                icon: iconSvg("assets/images/tyre.svg", Colors.grey),
-                title: new Text("Menu"),
+                icon: iconSvg("assets/images/tyre.svg", false),
+                title: new Text(""),
               ),
               new BottomNavigationBarItem(
-                icon: iconSvg("assets/images/capa_2.svg", Colors.grey),
-                title: new Text("Menu"),
+                icon: iconSvg("assets/images/capa_2.svg",false),
+                title: new Text(""),
               ),
             ]),
         body: show(_currentIndex, context), // new
@@ -128,6 +136,7 @@ class _HomePageState extends State<HomePage> {
       ElectricityPage(),
       WaterMenuPage(),
       LightsMenuPage(),
+      ModesMenuPage(),
     ];
     return _children[index];
   }
@@ -141,12 +150,44 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  Widget  iconSvg(assetName,color){
+  Widget iconSvg(assetName,isEnabled){
+    Color color;
+    if(isEnabled == true) {
+      color = Colors.white;
+    }else{
+      color = Colors.grey;
+    }
      return  SvgPicture.asset(
         assetName,
-        height: 40,
-        width: 40,
+        height: SizeConfig.v * 5.7,
+        width: SizeConfig.h * 5.5,
         color: color,
+    );
+  }
+
+
+  Widget iconSvgActive(assetName,color){
+    return  SvgPicture.asset(
+      assetName,
+      height: SizeConfig.v * 5.7,
+      width: SizeConfig.h * 5.5,
+      color: color,
+    );
+  }
+
+  Widget activeIcon(iconRoute){
+    return Container(
+       // width: 63,
+       // height: 84,
+        decoration: BoxDecoration(
+            boxShadow: [BoxShadow(
+                color:Colors.lightGreenAccent,
+                offset: Offset(0,0),
+                blurRadius: 35,
+              //  spreadRadius: 10
+            )] ,
+        ),
+        child: iconSvgActive(iconRoute, Colors.lightGreenAccent),
     );
   }
 
@@ -156,12 +197,19 @@ void changeBarTitle(index){
     "CLIMA",
     "ELECTRICIDAD",
     "AGUA",
+    "ILUMINACION",
+    "MODOS",
+    "TEST",
+
   ];
   List<String> subtitles = [
-    "PANTALLA GENERAL",
-    "PANTALLA GENERAL",
-    "ESTADO DE BATERIAS",
-    "NIVELES DEPOSITOS Y VALVULAS",
+    " PANTALLA GENERAL",
+    " PANTALLA GENERAL",
+    " ESTADO DE BATERIAS",
+    " NIVELES DEPOSITOS Y VALVULAS",
+    " ILUMINACION",
+    " MODOS INTELIGENTES DE FUNCIONAMIENTO",
+    "TEST",
   ];
   setBarTitle(titles[index], subtitles[index]);
 }
@@ -178,7 +226,11 @@ void changeBarTitle(index){
 Widget CustomBar(){
   return AppBar(
     backgroundColor: Colors.black,
-    bottom: PreferredSize(child: Container(color: Colors.lightGreen, height: 4.0,), preferredSize: Size.fromHeight(4.0)),
+    bottom: PreferredSize(child:
+    Container(
+      color: Colors.lightGreen,
+      height: SizeConfig.v * 0.5),
+        preferredSize: Size.fromHeight(SizeConfig.v * 0.5)),
     title: Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -187,7 +239,7 @@ Widget CustomBar(){
           Image.asset(
             'assets/images/drawable-mdpi/fondo_negro_e_verde.png',
             fit: BoxFit.contain,
-            height: 50,
+            height: SizeConfig.v * 7,
           ),
         ],
       ),
@@ -198,19 +250,19 @@ Widget CustomBar(){
  Widget BarTitle(title, subtitle){
      return
        Container(
-         margin: EdgeInsets.only(left: 30,top:30),
+         margin: EdgeInsets.only(left: SizeConfig.h * 2,top:SizeConfig.v * 3),
          alignment: Alignment.topLeft,
-         height: 70,
+         height: SizeConfig.v * 8,
          child: RichText(
              text: new TextSpan(
                  children: [
                    new TextSpan(
                        text: title,
-                       style: MyTextStyle.estiloBold(40, Colors.white),
+                       style: MyTextStyle.estiloBold(SizeConfig.v * 5.5, Colors.white),
                    ),
                    new TextSpan(
                        text:subtitle,
-                       style: MyTextStyle.estiloBold(20, Colors.grey),
+                       style: MyTextStyle.estiloBold(SizeConfig.v * 3, Colors.grey),
                    ),
                  ]
              )

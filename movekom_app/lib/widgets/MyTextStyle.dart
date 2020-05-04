@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 class MyTextStyle {
 
 
-
-
   static TextStyle estilo(double dim,color){
     return TextStyle(
         color:  color,
