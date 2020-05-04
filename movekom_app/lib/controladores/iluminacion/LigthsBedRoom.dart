@@ -18,9 +18,9 @@ class LigthsBedroom extends StatelessWidget {
 
 
   Widget bedroom_widget(ligthBedroomBloc){
-    return BlocBuilder(
-      bloc: ligthBedroomBloc,
-      builder: (BuildContext context, LucesHabitacionState state) {
+    return
+      BlocBuilder<LucesHabitacionBloc,LucesHabitacionState>(
+          builder: ( context, state) {
         return Container(
           margin: EdgeInsets.all(SizeConfig.h * 0.5),
           width: SizeConfig.h * 17,
@@ -64,7 +64,7 @@ class LigthsBedroom extends StatelessWidget {
                         value: state.valueDimer,
                         onChanged: (newValue) {
                         //  print(newValue);
-                          ligthBedroomBloc.dispatch(Update(newValue));
+                          ligthBedroomBloc.add(Update(newValue));
                         },
                         min: 0,
                         max: 200,

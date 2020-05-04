@@ -18,9 +18,9 @@ class LucesBano extends StatelessWidget {
 
 
   Widget bano_widget(lucesBanoBloc){
-    return BlocBuilder(
-        bloc: lucesBanoBloc,
-        builder: (BuildContext context, LucesBanoState state) {
+    return
+      BlocBuilder<LucesBanoBloc,LucesBanoState>(
+          builder: ( context, state) {
           return Container(
             margin: EdgeInsets.all(SizeConfig.h * 0.5),
             width: SizeConfig.h * 17,
@@ -64,7 +64,7 @@ class LucesBano extends StatelessWidget {
                           value: state.valueDimer,
                           onChanged: (newValue) {
                             print(newValue);
-                            lucesBanoBloc.dispatch(Update(newValue));
+                            lucesBanoBloc.add(Update(newValue));
                           },
                           min: 0,
                           max: 200,

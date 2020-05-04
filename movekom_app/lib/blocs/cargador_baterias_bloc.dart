@@ -19,29 +19,29 @@ class DisableCargador extends CargadorBateriaEvent { /// Deshabilita la bateria
 /// Fin declaracion de eventos
 
 
-class CrgadorBateriaState extends Equatable {
+class CargadorBateriaState extends Equatable {
   final bool isEnabled;
   int valueAmp;
 
-  CrgadorBateriaState({
+  CargadorBateriaState({
     @required this.isEnabled,
     @required this.valueAmp,
 
   }) : super([isEnabled,valueAmp]);
 
   /// Valores iniciales
-  factory CrgadorBateriaState.initial() {
-    return CrgadorBateriaState(
+  factory CargadorBateriaState.initial() {
+    return CargadorBateriaState(
       isEnabled: true,
       valueAmp: 21,
     );
   }
 
-  CrgadorBateriaState copyWith({
+  CargadorBateriaState copyWith({
     bool isEnabled,
     int valueAmp,
   }) {
-    return CrgadorBateriaState(
+    return CargadorBateriaState(
       isEnabled: isEnabled ?? this.isEnabled,
       valueAmp: valueAmp ?? this.valueAmp,
     );
@@ -53,18 +53,18 @@ class CrgadorBateriaState extends Equatable {
 }
 /// FIN  declaracion de STATE
 
-class CargadorBateriaBloc extends Bloc <CargadorBateriaEvent, CrgadorBateriaState> {
+class CargadorBateriaBloc extends Bloc <CargadorBateriaEvent, CargadorBateriaState> {
 
   @override
   // TODO: implement initialState
-  CrgadorBateriaState get initialState => CrgadorBateriaState.initial();
+  CargadorBateriaState get initialState => CargadorBateriaState.initial();
 
   @override
-  Stream<CrgadorBateriaState> mapEventToState(CargadorBateriaEvent event) async* {
+  Stream<CargadorBateriaState> mapEventToState(CargadorBateriaEvent event) async* {
     if (event is EnableCargador) {
-      yield CrgadorBateriaState.initial();
+      yield CargadorBateriaState.initial();
     } else if (event is DisableCargador) {
-      yield CrgadorBateriaState(
+      yield CargadorBateriaState(
         valueAmp: 0,
         isEnabled: false,
       );

@@ -31,9 +31,8 @@ class BombaAgua extends StatelessWidget {
     Color colorIcon, colorTxt, colorButton;
     String txtState;
     return
-      BlocBuilder(
-          bloc: bomabaAguaBloc,
-          builder: (BuildContext context, BombaAguaState state) {
+      BlocBuilder<BombaAguaBloc,BombaAguaState>(
+          builder: ( context, state) {
             if (state.isEnabled) {
               txtState = "ON";
               colorIcon = Colors.lightGreenAccent;
@@ -134,9 +133,9 @@ class BombaAgua extends StatelessWidget {
                               color: colorButton,
                               onPressed: () {
                                 if (state.isEnabled) {
-                                  bomabaAguaBloc.dispatch(Disable());
+                                  bomabaAguaBloc.add(Disable());
                                 } else {
-                                  bomabaAguaBloc.dispatch(Enable());
+                                  bomabaAguaBloc.add(Enable());
                                 }
                               },),
                           )
@@ -152,9 +151,8 @@ class BombaAgua extends StatelessWidget {
     Color colorIcon, colorTxt, colorButton;
     String txtState;
     return
-      BlocBuilder(
-          bloc: bomabaAguaBloc,
-          builder: (BuildContext context, BombaAguaState state) {
+      BlocBuilder<BombaAguaBloc,BombaAguaState>(
+          builder: ( context, state) {
             if (state.isEnabled) {
               txtState = "ON";
               colorIcon = Colors.lightGreenAccent;
@@ -251,9 +249,9 @@ class BombaAgua extends StatelessWidget {
                               color: colorButton,
                               onPressed: () {
                                 if (state.isEnabled) {
-                                  bomabaAguaBloc.dispatch(Disable());
+                                  bomabaAguaBloc.add(Disable());
                                 } else {
-                                  bomabaAguaBloc.dispatch(Enable());
+                                  bomabaAguaBloc.add(Enable());
                                 }
                               },),
                           )

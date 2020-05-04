@@ -26,9 +26,9 @@ class Boiler extends StatelessWidget {
   Widget circularListBoiler(boilerBloc) {
     AnimatedBoiler animatedBoiler = AnimatedBoiler();
     PolarCoord _lastCord;
-    return BlocBuilder(
-      bloc:boilerBloc,
-      builder: (BuildContext context,BoilerState state ) {
+    return
+      BlocBuilder<BoilerBloc,BoilerState>(
+          builder: ( context, state) {
         return Container(
           child: CircleList(
             centerWidget: animatedBoiler,
@@ -54,12 +54,9 @@ class Boiler extends StatelessWidget {
 
 
   Widget iconBuble(int dpas,boilerBloc,iconRoute) {
-    return BlocBuilder(
-        bloc: boilerBloc,
-        builder: (BuildContext context, BoilerState state) {
           return GestureDetector(
             onTap: () {
-              boilerBloc.dispatch(Update(dpas.toDouble()));
+              boilerBloc.add(Update(dpas.toDouble()));
             }, child: Container(
             width: 83,
             height: 83,
@@ -82,10 +79,7 @@ class Boiler extends StatelessWidget {
             ),
           ),
           );
-        }
-    );
   }
-
 
 
   List<Widget> itemList = [

@@ -17,9 +17,9 @@ class LucesCocina extends StatelessWidget {
   }
 
   Widget cocina_widget(lucesCocinaBloc){
-    return BlocBuilder(
-        bloc: lucesCocinaBloc,
-        builder: (BuildContext context, LucesCocinaState state) {
+    return
+      BlocBuilder<LucesCocinaBloc,LucesCocinaState>(
+          builder: ( context, state) {
           return Container(
             margin: EdgeInsets.all(SizeConfig.h * 0.5),
             width: SizeConfig.h * 17,
@@ -63,7 +63,7 @@ class LucesCocina extends StatelessWidget {
                           value: state.valueDimer,
                           onChanged: (newValue) {
                          //   print(newValue);
-                            lucesCocinaBloc.dispatch(Update(newValue));
+                            lucesCocinaBloc.add(Update(newValue));
                           },
                           min: 0,
                           max: 200,

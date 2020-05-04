@@ -19,9 +19,9 @@ class Alternador extends StatelessWidget {
 
 
   Widget alternador_widget(alternadorBloc) {
-    return BlocBuilder(
-      bloc: alternadorBloc,
-      builder: (BuildContext context, AlternadorState state) {
+    return
+      BlocBuilder<AlternadorBloc,AlternadorState>(
+          builder: ( context, state) {
         return Container(
           margin: EdgeInsets.all(5),
           width: 200,

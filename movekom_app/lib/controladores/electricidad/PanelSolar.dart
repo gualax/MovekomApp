@@ -15,9 +15,9 @@ class PanelSolar extends StatelessWidget {
   }
 
   Widget panel_solar_widget(cargador220Bloc) {
-    return BlocBuilder(
-        bloc: cargador220Bloc,
-        builder: (BuildContext context, PanelSolarState state) {
+    return
+      BlocBuilder<PanelSolarBloc,PanelSolarState>(
+          builder: ( context, state) {
           return Container(
             margin: EdgeInsets.all(5),
             width: 200,
