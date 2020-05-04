@@ -22,8 +22,13 @@ class _ElectricityDataViewState extends State<ElectricityDataView> {
         children: <Widget>[
           rowOfboxes(),
           rowOfboxes(),
-          graphic("GRAFICO DE CARGA"),
-          graphic("GRAFICO DE DESCARGA"),
+          rowOfboxes(),
+          rowOfboxes(),
+          rowOfboxes(),
+          rowOfboxes(),
+
+          //      graphic("GRAFICO DE CARGA"),
+      //    graphic("GRAFICO DE DESCARGA"),
         ],
       ),
     );
@@ -44,10 +49,12 @@ class _ElectricityDataViewState extends State<ElectricityDataView> {
   Widget rowOfboxes() {
     return Container(
       //    color: Colors.green,
-      margin: EdgeInsets.all(5),
+      margin: EdgeInsets.all(3),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          boxCarga(),
+          boxCarga(),
           boxCarga(),
           boxCarga(),
           boxCarga(),
@@ -61,7 +68,7 @@ class _ElectricityDataViewState extends State<ElectricityDataView> {
 
   Widget boxCarga() {
     return Container(
-      margin: EdgeInsets.all(5),
+      margin: EdgeInsets.all(3),
       width: 137,
       height: 67,
       decoration: new BoxDecoration(

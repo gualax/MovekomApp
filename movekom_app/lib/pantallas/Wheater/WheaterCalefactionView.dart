@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movekomapp/Utils/DrawCircle.dart';
+import 'package:movekomapp/controladores/climatizacion/Calefaccion.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
@@ -25,7 +26,7 @@ class _WheaterCalefactionViewState extends State<WheaterCalefactionView> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            bigBox("20"),
+            Calefaccion(2),
             container(),
           ],
         ),
@@ -33,71 +34,7 @@ class _WheaterCalefactionViewState extends State<WheaterCalefactionView> {
   }
 
 
-  Widget bigBox(txtTemp) {
-    return Container(
-      margin: EdgeInsets.all(20),
-      width: 462,
-      height: 388,
-      decoration: new BoxDecoration(
-          color: Color(0xff2d3033)
-      ),
-      child: Stack(
-        children: <Widget>[
-          Positioned.fill(
-              left: 50,
-              top: 10,
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: Text("Calefaccion",
-                  style: MyTextStyle.estiloBold(35, Colors.white),),
-              )
-          ),
-          Positioned.fill(
-              left: 20,
-              child: Align(
-                alignment: Alignment.center,
-                child: Text(txtTemp,
-                  style: MyTextStyle.estiloBold(100, Colors.white),),
-              )
-          ),
-          Positioned.fill(
-              left: 30,
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: iconSvgD("assets/icons/fire.svg", Colors.white, 130),
-              )
-          ),
-          Positioned.fill(
-              left: 30,
-              bottom: 22,
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: Text("Pulse para apagar",
-                  style: MyTextStyle.estiloBold(20, Colors.white),),
-              )
-          ),
-          Positioned.fill(
-              right: 170,
-              bottom: 10,
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: IconButton(
-                  icon: Icon(Icons.power_settings_new), iconSize: 30,
-                  color: Colors.lightGreenAccent, onPressed: () {},),
-              )
-          ),
-          Positioned.fill(
-            top:30,
-            left: 30,
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: circulito(10.0, Colors.lightGreenAccent),
-            ),
-          )
-        ],
-      ),
-    );
-  }
+
 
   Widget container() {
     return Container(

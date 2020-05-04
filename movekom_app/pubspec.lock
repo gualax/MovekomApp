@@ -42,7 +42,7 @@ packages:
       name: carousel_slider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.1.0"
   charcode:
     dependency: transitive
     description:
@@ -56,7 +56,7 @@ packages:
       name: circle_list
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.9"
+    version: "1.0.4"
   circle_wheel_scroll:
     dependency: "direct main"
     description:

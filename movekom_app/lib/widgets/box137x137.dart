@@ -5,6 +5,7 @@ import 'package:movekomapp/Utils/DrawCircle.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
+import 'package:movekomapp/widgets/aguas.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 import '../app.localizations.dart';
@@ -233,14 +234,14 @@ Widget box137x137_Temperatura(context,title, valueHum, valueTemp){
           ),
           // Valvulas (Todas)
           Positioned.fill(   /// Texto del medio
-              left: 5,
+              left: 20,
               child:   Align(
                 alignment: Alignment.center,
                 child: RichText(
                     text: TextSpan(
                         children: [
                           TextSpan(
-                              style: MyTextStyle.estiloBold(33, Colors.white),
+                              style: MyTextStyle.estiloBold(36, Colors.white),
                               text: valueTemp
                           ),
                         ]
@@ -552,10 +553,13 @@ Widget box137x137_Aguas(title,value,state){
         ), child: Stack(
         children: [
           Positioned.fill( /// Circulo
-            top: 25,
+            top: 30,
+            bottom: 10,
+            left: 10,
+            right: 10,
             child: Align(
               alignment: Alignment.center,
-              child: circulito(40.0, Colors.blueGrey),
+              child: agua_limpia_Img(50),
             ),
           ),
           // Valvulas (Todas)
@@ -680,7 +684,7 @@ Widget box_imagen(title, textAbajoIzq, int valueAmp){
               child: Container(
                   decoration: new BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage("assets/images/indicador_amarillo.png"),
+                      image: AssetImage("assets/images/amperimetro/amp_sa_2.png"),
                       fit: BoxFit.contain,
                     ),
                   )

@@ -1,133 +1,90 @@
-
-
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
 abstract class BateriaMotorEvent extends Equatable {
-  BateriaMotorEvent([List props = const []]): super(props);
-
+  BateriaMotorEvent([List props = const []]) : super(props);
 }
 
-class InitialBateriaMotor extends BateriaMotorEvent {
+class EnableBatery extends BateriaMotorEvent {  /// Habilita la bateria
   @override
-  String toString() => 'InitialBateriaMotor';
-
-  @override
-  List<Object> get props => null;
+  String toString() => 'EnableBatery';
 }
 
-class DisableBateriaMotor extends BateriaMotorEvent {
+class DisableBatery extends BateriaMotorEvent { /// Deshabilita la bateria
   @override
-  String toString() => 'DisableBateriaMotor';
-  @override
-  List<Object> get props => null;
+  String toString() => 'DisableBatery';
 }
+/// Fin declaracion de eventos
 
-class EnableBateriaMotor extends BateriaMotorEvent {
-  @override
-  String toString() => 'EnableBateriaMotor';
-
-  @override
-  List<Object> get props => null;
-}
-
-class UpdateBateriaMotor extends BateriaMotorEvent {
-  final double _valueBat;
-
-  UpdateBateriaMotor(this._valueBat) : super([_valueBat]);
-
-  @override
-  String toString() =>
-      'UpdateStopwatch {timeInMilliseconds: ${_valueBat}}';
-
-}  /// FIN BateriaMotorEvent
 
 class BateriaMotorState extends Equatable {
-  final double valueBat;
   final bool isInitial;
   final bool isEnabled;
+  int valueBat;
+  double valueVolt;
+  double valueAmp;
 
   BateriaMotorState({
-    @required this.valueBat,
     @required this.isInitial,
     @required this.isEnabled,
-  }) : super([valueBat, isInitial, isEnabled]);
+    @required this.valueBat,
+    @required this.valueVolt,
+    @required this.valueAmp,
 
+  }) : super([ isInitial, isEnabled]);
+
+  /// Valores iniciales
   factory BateriaMotorState.initial() {
     return BateriaMotorState(
       isInitial: true,
       isEnabled: true,
-      valueBat: 0.0,
+      valueBat: 75,
+      valueVolt: 11.46,
+      valueAmp: 20.65,
     );
   }
-
 
   BateriaMotorState copyWith({
-     double valueBat,
-     bool isInitial,
-     bool isEnabled,
-
+    bool isInitial,
+    bool isEnabled,
+    int valueBat,
   }) {
     return BateriaMotorState(
-      valueBat: valueBat ?? this.valueBat,
       isInitial: isInitial ?? this.isInitial,
       isEnabled: isEnabled ?? this.isEnabled,
+      valueBat: valueBat ?? this.valueBat,
+      valueVolt: valueVolt ?? this.valueVolt,
+      valueAmp: valueAmp ?? this.valueAmp,
     );
   }
-
   @override
   String toString() {
-    return 'StopwatchState { valueBat: $valueBat, isInitial: $isInitial, isEnabled: $isEnabled }';
+    return 'StopwatchState { isEnabled: $isEnabled, isInitial: $isInitial }';
   }
-}  /// FIN BateriaMotorState
+}
+/// FIN  declaracion de STATE
 
-class BateriaMotorBloc extends Bloc<BateriaMotorEvent, BateriaMotorState> {
-  double _valueBat = 0.0;
+class BateriaMotorBloc extends Bloc <BateriaMotorEvent, BateriaMotorState> {
 
-  StreamSubscription _streamPeriodicSubscription;
+
 
   @override
-  void dispose() {
-    _streamPeriodicSubscription?.cancel();
-    _streamPeriodicSubscription = null;
-    super.dispose();
-  }
-
-  @override
+  // TODO: implement initialState
   BateriaMotorState get initialState => BateriaMotorState.initial();
+
 
   @override
   Stream<BateriaMotorState> mapEventToState(BateriaMotorEvent event) async* {
-    if (event is InitialBateriaMotor) {
-      if (_streamPeriodicSubscription == null) {
-        _streamPeriodicSubscription =
-            Stream.periodic(Duration(milliseconds: 10)).listen(
-                  (_) {
-                    _valueBat += 0.1;
-                    dispatch(
-                      UpdateBateriaMotor(_valueBat),
-                    );
-                  });
-              };
-    } else if (event is UpdateBateriaMotor) {
-     // final bool isSpecial = event.time.inMilliseconds % 3000 == 0;
+    if (event is EnableBatery) {
+      yield BateriaMotorState.initial();
+    } else if (event is DisableBatery) {
       yield BateriaMotorState(
-        valueBat: event._valueBat,
-        isInitial: false,
-        isEnabled: true,
+        valueBat: 0,
+        valueAmp: 0.0,
+        valueVolt: 0.0,
+        isEnabled: false,
       );
-    } else if (event is DisableBateriaMotor) {
-      _streamPeriodicSubscription?.cancel();
-      _streamPeriodicSubscription = null;
-      yield currentState.copyWith(isEnabled: false);
-
-    } else if (event is EnableBateriaMotor) {
-      if (!currentState.isEnabled) {
-        yield BateriaMotorState.initial();
-      }
     }
   }
 }

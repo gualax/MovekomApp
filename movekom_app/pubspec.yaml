@@ -35,7 +35,7 @@ dependencies:
   speedometer: "^1.0.1"
   flutter_speedometer: 1.0.2
   flutter_circular_slider: ^2.5.0
-  circle_list: ^0.0.6
+  circle_list: ^1.0.4
   circle_wheel_scroll: ^0.0.1+1
   rxdart: ^0.22.0
   equatable: ^0.2.6
@@ -47,7 +47,9 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-
+#   flutter_bloc: ^0.17.0   bloc: ^0.14.2
+  #   bloc: ^4.0.0
+  #  flutter_bloc: ^4.0.0
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -64,6 +66,9 @@ flutter:
     - assets/images/
     - assets/iconos/
     - assets/icons/
+    - assets/images/amperimetro/
+    - assets/images/reles/
+    - assets/images/aguas/
 
 
   # To add assets to your application, add an assets section, like this:
