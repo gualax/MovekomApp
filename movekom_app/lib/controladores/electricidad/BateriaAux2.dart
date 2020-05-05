@@ -26,9 +26,8 @@ class BateriaMotorAux2 extends StatelessWidget {
     Color iconColor;
     String on_off_Text;
     return
-      BlocBuilder(
-          bloc: bateriaAux1Bloc,
-          builder: (BuildContext context, BateriaAux2State state) {
+      BlocBuilder<BateriaAux2Bloc,BateriaAux2State>(
+          builder: ( context, state) {
             if (state.isEnabled) {
               color = Colors.lightGreen;
               colorText = Colors.white;
@@ -130,9 +129,9 @@ class BateriaMotorAux2 extends StatelessWidget {
                               color: iconColor,
                               onPressed: () {
                                 if (state.isEnabled) {
-                                  bateriaAux1Bloc.dispatch(DisableBatery());
+                                  bateriaAux1Bloc.add(DisableBatery());
                                 } else {
-                                  bateriaAux1Bloc.dispatch(EnableBatery());
+                                  bateriaAux1Bloc.add(EnableBatery());
                                 }
                               },
                             ),
@@ -150,9 +149,8 @@ class BateriaMotorAux2 extends StatelessWidget {
 
   Widget box137x137_Bateria(bateriaAux1Bloc){
     return
-      BlocBuilder(
-          bloc: bateriaAux1Bloc,
-          builder: (BuildContext context, BateriaAux2State state) {
+      BlocBuilder<BateriaAux2Bloc,BateriaAux2State>(
+          builder: ( context, state) {
             Color color;
             if(state.isEnabled){
               color = Colors.lightGreen;

@@ -17,9 +17,9 @@ class Inversor extends StatelessWidget {
 Widget inversor(inversorBloc){
   Color iconColor,colorTex, circleColor;
   String on_off_Text;
-  return  BlocBuilder(
-    bloc: inversorBloc,
-    builder: (BuildContext context, InversorState state) {
+  return
+    BlocBuilder<InversorBloc,InversorState>(
+      builder: ( context, state) {
       if(state.isEnabled){
         iconColor =  Colors.lightGreen;
         circleColor =  Colors.lightGreen;
@@ -80,9 +80,9 @@ Widget inversor(inversorBloc){
                     color: iconColor,
                     onPressed: () {
                     if(state.isEnabled){
-                      inversorBloc.dispatch(DisableInversor());
+                      inversorBloc.add(DisableInversor());
                     }else{
-                      inversorBloc.dispatch(EnableInversor());
+                      inversorBloc.add(EnableInversor());
                     }
                   },),
                 )

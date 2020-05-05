@@ -18,9 +18,9 @@ class LucesSalon extends StatelessWidget {
 
 
   Widget bedroom_widget(lucesSalonBloc){
-    return BlocBuilder(
-        bloc: lucesSalonBloc,
-        builder: (BuildContext context, LucesSalonState state) {
+    return
+      BlocBuilder<LucesSalonBloc,LucesSalonState>(
+          builder: ( context, state) {
           return Container(
             margin: EdgeInsets.all(SizeConfig.h * 0.5),
             width: SizeConfig.h * 17,
@@ -64,7 +64,7 @@ class LucesSalon extends StatelessWidget {
                           value: state.valueDimer,
                           onChanged: (newValue) {
                             print(newValue);
-                            lucesSalonBloc.dispatch(Update(newValue));
+                            lucesSalonBloc.add(Update(newValue));
                           },
                           min: 0,
                           max: 200,

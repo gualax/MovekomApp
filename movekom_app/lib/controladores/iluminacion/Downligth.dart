@@ -17,9 +17,9 @@ class Downligth extends StatelessWidget {
   }
 
   Widget cocina_widget(lucesCocinaBloc){
-    return BlocBuilder(
-        bloc: lucesCocinaBloc,
-        builder: (BuildContext context, DownligthState state) {
+    return
+      BlocBuilder<DownligthBloc,DownligthState>(
+          builder: ( context, state) {
           return Container(
             margin: EdgeInsets.all(SizeConfig.h * 0.5),
             width: SizeConfig.h * 17,
@@ -63,7 +63,7 @@ class Downligth extends StatelessWidget {
                           value: state.valueDimer,
                           onChanged: (newValue) {
                             //   print(newValue);
-                            lucesCocinaBloc.dispatch(Update(newValue));
+                            lucesCocinaBloc.add(Update(newValue));
                           },
                           min: 0,
                           max: 200,

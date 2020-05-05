@@ -36,31 +36,32 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProviderTree(
-      blocProviders: [
-        BlocProvider<BateriaMotorBloc>(builder: (context) => BateriaMotorBloc()),
-        BlocProvider<BateriaAux1Bloc>(builder:(context)=> BateriaAux1Bloc()),
-        BlocProvider<BateriaAux2Bloc>(builder:(context)=> BateriaAux2Bloc()),
-        BlocProvider<InversorBloc>(builder:(context)=> InversorBloc()),
-        BlocProvider<CargadorBateriaBloc>(builder:(context)=> CargadorBateriaBloc()),
-        BlocProvider<CalefaccionBloc>(builder:(context)=> CalefaccionBloc()),
-        BlocProvider<AlternadorBloc>(builder:(context)=> AlternadorBloc()),
-        BlocProvider<Cargador220Bloc>(builder:(context)=> Cargador220Bloc()),
-        BlocProvider<PanelSolarBloc>(builder:(context)=> PanelSolarBloc()),
-        BlocProvider<BombaAguaBloc>(builder:(context)=> BombaAguaBloc()),
-        BlocProvider<AguasLimpiasBloc>(builder:(context)=> AguasLimpiasBloc()),
-        BlocProvider<AguasSuciasBloc>(builder:(context)=> AguasSuciasBloc()),
-        BlocProvider<AguasNegrasBloc>(builder:(context)=> AguasNegrasBloc()),
-        BlocProvider<LucesHabitacionBloc>(builder:(context)=> LucesHabitacionBloc()),
-        BlocProvider<LucesSalonBloc>(builder:(context)=> LucesSalonBloc()),
-        BlocProvider<LucesCocinaBloc>(builder:(context)=> LucesCocinaBloc()),
-        BlocProvider<LucesBanoBloc>(builder:(context)=> LucesBanoBloc()),
+    return MultiBlocProvider(
+      providers: [
+      //  BlocProvider<BlocA>(create: (BuildContext context) => BlocA()),
+        BlocProvider<BateriaMotorBloc>(create: (context) => BateriaMotorBloc()),
+        BlocProvider<BateriaAux1Bloc>(create:(context)=> BateriaAux1Bloc()),
+        BlocProvider<BateriaAux2Bloc>(create:(context)=> BateriaAux2Bloc()),
+        BlocProvider<InversorBloc>(create:(context)=> InversorBloc()),
+        BlocProvider<CargadorBateriaBloc>(create:(context)=> CargadorBateriaBloc()),
+        BlocProvider<CalefaccionBloc>(create:(context)=> CalefaccionBloc()),
+        BlocProvider<AlternadorBloc>(create:(context)=> AlternadorBloc()),
+        BlocProvider<Cargador220Bloc>(create:(context)=> Cargador220Bloc()),
+        BlocProvider<PanelSolarBloc>(create:(context)=> PanelSolarBloc()),
+        BlocProvider<BombaAguaBloc>(create:(context)=> BombaAguaBloc()),
+        BlocProvider<AguasLimpiasBloc>(create:(context)=> AguasLimpiasBloc()),
+        BlocProvider<AguasSuciasBloc>(create:(context)=> AguasSuciasBloc()),
+        BlocProvider<AguasNegrasBloc>(create:(context)=> AguasNegrasBloc()),
+        BlocProvider<LucesHabitacionBloc>(create:(context)=> LucesHabitacionBloc()),
+        BlocProvider<LucesSalonBloc>(create:(context)=> LucesSalonBloc()),
+        BlocProvider<LucesCocinaBloc>(create:(context)=> LucesCocinaBloc()),
+        BlocProvider<LucesBanoBloc>(create:(context)=> LucesBanoBloc()),
 
-        BlocProvider<UpligthBloc>(builder:(context)=> UpligthBloc()),
-        BlocProvider<LucesParqueBloc>(builder:(context)=> LucesParqueBloc()),
-        BlocProvider<LuzGeneralBloc>(builder:(context)=> LuzGeneralBloc()),
-        BlocProvider<DownligthBloc>(builder:(context)=> DownligthBloc()),
-        BlocProvider<BoilerBloc>(builder:(context)=> BoilerBloc()),
+        BlocProvider<UpligthBloc>(create:(context)=> UpligthBloc()),
+        BlocProvider<LucesParqueBloc>(create:(context)=> LucesParqueBloc()),
+        BlocProvider<LuzGeneralBloc>(create:(context)=> LuzGeneralBloc()),
+        BlocProvider<DownligthBloc>(create:(context)=> DownligthBloc()),
+        BlocProvider<BoilerBloc>(create:(context)=> BoilerBloc()),
 
       ],
       child: MaterialApp(

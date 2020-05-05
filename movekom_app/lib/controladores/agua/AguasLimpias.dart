@@ -34,9 +34,8 @@ class AguasLimpias extends StatelessWidget {
 
     Widget aguas_limpias_chica(aguasLimpiasBloc){
       return
-         BlocBuilder(
-           bloc: aguasLimpiasBloc,
-          builder: (BuildContext context, AguasLimpiasState state) {
+        BlocBuilder<AguasLimpiasBloc,AguasLimpiasState>(
+            builder: ( context, state) {
             return Container(
                 margin: EdgeInsets.all(SizeConfig.p * 0.7),
                 width: SizeConfig.h * 11,
@@ -100,9 +99,8 @@ class AguasLimpias extends StatelessWidget {
 
   Widget aguas_limpias_grande(aguasLimpiasBloc){
     return
-      BlocBuilder(
-          bloc: aguasLimpiasBloc,
-          builder: (BuildContext context, AguasLimpiasState state) {
+      BlocBuilder<AguasLimpiasBloc,AguasLimpiasState>(
+          builder: ( context, state) {
             return Container(
                 margin: EdgeInsets.all(SizeConfig.p * 0.7),
                 width: SizeConfig.h * 16,
@@ -166,9 +164,8 @@ class AguasLimpias extends StatelessWidget {
 
    Widget valvula(aguasLimpiasBloc){
     return
-      BlocBuilder(
-        bloc: aguasLimpiasBloc,
-        builder: (BuildContext context, AguasLimpiasState state) {
+      BlocBuilder<AguasLimpiasBloc,AguasLimpiasState>(
+          builder: ( context, state) {
           return Container(
               margin: EdgeInsets.all(10),
               width: 200,
@@ -216,9 +213,9 @@ class AguasLimpias extends StatelessWidget {
                           color: Colors.lightGreenAccent,
                           onPressed: () {
                             if (state.isEnabled) {
-                              aguasLimpiasBloc.dispatch(Disable());
+                              aguasLimpiasBloc.add(Disable());
                             } else {
-                              aguasLimpiasBloc.dispatch(Enable());
+                              aguasLimpiasBloc.add(Enable());
                             }
                           },),
                       )

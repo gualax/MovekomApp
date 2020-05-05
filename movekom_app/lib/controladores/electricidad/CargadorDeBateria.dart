@@ -19,9 +19,9 @@ class CargadorBaterias extends StatelessWidget {
   Widget cargador_bateria(cargadorBateriaBloc){
     Color iconColor,colorTex, circleColor;
     String on_off_Text;
-    return  BlocBuilder(
-        bloc: cargadorBateriaBloc,
-        builder: (BuildContext context, CrgadorBateriaState state) {
+    return
+      BlocBuilder<CargadorBateriaBloc,CargadorBateriaState>(
+        builder: ( context, state) {
           if(state.isEnabled){
             iconColor =  Colors.lightGreen;
             circleColor =  Colors.lightGreen;
@@ -84,9 +84,9 @@ class CargadorBaterias extends StatelessWidget {
                         color: iconColor,
                         onPressed: () {
                           if(state.isEnabled){
-                            cargadorBateriaBloc.dispatch(DisableCargador());
+                            cargadorBateriaBloc.add(DisableCargador());
                           }else{
-                            cargadorBateriaBloc.dispatch(EnableCargador());
+                            cargadorBateriaBloc.add(EnableCargador());
                           }
                         },),
                     )

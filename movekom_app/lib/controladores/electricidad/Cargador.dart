@@ -15,9 +15,9 @@ class Cargador220 extends StatelessWidget {
   }
 
   Widget cargador220_widget(cargador220Bloc) {
-    return BlocBuilder(
-        bloc: cargador220Bloc,
-        builder: (BuildContext context, Cargador220State state) {
+    return
+      BlocBuilder<Cargador220Bloc,Cargador220State>(
+          builder: ( context, state) {
           return Container(
             margin: EdgeInsets.all(5),
             width: 200,

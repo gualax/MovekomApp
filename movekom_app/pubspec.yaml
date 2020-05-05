@@ -39,8 +39,8 @@ dependencies:
   circle_wheel_scroll: ^0.0.1+1
   rxdart: ^0.22.0
   equatable: ^0.2.6
-  bloc: ^0.14.2
-  flutter_bloc: ^0.17.0
+  bloc: ^4.0.0
+  flutter_bloc: ^4.0.0
 
 
 dev_dependencies:

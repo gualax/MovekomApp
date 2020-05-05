@@ -28,9 +28,9 @@ class Calefaccion extends StatelessWidget {
   Widget calefaccion_big(calefaccionBloc) {
     Color colorText, colorIcon, colorButton;
     String text_on_off;
-    return BlocBuilder(
-        bloc: calefaccionBloc,
-        builder: (BuildContext context, CalefaccionState state) {
+  return
+    BlocBuilder<CalefaccionBloc,CalefaccionState>(
+        builder: ( context, state) {
           if(state.isEnabled){
             colorText = Colors.white;
             colorButton = Colors.lightGreenAccent;
@@ -95,9 +95,9 @@ class Calefaccion extends StatelessWidget {
                         color: colorButton,
                         onPressed: () {
                           if(state.isEnabled){
-                            calefaccionBloc.dispatch(DisableCalefaccion());
+                            calefaccionBloc.add(DisableCalefaccion());
                           }else{
-                            calefaccionBloc.dispatch(EnableCalefaccion());
+                            calefaccionBloc.add(EnableCalefaccion());
                           }
                         },),
                     )
