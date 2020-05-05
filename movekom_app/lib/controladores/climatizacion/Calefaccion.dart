@@ -135,12 +135,12 @@ class Calefaccion extends StatelessWidget {
 
 
 
-
+// (-pi, 0.0)
   Widget circularList() {
     PolarCoord _lastCord;
     return Container(
       child: CircleList(
-        dragAngleRange: DragAngleRange(2,1),
+        dragAngleRange: DragAngleRange(-3.14,0.0),
        // centerWidget: iconSvgNc("assets/icons/circulo_boiler.svg",390 ),
         onDragUpdate: (PolarCoord updatedCord){
           print("updatedCord" + updatedCord.toString());

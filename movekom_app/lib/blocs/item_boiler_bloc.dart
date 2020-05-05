@@ -7,7 +7,7 @@ abstract class ItemBoilerEvent extends Equatable {
   ItemBoilerEvent([List props = const []]) : super(props);
 }
 
-class Enable extends ItemBoilerEvent {  /// Habilita la bateria
+class EnableItemBoiler extends ItemBoilerEvent {  /// Habilita la bateria
   @override
   String toString() => 'EnableBatery';
 }
@@ -62,7 +62,7 @@ class ItemBoilerBloc extends Bloc <ItemBoilerEvent, ItemBoilerState> {
 
   @override
   Stream<ItemBoilerState> mapEventToState(ItemBoilerEvent event) async* {
-    if (event is Enable) {
+    if (event is EnableItemBoiler) {
       yield ItemBoilerState(
         valueAmp: 0,
         isEnabled: true,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
-import 'package:movekomapp/blocs/aguas_sucias_bloc.dart';
+import 'package:movekomapp/blocs/agua_blocs/aguas_sucias_bloc.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/aguas.dart';

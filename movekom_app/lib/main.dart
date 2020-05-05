@@ -1,31 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/FloatingMenu.dart';
-import 'package:movekomapp/blocs/aguas_limpias_bloc.dart';
-import 'package:movekomapp/blocs/alternador_bloc.dart';
-import 'package:movekomapp/blocs/bateria_aux_1_bloc.dart';
+import 'package:movekomapp/blocs/electricidad_blocs/alternador_bloc.dart';
+import 'package:movekomapp/blocs/electricidad_blocs/bateria_aux_1_bloc.dart';
 import 'package:movekomapp/blocs/boiler_bloc.dart';
 import 'package:movekomapp/blocs/calefaccion_bloc.dart';
-import 'package:movekomapp/blocs/cargador_220.dart';
-import 'package:movekomapp/blocs/cargador_baterias_bloc.dart';
-import 'package:movekomapp/blocs/dowligth_bloc.dart';
-import 'package:movekomapp/blocs/inversor_bloc.dart';
-import 'package:movekomapp/blocs/luces_parque_bloc.dart';
-import 'package:movekomapp/blocs/luz_general_bloc.dart';
-import 'package:movekomapp/blocs/panel_solar_bloc.dart';
-import 'package:movekomapp/blocs/upligth_bloc.dart';
-import 'package:movekomapp/controladores/agua/BombaAgua.dart';
+import 'package:movekomapp/blocs/electricidad_blocs/cargador_220.dart';
+import 'package:movekomapp/blocs/electricidad_blocs/cargador_baterias_bloc.dart';
+import 'package:movekomapp/blocs/iluminacion_blocs/dowligth_bloc.dart';
+import 'package:movekomapp/blocs/electricidad_blocs/inversor_bloc.dart';
+import 'package:movekomapp/blocs/iluminacion_blocs/luces_parque_bloc.dart';
+import 'package:movekomapp/blocs/iluminacion_blocs/luz_general_bloc.dart';
+import 'package:movekomapp/blocs/electricidad_blocs/panel_solar_bloc.dart';
+import 'package:movekomapp/blocs/iluminacion_blocs/upligth_bloc.dart';
+import 'package:movekomapp/blocs/modos_blocs/modo_ahorro_bloc.dart';
+import 'package:movekomapp/blocs/modos_blocs/modo_antiheladas_automatico_bloc.dart';
+import 'package:movekomapp/blocs/modos_blocs/modo_antiheladas_bloc.dart';
+import 'package:movekomapp/blocs/modos_blocs/modo_descanso_bloc.dart';
+import 'package:movekomapp/blocs/modos_blocs/modo_eco_bloc.dart';
+import 'package:movekomapp/blocs/modos_blocs/modo_emergencia_bloc.dart';
+import 'package:movekomapp/blocs/modos_blocs/modo_highway_to_hell_bloc.dart';
+import 'package:movekomapp/blocs/modos_blocs/modo_limpieza_bloc.dart';
+import 'package:movekomapp/blocs/modos_blocs/modo_parking_bloc.dart';
+import 'package:movekomapp/controladores/modos/ModoAntiHeladasAuto.dart';
+import 'package:movekomapp/controladores/modos/ModoDescanso.dart';
 import 'package:movekomapp/pantallas/PrincipalHome.dart';
 import 'app.localizations.dart';
-import 'blocs/aguas_negras_bloc.dart';
-import 'blocs/aguas_sucias_bloc.dart';
-import 'blocs/bateria_aux_2_bloc.dart';
-import 'blocs/bateria_motor_bloc.dart';
-import 'blocs/bomba_agua_bloc.dart';
-import 'blocs/luces_bano_bloc.dart';
-import 'blocs/luces_cocina_bloc.dart';
-import 'blocs/luces_habitacion_bloc.dart';
-import 'blocs/luces_salon_bloc.dart';
+import 'package:movekomapp/blocs/agua_blocs/aguas_negras_bloc.dart';
+import 'package:movekomapp/blocs/agua_blocs/aguas_sucias_bloc.dart';
+import 'package:movekomapp/blocs/agua_blocs/aguas_limpias_bloc.dart';
+
+import 'blocs/electricidad_blocs/bateria_aux_2_bloc.dart';
+import 'blocs/electricidad_blocs/bateria_motor_bloc.dart';
+import 'blocs/agua_blocs/bomba_agua_bloc.dart';
+import 'blocs/item_boiler_bloc.dart';
+import 'blocs/iluminacion_blocs/luces_bano_bloc.dart';
+import 'blocs/iluminacion_blocs/luces_cocina_bloc.dart';
+import 'blocs/iluminacion_blocs/luces_habitacion_bloc.dart';
+import 'blocs/iluminacion_blocs/luces_salon_bloc.dart';
 import 'pantallas/Wheater/WheaterMenuPage.dart';
 import 'HomePage.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -48,20 +60,33 @@ class MyApp extends StatelessWidget {
         BlocProvider<AlternadorBloc>(create:(context)=> AlternadorBloc()),
         BlocProvider<Cargador220Bloc>(create:(context)=> Cargador220Bloc()),
         BlocProvider<PanelSolarBloc>(create:(context)=> PanelSolarBloc()),
+
         BlocProvider<BombaAguaBloc>(create:(context)=> BombaAguaBloc()),
         BlocProvider<AguasLimpiasBloc>(create:(context)=> AguasLimpiasBloc()),
         BlocProvider<AguasSuciasBloc>(create:(context)=> AguasSuciasBloc()),
         BlocProvider<AguasNegrasBloc>(create:(context)=> AguasNegrasBloc()),
+
         BlocProvider<LucesHabitacionBloc>(create:(context)=> LucesHabitacionBloc()),
         BlocProvider<LucesSalonBloc>(create:(context)=> LucesSalonBloc()),
         BlocProvider<LucesCocinaBloc>(create:(context)=> LucesCocinaBloc()),
         BlocProvider<LucesBanoBloc>(create:(context)=> LucesBanoBloc()),
-
         BlocProvider<UpligthBloc>(create:(context)=> UpligthBloc()),
         BlocProvider<LucesParqueBloc>(create:(context)=> LucesParqueBloc()),
         BlocProvider<LuzGeneralBloc>(create:(context)=> LuzGeneralBloc()),
         BlocProvider<DownligthBloc>(create:(context)=> DownligthBloc()),
+
         BlocProvider<BoilerBloc>(create:(context)=> BoilerBloc()),
+        BlocProvider<ItemBoilerBloc>(create:(context)=> ItemBoilerBloc()),
+
+        BlocProvider<ModoEcoBloc>(create:(context)=> ModoEcoBloc()),
+        BlocProvider<ModoAhorroBloc>(create:(context)=> ModoAhorroBloc()),
+        BlocProvider<ModoEmergenciaBloc>(create:(context)=> ModoEmergenciaBloc()),
+        BlocProvider<ModoDescansoBloc>(create:(context)=> ModoDescansoBloc()),
+        BlocProvider<ModoLimpiezaBloc>(create:(context)=> ModoLimpiezaBloc()),
+        BlocProvider<ModoHighwayToHellBloc>(create:(context)=> ModoHighwayToHellBloc()),
+        BlocProvider<ModoParkingBloc>(create:(context)=> ModoParkingBloc()),
+        BlocProvider<ModoAntiHeladasBasicoBloc>(create:(context)=> ModoAntiHeladasBasicoBloc()),
+        BlocProvider<ModoAntiHeladasAutoBloc>(create:(context)=> ModoAntiHeladasAutoBloc()),
 
       ],
       child: MaterialApp(

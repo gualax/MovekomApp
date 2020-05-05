@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
-import 'package:movekomapp/blocs/bateria_aux_1_bloc.dart';
+import 'package:movekomapp/blocs/electricidad_blocs/bateria_aux_1_bloc.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
 class BateriaMotorAux1 extends StatelessWidget {

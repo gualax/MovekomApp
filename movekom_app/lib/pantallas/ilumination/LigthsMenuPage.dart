@@ -5,7 +5,7 @@ import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
 import 'package:movekomapp/app.localizations.dart';
-import 'package:movekomapp/blocs/upligth_bloc.dart';
+import 'package:movekomapp/blocs/iluminacion_blocs/upligth_bloc.dart';
 import 'package:movekomapp/controladores/iluminacion/BarraDeConsumos.dart';
 import 'package:movekomapp/controladores/iluminacion/Downligth.dart';
 import 'package:movekomapp/controladores/iluminacion/LigthsBedRoom.dart';

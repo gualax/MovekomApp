@@ -5,11 +5,13 @@ import 'package:circle_list/radial_drag_gesture_detector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/blocs/boiler_bloc.dart';
+import 'package:movekomapp/blocs/item_boiler_bloc.dart';
 import 'package:movekomapp/controladores/agua/AnimatedBoiler.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
 import '../../app.localizations.dart';
+import 'items_boiler/boiler_modo_1.dart';
 
 class Boiler extends StatelessWidget {
   String title;
@@ -37,7 +39,7 @@ class Boiler extends StatelessWidget {
             innerRadius: 120,
             origin: Offset(0, 0),
             children: [
-              iconBuble(6,boilerBloc, "assets/icons/icon_boiler_6.svg"),
+              BoilerModo1(6),
               iconBuble(7,boilerBloc, "assets/icons/icon_boiler_5.svg"),
               iconBuble(0,boilerBloc, "assets/icons/icon_boiler_4.svg"),
               iconBuble(1,boilerBloc, "assets/icons/icon_boiler_3.svg"),
@@ -54,9 +56,21 @@ class Boiler extends StatelessWidget {
 
 
   Widget iconBuble(int dpas,boilerBloc,iconRoute) {
-          return GestureDetector(
+    Color color;
+          return
+            BlocBuilder<ItemBoilerBloc,ItemBoilerState>(
+                builder: ( context, state) {
+             final itemBoilerBloc = BlocProvider.of<ItemBoilerBloc>(context);
+
+             if (state.isEnabled) {
+               color = Colors.lightGreenAccent;
+             } else {
+               color = Colors.white;
+             }
+                  return GestureDetector(
             onTap: () {
               boilerBloc.add(Update(dpas.toDouble()));
+              itemBoilerBloc.add(EnableItemBoiler());
             }, child: Container(
             width: 83,
             height: 83,
@@ -66,7 +80,7 @@ class Boiler extends StatelessWidget {
                 Positioned.fill(
                   child:Align(
                       alignment: Alignment.center,
-                      child: iconSvgD(iconRoute, Colors.white, 40)
+                      child: iconSvgD(iconRoute, color, 40)
                   ),
                 ),
                 Positioned.fill(
@@ -77,7 +91,9 @@ class Boiler extends StatelessWidget {
                 )
               ],
             ),
-          ),
+            ),
+          );
+                }
           );
   }
 

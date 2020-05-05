@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:movekomapp/blocs/panel_solar_bloc.dart';
+import 'package:movekomapp/blocs/electricidad_blocs/panel_solar_bloc.dart';
 import 'package:movekomapp/controladores/electricidad/Alternador.dart';
 import 'package:movekomapp/controladores/electricidad/BateriaAux1.dart';
 import 'package:movekomapp/controladores/electricidad/BateriaAux2.dart';

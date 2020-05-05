@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
-import 'package:movekomapp/blocs/dowligth_bloc.dart';
+import 'package:movekomapp/blocs/iluminacion_blocs/dowligth_bloc.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
