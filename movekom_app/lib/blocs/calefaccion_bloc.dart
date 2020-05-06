@@ -16,34 +16,49 @@ class DisableCalefaccion extends CalefaccionEvent { /// Deshabilita la bateria
   @override
   String toString() => 'DisableBatery';
 }
+
+class UpdateCalefaccion extends CalefaccionEvent { /// Deshabilita la bateria
+ // final int valueTemp;
+  final double valueAngle;
+
+  UpdateCalefaccion(this.valueAngle) : super([valueAngle]);
+
+  @override
+  String toString() => 'Update  {valueDimer: $valueAngle}}' ;
+}
 /// Fin declaracion de eventos
 
 
 class CalefaccionState extends Equatable {
   final bool isEnabled;
+  double valueAngle;
   int valueTemp;
 
   CalefaccionState({
     @required this.isEnabled,
     @required this.valueTemp,
+    @required this.valueAngle,
 
-  }) : super([isEnabled,valueTemp]);
+  }) : super([isEnabled,valueTemp,valueAngle]);
 
   /// Valores iniciales
   factory CalefaccionState.initial() {
     return CalefaccionState(
       isEnabled: true,
-      valueTemp: 21,
+      valueTemp: 25,
+      valueAngle: 0.0,
     );
   }
 
   CalefaccionState copyWith({
     bool isEnabled,
     int valueAmp,
+    double valueAngle,
   }) {
     return CalefaccionState(
       isEnabled: isEnabled ?? this.isEnabled,
       valueTemp: valueTemp ?? this.valueTemp,
+      valueAngle: valueAngle ?? this.valueAngle,
     );
   }
   @override
@@ -69,7 +84,14 @@ class CalefaccionBloc extends Bloc <CalefaccionEvent, CalefaccionState> {
     } else if (event is DisableCalefaccion) {
       yield CalefaccionState(
         valueTemp: 0,
+        valueAngle: 0.0,
         isEnabled: false,
+      );
+    }else if (event is UpdateCalefaccion){
+      yield CalefaccionState(
+        isEnabled: true, // (_lastAngle / 6.5)
+        valueTemp: 25 + (event.valueAngle / 6.5).round(),
+        valueAngle: event.valueAngle,
       );
     }
   }

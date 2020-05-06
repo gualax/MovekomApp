@@ -5,6 +5,7 @@ import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/cargador_baterias_bloc.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
+import 'package:movekomapp/widgets/indicador_rojo.dart';
 
 class CargadorBaterias extends StatelessWidget {
   final String title = "Cargador de bateria";
@@ -116,12 +117,18 @@ class CargadorBaterias extends StatelessWidget {
                     )
                 ),
                 Positioned.fill(
-
                   ///  /// valueAmp
                     top: 20, right: 20,
                     child: Align(
                       alignment: Alignment.topRight,
                       child: circuloConSombra(20.0, circleColor),
+                    )
+                ),
+                Positioned.fill(
+                    bottom: 40,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: inidicadorRojoImg(state.valueAmp,45.0),
                     )
                 ),
               ],

@@ -15,6 +15,8 @@ class Calefaccion extends StatelessWidget {
 
   Calefaccion(this.widgetType);
 
+
+
   @override
   Widget build(BuildContext context) {
     final calefaccionBloc = BlocProvider.of<CalefaccionBloc>(context);
@@ -111,19 +113,34 @@ class Calefaccion extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  left: 340,
-                  bottom: 1, top:1,
+                  left: 320,
+                  bottom: 1,
                   child: Align(
-                    alignment: Alignment.centerRight,
+                    alignment: Alignment.center,
                     child: iconSvgNc("assets/icons/circulo_boiler.svg",390 ),
                   ),
                 ),
                 Positioned(
-                  left: 10,
-                  bottom: 1, top: 1,
+                  left: 320,
                   child: Align(
-                    alignment: Alignment.centerRight,
-                    child: circularList(),
+                    alignment: Alignment.center,
+                    child: circularList(calefaccionBloc),
+                  ),
+                ),
+                Positioned(
+                  bottom: 10, right: 10,
+                  child: Align(
+                    alignment: Alignment.bottomRight,
+                    child:Text("15ºC",
+                    style: MyTextStyle.estiloBold(20, Colors.white),),
+                  ),
+                ),
+                Positioned(
+                  top: 10, right: 10,
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child:Text("35ºC",
+                      style: MyTextStyle.estiloBold(20, Colors.white),),
                   ),
                 ),
               ],
@@ -136,26 +153,43 @@ class Calefaccion extends StatelessWidget {
 
 
 // (-pi, 0.0)
-  Widget circularList() {
-    PolarCoord _lastCord;
-    return Container(
-      child: CircleList(
-        dragAngleRange: DragAngleRange(-3.14,0.0),
-       // centerWidget: iconSvgNc("assets/icons/circulo_boiler.svg",390 ),
-        onDragUpdate: (PolarCoord updatedCord){
-          print("updatedCord" + updatedCord.toString());
-          print("angle: " + updatedCord.angle.toString());
-        },
-        initialAngle: 2,
-        outerRadius: 200,
-        innerRadius: 170,
-        origin: Offset(0, 0),
-        children:[
-          circulito(10.0,Colors.lightGreenAccent),
-        ],
-      ),
+  Widget circularList(calefaccionBloc) {
+    double  _lastAngle, _valueTemp;
+    return
+      BlocBuilder<CalefaccionBloc,CalefaccionState>(
+          builder: ( context, state) {
+            return
+            Container(
+              child: Transform.rotate(
+                angle: 135,
+                child: CircleList(
+                  dragAngleRange: DragAngleRange(-1.05, 1.15),
+                  onDragUpdate: (PolarCoord updatedCord) {
+                    print("onDragUpdate");
+                    print("getAngle().toString(): " + updatedCord.getAngle().toString());
+                    _lastAngle = updatedCord.getAngle();
+                    if (_lastAngle > 67) {
+                      _lastAngle = 67;
+                    } else if (_lastAngle < -67) {
+                      _lastAngle = -67;
+                    }
+                   // _valueTemp = (_lastAngle / 6.5);
+                    calefaccionBloc.add(UpdateCalefaccion(_lastAngle));
+                  },
+                 // initialAngle: state.valueAngle,
+                  outerRadius: 192,
+                  innerRadius: 150,
+                  origin: Offset(0, 0),
+                  children: [
+                    circuloConSombra(20.0, Colors.lightGreenAccent),
+                  ],
+                ),
+              ),
+            );
+          }
     );
   }
+
   Widget circulito(size, color) {
     //this is base circle
     return Container(
@@ -164,26 +198,5 @@ class Calefaccion extends StatelessWidget {
     );
   }
 
-  Widget midleCircleWidget(){
-    return Container(
-      child: CircleListScrollView(
-        physics: CircleFixedExtentScrollPhysics(),
-        axis: Axis.vertical,
-        itemExtent: 50,
-           children: [
-             circulito(10.0,Colors.lightGreenAccent),
-             circulito(10.0,Colors.lightGreenAccent),
-             circulito(10.0,Colors.lightGreenAccent),
-             circulito(10.0,Colors.lightGreenAccent),
-             circulito(10.0,Colors.lightGreenAccent),
-             circulito(10.0,Colors.lightGreenAccent),
-             circulito(10.0,Colors.lightGreenAccent),
-             circulito(10.0,Colors.lightGreenAccent),
-
-           ],
-        radius: 360,
-      ),
-    );
-  }
 
 }/// Fin clase

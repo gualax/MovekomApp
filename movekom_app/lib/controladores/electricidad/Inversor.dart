@@ -5,6 +5,7 @@ import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/inversor_bloc.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
+import 'package:movekomapp/widgets/indicador_rojo.dart';
 
 class Inversor extends StatelessWidget {
   final String title = "Inversor";
@@ -112,6 +113,13 @@ Widget inversor(inversorBloc){
                 child: Align(
                   alignment: Alignment.topRight,
                   child: circuloConSombra(20.0, circleColor),
+                )
+            ),
+            Positioned.fill(
+                bottom: 40,
+                child: Align(
+                  alignment: Alignment.center,
+                  child: inidicadorRojoImg(state.valueAmp,45.0),
                 )
             ),
           ],

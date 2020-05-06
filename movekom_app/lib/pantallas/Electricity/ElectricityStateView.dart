@@ -7,6 +7,7 @@ import 'package:movekomapp/controladores/electricidad/BateriaAux2.dart';
 import 'package:movekomapp/controladores/electricidad/BateriaMotor.dart';
 import 'package:movekomapp/controladores/electricidad/Cargador.dart';
 import 'package:movekomapp/controladores/electricidad/CargadorDeBateria.dart';
+import 'package:movekomapp/controladores/electricidad/Consumos.dart';
 import 'package:movekomapp/controladores/electricidad/Inversor.dart';
 import 'package:movekomapp/controladores/electricidad/PanelSolar.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
@@ -92,12 +93,10 @@ class _ElectricityStateViewState extends State<ElectricityStateView> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Alternador(),
-         // BateriaMotor2(),
           Cargador220(),
-       //   chargeBox("Carga de 220","assets/icons/energy_2.svg",50,23.65),
-          //chargeBox("Carga de panel solar","assets/icons/solar_panel_1.svg",50,23.65),
           PanelSolar(),
-          chargeBox("Consumo instantaneo","assets/icons/electricidad.svg",50,23.65),
+         // chargeBox("Consumo instantaneo","assets/icons/electricidad.svg",50,23.65),
+          Consumos(),
         ],
       ),
     );

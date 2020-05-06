@@ -33,7 +33,7 @@ class CargadorBateriaState extends Equatable {
   factory CargadorBateriaState.initial() {
     return CargadorBateriaState(
       isEnabled: true,
-      valueAmp: 21,
+      valueAmp: 60,
     );
   }
 

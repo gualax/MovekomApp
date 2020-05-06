@@ -7,6 +7,7 @@ import 'package:movekomapp/blocs/boiler_bloc.dart';
 import 'package:movekomapp/blocs/calefaccion_bloc.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/cargador_220.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/cargador_baterias_bloc.dart';
+import 'package:movekomapp/blocs/electricidad_blocs/consumos_bloc.dart';
 import 'package:movekomapp/blocs/iluminacion_blocs/dowligth_bloc.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/inversor_bloc.dart';
 import 'package:movekomapp/blocs/iluminacion_blocs/luces_parque_bloc.dart';
@@ -60,6 +61,7 @@ class MyApp extends StatelessWidget {
         BlocProvider<AlternadorBloc>(create:(context)=> AlternadorBloc()),
         BlocProvider<Cargador220Bloc>(create:(context)=> Cargador220Bloc()),
         BlocProvider<PanelSolarBloc>(create:(context)=> PanelSolarBloc()),
+        BlocProvider<ConsumosBloc>(create:(context)=> ConsumosBloc()),
 
         BlocProvider<BombaAguaBloc>(create:(context)=> BombaAguaBloc()),
         BlocProvider<AguasLimpiasBloc>(create:(context)=> AguasLimpiasBloc()),
