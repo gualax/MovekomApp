@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
 import 'package:movekomapp/blocs/iluminacion_blocs/luz_general_bloc.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
@@ -9,17 +10,24 @@ import 'package:movekomapp/widgets/MyTextStyle.dart';
 
 class LuzGeneral extends StatelessWidget {
   final String title = "Luz general ";
+  final int widgetType;
+  LuzGeneralBloc luzGeneralBloc;
+  LuzGeneral(this.widgetType);
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    final lucesCocinaBloc = BlocProvider.of<LuzGeneralBloc>(context);
-    return cocina_widget(lucesCocinaBloc);
+    if(widgetType == 1){
+      return luz_general_chico();
+    }else{
+      return luz_general_grande();
+    }
   }
 
-  Widget cocina_widget(lucesCocinaBloc){
+  Widget luz_general_grande(){
     return
       BlocBuilder<LuzGeneralBloc,LuzGeneralState>(
           builder: ( context, state) {
+            luzGeneralBloc = BlocProvider.of<LuzGeneralBloc>(context);
           return Container(
             margin: EdgeInsets.all(SizeConfig.h * 0.5),
             width: SizeConfig.h * 17,
@@ -63,7 +71,7 @@ class LuzGeneral extends StatelessWidget {
                           value: state.valueDimer,
                           onChanged: (newValue) {
                             //   print(newValue);
-                            lucesCocinaBloc.add(Update(newValue));
+                            luzGeneralBloc.add(Update(newValue));
                           },
                           min: 0,
                           max: 200,
@@ -91,5 +99,73 @@ class LuzGeneral extends StatelessWidget {
         }
     );
   }
+
+
+
+  Widget luz_general_chico(){
+    Color color;
+    String text;
+    return
+      BlocBuilder<LuzGeneralBloc,LuzGeneralState>(
+          builder: ( context, state) {
+            luzGeneralBloc = BlocProvider.of<LuzGeneralBloc>(context);
+            if(state.isEnabled ){
+              color = Colors.lightGreen;
+              text = "ON";
+            }else {
+              color = Colors.grey;
+              text = "OFF";
+            }
+            return GestureDetector(
+              onTap: (){
+                if(state.isEnabled){
+                  luzGeneralBloc.add(Disable());
+                }else{
+                  luzGeneralBloc.add(Enable());
+                }
+              },
+              child: Container(
+                margin: EdgeInsets.all(5),
+                width: 66,
+                height: 137,
+                decoration: new BoxDecoration(
+                  color: MyColors.ContainerColor,
+                ),
+                child: Stack(
+                  children: <Widget>[
+                    Positioned.fill(
+                        top: 5,
+                        child: Align(
+                          alignment: Alignment.topCenter,
+                          child: iconSvgD("assets/icons/luz.svg", color, 35),
+                        )
+                    ),Positioned.fill(
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: iconSvgD("assets/icons/todas_luces.svg", color, 35),
+                        )
+                    ),Positioned.fill(
+                        bottom: 8,
+                        child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child:   RichText(
+                              text: TextSpan(
+                                  children: [
+                                    TextSpan(
+                                        style: MyTextStyle.estiloBold(20,color),
+                                        text: text ),
+                                  ]
+                              )
+                          ),
+                        )
+                    )
+                  ],
+                ),
+              ),
+            );
+          }
+      );
+  }
+
 
 } /// Fin clase

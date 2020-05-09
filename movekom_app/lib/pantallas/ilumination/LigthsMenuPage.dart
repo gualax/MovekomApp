@@ -90,10 +90,10 @@ class _LightsMenuPageState extends State<LightsMenuPage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          LucesExterior(),
-          LuzGeneral(),
-          Upligth(),
-          Downligth(),
+          LucesExterior(2),
+          LuzGeneral(2),
+          Upligth(2),
+          Downligth(2),
           ModoLuz1(2),
         ],
       ),

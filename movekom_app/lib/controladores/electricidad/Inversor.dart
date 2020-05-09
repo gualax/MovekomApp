@@ -6,6 +6,7 @@ import 'package:movekomapp/blocs/electricidad_blocs/inversor_bloc.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/indicador_rojo.dart';
+import 'package:movekomapp/widgets/temporizador_popup.dart';
 
 class Inversor extends StatelessWidget {
   final String title = "Inversor";
@@ -105,7 +106,12 @@ Widget inversor(inversorBloc){
                   alignment: Alignment.bottomRight,
                   child: IconButton(
                     icon: Icon(Icons.access_time), iconSize: 30,
-                    color: colorTex, onPressed: () {},),
+                    color: colorTex, onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) => TemporizadorPopup(),
+                    );
+                  },),
                 )
             ),
             Positioned.fill(/// circulito

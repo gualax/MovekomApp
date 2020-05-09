@@ -160,9 +160,17 @@ class AguasSucias extends StatelessWidget {
 
 
   Widget valvula(aguasLimpiasBloc){
+    Color colorButton, colorImg;
     return
       BlocBuilder<AguasSuciasBloc,AguasSuciasState>(
           builder: ( context, state) {
+            if(state.isEnabled){
+              colorButton = Colors.lightGreenAccent;
+              colorImg = Colors.white;
+            }else{
+              colorImg = Colors.grey;
+              colorButton = Colors.white;
+            }
             return Container(
                 margin: EdgeInsets.all(10),
                 width: 200,
@@ -192,12 +200,12 @@ class AguasSucias extends StatelessWidget {
                       ),
                     ),
                     Positioned.fill(
-
+                      left: 25,
                       /// Titulo
                       child: Align(
                           alignment: Alignment.center,
                           child: iconSvgD(
-                              "assets/icons/valvula.svg", Colors.white, 80)
+                              "assets/icons/valvula.svg",colorImg, 80)
                       ),
                     ),
                     Positioned.fill(
@@ -207,7 +215,7 @@ class AguasSucias extends StatelessWidget {
                           child: IconButton(
                             icon: Icon(Icons.power_settings_new),
                             iconSize: 30,
-                            color: Colors.lightGreenAccent,
+                            color: colorButton,
                             onPressed: () {
                               if (state.isEnabled) {
                                 aguasLimpiasBloc.add(Disable());

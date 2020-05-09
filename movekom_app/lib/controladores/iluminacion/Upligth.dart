@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
 import 'package:movekomapp/blocs/iluminacion_blocs/upligth_bloc.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
@@ -9,17 +10,26 @@ import 'package:movekomapp/widgets/MyTextStyle.dart';
 
 class Upligth extends StatelessWidget {
   final String title = "Uplight";
+  UpligthBloc uplightBloc;
+  final int widgetType;
+
+  Upligth(this.widgetType);
+  
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    final lucesCocinaBloc = BlocProvider.of<UpligthBloc>(context);
-    return cocina_widget(lucesCocinaBloc);
+    if(widgetType == 1){
+     return uplight_chico();
+    }else {
+     return uplight_grande();
+    }
   }
 
-  Widget cocina_widget(lucesCocinaBloc){
+  Widget uplight_grande(){
     return
       BlocBuilder<UpligthBloc,UplightState>(
         builder: ( context, state) {
+          uplightBloc =  BlocProvider.of<UpligthBloc>(context);
           return Container(
             margin: EdgeInsets.all(SizeConfig.h * 0.5),
             width: SizeConfig.h * 17,
@@ -63,7 +73,7 @@ class Upligth extends StatelessWidget {
                           value: state.valueDimer,
                           onChanged: (newValue) {
                             //   print(newValue);
-                            lucesCocinaBloc.add(Update(newValue));
+                            uplightBloc.add(Update(newValue));
                           },
                           min: 0,
                           max: 200,
@@ -91,5 +101,73 @@ class Upligth extends StatelessWidget {
         }
     );
   }
+
+
+
+  Widget uplight_chico(){
+    Color color;
+    String text;
+    return
+      BlocBuilder<UpligthBloc,UplightState>(
+          builder: ( context, state) {
+            uplightBloc =  BlocProvider.of<UpligthBloc>(context);
+            if(state.isEnabled ){
+              color = Colors.lightGreen;
+              text = "ON";
+            }else {
+              color = Colors.grey;
+              text = "OFF";
+            }
+            return GestureDetector(
+              onTap: (){
+                if(state.isEnabled){
+                  uplightBloc.add(Disable());
+                }else{
+                  uplightBloc.add(Enable());
+                }
+              },
+              child: Container(
+                margin: EdgeInsets.all(5),
+                width: 66,
+                height: 137,
+                decoration: new BoxDecoration(
+                  color: MyColors.ContainerColor,
+                ),
+                child: Stack(
+                  children: <Widget>[
+                    Positioned.fill(
+                        top: 5,
+                        child: Align(
+                          alignment: Alignment.topCenter,
+                          child: Text("UP", style: MyTextStyle.estiloBold(15, color),),
+                        )
+                    ),Positioned.fill(
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: iconSvgD("assets/icons/tira_led.svg", color, 45),
+                        )
+                    ),Positioned.fill(
+                        bottom: 8,
+                        child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child:   RichText(
+                              text: TextSpan(
+                                  children: [
+                                    TextSpan(
+                                        style: MyTextStyle.estiloBold(20,color),
+                                        text: text ),
+                                  ]
+                              )
+                          ),
+                        )
+                    )
+                  ],
+                ),
+              ),
+            );
+          }
+      );
+  }
+
 
 } /// Fin clase

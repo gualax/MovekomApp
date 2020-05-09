@@ -12,6 +12,10 @@ import 'package:movekomapp/controladores/agua/BombaAgua.dart';
 import 'package:movekomapp/controladores/electricidad/BateriaAux1.dart';
 import 'package:movekomapp/controladores/electricidad/BateriaAux2.dart';
 import 'package:movekomapp/controladores/electricidad/BateriaMotor.dart';
+import 'package:movekomapp/controladores/iluminacion/Downligth.dart';
+import 'package:movekomapp/controladores/iluminacion/LucesExterior.dart';
+import 'package:movekomapp/controladores/iluminacion/LuzGeneral.dart';
+import 'package:movekomapp/controladores/iluminacion/Upligth.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/box137x137.dart';
@@ -36,7 +40,8 @@ class _PrincipalHomeState extends State<PrincipalHome> {
     mContext = context;
     return
       Scaffold(
-        backgroundColor: Colors.black,
+          resizeToAvoidBottomPadding: false,
+          backgroundColor: Colors.black,
         body:Column(
           children: <Widget>[
             contenido(),
@@ -211,66 +216,14 @@ Widget horizontalList(){
       );
   }
 
-  Widget verticalIluminationBox(firstIcon,secondIcon,bool state){
-      Color color;
-      String text;
-      print(state);
-      if(state == true){
-        color = Colors.lightGreen;
-        text = "ON";
-      }else {
-        color = Colors.grey;
-        text = "OFF";
-      }
-     return Container(
-            margin: EdgeInsets.all(5),
-            width: 66,
-            height: 137,
-            decoration: new BoxDecoration(
-                color: MyColors.ContainerColor,
-            ),
-         child: Stack(
-           children: <Widget>[
-             Positioned.fill(
-               top: 5,
-                 child: Align(
-                   alignment: Alignment.topCenter,
-                   child: iconSvgD(firstIcon, color, 35),
-                 )
-             ),Positioned.fill(
-                 child: Align(
-                   alignment: Alignment.center,
-                   child: iconSvgD(secondIcon, color, 35),
-                 )
-             ),Positioned.fill(
-               bottom: 8,
-                 child: Align(
-                   alignment: Alignment.bottomCenter,
-                   child:   RichText(
-                       text: TextSpan(
-                           children: [
-                             TextSpan(
-                                 style: MyTextStyle.estiloBold(20,color),
-                                 text: text ),
-                           ]
-                       )
-                   ),
-                 )
-             )
-           ],
-           ),
-     );
-  }
-
   Widget verticalHalfBoxesIlumination(){
     return Container(
       child: Row (
         children: <Widget>[
-          verticalIluminationBox("assets/icons/luz.svg","assets/icons/exterior.svg",false),
-          verticalIluminationBox("assets/icons/luz.svg","assets/icons/todas_luces.svg",true),
+          LucesExterior(1),
+          LuzGeneral(1),
         ],
-      )
-      ,
+      ),
     );
   }
 
@@ -278,72 +231,14 @@ Widget horizontalList(){
     return Container(
       child: Row (
         children: <Widget>[
-          verticalLedBox("assets/icons/tira_led.svg",false),
-          verticalLedBox("assets/icons/tira_led.svg",true),
+          Upligth(1),
+          Downligth(1),
         ],
       )
       ,
     );
   }
 
-  Widget verticalLedBox(firstIcon,bool state){
-    Color color;
-    String text;
-    print(state);
-    if(state == true){
-      color = Colors.lightGreen;
-      text = "ON";
-    }else {
-      color = Colors.grey;
-      text = "OFF";
-    }
-    return Container(
-      margin: EdgeInsets.all(5),
-      width: 66,
-      height: 137,
-      decoration: new BoxDecoration(
-        color: MyColors.ContainerColor,
-      ),
-      child: Stack(
-        children: <Widget>[
-          Positioned.fill(
-              top: 5,
-              child: Align(
-                alignment: Alignment.topCenter,
-                child:  RichText(
-                    text: TextSpan(
-                        children: [
-                          TextSpan(
-                              style: MyTextStyle.estiloBold(20,color),
-                              text: "LED" ),
-                        ]
-                    )
-                ),
-              )
-          ),Positioned.fill(
-              child: Align(
-                alignment: Alignment.center,
-                child: iconSvgD(firstIcon, color, 45),
-              )
-          ),Positioned.fill(
-              bottom: 8,
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child:   RichText(
-                    text: TextSpan(
-                        children: [
-                          TextSpan(
-                              style: MyTextStyle.estiloBold(20,color),
-                              text: text ),
-                        ]
-                    )
-                ),
-              )
-          )
-        ],
-      ),
-    );
-  }
 
 Widget columnCargas(){
     return Container(
@@ -358,7 +253,6 @@ Widget columnCargas(){
       ),
     );
 }
-
 
 
   Widget columnTiempoDeUso(){

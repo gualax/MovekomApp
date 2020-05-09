@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
+import 'package:movekomapp/pantallas/ManualesPage/ManualesMenuPage.dart';
 import 'package:movekomapp/pantallas/ModesPage/ModesMenuPage.dart';
 import 'package:movekomapp/pantallas/ilumination/LigthsMenuPage.dart';
 import 'package:movekomapp/pantallas/Water/WaterMenuPage.dart';
@@ -29,6 +30,7 @@ class _HomePageState extends State<HomePage> {
     SizeConfig().init(context);
     return
      Scaffold(
+       resizeToAvoidBottomPadding: false,
         appBar:   PreferredSize(
           preferredSize: Size.fromHeight(SizeConfig.v * 7.5), // here the desired height
           child: CustomBar(),
@@ -73,6 +75,7 @@ class _HomePageState extends State<HomePage> {
               ),
               new BottomNavigationBarItem(
                 icon: iconSvg("assets/icons/cuadro_alerta.svg", false),
+                activeIcon: activeIcon("assets/icons/cuadro_alerta.svg"),
                 title: new Text(""),
               ),
               new BottomNavigationBarItem(
@@ -137,6 +140,7 @@ class _HomePageState extends State<HomePage> {
       WaterMenuPage(),
       LightsMenuPage(),
       ModesMenuPage(),
+      ManualesMenuPage(),
     ];
     return _children[index];
   }
@@ -199,6 +203,7 @@ void changeBarTitle(index){
     "AGUA",
     "ILUMINACION",
     "MODOS",
+    "MANUALES",
     "TEST",
 
   ];
@@ -209,6 +214,7 @@ void changeBarTitle(index){
     " NIVELES DEPOSITOS Y VALVULAS",
     " ILUMINACION",
     " MODOS INTELIGENTES DE FUNCIONAMIENTO",
+    " MANUALES Y LIBROS DE INSTRUCCIONES",
     "TEST",
   ];
   setBarTitle(titles[index], subtitles[index]);

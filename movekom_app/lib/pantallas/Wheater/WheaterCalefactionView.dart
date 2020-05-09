@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movekomapp/Utils/DrawCircle.dart';
 import 'package:movekomapp/controladores/climatizacion/Calefaccion.dart';
+import 'package:movekomapp/controladores/climatizacion/Extractor.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
@@ -26,7 +27,7 @@ class _WheaterCalefactionViewState extends State<WheaterCalefactionView> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Calefaccion(2),
+            Calefaccion2(2),
             container(),
           ],
         ),
@@ -55,7 +56,7 @@ class _WheaterCalefactionViewState extends State<WheaterCalefactionView> {
               box247x144(),
             ],
           ),
-          box420(),
+          Extractor(),
           bar(),
         ],
       ),
@@ -63,64 +64,6 @@ class _WheaterCalefactionViewState extends State<WheaterCalefactionView> {
     );
   }
 
-  Widget box420() {
-    return Container(
-      margin: EdgeInsets.all(5),
-      width: 420,
-      height: 174,
-      decoration: new BoxDecoration(
-          color: Color(0xff2d3033)
-      ),
-      child: Stack(
-        children: <Widget>[
-          Positioned.fill(
-              left: 10,
-              top: 10,
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: Text("Extraccion",
-                  style: MyTextStyle.estiloBold(30, Colors.white),),
-              )
-          ),
-          Positioned.fill(
-              left: 20,
-              top: 10,
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: iconSvgD("assets/icons/fan.svg", Colors.white, 70),
-              )
-          ),
-          Positioned.fill(
-              left: 30,
-              child: Align(
-                alignment: Alignment.center,
-                child: Text("21",
-                  style: MyTextStyle.estiloBold(70, Colors.white),),
-              )
-          ),
-          Positioned.fill(
-              left: 30,
-              bottom: 15,
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: Text("Pulse para encender",
-                  style: MyTextStyle.estiloBold(20, Colors.white),),
-              )
-          ),
-          Positioned.fill(
-              right: 200,
-              bottom: 5,
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: IconButton(
-                  icon: Icon(Icons.power_settings_new), iconSize: 30,
-                  color: Colors.white, onPressed: () {},),
-              )
-          ),
-        ],
-      ),
-    );
-  }
 
   Widget box247x144() {
     return Container(

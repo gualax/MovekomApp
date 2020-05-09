@@ -22,6 +22,16 @@ class MyTextStyle {
         fontSize: dim
     );
   }
+  static TextStyle estiloBox(double dim,color) {
+    return TextStyle(
+        color: color,
+        fontWeight: FontWeight.bold,
+        fontFamily: "Mada",
+        fontStyle: FontStyle.normal,
+        fontSize: dim
+    );
+  }
+
 
 }
 

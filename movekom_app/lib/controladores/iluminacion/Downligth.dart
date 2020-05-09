@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
 import 'package:movekomapp/blocs/iluminacion_blocs/dowligth_bloc.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
@@ -9,17 +10,25 @@ import 'package:movekomapp/widgets/MyTextStyle.dart';
 
 class Downligth extends StatelessWidget {
   final String title = "Downlight";
+  final int widgetType;
+  DownligthBloc downlightBloc;
+  Downligth(this.widgetType);
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    final lucesCocinaBloc = BlocProvider.of<DownligthBloc>(context);
-    return cocina_widget(lucesCocinaBloc);
+    if(widgetType == 1){
+      return dowligth_chico();
+    }else {
+      return dowligth_grande();
+    }
   }
 
-  Widget cocina_widget(lucesCocinaBloc){
+  Widget dowligth_grande(){
     return
       BlocBuilder<DownligthBloc,DownligthState>(
           builder: ( context, state) {
+            downlightBloc = BlocProvider.of<DownligthBloc>(context);
           return Container(
             margin: EdgeInsets.all(SizeConfig.h * 0.5),
             width: SizeConfig.h * 17,
@@ -63,7 +72,7 @@ class Downligth extends StatelessWidget {
                           value: state.valueDimer,
                           onChanged: (newValue) {
                             //   print(newValue);
-                            lucesCocinaBloc.add(Update(newValue));
+                            downlightBloc.add(Update(newValue));
                           },
                           min: 0,
                           max: 200,
@@ -91,5 +100,72 @@ class Downligth extends StatelessWidget {
         }
     );
   }
+
+
+  Widget dowligth_chico(){
+    Color color;
+    String text;
+    return
+      BlocBuilder<DownligthBloc,DownligthState>(
+          builder: ( context, state) {
+            downlightBloc = BlocProvider.of<DownligthBloc>(context);
+            if(state.isEnabled ){
+              color = Colors.lightGreen;
+              text = "ON";
+            }else {
+              color = Colors.grey;
+              text = "OFF";
+            }
+            return GestureDetector(
+              onTap: (){
+                if(state.isEnabled){
+                  downlightBloc.add(Disable());
+                }else{
+                  downlightBloc.add(Enable());
+                }
+              },
+              child: Container(
+                margin: EdgeInsets.all(5),
+                width: 66,
+                height: 137,
+                decoration: new BoxDecoration(
+                  color: MyColors.ContainerColor,
+                ),
+                child: Stack(
+                  children: <Widget>[
+                    Positioned.fill(
+                        top: 5,
+                        child: Align(
+                          alignment: Alignment.topCenter,
+                          child: Text("DOWN", style: MyTextStyle.estiloBold(15, color),),
+                        )
+                    ),Positioned.fill(
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: iconSvgD("assets/icons/tira_led.svg", color, 45),
+                        )
+                    ),Positioned.fill(
+                        bottom: 8,
+                        child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child:   RichText(
+                              text: TextSpan(
+                                  children: [
+                                    TextSpan(
+                                        style: MyTextStyle.estiloBold(20,color),
+                                        text: text ),
+                                  ]
+                              )
+                          ),
+                        )
+                    )
+                  ],
+                ),
+              ),
+            );
+          }
+      );
+  }
+
 
 } /// Fin clase

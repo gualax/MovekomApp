@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/FloatingMenu.dart';
+import 'package:movekomapp/blocs/climatizacion/extractor_bloc.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/alternador_bloc.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/bateria_aux_1_bloc.dart';
 import 'package:movekomapp/blocs/boiler_bloc.dart';
-import 'package:movekomapp/blocs/calefaccion_bloc.dart';
+import 'package:movekomapp/blocs/climatizacion/calefaccion_bloc.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/cargador_220.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/cargador_baterias_bloc.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/consumos_bloc.dart';
@@ -89,6 +90,7 @@ class MyApp extends StatelessWidget {
         BlocProvider<ModoParkingBloc>(create:(context)=> ModoParkingBloc()),
         BlocProvider<ModoAntiHeladasBasicoBloc>(create:(context)=> ModoAntiHeladasBasicoBloc()),
         BlocProvider<ModoAntiHeladasAutoBloc>(create:(context)=> ModoAntiHeladasAutoBloc()),
+        BlocProvider<ExtractorBloc>(create:(context)=> ExtractorBloc()),
 
       ],
       child: MaterialApp(
@@ -101,7 +103,7 @@ class MyApp extends StatelessWidget {
         },
         title: 'Flutter Demo',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+         // primarySwatch: Colors.green,
         ),
         supportedLocales: [
           Locale('es','ES'),

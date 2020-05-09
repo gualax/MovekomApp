@@ -20,11 +20,11 @@ class DisableCalefaccion extends CalefaccionEvent { /// Deshabilita la bateria
 class UpdateCalefaccion extends CalefaccionEvent { /// Deshabilita la bateria
  // final int valueTemp;
   final double valueAngle;
-
-  UpdateCalefaccion(this.valueAngle) : super([valueAngle]);
+  final double radAngle;
+  UpdateCalefaccion(this.valueAngle,this.radAngle) : super([valueAngle,radAngle]);
 
   @override
-  String toString() => 'Update  {valueDimer: $valueAngle}}' ;
+  String toString() => 'Update  {valueAngle: $valueAngle},{radAngle: $radAngle}}' ;
 }
 /// Fin declaracion de eventos
 
@@ -32,12 +32,15 @@ class UpdateCalefaccion extends CalefaccionEvent { /// Deshabilita la bateria
 class CalefaccionState extends Equatable {
   final bool isEnabled;
   double valueAngle;
+  double radAngle;
   int valueTemp;
 
   CalefaccionState({
     @required this.isEnabled,
     @required this.valueTemp,
     @required this.valueAngle,
+    @required this.radAngle,
+
 
   }) : super([isEnabled,valueTemp,valueAngle]);
 
@@ -47,6 +50,7 @@ class CalefaccionState extends Equatable {
       isEnabled: true,
       valueTemp: 25,
       valueAngle: 0.0,
+      radAngle: 0.0,
     );
   }
 
@@ -54,11 +58,13 @@ class CalefaccionState extends Equatable {
     bool isEnabled,
     int valueAmp,
     double valueAngle,
+    double radAngle,
   }) {
     return CalefaccionState(
       isEnabled: isEnabled ?? this.isEnabled,
       valueTemp: valueTemp ?? this.valueTemp,
       valueAngle: valueAngle ?? this.valueAngle,
+      radAngle: radAngle ?? this.radAngle,
     );
   }
   @override
@@ -85,13 +91,15 @@ class CalefaccionBloc extends Bloc <CalefaccionEvent, CalefaccionState> {
       yield CalefaccionState(
         valueTemp: 0,
         valueAngle: 0.0,
+        radAngle: 0.0,
         isEnabled: false,
       );
     }else if (event is UpdateCalefaccion){
       yield CalefaccionState(
         isEnabled: true, // (_lastAngle / 6.5)
-        valueTemp: 25 + (event.valueAngle / 6.5).round(),
+        valueTemp: 25 + (event.valueAngle / 5.5).round(),
         valueAngle: event.valueAngle,
+        radAngle: event.radAngle,
       );
     }
   }

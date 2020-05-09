@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
 import 'package:movekomapp/blocs/iluminacion_blocs/luces_parque_bloc.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
@@ -9,18 +10,26 @@ import 'package:movekomapp/widgets/MyTextStyle.dart';
 
 class LucesExterior extends StatelessWidget {
   final String title = "Luz parque ";
+  LucesParqueBloc lucesCocinaBloc;
+  final int widgetType;
+  LucesExterior(this.widgetType);
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    final lucesCocinaBloc = BlocProvider.of<LucesParqueBloc>(context);
-    return cocina_widget(lucesCocinaBloc);
+    if(widgetType == 1){
+      return exterior_chico();
+    }else {
+      return exterior_grande();
+    }
   }
 
-  Widget cocina_widget(lucesCocinaBloc){
+  Widget exterior_grande(){
     return
       BlocBuilder<LucesParqueBloc,LucesParqueState>(
           builder: ( context, state) {
-          return Container(
+             lucesCocinaBloc = BlocProvider.of<LucesParqueBloc>(context);
+            return Container(
             margin: EdgeInsets.all(SizeConfig.h * 0.5),
             width: SizeConfig.h * 17,
             height: SizeConfig.v * 19,
@@ -90,6 +99,73 @@ class LucesExterior extends StatelessWidget {
           );
         }
     );
+  }
+
+
+
+  Widget exterior_chico(){
+    Color color;
+    String text;
+    return
+      BlocBuilder<LucesParqueBloc,LucesParqueState>(
+      builder: ( context, state) {
+      lucesCocinaBloc = BlocProvider.of<LucesParqueBloc>(context);
+      if(state.isEnabled ){
+        color = Colors.lightGreen;
+        text = "ON";
+      }else {
+        color = Colors.grey;
+        text = "OFF";
+      }
+      return GestureDetector(
+        onTap: (){
+            if(state.isEnabled){
+              lucesCocinaBloc.add(Disable());
+            }else{
+              lucesCocinaBloc.add(Enable());
+            }
+        },
+        child: Container(
+           margin: EdgeInsets.all(5),
+          width: 66,
+          height: 137,
+          decoration: new BoxDecoration(
+            color: MyColors.ContainerColor,
+          ),
+          child: Stack(
+            children: <Widget>[
+              Positioned.fill(
+                  top: 5,
+                  child: Align(
+                    alignment: Alignment.topCenter,
+                    child: iconSvgD("assets/icons/luz.svg", color, 35),
+                  )
+              ),Positioned.fill(
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: iconSvgD("assets/icons/exterior.svg", color, 35),
+                  )
+              ),Positioned.fill(
+                  bottom: 8,
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child:   RichText(
+                        text: TextSpan(
+                            children: [
+                              TextSpan(
+                                  style: MyTextStyle.estiloBold(20,color),
+                                  text: text ),
+                            ]
+                        )
+                    ),
+                  )
+              )
+            ],
+          ),
+          ),
+      );
+        }
+      );
   }
 
 } /// Fin clase

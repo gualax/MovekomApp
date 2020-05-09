@@ -15,7 +15,8 @@ class _ElectricityPageState extends State<ElectricityPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.black,
+      resizeToAvoidBottomPadding: false,
+      backgroundColor: Colors.black,
         body: Container(
          // color: Colors.blueGrey,
           margin: EdgeInsets.only(top: 25),
