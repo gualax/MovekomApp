@@ -176,8 +176,6 @@ class _Calefaccion2State extends State<Calefaccion2> {
           builder: ( context, state) {
             RotateMode rotateMode;
             Color colorIndic;
-            print("state.radAngle(): " + state.radAngle.toString());
-            print("state.valueAngle:  " + state.valueAngle.toString());
             _radAngle = state.radAngle;
             _lastAngle = state.valueAngle;
             if(state.isEnabled){
@@ -194,9 +192,6 @@ class _Calefaccion2State extends State<Calefaccion2> {
                   child: CircleList(
                     dragAngleRange: DragAngleRange(-0.02, 0.02),
                     onDragUpdate: (PolarCoord updatedCord) {
-                      print(" ****  onDragUpdate **** "  );
-                      print("radangle:  " + updatedCord.angle.toString());
-                      print("getAngle(): " + updatedCord.getAngle().toString());
                       _lastAngle = updatedCord.getAngle();
                       _radAngle = updatedCord.angle;
                       if (_lastAngle > 57) {
@@ -207,7 +202,6 @@ class _Calefaccion2State extends State<Calefaccion2> {
                       if (_radAngle > 1) {
                         _radAngle = 1;
                       } else if (_radAngle < -1) {
-                        print("_radAngle < -0.5");
                         _radAngle = -1;
                       }
                       // _valueTemp = (_lastAngle / 6.5);
@@ -230,8 +224,6 @@ class _Calefaccion2State extends State<Calefaccion2> {
 
 
   double getInitialAngle(angleValue){
-    print("isFisrtRender");
-    print("anglevalue: " +angleValue.toString() );
     if(isFisrtRender){
       print(isFisrtRender);
       isFisrtRender = false;

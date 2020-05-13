@@ -53,7 +53,7 @@ with SingleTickerProviderStateMixin {
   return BlocBuilder(
     bloc: boilerBloc,
     builder: (BuildContext context, BoilerState state) {
-      print("state.valueCord:" + state.valueCord.toString());
+   //   print("state.valueCord:" + state.valueCord.toString());
       return Container(
         child: Transform.rotate(
           angle: state.valueCord/4 * math.pi,

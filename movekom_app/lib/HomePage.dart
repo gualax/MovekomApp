@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
+import 'package:movekomapp/pantallas/Configuration/ConfigMenuPage.dart';
 import 'package:movekomapp/pantallas/ManualesPage/ManualesMenuPage.dart';
 import 'package:movekomapp/pantallas/ModesPage/ModesMenuPage.dart';
+import 'package:movekomapp/pantallas/Tools/ToolsMenuPage.dart';
+import 'package:movekomapp/pantallas/Warnings/WarningMenuPage.dart';
 import 'package:movekomapp/pantallas/ilumination/LigthsMenuPage.dart';
 import 'package:movekomapp/pantallas/Water/WaterMenuPage.dart';
 import 'package:movekomapp/pantallas/Wheater/WheaterMenuPage.dart';
@@ -80,14 +83,17 @@ class _HomePageState extends State<HomePage> {
               ),
               new BottomNavigationBarItem(
                 icon: iconSvg("assets/icons/caja_herramientas.svg", false),
+                activeIcon: activeIcon("assets/icons/caja_herramientas.svg"),
                 title: new Text(""),
               ),
               new BottomNavigationBarItem(
                 icon: iconSvg("assets/icons/alerta_triangulo.svg", false),
+                activeIcon: activeIcon("assets/icons/alerta_triangulo.svg"),
                 title: new Text(""),
               ),
               new BottomNavigationBarItem(
                 icon: iconSvg("assets/icons/config2.svg", false),
+                activeIcon: activeIcon("assets/icons/config2.svg"),
                 title: new Text(""),
               ),
               new BottomNavigationBarItem(
@@ -141,6 +147,9 @@ class _HomePageState extends State<HomePage> {
       LightsMenuPage(),
       ModesMenuPage(),
       ManualesMenuPage(),
+      ToolsMenuPage(),
+      WarningMenuPage(),
+      ConfigMenuPage(),
     ];
     return _children[index];
   }
@@ -204,7 +213,9 @@ void changeBarTitle(index){
     "ILUMINACION",
     "MODOS",
     "MANUALES",
-    "TEST",
+    "ACCESORIOS",
+    "AVISOS",
+    "AJUSTES",
 
   ];
   List<String> subtitles = [
@@ -215,7 +226,9 @@ void changeBarTitle(index){
     " ILUMINACION",
     " MODOS INTELIGENTES DE FUNCIONAMIENTO",
     " MANUALES Y LIBROS DE INSTRUCCIONES",
-    "TEST",
+    " EQUIPOS ACCESORIOS DEL VEHICULO",
+    " REGISTRO DE AVERIAS Y FALLOS",
+    " AJUSTES DEL SISTEMA"
   ];
   setBarTitle(titles[index], subtitles[index]);
 }

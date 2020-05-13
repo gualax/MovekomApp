@@ -24,6 +24,7 @@ import 'package:movekomapp/blocs/modos_blocs/modo_emergencia_bloc.dart';
 import 'package:movekomapp/blocs/modos_blocs/modo_highway_to_hell_bloc.dart';
 import 'package:movekomapp/blocs/modos_blocs/modo_limpieza_bloc.dart';
 import 'package:movekomapp/blocs/modos_blocs/modo_parking_bloc.dart';
+import 'package:movekomapp/bluetooth/bluetooth_bloc.dart';
 import 'package:movekomapp/controladores/modos/ModoAntiHeladasAuto.dart';
 import 'package:movekomapp/controladores/modos/ModoDescanso.dart';
 import 'package:movekomapp/pantallas/PrincipalHome.dart';
@@ -91,6 +92,8 @@ class MyApp extends StatelessWidget {
         BlocProvider<ModoAntiHeladasBasicoBloc>(create:(context)=> ModoAntiHeladasBasicoBloc()),
         BlocProvider<ModoAntiHeladasAutoBloc>(create:(context)=> ModoAntiHeladasAutoBloc()),
         BlocProvider<ExtractorBloc>(create:(context)=> ExtractorBloc()),
+
+        BlocProvider<BluetoothControllerBloc>(create:(context)=> BluetoothControllerBloc()),
 
       ],
       child: MaterialApp(

@@ -37,22 +37,30 @@ class _TemporizadorPopupState extends State<TemporizadorPopup> {
           scrollDirection: Axis.vertical,
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               _fechasRow(),
               _horasRow(),
+              _buttonSave(),
             ],
           ),
         ),
-        actions: <Widget>[
-    new FlatButton(  ///boton de okey
-    onPressed: () {
-      Navigator.of(context).pop();
-    },
-    textColor: Theme.of(context).primaryColor,
-    child: const Text('Okay, got it!'),
-    ),
-    ],
+    );
+  }
+
+  Widget _buttonSave(){
+    return Container(
+        height: 50,
+        width: 100,
+        child: MaterialButton(
+         color: MyColors.ContainerColor ,
+         onPressed: (){
+           Navigator.of(context).pop();
+           print("button Pressed");
+         },
+          child: Text("SAVE",
+          style: MyTextStyle.estiloBold(12, Colors.white),),
+        ),
     );
   }
 
@@ -246,16 +254,18 @@ class _TemporizadorPopupState extends State<TemporizadorPopup> {
         lastDate: DateTime(2222),
       builder: (BuildContext context, Widget child) {
         return Theme(
-          data: ThemeData.light().copyWith(
-              primaryColor: Colors.green,//Head background
-              accentColor: Colors.green,//selection color
-              dialogBackgroundColor: MyColors.ContainerColor,//Background color
-            buttonTheme: ButtonThemeData(
-                textTheme: ButtonTextTheme.primary
+          data: ThemeData(
+            primaryColor: Colors.lightGreen,
+            accentColor: Colors.green,
+            dialogBackgroundColor: MyColors.ContainerColor,
+            textTheme: TextTheme(
+              body1: MyTextStyle.estiloBold(12, Colors.white),
+              caption: TextStyle(color: Colors.white),
             ),
-              textTheme: TextTheme(
-                caption: TextStyle(color: Colors.lightGreenAccent),
-              ),
+            disabledColor: Colors.grey,
+            accentTextTheme: TextTheme(
+              body2 : TextStyle(color: Colors.white),
+            ),
           ),
           child: child,
         );
@@ -265,10 +275,29 @@ class _TemporizadorPopupState extends State<TemporizadorPopup> {
     });
   }
 
+
   void showTimeNative(){
         showTimePicker(
             context: context,
             initialTime: TimeOfDay.now(),
+          builder: (BuildContext context, Widget child) {
+            return Theme(
+              data: ThemeData(
+                primaryColor: Colors.lightGreen,
+                accentColor: Colors.green,
+                dialogBackgroundColor: MyColors.ContainerColor,
+                textTheme: TextTheme(
+                  body1: MyTextStyle.estiloBold(12, Colors.white),
+                  caption: TextStyle(color: Colors.white),
+                ),
+                disabledColor: Colors.grey,
+                accentTextTheme: TextTheme(
+                  body2 : TextStyle(color: Colors.white),
+                ),
+              ),
+              child: child,
+            );
+          },
         ).then((time){
           print("sected time:"+ time.toString());
         });

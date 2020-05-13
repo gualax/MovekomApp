@@ -2,7 +2,6 @@ import 'package:circle_list/circle_list.dart';
 import 'package:circle_list/radial_drag_gesture_detector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/blocs/climatizacion/extractor_bloc.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
@@ -134,8 +133,6 @@ class _ExtractorState extends State<Extractor> {
             bloc = BlocProvider.of<ExtractorBloc>(context);
             RotateMode rotateMode;
             Color colorIndic;
-            print("state.radAngle(): " + state.radAngle.toString());
-            print("state.valueAngle:  " + state.valueAngle.toString());
             _radAngle = state.radAngle;
             _lastAngle = state.valueAngle;
             if(state.isEnabled){
@@ -152,9 +149,6 @@ class _ExtractorState extends State<Extractor> {
                   child: CircleList(
                     dragAngleRange: DragAngleRange(-0.02, 0.02),
                     onDragUpdate: (PolarCoord updatedCord) {
-                      print(" ****  onDragUpdate **** "  );
-                      print("radangle:  " + updatedCord.angle.toString());
-                      print("getAngle(): " + updatedCord.getAngle().toString());
                       _lastAngle = updatedCord.getAngle();
                       _radAngle = updatedCord.angle;
                       if (_lastAngle > 57) {
@@ -165,7 +159,6 @@ class _ExtractorState extends State<Extractor> {
                       if (_radAngle > 1) {
                         _radAngle = 1;
                       } else if (_radAngle < -1) {
-                        print("_radAngle < -0.5");
                         _radAngle = -1;
                       }
                       // _valueTemp = (_lastAngle / 6.5);

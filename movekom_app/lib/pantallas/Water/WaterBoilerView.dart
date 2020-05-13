@@ -1,26 +1,17 @@
 
-import 'package:circle_wheel_scroll/circle_wheel_scroll_view.dart';
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_circular_slider/flutter_circular_slider.dart';
-import 'package:movekomapp/controladores/agua/AnimatedBoiler.dart';
-import 'package:movekomapp/Utils/DrawCircle.dart';
-import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
-import 'package:movekomapp/Utils/numbers_list.dart';
-import 'package:movekomapp/Utils/radial_list.dart';
 import 'package:movekomapp/blocs/boiler_bloc.dart';
 import 'package:movekomapp/controladores/agua/Boiler.dart';
+import 'package:movekomapp/controladores/agua/Boiler3.dart';
+import 'package:movekomapp/controladores/agua/item_boiler.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
-import 'package:circle_list/circle_list.dart';
-
 class WaterBoilerView extends StatefulWidget {
-  RadialListViewModel radialNumbers;
-  WaterBoilerView({
-    @required this.radialNumbers,
-  });
   @override
   _WaterBoilerViewState createState() => _WaterBoilerViewState();
 }
@@ -99,7 +90,7 @@ class _WaterBoilerViewState extends State<WaterBoilerView> {
               right: 20,
               child: Align(
                 alignment: Alignment.centerRight,
-                child: Boiler(),
+                child: Boiler3(),
                 //child: newCirlceList(100.0),
               )
           ),
@@ -109,6 +100,11 @@ class _WaterBoilerViewState extends State<WaterBoilerView> {
     );
   }
 
+  /*
+  *             child: Boiler(
+                  radialList: radialNumbers,
+                ),
+  * */
 
 }
 
