@@ -21,6 +21,7 @@ import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/box137x137.dart';
 import 'package:movekomapp/widgets/box137x64.dart';
 import 'package:movekomapp/widgets/box225x137.dart';
+import 'package:movekomapp/widgets/box_fecha.dart';
 
 
 class PrincipalHome extends StatefulWidget {
@@ -130,7 +131,7 @@ Widget horizontalList(){
             Row(
               children: <Widget>[
                 box137x137_Pronostico(mContext,"assets/icons/sol_nubes.svg"),
-                box137x137_Fecha_Hora(mContext,"12 ABRIL","17:05"),
+                FechaWidget(),
               ],
             ),
             Row(

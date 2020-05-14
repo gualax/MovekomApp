@@ -3,11 +3,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
 import 'package:movekomapp/blocs/boiler_bloc.dart';
 import 'package:movekomapp/controladores/agua/Boiler.dart';
-import 'package:movekomapp/controladores/agua/Boiler3.dart';
-import 'package:movekomapp/controladores/agua/item_boiler.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
@@ -37,7 +36,7 @@ class _WaterBoilerViewState extends State<WaterBoilerView> {
         children: <Widget>[
           Positioned.fill(
               top: 20,
-              left: 30,
+              left: 35,
               child: Align(
                 alignment: Alignment.topLeft,
                 child: Text(
@@ -50,6 +49,21 @@ class _WaterBoilerViewState extends State<WaterBoilerView> {
                 alignment: Alignment.centerLeft,
                 child: iconSvgD(
                     "assets/icons/fire.svg", Colors.lightGreenAccent, 200),
+              )
+          ),
+          Positioned.fill(
+              left: 100, bottom: 50,
+              child: Align(
+                alignment: Alignment.bottomLeft,
+                child: IconButton(
+                  icon: Icon(Icons.access_time,color: Colors.white), iconSize: 50),
+              )
+          ),
+          Positioned.fill(
+              left: 10,top: 30,
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: circuloConSombra(15.0, Colors.lightGreenAccent),
               )
           ),
           Positioned.fill(

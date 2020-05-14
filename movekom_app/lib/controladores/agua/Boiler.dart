@@ -2,47 +2,34 @@ import 'package:circle_list/circle_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/blocs/boiler_bloc.dart';
-import 'package:movekomapp/controladores/agua/item_boiler.dart';
+import 'package:movekomapp/controladores/agua/AnimatedBoiler.dart';
+import 'package:movekomapp/controladores/agua/ItemBoiler.dart';
 
-import 'AnimatedBoiler.dart';
-//https://stackoverflow.com/questions/56113174/how-to-deselect-the-already-selected-item-after-tap-on-another-item-listview-in
-class Boiler extends StatefulWidget {
-  final RadialListViewModel radialList;
 
-  Boiler({
-    this.radialList,
-  });
+class Boiler3 extends StatefulWidget {
 
-  List<Widget> _radialListItems() {
-    return radialList.items.map((RadialListItemViewModel viewModel) {
-      final listItem = _radialListItem(viewModel);
-      return listItem;
-    }).toList();
-  }
-
-  Widget _radialListItem(RadialListItemViewModel viewModel){
-    return  ItemBoiler(
-      listItem: viewModel,
-    );
-  }
 
   @override
-  _BoilerState createState() => _BoilerState();
+  _Boiler3State createState() => _Boiler3State();
 }
 
-class _BoilerState extends State<Boiler> {
+class _Boiler3State extends State<Boiler3> {
+int currentSelectedIndex;
+BoilerBloc boilerBloc;
+bool isFisrtRender = true;
 
   @override
   Widget build(BuildContext context) {
     return circularListBoiler();
   }
 
-
   Widget circularListBoiler() {
     AnimatedBoiler animatedBoiler = AnimatedBoiler();
     return
       BlocBuilder<BoilerBloc,BoilerState>(
           builder: ( context, state) {
+            boilerBloc = BlocProvider.of<BoilerBloc>(context);
+            print("valueCord: " + state.valueCord.toString());
             return Container(
               child: CircleList(
                 centerWidget: animatedBoiler,
@@ -50,11 +37,35 @@ class _BoilerState extends State<Boiler> {
                 outerRadius: 220,
                 innerRadius: 120,
                 origin: Offset(0, 0),
-                children: widget._radialListItems(),
-              ),
+                children:  _radialListItems(),
+            ),
             );
           }
       );
   }
+
+
+List<Widget> _radialListItems() {
+  return radialNumbersB3.items.map((RadialListItemViewModel viewModel) {
+    final listItem = ItemBoiler3(
+      firstTime: getInitial(),
+      listItem: viewModel,
+      index: viewModel.number,
+      isSelected: currentSelectedIndex == viewModel.number,
+      onSelect: () {
+         boilerBloc.add(Update(viewModel.number.toDouble()));
+        setState(() {
+          isFisrtRender = false;
+          currentSelectedIndex = viewModel.number;
+        });
+      },
+    );
+    return listItem;
+  }).toList();
+}
+
+bool getInitial(){
+  return isFisrtRender;
+}
 
 }
