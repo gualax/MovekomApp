@@ -17,6 +17,8 @@ class Boiler3 extends StatefulWidget {
 class _Boiler3State extends State<Boiler3> {
 int currentSelectedIndex;
 BoilerBloc boilerBloc;
+bool isFisrtRender = true;
+
   @override
   Widget build(BuildContext context) {
     return circularListBoiler();
@@ -28,6 +30,7 @@ BoilerBloc boilerBloc;
       BlocBuilder<BoilerBloc,BoilerState>(
           builder: ( context, state) {
             boilerBloc = BlocProvider.of<BoilerBloc>(context);
+            print("valueCord: " + state.valueCord.toString());
             return Container(
               child: CircleList(
                 centerWidget: animatedBoiler,
@@ -46,18 +49,24 @@ BoilerBloc boilerBloc;
 List<Widget> _radialListItems() {
   return radialNumbersB3.items.map((RadialListItemViewModel viewModel) {
     final listItem = ItemBoiler3(
+      firstTime: getInitial(),
       listItem: viewModel,
       index: viewModel.number,
       isSelected: currentSelectedIndex == viewModel.number,
       onSelect: () {
          boilerBloc.add(Update(viewModel.number.toDouble()));
         setState(() {
+          isFisrtRender = false;
           currentSelectedIndex = viewModel.number;
         });
       },
     );
     return listItem;
   }).toList();
+}
+
+bool getInitial(){
+  return isFisrtRender;
 }
 
 }

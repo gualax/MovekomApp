@@ -9,11 +9,13 @@ class ItemBoiler3 extends StatefulWidget {
   final int index;
   final bool isSelected;
   final VoidCallback onSelect;
+  final bool firstTime;
   final RadialListItemViewModel listItem;
 
   const ItemBoiler3({
     Key key,
     this.listItem,
+    this.firstTime,
     @required this.index,
     @required this.isSelected,
     @required this.onSelect,
@@ -29,18 +31,21 @@ class ItemBoiler3 extends StatefulWidget {
 class _ItemBoiler3State extends State<ItemBoiler3> {
   ItemBoilerBloc itemBoilerBloc;
   BoilerBloc boilerBloc;
+  bool _selected;
   @override
   Widget build(BuildContext context) {
     return iconBuble();
   }
-
-
+  
   Widget iconBuble() {
     return
-       BlocBuilder<ItemBoilerBloc,ItemBoilerState>(
+       BlocBuilder<BoilerBloc,BoilerState>(
         builder: ( context, state) {
-        itemBoilerBloc = BlocProvider.of<ItemBoilerBloc>(context);
-        boilerBloc = BlocProvider.of<BoilerBloc>(context);
+      if(state.valueCord.round() == widget.listItem.number){
+        _selected = true;
+      }else{
+        _selected = false;
+      }
     return GestureDetector(
       onTap: widget.onSelect,
       child: Container(
@@ -52,7 +57,7 @@ class _ItemBoiler3State extends State<ItemBoiler3> {
             Positioned.fill(
               child:Align(
                   alignment: Alignment.center,
-                  child: iconSvgD(widget.listItem.iconRoute, widget.isSelected ? Colors.lightGreenAccent : Colors.white, 40)
+                  child: iconSvgD(widget.listItem.iconRoute, _selected ? Colors.lightGreenAccent : Colors.white, 40)
               ),
             ),
             Positioned.fill(
