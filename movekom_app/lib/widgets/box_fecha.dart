@@ -11,17 +11,25 @@ class FechaWidget extends StatefulWidget {
 
 class _FechaWidgetState extends State<FechaWidget> {
   DateTime dateTime = DateTime.now();
+  Timer timer;
 
   @override
   void initState() {
-    Timer.periodic(Duration(seconds: 1), (v){
-      setState(() {
-        dateTime = DateTime.now();
-        print(dateTime.hour);
-      });
-      });
-    
     super.initState();
+    timer = new Timer.periodic(Duration(seconds: 20), (v){
+      setState(() {
+        if (this.mounted) {
+          dateTime = DateTime.now();
+          print(dateTime.hour);
+        }
+      });
+      });
+  }
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    timer.cancel();
   }
 
   @override
@@ -104,15 +112,15 @@ class _FechaWidgetState extends State<FechaWidget> {
 
   String diaStr(int day){
     List<String> days = [
-      "Domingo",
       "Lunes",
       "Martes",
       "Miercoles",
       "Jueves",
       "Viernes",
       "Sabado",
+      "Domingo",
     ];
-    return days[day];
+    return days[day-1];
   }
 
 }

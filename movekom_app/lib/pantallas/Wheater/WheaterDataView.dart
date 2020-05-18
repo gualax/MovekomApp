@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/pantallas/Wheater/weather_box.dart';
+import 'package:movekomapp/pantallas/Wheater/weather_list.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
@@ -23,7 +25,7 @@ class _WheaterDataViewState extends State<WheaterDataView> {
       alignment: Alignment.center,
       child: Column(
         children: <Widget>[
-          RowOfWheaterWidgets(),
+          WeatherListWidget("Buenos Aires"),
           RowOfTempAndGraphics(),
           RowOfTempAndGraphics()
         ],
@@ -38,15 +40,14 @@ class _WheaterDataViewState extends State<WheaterDataView> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
    //     scrollDirection: Axis.horizontal,
-
+/// ver por que solo muestra el utlimo llamado, ver forma desde el el parsing de convertir esto en un array =)
         children: <Widget>[
-          WheaterWidget("Lunes","assets/icons/sol_nubes.svg","13.5","22"),
-          WheaterWidget("Martes","assets/icons/clima_granizo.svg","13.5","22"),
-          WheaterWidget("Miercoles","assets/icons/clima_granizo.svg","13.5","22"),
-          WheaterWidget("Juves","assets/icons/clima_tormenta.svg","13.5","22"),
-          WheaterWidget("Viernes","assets/icons/clima_sol_nubes.svg","13.5","22"),
-          WheaterWidget("Sabado","assets/icons/clima_nubes.svg","13.5","22"),
-          WheaterWidget("Domingo","assets/icons/clima_sol.svg","13.5","22"),
+          WeatherBox("Buenos Aires",0),
+          WeatherBox("Buenos Aires",1),
+          WeatherBox("Buenos Aires",2),
+          WeatherBox("Buenos Aires",3),
+          WeatherBox("Buenos Aires",4),
+          WeatherBox("Buenos Aires",5),
         ],
       ),
     );

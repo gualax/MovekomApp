@@ -25,9 +25,12 @@ import 'package:movekomapp/blocs/modos_blocs/modo_highway_to_hell_bloc.dart';
 import 'package:movekomapp/blocs/modos_blocs/modo_limpieza_bloc.dart';
 import 'package:movekomapp/blocs/modos_blocs/modo_parking_bloc.dart';
 import 'package:movekomapp/bluetooth/bluetooth_bloc.dart';
-import 'package:movekomapp/controladores/modos/ModoAntiHeladasAuto.dart';
-import 'package:movekomapp/controladores/modos/ModoDescanso.dart';
 import 'package:movekomapp/pantallas/PrincipalHome.dart';
+import 'package:movekomapp/pantallas/Wheater/whater_api_client.dart';
+import 'package:movekomapp/pantallas/Wheater/wheater_bloc.dart';
+import 'package:movekomapp/pantallas/Wheater/wheather_repository.dart';
+import 'package:movekomapp/pantallas/Wheater/wheather_widget.dart';
+import 'HomePage.dart';
 import 'app.localizations.dart';
 import 'package:movekomapp/blocs/agua_blocs/aguas_negras_bloc.dart';
 import 'package:movekomapp/blocs/agua_blocs/aguas_sucias_bloc.dart';
@@ -41,13 +44,27 @@ import 'blocs/iluminacion_blocs/luces_bano_bloc.dart';
 import 'blocs/iluminacion_blocs/luces_cocina_bloc.dart';
 import 'blocs/iluminacion_blocs/luces_habitacion_bloc.dart';
 import 'blocs/iluminacion_blocs/luces_salon_bloc.dart';
-import 'pantallas/Wheater/WheaterMenuPage.dart';
-import 'HomePage.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:http/http.dart' as http;
 
-void main() => runApp(MyApp());
+void main(){
+  BlocSupervisor.delegate = SimpleBlocDelegate();
+
+  final WeatherRepository weatherRepository = WeatherRepository(
+    weatherApiClient: WeatherApiClient(
+      httpClient: http.Client(),
+    ),
+  );
+
+  runApp(MyApp(weatherRepository: weatherRepository));
+}
 
 class MyApp extends StatelessWidget {
+  final WeatherRepository weatherRepository;
+  MyApp({Key key, @required this.weatherRepository})
+      : assert(weatherRepository != null),
+        super(key: key);
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -94,15 +111,15 @@ class MyApp extends StatelessWidget {
         BlocProvider<ExtractorBloc>(create:(context)=> ExtractorBloc()),
 
         BlocProvider<BluetoothControllerBloc>(create:(context)=> BluetoothControllerBloc()),
+        BlocProvider<WeatherBloc>(create:(context)=> WeatherBloc(weatherRepository: weatherRepository,)),
 
       ],
       child: MaterialApp(
         initialRoute: '/',
         routes: {
-          '/': (context) => HomePage(indexToShow:0),
+          '/': (context) => HomePage(indexToShow:0),   //HomePage(indexToShow:0),
           '/menus': (context) => FloatingMenu(),
           '/principal': (context) => PrincipalHome(),
-          '/clima': (context) => ClimaPage(),
         },
         title: 'Flutter Demo',
         theme: ThemeData(
@@ -133,3 +150,10 @@ class MyApp extends StatelessWidget {
   }
 }
 
+class SimpleBlocDelegate extends BlocDelegate {
+
+  @override
+  void onTransition(Bloc bloc, Transition transition) {
+      print(transition);
+  }
+}

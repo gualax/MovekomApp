@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movekomapp/Utils/DrawCircle.dart';
 import 'package:movekomapp/pantallas/Wheater/WheaterCalefactionView.dart';
 import 'package:movekomapp/pantallas/Wheater/WheaterDataView.dart';
-import 'package:movekomapp/widgets/IconSvg.dart';
-import 'package:movekomapp/widgets/MyTextStyle.dart';
 
 
 class ClimaPage extends StatefulWidget {

@@ -42,6 +42,8 @@ dependencies:
   bloc: ^4.0.0
   flutter_bloc: ^4.0.0
   flutter_datetime_picker: ^1.3.8
+  http: ^0.12.0
+
 
 
 
@@ -73,6 +75,7 @@ flutter:
     - assets/images/aguas/
     - assets/images/modos/
     - assets/images/indicadores/
+    - assets/images/clima/
 
 
 
