@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SizeConfig.dart';
 import 'package:movekomapp/pantallas/Wheater/whather_data_model.dart';
 import 'package:movekomapp/pantallas/Wheater/wheater_bloc.dart';
 import 'package:movekomapp/pantallas/Wheater/wheather_conditions.dart';
@@ -19,9 +21,20 @@ class _WeatherListWidgetState extends State<WeatherListWidget> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     _weatherBloc = BlocProvider.of<WeatherBloc>(context);
     _weatherBloc.add(FetchWeatherList(city: widget.locationCity));
-    return RowOfWheaterWidgets();
+    return cabeceraYlista();
+  }
+
+
+  Widget cabeceraYlista(){
+    return Column(
+      children: <Widget>[
+        cabeceraClimas(),
+        RowOfWheaterWidgets(),
+      ],
+    );
   }
 
 
@@ -39,7 +52,7 @@ class _WeatherListWidgetState extends State<WeatherListWidget> {
         print("weatherList");
         print(weatherList);
     return Container(
-      height: 150,
+      height: 140,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         /// ver por que solo muestra el utlimo llamado, ver forma desde el el parsing de convertir esto en un array =)
@@ -65,8 +78,8 @@ class _WeatherListWidgetState extends State<WeatherListWidget> {
 
   Widget weatherBoxi(Weather weather){
     return Container(
-      width: 160,
-      height: 115,
+      width: 170,
+      height: 125,
       margin: EdgeInsets.only(left: 1, right: 1),
       decoration: new BoxDecoration(
         color: MyColors.ContainerColor,
@@ -74,12 +87,13 @@ class _WeatherListWidgetState extends State<WeatherListWidget> {
       child: Stack(
         children: <Widget>[
           Positioned.fill( /// DAY
-              top: 5,
-              left: 7,
+              top: 7,
+              left: 10,
               child: Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  weather.aplicableDate, style: MyTextStyle.estiloBold(15, Colors.white),),
+                  DateFormat('EEEE').format(DateTime.parse(weather.aplicableDate))
+                  , style: MyTextStyle.estiloBold(18, Colors.white),),
               )
           ),
           Positioned.fill(/// ICON
@@ -94,7 +108,7 @@ class _WeatherListWidgetState extends State<WeatherListWidget> {
             child: Align(
               alignment: Alignment.bottomLeft,
               child: Text(
-                "Min: " + weather.minTemp.toStringAsFixed(2), style: MyTextStyle.estilo(12, Colors.white),),
+                "Min: " + weather.minTemp.toStringAsFixed(1), style: MyTextStyle.estilo(15, Colors.white),),
             ),
           ),
           Positioned.fill( /// tMax
@@ -103,7 +117,7 @@ class _WeatherListWidgetState extends State<WeatherListWidget> {
             child: Align(
               alignment: Alignment.bottomRight,
               child: Text(
-                "Max: " + weather.maxTemp.toStringAsFixed(2), style: MyTextStyle.estilo(12, Colors.white),),
+                "Max: " + weather.maxTemp.toStringAsFixed(1), style: MyTextStyle.estilo(15, Colors.white),),
             ),
           ),
         ],
@@ -115,6 +129,23 @@ class _WeatherListWidgetState extends State<WeatherListWidget> {
   void dispose() {
     //  _weatherBloc.close();
     super.dispose();
+  }
+
+  Widget cabeceraClimas(){
+    return Container(
+      margin: EdgeInsets.only(top:5),
+      height: 30,
+      width: SizeConfig.x(80.5),
+      decoration: new BoxDecoration(
+          color: MyColors.ContainerColor
+      ),
+      child: Align(
+            alignment: Alignment.centerLeft,
+            child: Text("  Pronostico extendido de : " + widget.locationCity.toString(),
+            style: MyTextStyle.estiloBold(15, Colors.white),
+      ),
+      ),
+    );
   }
 
 }

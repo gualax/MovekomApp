@@ -35,13 +35,13 @@ class _WeatherBoxState extends State<WeatherBox> {
     if (state is WeatherEmpty) {
     return Center(child: Text('Please Select a Location'));
     }else if (state is WeatherLoading) {
-    return Center(child: CircularProgressIndicator());
+    return Center(child: boxWithIndicator());
     } else if (state is WeatherLoaded) {
       final weather = state.weather;
       return Container(
-        width: 160,
-        height: 115,
-        margin: EdgeInsets.only(left: 1, right: 1),
+        width: 140,
+        height: 135,
+        margin: EdgeInsets.only(left: 5, right: 5),
         decoration: new BoxDecoration(
           color: MyColors.ContainerColor,
         ),
@@ -51,15 +51,24 @@ class _WeatherBoxState extends State<WeatherBox> {
                 top: 5,
                 left: 7,
                 child: Align(
-                  alignment: Alignment.topLeft,
+                  alignment: Alignment.topCenter,
                   child: Text(
-                    weather.aplicableDate, style: MyTextStyle.estiloBold(15, Colors.white),),
+                   "Hoy", style: MyTextStyle.estiloBold(20, Colors.white),),
                 )
             ),
             Positioned.fill(/// ICON
+              right: 13, bottom: 10,
               child: Align(
-                alignment: Alignment.center,
+                alignment: Alignment.centerRight,
                 child:  WeatherConditions(condition: weather.condition), /// icon weather
+              ),
+            ),
+            Positioned.fill(/// TEMP
+              left:10,  bottom: 10,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child:  Text(
+                  weather.temp.toStringAsFixed(1) + "º", style: MyTextStyle.estiloBold(27, Colors.white),), /// icon weather
               ),
             ),
             Positioned.fill(/// tMIN
@@ -68,7 +77,15 @@ class _WeatherBoxState extends State<WeatherBox> {
               child: Align(
                 alignment: Alignment.bottomLeft,
                 child: Text(
-                  "Min: " + weather.minTemp.toStringAsFixed(2), style: MyTextStyle.estilo(12, Colors.white),),
+                  "Min: " + weather.minTemp.toStringAsFixed(1), style: MyTextStyle.estilo(13, Colors.white),),
+              ),
+            ),
+            Positioned.fill(/// location
+              top: 70,
+              child: Align(
+                alignment: Alignment.center,
+                child: Text(
+                  weather.location, style: MyTextStyle.estilo(13, Colors.white),),
               ),
             ),
             Positioned.fill( /// tMax
@@ -77,7 +94,7 @@ class _WeatherBoxState extends State<WeatherBox> {
               child: Align(
                 alignment: Alignment.bottomRight,
                 child: Text(
-                  "Max: " + weather.maxTemp.toStringAsFixed(2), style: MyTextStyle.estilo(12, Colors.white),),
+                  "Max: " + weather.maxTemp.toStringAsFixed(1), style: MyTextStyle.estilo(13, Colors.white),),
               ),
             ),
           ],
@@ -98,5 +115,22 @@ class _WeatherBoxState extends State<WeatherBox> {
     super.dispose();
   }
 
+Widget boxWithIndicator(){
+  return Container(
+      width: 140,
+      height: 135,
+      margin: EdgeInsets.only(left: 5, right: 5),
+      decoration: new BoxDecoration(
+     color: MyColors.ContainerColor,
+      ),
+    child: Center(
+      child: Container(
+        width: 50,
+        height: 50,
+        child: CircularProgressIndicator() ,
+      ),
+    ),
+  );
+}
 
 }

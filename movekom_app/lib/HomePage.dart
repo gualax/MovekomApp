@@ -11,12 +11,10 @@ import 'package:movekomapp/pantallas/Water/WaterMenuPage.dart';
 import 'package:movekomapp/pantallas/Wheater/WheaterMenuPage.dart';
 import 'package:movekomapp/pantallas/Electricity/ElectricityMenuPage.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
-import 'controladores/agua/AnimatedBoiler.dart';
 import 'pantallas/PrincipalHome.dart';
 
 
 class HomePage extends StatefulWidget {
-  //HomePage({Key key, this.title}) : super(key: key);
    HomePage({Key key, this.indexToShow}) : super(key: key);
    final int indexToShow;
 
@@ -27,7 +25,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
   String barTitle = "HOME";
-  String barSubTitle = "HOME";
+  String barSubTitle = " PANTALLA GENERAL";
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);

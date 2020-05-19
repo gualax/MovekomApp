@@ -9,6 +9,7 @@ import 'package:movekomapp/controladores/agua/AguasLimpias.dart';
 import 'package:movekomapp/controladores/agua/AguasNegras.dart';
 import 'package:movekomapp/controladores/agua/AguasSucias.dart';
 import 'package:movekomapp/controladores/agua/BombaAgua.dart';
+import 'package:movekomapp/controladores/climatizacion/Calefaccion.dart';
 import 'package:movekomapp/controladores/electricidad/BateriaAux1.dart';
 import 'package:movekomapp/controladores/electricidad/BateriaAux2.dart';
 import 'package:movekomapp/controladores/electricidad/BateriaMotor.dart';
@@ -16,6 +17,7 @@ import 'package:movekomapp/controladores/iluminacion/Downligth.dart';
 import 'package:movekomapp/controladores/iluminacion/LucesExterior.dart';
 import 'package:movekomapp/controladores/iluminacion/LuzGeneral.dart';
 import 'package:movekomapp/controladores/iluminacion/Upligth.dart';
+import 'package:movekomapp/pantallas/Wheater/weather_box.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/box137x137.dart';
@@ -52,25 +54,6 @@ class _PrincipalHomeState extends State<PrincipalHome> {
       );
   }
 
-  Widget carouselDispositivos(){
-  return  Container(
-    alignment: Alignment.center,
-    margin: EdgeInsets.all(20),
-   color: Colors.blue,
-   child:  GFItemsCarousel(
-        itemHeight: 180,
-        rowCount: 5,
-        children: <Widget>[
-          box225x140_1icon_text("BOILER",2.65 , "assets/icons/ducha.svg","70ºC",true),
-          box225x140_1icon_text("CALEFACCION",2.65 , "assets/icons/fire.svg","20ºC",true),
-          box225x140_1icon("INVERSOR DE CORRIENTE",2.65 , "assets/icons/bat_enchufe.svg",true),
-          box225x140_1icon("VALVULAS",2.65 , "assets/iconos/valvula agua.svg",false),
-          box225x140_add_device(),
-        ],
-      )
-  );
-}
-
 Widget horizontalList(){
     return Container(
       alignment: Alignment.center,
@@ -80,7 +63,7 @@ Widget horizontalList(){
         scrollDirection: Axis.horizontal,
         children: <Widget>[
           box225x140_1icon_text("BOILER",2.65 , "assets/icons/ducha.svg","70ºC",true),
-          box225x140_1icon_text("CALEFACCION",2.65 , "assets/icons/fire.svg","20ºC",true),
+          Calefaccion(1),
           box225x140_1icon("INVERSOR DE CORRIENTE",2.65 , "assets/icons/bat_enchufe.svg",true),
           box225x140_1icon("VALVULAS",2.65 , "assets/icons/valvula.svg",false),
           box225x140_1icon("VALVULAS",2.65 , "assets/icons/valvula.svg",false),
@@ -130,7 +113,7 @@ Widget horizontalList(){
           children: <Widget>[
             Row(
               children: <Widget>[
-                box137x137_Pronostico(mContext,"assets/icons/sol_nubes.svg"),
+                WeatherBox("Buenos Aires",0),
                 FechaWidget(),
               ],
             ),

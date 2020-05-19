@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sparkline/flutter_sparkline.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SizeConfig.dart';
 import 'package:movekomapp/pantallas/Wheater/weather_box.dart';
 import 'package:movekomapp/pantallas/Wheater/weather_list.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
@@ -14,6 +16,7 @@ class WheaterDataView extends StatefulWidget {
 class _WheaterDataViewState extends State<WheaterDataView> {
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return contenido();
   }
 
@@ -33,72 +36,6 @@ class _WheaterDataViewState extends State<WheaterDataView> {
     );
   }
 
-  Widget RowOfWheaterWidgets() {
-    return Container(
-  //    color: Colors.red,
-      height: 150,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-   //     scrollDirection: Axis.horizontal,
-/// ver por que solo muestra el utlimo llamado, ver forma desde el el parsing de convertir esto en un array =)
-        children: <Widget>[
-          WeatherBox("Buenos Aires",0),
-          WeatherBox("Buenos Aires",1),
-          WeatherBox("Buenos Aires",2),
-          WeatherBox("Buenos Aires",3),
-          WeatherBox("Buenos Aires",4),
-          WeatherBox("Buenos Aires",5),
-        ],
-      ),
-    );
-  }
-
-  Widget WheaterWidget(day,iconRoute,tMin,tMax){
-    return Container(
-        width: 160,
-        height: 115,
-        margin: EdgeInsets.only(left: 1,right: 1),
-        decoration: new BoxDecoration(
-            color: MyColors.ContainerColor,
-        ),
-        child: Stack(
-          children: <Widget>[
-            Positioned.fill( /// DAY
-              top: 5,
-                left: 7,
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(day,style: MyTextStyle.estiloBold(15, Colors.white),),
-                )
-            ),
-            Positioned.fill(  /// ICON
-                child: Align(
-                  alignment: Alignment.center,
-                  child: iconSvgD(iconRoute,Colors.white, 50),
-                ),
-            ),
-            Positioned.fill(  /// tMIN
-              bottom: 5,
-              left: 5,
-              child: Align(
-                alignment: Alignment.bottomLeft,
-                child: Text("Min: " + tMin,style: MyTextStyle.estilo(12, Colors.white),),
-              ),
-            ),
-            Positioned.fill(  /// tMax
-              bottom: 5,
-              right: 5,
-              child: Align(
-                alignment: Alignment.bottomRight,
-                child: Text("Max: " + tMax,style: MyTextStyle.estilo(12, Colors.white),),
-              ),
-            ),
-          ],
-    ),
-    );
-  }
-
-
   Widget RowOfTempAndGraphics(){
     return Container(
       margin: EdgeInsets.only(top:7),
@@ -113,16 +50,7 @@ class _WheaterDataViewState extends State<WheaterDataView> {
     );
   }
 
-  Widget graphic(){
-     return Container(
-       margin: EdgeInsets.only(left: 10),
-        width: 699,
-        height: 165,
-        decoration: new BoxDecoration(
-            color: MyColors.ContainerColor
-        )
-    );
-  }
+
 
   Widget tempBox(tMin,tMax){
     return Container(
@@ -182,6 +110,39 @@ class _WheaterDataViewState extends State<WheaterDataView> {
                 )
             )
           ],
+        ),
+    );
+  }
+
+
+  Widget graphic(){
+    var data = [0.0, 1.0, 1.5, 1.8, 0.9, 0.6, 0.2, 0.3, 0.4, 0.8, 1.0];
+    return Container(
+        margin: EdgeInsets.only(left: 10),
+        width: 699,
+        height: 160,
+        decoration: new BoxDecoration(
+            color: MyColors.ContainerColor
+        ),
+        child: Center(
+          child: Container(
+            width: 690,
+            height: 150,
+            child: Sparkline(
+              data:data,
+              lineWidth: 2.0,
+              lineColor: Colors.white,
+              pointsMode: PointsMode.all,
+              pointSize: 8.0,
+              pointColor: Colors.lightGreenAccent,
+              fillMode: FillMode.below,
+              fillGradient: new LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [Colors.green[900], Colors.lightGreen],
+              ),
+            ),
+          ),
         ),
     );
   }

@@ -27,7 +27,7 @@ class _WheaterCalefactionViewState extends State<WheaterCalefactionView> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Calefaccion2(2),
+            Calefaccion(2),
            container(),
           ],
         ),

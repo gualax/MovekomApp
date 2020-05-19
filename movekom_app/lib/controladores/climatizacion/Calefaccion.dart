@@ -4,28 +4,27 @@ import 'package:circle_list/circle_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
-import 'package:movekomapp/Utils/DrawCircle.dart';
 import 'package:movekomapp/blocs/climatizacion/calefaccion_bloc.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/flecha_indicador.dart';
 
-class Calefaccion2 extends StatefulWidget {
+class Calefaccion extends StatefulWidget {
   int widgetType;
 
-  Calefaccion2(this.widgetType);
+  Calefaccion(this.widgetType);
   @override
-  _Calefaccion2State createState() => _Calefaccion2State();
+  _CalefaccionState createState() => _CalefaccionState();
 }
 
-class _Calefaccion2State extends State<Calefaccion2> {
-  final String title = "Calefaccion";
+class _CalefaccionState extends State<Calefaccion> {
+  final String title = "CALEFACCION";
   bool isFisrtRender = true;
   @override
   Widget build(BuildContext context) {
     final calefaccionBloc = BlocProvider.of<CalefaccionBloc>(context);
     if (widget.widgetType == 1) {
-      return calefaccion_big(calefaccionBloc);
+      return _calefaccionWidget();
     } else {
       return calefaccion_big(calefaccionBloc);
     }
@@ -250,6 +249,95 @@ class _Calefaccion2State extends State<Calefaccion2> {
     );
   }
 
+
+  Widget _calefaccionWidget(){
+    Color color;
+    Color colorText;
+    String on_off;
+   return BlocBuilder<CalefaccionBloc,CalefaccionState>(
+      builder: ( context, state) {
+       if(state.isEnabled){
+          color = Colors.lightGreenAccent;
+          colorText = Colors.white;
+          on_off = "ON";
+        } else {
+          color = Colors.grey;
+          colorText = Colors.grey;
+          on_off = "OFF";
+       }
+    return  ClipRect(
+      child: Container(
+          margin: EdgeInsets.all(7),
+          width: 225,
+          height: 140,
+          decoration: BoxDecoration(
+              color: const Color(0xff2d3033)
+          ),
+          child: Stack(children: [
+            // Valvulas (Todas)
+            Positioned.fill(  ///titulo
+              top: 4,
+              left: 8,
+              child:   Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  title,
+                  style: MyTextStyle.estiloBold(18, colorText),
+                ),
+              ),
+            ),
+            Positioned.fill(/// circulito
+                top: 10, right: 10,
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: circuloConSombra(17.0, color),
+                )
+            ),
+            Positioned.fill(    ///textAbajoIzq
+              left: 8,
+              bottom: 6,
+              child: Align(
+                alignment: Alignment.bottomLeft,
+                child: Text(
+                  on_off,
+                  style: MyTextStyle.estilo(18, color),
+                ),
+              ),
+            ),
+            Positioned.fill(  ///textAbajoDer
+              right: 8,
+              bottom: 6,
+              child:  Align(
+                alignment: Alignment.bottomRight,
+                child: Text(
+                  "Consumo " + "2.65" + "A",
+                  style: MyTextStyle.estilo(18, colorText),
+                ),
+              ),
+            ),
+            Positioned.fill(  ///icon
+              left: 25,
+              child:  Align(
+                alignment: Alignment.centerLeft,
+                child: iconSvgD("assets/icons/fire.svg", color, 75),
+              ),
+            ),
+            Positioned.fill(  ///textValue
+              right: 30,
+              child:  Align(
+                alignment: Alignment.centerRight,
+                child: Text(
+                  state.valueTemp.toString(),
+                  style: MyTextStyle.estiloBold(45, colorText),
+                ),
+              ),
+            )
+          ])
+      ),
+    );
+     }
+   );
+  }
 
 
 }
