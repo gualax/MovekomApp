@@ -68,7 +68,7 @@ class _ElectricityStateViewState extends State<ElectricityStateView> {
     return  Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        Inversor(),
+        Inversor(2),
         CargadorBaterias(),
       ],
     );

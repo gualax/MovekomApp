@@ -13,6 +13,7 @@ import 'package:movekomapp/controladores/climatizacion/Calefaccion.dart';
 import 'package:movekomapp/controladores/electricidad/BateriaAux1.dart';
 import 'package:movekomapp/controladores/electricidad/BateriaAux2.dart';
 import 'package:movekomapp/controladores/electricidad/BateriaMotor.dart';
+import 'package:movekomapp/controladores/electricidad/Inversor.dart';
 import 'package:movekomapp/controladores/iluminacion/Downligth.dart';
 import 'package:movekomapp/controladores/iluminacion/LucesExterior.dart';
 import 'package:movekomapp/controladores/iluminacion/LuzGeneral.dart';
@@ -44,7 +45,7 @@ class _PrincipalHomeState extends State<PrincipalHome> {
     return
       Scaffold(
           resizeToAvoidBottomPadding: false,
-          backgroundColor: Colors.black,
+         // backgroundColor: Colors.black,
         body:Column(
           children: <Widget>[
             contenido(),
@@ -64,7 +65,7 @@ Widget horizontalList(){
         children: <Widget>[
           box225x140_1icon_text("BOILER",2.65 , "assets/icons/ducha.svg","70ºC",true),
           Calefaccion(1),
-          box225x140_1icon("INVERSOR DE CORRIENTE",2.65 , "assets/icons/bat_enchufe.svg",true),
+          Inversor(1),
           box225x140_1icon("VALVULAS",2.65 , "assets/icons/valvula.svg",false),
           box225x140_1icon("VALVULAS",2.65 , "assets/icons/valvula.svg",false),
           box225x140_add_device(),

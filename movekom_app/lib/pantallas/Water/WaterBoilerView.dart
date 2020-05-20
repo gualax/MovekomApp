@@ -4,6 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
+import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
 import 'package:movekomapp/blocs/boiler_bloc.dart';
 import 'package:movekomapp/controladores/agua/Boiler.dart';
@@ -30,7 +31,7 @@ class _WaterBoilerViewState extends State<WaterBoilerView> {
       width: 900,
       height: 474,
       decoration: new BoxDecoration(
-          color: Color(0xff1c1c1c)
+          color: MyColors.ContainerColor
       ),
       child: Stack(
         children: <Widget>[
@@ -104,7 +105,7 @@ class _WaterBoilerViewState extends State<WaterBoilerView> {
               right: 20,
               child: Align(
                 alignment: Alignment.centerRight,
-                child: Boiler3(),
+                child: Boiler(),
                 //child: newCirlceList(100.0),
               )
           ),

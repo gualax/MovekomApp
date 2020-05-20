@@ -6,14 +6,14 @@ import 'package:movekomapp/controladores/agua/AnimatedBoiler.dart';
 import 'package:movekomapp/controladores/agua/ItemBoiler.dart';
 
 
-class Boiler3 extends StatefulWidget {
+class Boiler extends StatefulWidget {
 
 
   @override
-  _Boiler3State createState() => _Boiler3State();
+  _BoilerState createState() => _BoilerState();
 }
 
-class _Boiler3State extends State<Boiler3> {
+class _BoilerState extends State<Boiler> {
 int currentSelectedIndex;
 BoilerBloc boilerBloc;
 bool isFisrtRender = true;

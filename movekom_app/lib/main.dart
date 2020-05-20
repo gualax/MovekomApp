@@ -123,7 +123,9 @@ class MyApp extends StatelessWidget {
         },
         title: 'Flutter Demo',
         theme: ThemeData(
-         // primarySwatch: Colors.green,
+          primarySwatch: Colors.green,
+          scaffoldBackgroundColor: Colors.black,
+          primaryColor: Colors.lightGreen,
         ),
         supportedLocales: [
           Locale('es','ES'),

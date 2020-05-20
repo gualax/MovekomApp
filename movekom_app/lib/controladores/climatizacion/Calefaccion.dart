@@ -323,11 +323,11 @@ class _CalefaccionState extends State<Calefaccion> {
               ),
             ),
             Positioned.fill(  ///textValue
-              right: 30,
+              right: 20,
               child:  Align(
                 alignment: Alignment.centerRight,
                 child: Text(
-                  state.valueTemp.toString(),
+                  state.valueTemp.toString() + "ºC",
                   style: MyTextStyle.estiloBold(45, colorText),
                 ),
               ),

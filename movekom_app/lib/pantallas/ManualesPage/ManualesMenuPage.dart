@@ -60,12 +60,18 @@ class _ManualesMenuPageState extends State<ManualesMenuPage> {
 
   @override
   Widget build(BuildContext context) {
-    return box();
+    return Scaffold(
+      body: Container(
+       margin: EdgeInsets.all(20),
+        alignment: Alignment.center,
+        child: box(),
+      ),
+    );
   }
 
   Widget box(){
        return Container(
-         padding: EdgeInsets.all(15),
+         padding: EdgeInsets.all(20),
           decoration: new BoxDecoration(
               color: MyColors.ContainerColor,
           ),
@@ -110,4 +116,7 @@ class PDFScreen extends StatelessWidget {
         ),
         path: pathPDF);
   }
+
 }
+
+

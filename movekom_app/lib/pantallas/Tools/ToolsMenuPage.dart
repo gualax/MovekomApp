@@ -46,7 +46,7 @@ class _ToolsMenuPageState extends State<ToolsMenuPage> {
         mainAxisSpacing: 15,
         crossAxisSpacing: 15,
         children:[
-          Inversor(),
+          Inversor(2),
           CargadorBaterias(),
           Extractor(),
         ]

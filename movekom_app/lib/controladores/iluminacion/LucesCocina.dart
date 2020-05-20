@@ -5,6 +5,7 @@ import 'package:movekomapp/Utils/SizeConfig.dart';
 import 'package:movekomapp/blocs/iluminacion_blocs/luces_cocina_bloc.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
+import 'package:movekomapp/widgets/slider_theme.dart';
 
 
 class LucesCocina extends StatelessWidget {
@@ -50,15 +51,7 @@ class LucesCocina extends StatelessWidget {
                     child: Container(
                       height:  SizeConfig.v * 3.2,
                       child: SliderTheme(
-                        data: SliderTheme.of(context).copyWith(
-                          inactiveTrackColor: Colors.grey,
-                          activeTrackColor: Colors.white,
-                          trackShape: RectangularSliderTrackShape(),
-                          trackHeight:  SizeConfig.v * 1,
-                          thumbColor: Colors.lightGreenAccent,
-                          overlayColor: Colors.green.withAlpha(32),
-                          overlayShape: RoundSliderOverlayShape(overlayRadius: SizeConfig.p * 1.5),
-                        ),
+                        data:sliderCustomTheme(context),
                         child: Slider(
                           value: state.valueDimer,
                           onChanged: (newValue) {

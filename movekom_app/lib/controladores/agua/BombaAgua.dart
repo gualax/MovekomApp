@@ -47,8 +47,8 @@ class BombaAgua extends StatelessWidget {
 
             return Container(
                 margin: EdgeInsets.only(right: 150),
-                width: 200,
-                height: 200,
+                width: 220,
+                height: 250,
                 decoration: new BoxDecoration(
                     color: Color(0xff2d3033)
                 ),
