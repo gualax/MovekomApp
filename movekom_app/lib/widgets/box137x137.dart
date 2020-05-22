@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movekomapp/Utils/DrawCircle.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/aguas.dart';
@@ -628,7 +629,7 @@ Widget circleIndicator(value, color){
     lineWidth: 8,
     percent: (value)/100,
     center: new Text((value).toString() +"%",
-      style: MyTextStyle.estiloBold(20, Colors.white),),
+      style: MyTextStyle.estiloBold(SC.all(20), Colors.white),),
     progressColor: color,
     backgroundColor: MyColors.ContainerColor,
   );
@@ -648,15 +649,15 @@ Widget _switch(value,color){
 Widget box_imagen(title, textAbajoIzq, int valueAmp){
   return
     Container(
-        margin: EdgeInsets.all(7),
-        width: 137, height: 137,
+        margin: EdgeInsets.all(SC.all(7)),
+        width: SC.wid(137), height: SC.hei(137),
         decoration: new BoxDecoration(
             color: MyColors.ContainerColor
         ), child: Stack(
         children: [
           // Valvulas (Todas)
           PositionedDirectional(
-            top: 4, start: 10,
+            top: SC.top(4), start: 10,
             child:   RichText(
                 text: TextSpan(
                     children: [
@@ -669,7 +670,7 @@ Widget box_imagen(title, textAbajoIzq, int valueAmp){
           ),
           // OFF
           PositionedDirectional(
-            bottom: 4, start: 10,
+            bottom: SC.bot(4), start: 10,
             child:   Text(
                 textAbajoIzq,
                 style: estilo(),
@@ -678,7 +679,7 @@ Widget box_imagen(title, textAbajoIzq, int valueAmp){
           ),
           // 2.65 A
           Positioned.fill(
-            left: 10, right: 10,
+            left: SC.left(10), right: SC.right(10),
             child:  Align(
               alignment: Alignment.center,
               child: Container(
@@ -692,12 +693,12 @@ Widget box_imagen(title, textAbajoIzq, int valueAmp){
             ),
           ),
           Positioned.fill(
-            top: 35,
-            left: 10,
+            top: SC.top(35),
+            left: SC.left(10),
             child:  Align(
               alignment: Alignment.center,
               child:Text(valueAmp.toString() +"Ah",
-                style: MyTextStyle.estiloBold(30, Colors.white) ,),
+                style: MyTextStyle.estiloBold(SC.all(30), Colors.white) ,),
             ),
           ),
         ])

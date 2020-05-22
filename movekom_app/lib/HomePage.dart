@@ -11,6 +11,8 @@ import 'package:movekomapp/pantallas/Water/WaterMenuPage.dart';
 import 'package:movekomapp/pantallas/Wheater/WheaterMenuPage.dart';
 import 'package:movekomapp/pantallas/Electricity/ElectricityMenuPage.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
+import 'Utils/SC.dart';
+import 'Utils/SizeConf.dart';
 import 'pantallas/PrincipalHome.dart';
 
 
@@ -29,6 +31,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    SizeConf().init(context);
+    SC().init(context);
     return
      Scaffold(
        resizeToAvoidBottomPadding: false,

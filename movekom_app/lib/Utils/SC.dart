@@ -1,7 +1,7 @@
 
 import 'package:flutter/widgets.dart';
 
-class SizeConf {
+class SC {
   static MediaQueryData _mediaQueryData;
   static double screenWidth;
   static double screenHeight;
@@ -46,7 +46,27 @@ class SizeConf {
     return (v * num)/10;
   }
 
-   static double wid(num){
+
+  static double left(num){
+    return (h * (0.78) * num)/10 ;
+  }
+
+
+  static double right(num){
+    return (h * (0.78) * num)/10 ;
+  }
+
+
+  static double top(num){
+    return (v *(1.34) * num)/10 ;
+  }
+
+  static double bot(num){
+    return (v *(1.34) * num)/10 ;
+  }
+
+
+  static double wid(num){
     return (h * (0.78) * num)/10 ;
   }
   static double hei(num){

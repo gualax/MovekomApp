@@ -56,7 +56,9 @@ void main(){
     ),
   );
 
-  runApp(MyApp(weatherRepository: weatherRepository));
+  runApp(
+      MyApp(weatherRepository: weatherRepository)
+  );
 }
 
 class MyApp extends StatelessWidget {

@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:getflutter/components/carousel/gf_items_carousel.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SizeConf.dart';
 import 'package:movekomapp/app.localizations.dart';
 import 'package:movekomapp/controladores/agua/AguasLimpias.dart';
 import 'package:movekomapp/controladores/agua/AguasNegras.dart';
@@ -42,6 +43,7 @@ class _PrincipalHomeState extends State<PrincipalHome> {
   BuildContext mContext;
   @override
   Widget build(BuildContext context) {
+    SizeConf().init(context);
     print("build");
     mContext = context;
     return
@@ -166,14 +168,14 @@ Widget horizontalList(){
     Row(  /// Elementos uno arriba del otro
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        column1(),
+        columaBateriaMotorYTotalizador(),
         column2(),
       ],
     ),
     );
   }
 
-  Widget column1(){
+  Widget columaBateriaMotorYTotalizador(){
     return
       Container(
         child: Column (
@@ -203,7 +205,7 @@ Widget horizontalList(){
     return
       Container(
         margin: EdgeInsets.only(bottom: 14),
-         width: 288, height: 205,
+         width: SizeConf.wid(288), height:SizeConf.hei(200), //200 //288
          decoration: new BoxDecoration(
             color: MyColors.ContainerColor,
         ),
@@ -212,19 +214,6 @@ Widget horizontalList(){
 
 
 
-  Widget principalLeftRow1(){
-    return
-      Container(
-        child: Row (
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            BateriaMotor(1),
-            BateriaMotorAux1(1),
-            BateriaMotorAux2(1),
-          ],
-        ),
-      );
-  }
 
 
   Widget principalLeftRow2(){
