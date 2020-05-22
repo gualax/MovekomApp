@@ -56,6 +56,20 @@ Widget circleIndicator(value, color){
   );
 }
 
+Widget circleIndicatorBateria(value, color,dim){
+  return CircularPercentIndicator(
+    radius: dim,
+    lineWidth: 8,
+    percent: (value)/100,
+    center: new Text((value).toString() +"%",
+      style: MyTextStyle.estiloBold(20, Colors.white),),
+    progressColor: color,
+    backgroundColor: MyColors.ContainerColor,
+  );
+}
+
+
+
 Widget circleIndicator_big(value, color){
   return CircularPercentIndicator(
     radius: 105.0,

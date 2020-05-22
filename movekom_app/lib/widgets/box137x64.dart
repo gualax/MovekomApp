@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
 Widget box137x64(){
@@ -158,7 +159,7 @@ Widget box137x64_carga(title,iconRoute,valueAh,state){
       width: 137,
       height: 64,
       decoration: new BoxDecoration(
-          color: Color(0xff2d3033)
+          color: MyColors.ContainerColor
       ), child: Stack(children: [
     Positioned.fill( /// icono
       left: 7,

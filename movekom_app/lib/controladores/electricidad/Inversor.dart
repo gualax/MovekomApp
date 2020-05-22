@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
+import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/inversor_bloc.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
@@ -46,7 +47,7 @@ Widget inversor_big(){
       return Container(
         width: 350, height: 220,
         decoration: new BoxDecoration(
-          color: Color(0xff2d3033),
+          color: MyColors.ContainerColor,
         ),
         child: Stack(
           children: <Widget>[
@@ -169,7 +170,7 @@ Widget inversor_big(){
           width: 225,
           height: 140,
           decoration: BoxDecoration(
-              color: const Color(0xff2d3033)
+              color: MyColors.ContainerColor
           ),
           child: Stack(children: [
             // Valvulas (Todas)

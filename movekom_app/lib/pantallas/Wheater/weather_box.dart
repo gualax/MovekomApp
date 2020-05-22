@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/pantallas/Wheater/wheater_bloc.dart';
 import 'package:movekomapp/pantallas/Wheater/wheather_conditions.dart';
@@ -17,13 +18,23 @@ class WeatherBox extends StatefulWidget {
 }
 
 class _WeatherBoxState extends State<WeatherBox> {
+  final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
+
   WeatherBloc _weatherBloc;
+  Position _currentPosition;
+  String _currentAddress;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getCurrentLocation();
+  }
+
 
   @override
   Widget build(BuildContext context) {
     _weatherBloc = BlocProvider.of<WeatherBloc>(context);
-    _weatherBloc.add(FetchWeather(city: widget.locationCity,indexDay: widget.indexDay));
-
     return WheaterWidget();
   }
 
@@ -48,25 +59,26 @@ class _WeatherBoxState extends State<WeatherBox> {
         child: Stack(
           children: <Widget>[
             Positioned.fill( /// DAY
-                top: 5,
+                top: 9,
                 left: 7,
                 child: Align(
-                  alignment: Alignment.topCenter,
+                  alignment: Alignment.topLeft,
                   child: Text(
-                   "Hoy", style: MyTextStyle.estiloBold(20, Colors.white),),
+                   "Hoy", style: MyTextStyle.estiloBold(22, Colors.white),),
                 )
             ),
             Positioned.fill(/// ICON
-              right: 13, bottom: 10,
+            //  right: 13, bottom: 10,
               child: Align(
-                alignment: Alignment.centerRight,
+                alignment: Alignment.center,
                 child:  WeatherConditions(condition: weather.condition), /// icon weather
               ),
             ),
             Positioned.fill(/// TEMP
-              left:10,  bottom: 10,
+           //   left:10,  bottom: 10,
+              top: 5, right: 5,
               child: Align(
-                alignment: Alignment.centerLeft,
+                alignment: Alignment.topRight,
                 child:  Text(
                   weather.temp.toStringAsFixed(1) + "º", style: MyTextStyle.estiloBold(27, Colors.white),), /// icon weather
               ),
@@ -132,5 +144,35 @@ Widget boxWithIndicator(){
     ),
   );
 }
+
+
+
+  getCurrentLocation() {
+    geolocator
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
+        .then((Position position) {
+      print(position);
+      getAddressFromLatLng(position);
+    }).catchError((e) {
+      print(e);
+    });
+  }
+
+  getAddressFromLatLng(Position position) async {
+    try {
+      List<Placemark> p = await geolocator.placemarkFromCoordinates(
+          position.latitude, position.longitude);
+      Placemark place = p[0];
+      print(place.locality);
+      setState(() {
+        _currentAddress = place.administrativeArea;
+        _weatherBloc.add(FetchWeather(city: place.administrativeArea,indexDay: widget.indexDay));
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+
 
 }

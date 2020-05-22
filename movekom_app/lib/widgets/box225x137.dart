@@ -3,6 +3,7 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
+import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
@@ -12,7 +13,7 @@ Widget box225x140(title, textAbajoIzq, textAbajoDer, textArribaDer){
       width: 225,
       height: 140,
       decoration: BoxDecoration(
-          color: const Color(0xff2d3033)
+          color: MyColors.ContainerColor
       ),
       child: Stack(children: [
         // Valvulas (Todas)
@@ -76,7 +77,7 @@ Widget box225x140_1icon_text(title, double valueAmp,
         width: 225,
         height: 140,
         decoration: BoxDecoration(
-            color: const Color(0xff2d3033)
+            color:  MyColors.ContainerColor
         ),
         child: Stack(children: [
           // Valvulas (Todas)
@@ -164,7 +165,7 @@ Widget box225x140_1icon(title, double valueAmp,
         width: 225,
         height: 140,
         decoration: BoxDecoration(
-            color: const Color(0xff2d3033)
+            color:  MyColors.ContainerColor
         ),
         child: Stack(children: [
           // Valvulas (Todas)

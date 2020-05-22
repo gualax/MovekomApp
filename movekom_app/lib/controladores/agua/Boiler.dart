@@ -29,7 +29,7 @@ bool isFisrtRender = true;
       BlocBuilder<BoilerBloc,BoilerState>(
           builder: ( context, state) {
             boilerBloc = BlocProvider.of<BoilerBloc>(context);
-            print("valueCord: " + state.valueCord.toString());
+            print("valueCord boiler: " + state.valueCord.toString());
             return Container(
               child: CircleList(
                 centerWidget: animatedBoiler,
@@ -46,8 +46,8 @@ bool isFisrtRender = true;
 
 
 List<Widget> _radialListItems() {
-  return radialNumbersB3.items.map((RadialListItemViewModel viewModel) {
-    final listItem = ItemBoiler3(
+  return radialNumbers.items.map((RadialListItemViewModel viewModel) {
+    final listItem = ItemBoiler(
       firstTime: getInitial(),
       listItem: viewModel,
       index: viewModel.number,

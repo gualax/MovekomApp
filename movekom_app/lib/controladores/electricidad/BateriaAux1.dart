@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
+import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/bateria_aux_1_bloc.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
@@ -46,7 +47,7 @@ class BateriaMotorAux1 extends StatelessWidget {
                 width: 200,
                 height: 214,
                 decoration: new BoxDecoration(
-                    color: Color(0xff2d3033)
+                    color: MyColors.ContainerColor
                 ),
                 child: Stack(
                     children: [
@@ -163,7 +164,7 @@ class BateriaMotorAux1 extends StatelessWidget {
               width: 137,
               height: 137,
               decoration: new BoxDecoration(
-                  color: Color(0xff2d3033)
+                  color: MyColors.ContainerColor
               ),
               child: Stack(
                   children: [

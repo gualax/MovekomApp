@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
+import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/blocs/agua_blocs/bomba_agua_bloc.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
@@ -50,7 +51,7 @@ class BombaAgua extends StatelessWidget {
                 width: 220,
                 height: 250,
                 decoration: new BoxDecoration(
-                    color: Color(0xff2d3033)
+                    color: MyColors.ContainerColor
                 ),
                 child: Stack(
                     children: [
@@ -169,7 +170,7 @@ class BombaAgua extends StatelessWidget {
                 width: 137,
                 height: 137,
                 decoration: new BoxDecoration(
-                    color: Color(0xff2d3033)
+                    color: MyColors.ContainerColor
                 ),
                 child: Stack(
                     children: [

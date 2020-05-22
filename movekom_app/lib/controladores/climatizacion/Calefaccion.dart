@@ -4,6 +4,7 @@ import 'package:circle_list/circle_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
+import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/blocs/climatizacion/calefaccion_bloc.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
@@ -54,7 +55,7 @@ class _CalefaccionState extends State<Calefaccion> {
               width: 462,
               height: 388,
               decoration: new BoxDecoration(
-                  color: Color(0xff2d3033)
+                  color: MyColors.ContainerColor
               ),
               child: Stack(
                 children: <Widget>[
@@ -271,7 +272,7 @@ class _CalefaccionState extends State<Calefaccion> {
           width: 225,
           height: 140,
           decoration: BoxDecoration(
-              color: const Color(0xff2d3033)
+              color:  MyColors.ContainerColor
           ),
           child: Stack(children: [
             // Valvulas (Todas)

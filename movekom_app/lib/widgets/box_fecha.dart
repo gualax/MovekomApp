@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
@@ -45,7 +46,7 @@ class _FechaWidgetState extends State<FechaWidget> {
           width: 137,
           height: 137,
           decoration: new BoxDecoration(
-              color: Color(0xff2d3033)
+              color: MyColors.ContainerColor
           ), child: Stack(
           children: [
             Positioned.fill( /// Icono

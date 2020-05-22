@@ -2,6 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
+import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SizeConf.dart';
+import 'package:movekomapp/Utils/SizeConfig.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/bateria_motor_bloc.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
@@ -13,15 +16,16 @@ class BateriaMotor extends StatelessWidget {
   BateriaMotor(this.widgetType);
   @override
   Widget build(BuildContext context) {
+    SizeConf().init(context);
     final bateriaMotorBloc = BlocProvider.of<BateriaMotorBloc>(context);
     if (widgetType == 1) {
-      return box137x137_Bateria(bateriaMotorBloc);
+      return bateria_motor_principal(bateriaMotorBloc);
     } else {
-      return box200x215_bateria(bateriaMotorBloc);
+      return bateria_motor(bateriaMotorBloc);
     }
   }
   
-    Widget box200x215_bateria(bateriaMotorBloc) {
+    Widget bateria_motor(bateriaMotorBloc) {
       Color color;
       Color colorText;
       Color iconColor;
@@ -45,7 +49,7 @@ class BateriaMotor extends StatelessWidget {
                   width: 200,
                   height: 214,
                   decoration: new BoxDecoration(
-                      color: Color(0xff2d3033)
+                      color: MyColors.ContainerColor
                   ),
                   child: Stack(
                       children: [
@@ -148,7 +152,7 @@ class BateriaMotor extends StatelessWidget {
 
 
 
-    Widget box137x137_Bateria(bateriaMotorBloc){
+    Widget bateria_motor_principal(bateriaMotorBloc){
       return
         BlocBuilder<BateriaMotorBloc,BateriaMotorState>(
             builder: ( context, state) {
@@ -160,60 +164,35 @@ class BateriaMotor extends StatelessWidget {
               }
               return Container(
                   margin: EdgeInsets.all(7),
-                  width: 137,
-                  height: 137,
+                  width: SizeConf.x(110), //137
+                  height: SizeConf.y(180),
                   decoration: new BoxDecoration(
-                      color: Color(0xff2d3033)
+                      color: MyColors.ContainerColor
                   ),
                   child: Stack(
                       children: [
-                        Positioned.fill(
-
-                          /// valor bateria
-                          left: 5,
+                        Positioned.fill( /// icono bateria
+                          top: SizeConf.y(20),
                           child: Align(
                             alignment: Alignment.center,
-                            child: circleIndicatorBatery_small(state.valueBat, color, 42.0),
+                            child: circleIndicatorBatery_small(state.valueBat, color, SizeConf.all(50),SizeConf.all(90)),
                           ),
                         ),
-                        Positioned.fill(
-                          /// titulo
-                          top: 4,
+                        Positioned.fill(/// titulo
+                          top: SizeConf.y(4),
                           child: Align(
                             alignment: Alignment.topCenter,
                             child: RichText(
                                 text: TextSpan(
                                     children: [
                                       TextSpan(
-                                          style: MyTextStyle.estiloBold(15, color),
+                                          style: MyTextStyle.estiloBold(SizeConf.all(15), color),
                                           text: title),
                                     ]
                                 )
                             ),
                           ),
                         ),
-                        PositionedDirectional(
-
-                          /// valueVolt
-                          bottom: 4,
-                          start: 10,
-                          child: Text(
-                              state.valueVolt.toString(),
-                              style: MyTextStyle.estilo(15, color),
-                              textAlign: TextAlign.center
-                          ),
-                        ),
-                        PositionedDirectional(
-
-                          ///  /// valueAmp
-                            bottom: 4,
-                            end: 10,
-                            child: Text(
-                                state.valueAmp.toString(),
-                                style: MyTextStyle.estilo(15, color),
-                                textAlign: TextAlign.center
-                            )
-                        )
                       ])
               );
             }
@@ -236,13 +215,13 @@ class BateriaMotor extends StatelessWidget {
     }
 
 
-    Widget circleIndicatorBatery_small(value,color,radius){
+    Widget circleIndicatorBatery_small(value,color,radius,innerRadius){
       return Container (
         child: Stack(
           alignment: Alignment.center,
           children: <Widget>[
             circulito(radius,color),
-            circleIndicator(value, color)
+            circleIndicatorBateria(value, color,innerRadius)
           ],
         ),
       );

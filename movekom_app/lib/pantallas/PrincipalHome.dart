@@ -9,6 +9,7 @@ import 'package:movekomapp/controladores/agua/AguasLimpias.dart';
 import 'package:movekomapp/controladores/agua/AguasNegras.dart';
 import 'package:movekomapp/controladores/agua/AguasSucias.dart';
 import 'package:movekomapp/controladores/agua/BombaAgua.dart';
+import 'package:movekomapp/controladores/agua/ItemBoiler.dart';
 import 'package:movekomapp/controladores/climatizacion/Calefaccion.dart';
 import 'package:movekomapp/controladores/electricidad/BateriaAux1.dart';
 import 'package:movekomapp/controladores/electricidad/BateriaAux2.dart';
@@ -18,6 +19,7 @@ import 'package:movekomapp/controladores/iluminacion/Downligth.dart';
 import 'package:movekomapp/controladores/iluminacion/LucesExterior.dart';
 import 'package:movekomapp/controladores/iluminacion/LuzGeneral.dart';
 import 'package:movekomapp/controladores/iluminacion/Upligth.dart';
+import 'package:movekomapp/pantallas/Wheater/current_location.dart';
 import 'package:movekomapp/pantallas/Wheater/weather_box.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
@@ -63,7 +65,7 @@ Widget horizontalList(){
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: <Widget>[
-          box225x140_1icon_text("BOILER",2.65 , "assets/icons/ducha.svg","70ºC",true),
+          widgetBoiler(),
           Calefaccion(1),
           Inversor(1),
           box225x140_1icon("VALVULAS",2.65 , "assets/icons/valvula.svg",false),
@@ -114,7 +116,7 @@ Widget horizontalList(){
           children: <Widget>[
             Row(
               children: <Widget>[
-                WeatherBox("Buenos Aires",0),
+                FechaWidget(),
                 FechaWidget(),
               ],
             ),
@@ -161,15 +163,53 @@ Widget horizontalList(){
     Container (
       margin: EdgeInsets.all(5),
       child:
-    Column(  /// Elementos uno arriba del otro
+    Row(  /// Elementos uno arriba del otro
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        principalLeftRow1(),
-        principalLeftRow2(),
+        column1(),
+        column2(),
       ],
     ),
     );
   }
+
+  Widget column1(){
+    return
+      Container(
+        child: Column (
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            BateriaMotor(1),
+            box_imagen("totalizador","cargando",20),
+          ],
+        ),
+      );
+  }
+
+  Widget column2(){
+    return
+      Container(
+        child: Column (
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            bateriaAuxiliar(),
+            principalLeftRow2(),
+          ],
+        ),
+      );
+  }
+
+  Widget bateriaAuxiliar(){
+    return
+      Container(
+        margin: EdgeInsets.only(bottom: 14),
+         width: 288, height: 205,
+         decoration: new BoxDecoration(
+            color: MyColors.ContainerColor,
+        ),
+    );
+  }
+
 
 
   Widget principalLeftRow1(){
@@ -193,7 +233,6 @@ Widget horizontalList(){
         child: Row (
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            box_imagen("totalizador","cargando",20),
             columnCargas(),
             columnTiempoDeUso(),
           ],
@@ -233,7 +272,7 @@ Widget columnCargas(){
         //Widget box137x64_carga(title,iconRoute,valueAh,state){
         children: <Widget>[
           box137x64_carga("CARGA MOTOR","assets/icons/engine_motor.svg","25.5Ah",true),
-          box137x64_Tiempo_uso("CARGA DE 220","___Ah",false),
+    //      box137x64_Tiempo_uso("CARGA DE 220","___Ah",false),
         ],
       ),
     );
@@ -248,7 +287,7 @@ Widget columnCargas(){
         //Widget box137x64_carga(title,iconRoute,valueAh,state){
         children: <Widget>[
           box137x64_carga("CARGA SOLAR","assets/icons/solar_panel_1.svg","12.5Ah",true),
-          box137x64_Tiempo_uso("TIEMPO DE USO",">100Hr",true),
+         // box137x64_Tiempo_uso("TIEMPO DE USO",">100Hr",true),
         ],
       ),
     );

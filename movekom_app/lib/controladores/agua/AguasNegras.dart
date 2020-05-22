@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
 import 'package:movekomapp/blocs/agua_blocs/aguas_negras_bloc.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
@@ -38,7 +39,7 @@ class AguasNegras extends StatelessWidget {
                 width: SizeConfig.h * 11,
                 height: SizeConfig.v * 18,
                 decoration: new BoxDecoration(
-                    color: Color(0xff2d3033)
+                    color: MyColors.ContainerColor
                 ),
                 child: Stack(
                     children: [
@@ -103,7 +104,7 @@ class AguasNegras extends StatelessWidget {
                 width: SizeConfig.h * 16,
                 height: SizeConfig.v * 26,
                 decoration: new BoxDecoration(
-                    color: Color(0xff2d3033)
+                    color: MyColors.ContainerColor
                 ),
                 child: Stack(
                     children: [
@@ -175,7 +176,7 @@ class AguasNegras extends StatelessWidget {
                 width: 200,
                 height: 200,
                 decoration: new BoxDecoration(
-                    color: Color(0xff2d3033)
+                    color: MyColors.ContainerColor
                 ),
                 child: Stack(
                   children: <Widget>[

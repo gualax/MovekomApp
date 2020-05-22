@@ -222,7 +222,7 @@ Widget box137x137_Temperatura(context,title, valueHum, valueTemp){
         width: 137,
         height: 137,
         decoration: new BoxDecoration(
-            color: Color(0xff2d3033)
+            color: MyColors.ContainerColor
         ), child: Stack(
         children: [
           Positioned.fill(
@@ -651,7 +651,7 @@ Widget box_imagen(title, textAbajoIzq, int valueAmp){
         margin: EdgeInsets.all(7),
         width: 137, height: 137,
         decoration: new BoxDecoration(
-            color: Color(0xff2d3033)
+            color: MyColors.ContainerColor
         ), child: Stack(
         children: [
           // Valvulas (Todas)

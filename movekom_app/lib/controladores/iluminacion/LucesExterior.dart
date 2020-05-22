@@ -35,7 +35,7 @@ class LucesExterior extends StatelessWidget {
             width: SizeConfig.h * 17,
             height: SizeConfig.v * 19,
             decoration: new BoxDecoration(
-                color: Color(0xff2d3033)
+                color: MyColors.ContainerColor
             ),
             child: Stack(
               children: [

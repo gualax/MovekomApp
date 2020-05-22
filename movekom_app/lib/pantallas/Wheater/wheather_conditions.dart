@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:movekomapp/pantallas/Wheater/whather_data_model.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
-import 'package:movekomapp/widgets/box137x64.dart';
 
 
 class WeatherConditions extends StatelessWidget {
@@ -29,7 +28,7 @@ class WeatherConditions extends StatelessWidget {
       image = iconSvgD("assets/icons/clima_granizo.svg", Colors.white,45.0);
         break;
       case WeatherCondition.heavyCloud:
-        image = iconSvgD("assets/icons/clima_nubes.svg", Colors.white,45.0);
+        image = iconSvgD("assets/icons/clima_nubes.svg", Colors.white,35.0);
         break;
       case WeatherCondition.heavyRain:
       case WeatherCondition.lightRain:

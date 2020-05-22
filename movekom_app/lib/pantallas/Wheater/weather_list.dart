@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
@@ -18,12 +19,21 @@ class WeatherListWidget extends StatefulWidget {
 
 class _WeatherListWidgetState extends State<WeatherListWidget> {
   WeatherBloc _weatherBloc;
+  String _currentLocality = "";
+  String _currentCountry = "";
+  final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    getCurrentLocation();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     _weatherBloc = BlocProvider.of<WeatherBloc>(context);
-    _weatherBloc.add(FetchWeatherList(city: widget.locationCity));
     return cabeceraYlista();
   }
 
@@ -141,11 +151,42 @@ class _WeatherListWidgetState extends State<WeatherListWidget> {
       ),
       child: Align(
             alignment: Alignment.centerLeft,
-            child: Text("  Pronostico extendido de : " + widget.locationCity.toString(),
+            child: Text("  Pronostico extendido de : " + _currentLocality ,
             style: MyTextStyle.estiloBold(15, Colors.white),
       ),
       ),
     );
   }
+
+
+  getCurrentLocation() {
+    geolocator
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
+        .then((Position position) {
+      print(position);
+      getAddressFromLatLng(position);
+    }).catchError((e) {
+      print(e);
+    });
+  }
+
+  getAddressFromLatLng(Position position) async {
+    try {
+      List<Placemark> p = await geolocator.placemarkFromCoordinates(
+          position.latitude, position.longitude);
+      Placemark place = p[0];
+      print(place.locality);
+      print(place.toString());
+      print(place.toJson());
+      setState(() {
+        _currentLocality = place.administrativeArea;
+        _currentCountry = place.country;
+        _weatherBloc.add(FetchWeatherList(city: place.administrativeArea));
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
 
 }
