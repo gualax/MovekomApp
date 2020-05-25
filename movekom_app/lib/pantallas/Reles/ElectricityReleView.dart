@@ -109,7 +109,7 @@ Widget cargador(){
       height: 110,
       width: 200,
       decoration: new BoxDecoration(
-          color: MyColors.ContainerColor,
+          color: MyColors.baseColor,
       ),
       child:  Stack(
         children: <Widget>[
@@ -157,7 +157,7 @@ return Container(
       height: 40,
       width:200,
       decoration:new BoxDecoration(
-        color:MyColors.ContainerColor,
+        color:MyColors.baseColor,
       ),
       child: Text("AJUSTES DE BATERIA",
         style: MyTextStyle.estilo(17, Colors.white),
