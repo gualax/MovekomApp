@@ -8,6 +8,7 @@ import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
 import 'package:movekomapp/blocs/boiler_bloc.dart';
 import 'package:movekomapp/controladores/agua/Boiler.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
@@ -20,18 +21,19 @@ class _WaterBoilerViewState extends State<WaterBoilerView> {
 
   @override
   Widget build(BuildContext context) {
+
     SizeConfig().init(context);
    final boilerBloc = BlocProvider.of<BoilerBloc>(context);
     return boilerBox(boilerBloc);
   }
 
   Widget boilerBox(boilerBloc) {
-    return Container(
+    return MyContainer(
       alignment: Alignment.center,
-      width: 900,
-      height: 474,
+      width: 720,
+      height: 440,
       decoration: new BoxDecoration(
-          color: MyColors.ContainerColor
+          color: MyColors.baseColor
       ),
       child: Stack(
         children: <Widget>[
@@ -45,11 +47,11 @@ class _WaterBoilerViewState extends State<WaterBoilerView> {
               )
           ),
           Positioned.fill(
-              left: 50,
+              left: 20,
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: iconSvgD(
-                    "assets/icons/fire.svg", Colors.lightGreenAccent, 200),
+                    "assets/icons/fire.svg", Colors.lightGreenAccent, 150),
               )
           ),
           Positioned.fill(
@@ -68,58 +70,42 @@ class _WaterBoilerViewState extends State<WaterBoilerView> {
               )
           ),
           Positioned.fill(
-              left: 160,
-              bottom: 200,
+              left: 100,
+              bottom: 180,
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: iconSvgD(
-                    "assets/icons/gota_agua.svg", Colors.lightGreenAccent, 100),
+                    "assets/icons/gota_agua.svg", Colors.lightGreenAccent, 80),
               )
           ),
           Positioned.fill(
-              right: 160,
-              bottom: 100,
+              right: 280, top:20,
               child: Align(
                 alignment: Alignment.center,
                 child: Text("21",
-                  style: MyTextStyle.estiloBold(150, Colors.white),),
+                  style: MyTextStyle.estiloBold(100, Colors.white),),
               )
           ),
           Positioned.fill(
-              right: 220,
-              bottom: 260,
+              right: 300,
+              bottom: 100,
               child: Align(
                 alignment: Alignment.center,
                 child: Text("Temperatura,",
-                  style: MyTextStyle.estilo(25, Colors.white),),
+                  style: MyTextStyle.estilo(17, Colors.white),),
               )
           ),
           Positioned.fill(
-            left: 410,
-              child: Align(
-                alignment: Alignment.centerRight,
-             //   child: AnimatedBoiler(),
-              )
-          ),
-          Positioned.fill(
-              right: 20,
               child: Align(
                 alignment: Alignment.centerRight,
                 child: Boiler(),
-                //child: newCirlceList(100.0),
               )
           ),
         ],
-
       ),
     );
   }
-
-  /*
-  *             child: Boiler(
-                  radialList: radialNumbers,
-                ),
-  * */
+  
 
 }
 

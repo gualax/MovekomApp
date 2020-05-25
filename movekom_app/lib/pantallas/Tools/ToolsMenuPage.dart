@@ -14,6 +14,7 @@ import 'package:movekomapp/controladores/modos/ModoEmergencia.dart';
 import 'package:movekomapp/controladores/modos/ModoHighwayToHell.dart';
 import 'package:movekomapp/controladores/modos/ModoLimpiezaTuberias.dart';
 import 'package:movekomapp/controladores/modos/ModoParking.dart';
+import 'package:movekomapp/controladores/nevera/nevera.dart';
 
 class ToolsMenuPage extends StatefulWidget {
   @override
@@ -48,7 +49,7 @@ class _ToolsMenuPageState extends State<ToolsMenuPage> {
         children:[
           Inversor(2),
           CargadorBaterias(),
-          Extractor(),
+          Nevera(),
         ]
       ),
     );

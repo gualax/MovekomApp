@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movekomapp/Utils/DrawCircle.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/aguas.dart';
@@ -218,16 +219,16 @@ TextStyle estiloBold() {
 
 Widget box137x137_Temperatura(context,title, valueHum, valueTemp){
   return
-    Container(
-        margin: EdgeInsets.all(7),
+    MyContainer(
+        margin: EdgeInsets.all(SC.all(7)),
         width: 137,
         height: 137,
         decoration: new BoxDecoration(
-            color: MyColors.ContainerColor
+            color: MyColors.baseColor
         ), child: Stack(
         children: [
           Positioned.fill(
-            left: 6,
+            left: SC.left(7),
             child: Align(
               alignment: Alignment.centerLeft,
               child: iconSvgD("assets/images/temperature_1.svg", Colors.white,35),
@@ -235,7 +236,7 @@ Widget box137x137_Temperatura(context,title, valueHum, valueTemp){
           ),
           // Valvulas (Todas)
           Positioned.fill(   /// Texto del medio
-              left: 20,
+              left: SC.left(20),
               child:   Align(
                 alignment: Alignment.center,
                 child: RichText(
@@ -251,7 +252,7 @@ Widget box137x137_Temperatura(context,title, valueHum, valueTemp){
               ),
           ),
           Positioned.fill(
-            top: 4,
+            top: SC.top(4),
             child:   Align(
               alignment: Alignment.topCenter,
               child: RichText(
@@ -267,8 +268,8 @@ Widget box137x137_Temperatura(context,title, valueHum, valueTemp){
           ),
           // OFF
           PositionedDirectional(
-            bottom: 4,
-            start: 10,
+            bottom: SC.bot(4),
+            start: SC.left(10),
             child:   Text(
                 "Humedad",
                 style: estilo(),
@@ -276,8 +277,8 @@ Widget box137x137_Temperatura(context,title, valueHum, valueTemp){
             ),
           ),
           PositionedDirectional(  /// value hume
-              bottom: 4,
-              end: 10,
+              bottom: SC.bot(4),
+              end: SC.right(10),
               child:   Text(
                   valueHum,
                   style: estilo(),
@@ -631,7 +632,7 @@ Widget circleIndicator(value, color){
     center: new Text((value).toString() +"%",
       style: MyTextStyle.estiloBold(SC.all(20), Colors.white),),
     progressColor: color,
-    backgroundColor: MyColors.ContainerColor,
+    backgroundColor: MyColors.baseColor,
   );
 }
 
@@ -652,7 +653,7 @@ Widget box_imagen(title, textAbajoIzq, int valueAmp){
         margin: EdgeInsets.all(SC.all(7)),
         width: SC.wid(137), height: SC.hei(137),
         decoration: new BoxDecoration(
-            color: MyColors.ContainerColor
+            color: MyColors.baseColor
         ), child: Stack(
         children: [
           // Valvulas (Todas)

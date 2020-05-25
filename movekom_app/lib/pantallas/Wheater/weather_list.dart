@@ -92,7 +92,7 @@ class _WeatherListWidgetState extends State<WeatherListWidget> {
       height: 125,
       margin: EdgeInsets.only(left: 1, right: 1),
       decoration: new BoxDecoration(
-        color: MyColors.ContainerColor,
+        color: MyColors.baseColor,
       ),
       child: Stack(
         children: <Widget>[
@@ -147,7 +147,7 @@ class _WeatherListWidgetState extends State<WeatherListWidget> {
       height: 30,
       width: SizeConfig.x(80.5),
       decoration: new BoxDecoration(
-          color: MyColors.ContainerColor
+          color: MyColors.baseColor
       ),
       child: Align(
             alignment: Alignment.centerLeft,

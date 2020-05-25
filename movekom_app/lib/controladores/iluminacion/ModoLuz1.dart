@@ -32,7 +32,7 @@ ModoLuz1(this.widgetType);
       width: SizeConfig.x(7.5),
       height: SizeConfig.y(20),
       decoration: new BoxDecoration(
-          color: MyColors.ContainerColor
+          color: MyColors.baseColor
       ),
       child: Stack(
         children: <Widget>[

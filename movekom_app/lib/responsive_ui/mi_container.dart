@@ -114,6 +114,7 @@ class MyContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SC().init(context);
     Widget current = child;
 
     if (child == null && (constraints == null || !constraints.isTight)) {

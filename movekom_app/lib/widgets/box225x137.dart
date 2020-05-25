@@ -4,6 +4,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
@@ -13,7 +14,7 @@ Widget box225x140(title, textAbajoIzq, textAbajoDer, textArribaDer){
       width: 225,
       height: 140,
       decoration: BoxDecoration(
-          color: MyColors.ContainerColor
+          color: MyColors.baseColor
       ),
       child: Stack(children: [
         // Valvulas (Todas)
@@ -77,7 +78,7 @@ Widget box225x140_1icon_text(title, double valueAmp,
         width: 225,
         height: 140,
         decoration: BoxDecoration(
-            color:  MyColors.ContainerColor
+            color:  MyColors.baseColor
         ),
         child: Stack(children: [
           // Valvulas (Todas)
@@ -160,12 +161,12 @@ Widget box225x140_1icon(title, double valueAmp,
   }
   
   return  ClipRect(
-    child: Container(
+    child: MyContainer(
         margin: EdgeInsets.all(7),
         width: 225,
         height: 140,
         decoration: BoxDecoration(
-            color:  MyColors.ContainerColor
+            color:  MyColors.baseColor
         ),
         child: Stack(children: [
           // Valvulas (Todas)
@@ -216,7 +217,7 @@ Widget box225x140_1icon(title, double valueAmp,
 
 Widget box225x140_add_device(){
   return ClipRect(
-    child: Container(
+    child: MyContainer(
       width: 225,
       height: 140,
         margin: EdgeInsets.all(10),

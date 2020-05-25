@@ -37,7 +37,7 @@ class ModoEco extends StatelessWidget {
       width: SizeConfig.h * 17,
       height: SizeConfig.v * 34,
       decoration: new BoxDecoration(
-          color: MyColors.ContainerColor
+          color: MyColors.baseColor
       ),
       child: Stack(
         children: <Widget>[

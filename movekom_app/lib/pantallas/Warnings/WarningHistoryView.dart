@@ -39,7 +39,7 @@ class _WarningHistoryViewState extends State<WarningHistoryView> {
       height: 60,
       width: 1100,
       decoration: new BoxDecoration(
-        color: MyColors.ContainerColor,
+        color: MyColors.baseColor,
       ),
     );
   }

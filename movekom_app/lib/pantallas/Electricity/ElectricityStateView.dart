@@ -1,7 +1,9 @@
 
 import 'package:flutter/material.dart';
+import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/panel_solar_bloc.dart';
 import 'package:movekomapp/controladores/electricidad/Alternador.dart';
+import 'package:movekomapp/controladores/electricidad/AmperimetroGeneral.dart';
 import 'package:movekomapp/controladores/electricidad/BateriaAux1.dart';
 import 'package:movekomapp/controladores/electricidad/BateriaAux2.dart';
 import 'package:movekomapp/controladores/electricidad/BateriaMotor.dart';
@@ -10,6 +12,7 @@ import 'package:movekomapp/controladores/electricidad/CargadorDeBateria.dart';
 import 'package:movekomapp/controladores/electricidad/Consumos.dart';
 import 'package:movekomapp/controladores/electricidad/Inversor.dart';
 import 'package:movekomapp/controladores/electricidad/PanelSolar.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
@@ -31,7 +34,6 @@ class _ElectricityStateViewState extends State<ElectricityStateView> {
       child: Row(
         children: <Widget>[
             Expanded(
-              flex: 2,
               child: Container(
                 margin: EdgeInsets.only(left: 13),
              //   color: Colors.lightGreen,
@@ -40,15 +42,6 @@ class _ElectricityStateViewState extends State<ElectricityStateView> {
                 child: baterias_cargadores(),
               ),
             ),
-            Expanded(
-            child: Container(
-              margin: EdgeInsets.only(right: 20),
-           //   color: Colors.blue,
-              alignment: Alignment.center,
-         //    color: Colors.blue,
-              child: inversores_cargadores(),
-             ),
-            )
       ],
       ),
       );
@@ -80,8 +73,8 @@ class _ElectricityStateViewState extends State<ElectricityStateView> {
         children: <Widget>[
           BateriaMotor(2),
           BateriaMotorAux1(2),
-          BateriaMotorAux2(2),
-          totalizador(),
+         // BateriaMotorAux2(2),
+          AmperimetroGeneral(),
         ],
       ),
     );
@@ -165,73 +158,6 @@ class _ElectricityStateViewState extends State<ElectricityStateView> {
           )
         ],
       ),
-    );
-  }
-
-
-
-  Widget totalizador(){
-    return Container(
-      margin: EdgeInsets.all(5),
-    width: 200,
-    height: 214,
-    decoration: new BoxDecoration(
-    color: Color(0xff2d3033)
-    ),
-    child: Stack(
-      children: <Widget>[
-        Positioned.fill(
-          top:80,
-          right: 40,
-          child: Align(
-            alignment: Alignment.centerRight,
-            child: Text(
-                "Ah", style: MyTextStyle.estiloBold(25, Colors.white)),
-          ),
-        ),
-        Positioned.fill(
-          top:5,
-          left: 10,
-          child: Align(
-            alignment: Alignment.topLeft,
-            child: Text(
-                "Totalizador", style: MyTextStyle.estiloBold(20, Colors.white)),
-          ),
-        ),
-        Positioned.fill(
-          left: 10,
-          child: Align(
-            alignment: Alignment.centerLeft,
-            child: iconSvgD("assets/icons/electricidad.svg",Colors.orange,100),
-          ),
-        ),
-        Positioned.fill(
-          right: 10,
-          bottom: 10,
-          child: Align(
-            alignment: Alignment.centerRight,
-            child: Text(
-                "40", style: MyTextStyle.estiloBold(80, Colors.white)),
-          ),
-        ),
-        Positioned.fill(
-          bottom:25,
-          child: Align(
-            alignment: Alignment.bottomCenter,
-            child:Text(
-                "Nº ciclos de AUX 1", style: MyTextStyle.estilo(15, Colors.white)),
-          ),
-        ),
-        Positioned.fill(
-          bottom:5,
-          child: Align(
-            alignment: Alignment.bottomCenter,
-            child:Text(
-                "Nº ciclos de AUX 2", style: MyTextStyle.estilo(15, Colors.white)),
-          ),
-        ),
-      ],
-    ),
     );
   }
 

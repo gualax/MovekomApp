@@ -5,7 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/blocs/climatizacion/calefaccion_bloc.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
+import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/flecha_indicador.dart';
@@ -23,6 +26,7 @@ class _CalefaccionState extends State<Calefaccion> {
   bool isFisrtRender = true;
   @override
   Widget build(BuildContext context) {
+    SC().init(context);
     final calefaccionBloc = BlocProvider.of<CalefaccionBloc>(context);
     if (widget.widgetType == 1) {
       return _calefaccionWidget();
@@ -50,34 +54,34 @@ class _CalefaccionState extends State<Calefaccion> {
               colorIcon = Colors.grey;
               text_on_off = "Pulse para encender";
             }
-            return Container(
-              margin: EdgeInsets.all(20),
-              width: 462,
+            return MyContainer(
+              margin: EdgeInsets.all(SC.all(12)),
+              width: 380,
               height: 388,
               decoration: new BoxDecoration(
-                  color: MyColors.ContainerColor
+                  color: MyColors.baseColor
               ),
               child: Stack(
                 children: <Widget>[
-                  Positioned.fill(
+                  MyPositioned.fill(
                       left: 50,
-                      top: 10,
+                      top: 15,
                       child: Align(
                         alignment: Alignment.topLeft,
                         child: Text(title,
-                          style: MyTextStyle.estiloBold(35, colorText),),
+                          style: MyTextStyle.estiloBold(25, colorText),),
                       )
                   ),
-                  Positioned.fill(
+                  MyPositioned.fill(
                     bottom: 120,
                       right: 40,
                       child: Align(
                         alignment: Alignment.center,
                         child: Text("Temperature ºC",
-                          style: MyTextStyle.estiloBold(20, colorText),),
+                          style: MyTextStyle.estiloBold(18, colorText),),
                       )
                   ),
-                  Positioned.fill(
+                  MyPositioned.fill(
                       left: 20,
                       child: Align(
                         alignment: Alignment.center,
@@ -85,15 +89,15 @@ class _CalefaccionState extends State<Calefaccion> {
                           style: MyTextStyle.estiloBold(100, colorText),),
                       )
                   ),
-                  Positioned.fill(
-                      left: 30,
+                  MyPositioned.fill(
+                      left: 20,
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: iconSvgD(
                             "assets/icons/fire.svg", colorIcon, 130),
                       )
                   ),
-                  Positioned.fill(
+                  MyPositioned.fill(
                       left: 30,
                       bottom: 22,
                       child: Align(
@@ -102,7 +106,7 @@ class _CalefaccionState extends State<Calefaccion> {
                           style: MyTextStyle.estiloBold(20, colorText),),
                       )
                   ),
-                  Positioned.fill(
+                  MyPositioned.fill(
                       right: 170,
                       bottom: 10,
                       child: Align(
@@ -119,31 +123,30 @@ class _CalefaccionState extends State<Calefaccion> {
                           },),
                       )
                   ),
-                  Positioned.fill(
-                    top: 20,
+                  MyPositioned.fill(
+                    top: 22,
                     left: 20,
                     child: Align(
                       alignment: Alignment.topLeft,
-                      child: circuloConSombra(20.0, colorIcon),
+                      child: circuloConSombra(15.0, colorIcon),
                     ),
                   ),
-                  Positioned(
-                    left: 320,
+                  MyPositioned(
+                    left: 270,
                     bottom: 14,
                     child: Align(
                       alignment: Alignment.center,
-                   //   child: iconSvgNc("assets/icons/circulo_boiler.svg",390 ),
-                        child: calefa_indic_img(360.0),
+                       child: calefa_indic_img(360.0),
                     ),
                   ),
-                  Positioned(
-                    left: 320,
+                  MyPositioned(
+                    left: 270,
                     child: Align(
                       alignment: Alignment.center,
                       child: circularList(calefaccionBloc),
                     ),
                   ),
-                  Positioned(
+                  MyPositioned(
                     bottom: 10, right: 10,
                     child: Align(
                       alignment: Alignment.bottomRight,
@@ -151,7 +154,7 @@ class _CalefaccionState extends State<Calefaccion> {
                         style: MyTextStyle.estiloBold(20, Colors.white),),
                     ),
                   ),
-                  Positioned(
+                  MyPositioned(
                     top: 10, right: 10,
                     child: Align(
                       alignment: Alignment.topRight,
@@ -186,7 +189,7 @@ class _CalefaccionState extends State<Calefaccion> {
               colorIndic = Colors.grey;
             }
             return
-              Container(
+              MyContainer(
                 child: Transform.rotate(
                   angle: 135,
                   child: CircleList(
@@ -267,12 +270,12 @@ class _CalefaccionState extends State<Calefaccion> {
           on_off = "OFF";
        }
     return  ClipRect(
-      child: Container(
+      child: MyContainer(
           margin: EdgeInsets.all(7),
           width: 225,
           height: 140,
           decoration: BoxDecoration(
-              color:  MyColors.ContainerColor
+              color:  MyColors.baseColor
           ),
           child: Stack(children: [
             // Valvulas (Todas)

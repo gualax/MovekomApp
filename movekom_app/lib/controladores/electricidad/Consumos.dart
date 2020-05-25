@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/consumos_bloc.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/indicador_rojo.dart';
@@ -22,12 +24,12 @@ class Consumos extends StatelessWidget {
         builder: ( context, state) {
           if(state.isEnabled){
             textIcon = "Apagar los consumos";
-            colorIcon = Colors.lightGreenAccent;
+            colorIcon = MyColors.principalColor;
           }else{
             textIcon = "Encender los consumos";
-            colorIcon = Colors.white;
+            colorIcon = MyColors.textColor;
           }
-          return Container(
+          return MyContainer(
             margin: EdgeInsets.all(5),
             width: 200,
             height: 214,
@@ -51,7 +53,7 @@ class Consumos extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.topLeft,
                     child: Text(title,
-                        style: MyTextStyle.estiloBold(15, Colors.white)),
+                        style: MyTextStyle.estiloBold(15, MyColors.textColor)),
                   ),
                 ),
                 Positioned.fill(
@@ -59,7 +61,7 @@ class Consumos extends StatelessWidget {
                     alignment: Alignment.center,
                     child: Text(
                         state.valueAmp.toString(),
-                        style: MyTextStyle.estiloBold(40, Colors.white)),
+                        style: MyTextStyle.estiloBold(40, MyColors.textColor)),
                   ),
                 ),
                 Positioned.fill(
@@ -67,7 +69,7 @@ class Consumos extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.center,
                     child: Text(
-                        "Ah", style: MyTextStyle.estiloBold(25, Colors.white)),
+                        "Ah", style: MyTextStyle.estiloBold(25, MyColors.textColor)),
                   ),
                 ),
                 Positioned.fill(
@@ -98,7 +100,7 @@ class Consumos extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.bottomCenter,
                       child: Text(textIcon,
-                      style: MyTextStyle.estilo(12, Colors.white),),
+                      style: MyTextStyle.estilo(12, MyColors.textColor),),
                     )
                 ),
               ],

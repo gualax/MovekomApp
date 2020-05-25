@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/FloatingMenu.dart';
+import 'package:movekomapp/blocs/climatizacion/aire_acondicionado_bloc.dart';
 import 'package:movekomapp/blocs/climatizacion/extractor_bloc.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/alternador_bloc.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/bateria_aux_1_bloc.dart';
@@ -9,6 +10,7 @@ import 'package:movekomapp/blocs/climatizacion/calefaccion_bloc.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/cargador_220.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/cargador_baterias_bloc.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/consumos_bloc.dart';
+import 'package:movekomapp/blocs/electricidad_blocs/nevera_bloc.dart';
 import 'package:movekomapp/blocs/iluminacion_blocs/dowligth_bloc.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/inversor_bloc.dart';
 import 'package:movekomapp/blocs/iluminacion_blocs/luces_parque_bloc.dart';
@@ -114,6 +116,8 @@ class MyApp extends StatelessWidget {
 
         BlocProvider<BluetoothControllerBloc>(create:(context)=> BluetoothControllerBloc()),
         BlocProvider<WeatherBloc>(create:(context)=> WeatherBloc(weatherRepository: weatherRepository,)),
+        BlocProvider<AireAcondicionadoBloc>(create:(context)=> AireAcondicionadoBloc()),
+        BlocProvider<NeveraBloc>(create:(context)=> NeveraBloc()),
 
       ],
       child: MaterialApp(

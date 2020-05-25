@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:getflutter/components/carousel/gf_items_carousel.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/Utils/SizeConf.dart';
 import 'package:movekomapp/app.localizations.dart';
 import 'package:movekomapp/controladores/agua/AguasLimpias.dart';
@@ -16,12 +17,14 @@ import 'package:movekomapp/controladores/electricidad/BateriaAux1.dart';
 import 'package:movekomapp/controladores/electricidad/BateriaAux2.dart';
 import 'package:movekomapp/controladores/electricidad/BateriaMotor.dart';
 import 'package:movekomapp/controladores/electricidad/Inversor.dart';
+import 'package:movekomapp/controladores/electricidad/Totalizador.dart';
 import 'package:movekomapp/controladores/iluminacion/Downligth.dart';
 import 'package:movekomapp/controladores/iluminacion/LucesExterior.dart';
 import 'package:movekomapp/controladores/iluminacion/LuzGeneral.dart';
 import 'package:movekomapp/controladores/iluminacion/Upligth.dart';
 import 'package:movekomapp/pantallas/Wheater/current_location.dart';
 import 'package:movekomapp/pantallas/Wheater/weather_box.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/box137x137.dart';
@@ -62,8 +65,8 @@ class _PrincipalHomeState extends State<PrincipalHome> {
 Widget horizontalList(){
     return Container(
       alignment: Alignment.center,
-      height: 180,
-      margin: EdgeInsets.only(left: 40,top: 20),
+      height: SC.hei(180),
+      margin: EdgeInsets.only(left: SC.left(40),top: SC.top(20)),
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: <Widget>[
@@ -80,7 +83,7 @@ Widget horizontalList(){
 
 
   Widget contenido(){
-    return Container(
+    return MyContainer(
       margin: EdgeInsets.only(top: 20),
       child: Row( /// elementos uno al lado del otro
         mainAxisAlignment: MainAxisAlignment.center,
@@ -96,7 +99,7 @@ Widget horizontalList(){
 
   Widget midleLeftSection(){
   return
-  Container (
+  MyContainer (
     margin: EdgeInsets.all(5),
     child:
     Column(  /// Elementos uno arriba del otro
@@ -111,7 +114,7 @@ Widget horizontalList(){
 
   Widget midleRigthSection(){
     return
-      Container (
+      MyContainer (
         margin: EdgeInsets.all(5),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -135,12 +138,11 @@ Widget horizontalList(){
 
   Widget rightSection(){
       return
-        Container (
-          margin: EdgeInsets.all(5),
+        MyContainer (
+          margin: EdgeInsets.all(SC.all(5)),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-
               Row(
                 children: <Widget>[
                   AguasLimpias(1),
@@ -162,7 +164,7 @@ Widget horizontalList(){
 
   Widget leftSection(){
     return
-    Container (
+    MyContainer (
       margin: EdgeInsets.all(5),
       child:
     Row(  /// Elementos uno arriba del otro
@@ -177,12 +179,12 @@ Widget horizontalList(){
 
   Widget columaBateriaMotorYTotalizador(){
     return
-      Container(
+      MyContainer(
         child: Column (
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             BateriaMotor(1),
-            box_imagen("totalizador","cargando",20),
+            Totalizador(),
           ],
         ),
       );
@@ -190,7 +192,7 @@ Widget horizontalList(){
 
   Widget column2(){
     return
-      Container(
+      MyContainer(
         child: Column (
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -203,11 +205,11 @@ Widget horizontalList(){
 
   Widget bateriaAuxiliar(){
     return
-      Container(
-        margin: EdgeInsets.only(bottom: 14),
-         width: SizeConf.wid(288), height:SizeConf.hei(200), //200 //288
+      MyContainer(
+        margin: EdgeInsets.only(bottom: SC.all(15)),
+         width: 288, height:200, //200 //288
          decoration: new BoxDecoration(
-            color: MyColors.ContainerColor,
+            color: MyColors.baseColor,
         ),
     );
   }
@@ -218,19 +220,19 @@ Widget horizontalList(){
 
   Widget principalLeftRow2(){
     return
-      Container(
+      MyContainer(
         child: Row (
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            columnCargas(),
-            columnTiempoDeUso(),
+            box137x64_carga("CARGA MOTOR","assets/icons/engine_motor.svg","25.5Ah",true),
+            box137x64_carga("CARGA SOLAR","assets/icons/solar_panel_1.svg","12.5Ah",true),
           ],
         ),
       );
   }
 
   Widget verticalHalfBoxesIlumination(){
-    return Container(
+    return MyContainer(
       child: Row (
         children: <Widget>[
           LucesExterior(1),
@@ -241,7 +243,7 @@ Widget horizontalList(){
   }
 
   Widget verticalHalfBoxesLed(){
-    return Container(
+    return MyContainer(
       child: Row (
         children: <Widget>[
           Upligth(1),
@@ -253,34 +255,7 @@ Widget horizontalList(){
   }
 
 
-Widget columnCargas(){
-    return Container(
-      alignment: Alignment.center,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        //Widget box137x64_carga(title,iconRoute,valueAh,state){
-        children: <Widget>[
-          box137x64_carga("CARGA MOTOR","assets/icons/engine_motor.svg","25.5Ah",true),
-    //      box137x64_Tiempo_uso("CARGA DE 220","___Ah",false),
-        ],
-      ),
-    );
-}
 
-
-  Widget columnTiempoDeUso(){
-    return Container(
-      alignment: Alignment.center,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        //Widget box137x64_carga(title,iconRoute,valueAh,state){
-        children: <Widget>[
-          box137x64_carga("CARGA SOLAR","assets/icons/solar_panel_1.svg","12.5Ah",true),
-         // box137x64_Tiempo_uso("TIEMPO DE USO",">100Hr",true),
-        ],
-      ),
-    );
-  }
 
 }
 

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/inversor_bloc.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/indicador_rojo.dart';
@@ -47,7 +48,7 @@ Widget inversor_big(){
       return Container(
         width: 350, height: 220,
         decoration: new BoxDecoration(
-          color: MyColors.ContainerColor,
+          color: MyColors.baseColor,
         ),
         child: Stack(
           children: <Widget>[
@@ -165,12 +166,12 @@ Widget inversor_big(){
     }
 
     return  ClipRect(
-      child: Container(
+      child: MyContainer(
           margin: EdgeInsets.all(7),
           width: 225,
           height: 140,
           decoration: BoxDecoration(
-              color: MyColors.ContainerColor
+              color: MyColors.baseColor
           ),
           child: Stack(children: [
             // Valvulas (Todas)

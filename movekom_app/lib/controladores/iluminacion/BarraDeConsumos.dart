@@ -19,7 +19,7 @@ class BarraDeConsumos extends StatelessWidget {
       width: SizeConfig.h * 71,
       height: SizeConfig.v * 20,
       decoration: new BoxDecoration(
-          color: MyColors.ContainerColor
+          color: MyColors.baseColor
       ),
       child: Stack(
         children: <Widget>[

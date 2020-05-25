@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
 import 'package:movekomapp/blocs/iluminacion_blocs/luces_parque_bloc.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
+import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/slider_theme.dart';
@@ -35,7 +37,7 @@ class LucesExterior extends StatelessWidget {
             width: SizeConfig.h * 17,
             height: SizeConfig.v * 19,
             decoration: new BoxDecoration(
-                color: MyColors.ContainerColor
+                color: MyColors.baseColor
             ),
             child: Stack(
               children: [
@@ -118,27 +120,27 @@ class LucesExterior extends StatelessWidget {
               lucesCocinaBloc.add(Enable());
             }
         },
-        child: Container(
+        child: MyContainer(
            margin: EdgeInsets.all(5),
           width: 66,
           height: 137,
           decoration: new BoxDecoration(
-            color: MyColors.ContainerColor,
+            color: MyColors.baseColor,
           ),
           child: Stack(
             children: <Widget>[
-              Positioned.fill(
+              MyPositioned.fill(
                   top: 5,
                   child: Align(
                     alignment: Alignment.topCenter,
                     child: iconSvgD("assets/icons/luz.svg", color, 35),
                   )
-              ),Positioned.fill(
+              ),MyPositioned.fill(
                   child: Align(
                     alignment: Alignment.center,
                     child: iconSvgD("assets/icons/exterior.svg", color, 35),
                   )
-              ),Positioned.fill(
+              ),MyPositioned.fill(
                   bottom: 8,
                   child: Align(
                     alignment: Alignment.bottomCenter,

@@ -32,14 +32,14 @@ class BateriaMotorAux1 extends StatelessWidget {
             print(state.isEnabled);
             print(state.valueBat);
             if (state.isEnabled) {
-              color = Colors.lightGreen;
-              colorText = Colors.white;
+              color = MyColors.principalColor;
+              colorText = MyColors.textColor;
               iconColor = color;
               on_off_Text = "Pulsar para apagar bateria";
             } else {
-              color = Colors.grey;
-              colorText = Colors.grey;
-              iconColor = Colors.white;
+              color = MyColors.inactiveColor;
+              colorText = MyColors.inactiveColor;
+              iconColor = MyColors.textColor;
               on_off_Text = "Pulsar para encender bateria";
             }
             return Container(
@@ -47,7 +47,7 @@ class BateriaMotorAux1 extends StatelessWidget {
                 width: 200,
                 height: 214,
                 decoration: new BoxDecoration(
-                    color: MyColors.ContainerColor
+                    color: MyColors.baseColor
                 ),
                 child: Stack(
                     children: [
@@ -157,14 +157,14 @@ class BateriaMotorAux1 extends StatelessWidget {
           if(state.isEnabled){
             color = Colors.lightGreen;
           }else{
-            color = Colors.grey;
+            color = MyColors.inactiveColor;
           }
           return Container(
               margin: EdgeInsets.all(7),
               width: 137,
               height: 137,
               decoration: new BoxDecoration(
-                  color: MyColors.ContainerColor
+                  color: MyColors.baseColor
               ),
               child: Stack(
                   children: [
@@ -248,5 +248,8 @@ class BateriaMotorAux1 extends StatelessWidget {
       ),
     );
   }
+
+
+
 
 } /// FIN DE CLASE

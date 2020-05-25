@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:movekomapp/Utils/DrawCircle.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/controladores/agua/AguasLimpias.dart';
 import 'package:movekomapp/controladores/agua/AguasNegras.dart';
 import 'package:movekomapp/controladores/agua/AguasSucias.dart';
 import 'package:movekomapp/controladores/agua/BombaAgua.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
+
+import 'WaterBoilerView.dart';
 
 
 class WaterLevelsView extends StatefulWidget {
@@ -17,24 +21,20 @@ class WaterLevelsView extends StatefulWidget {
 class _WaterLevelsViewState extends State<WaterLevelsView> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    SC().init(context);
+    return MyContainer(
             child: Row(
               children: <Widget>[
                 Expanded(
-                  flex: 2,
-                  child: Container(
-                    alignment: Alignment.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                    // color: Colors.orange,
-                    child: aguas(),
+                    children: <Widget>[
+                     aguas(),
+                      WaterBoilerView(),
+                    ],
                   ),
                 ),
-                Expanded(
-                  child: Container(
-                    alignment: Alignment.center,
-               //     color: Colors.blue,
-                   child: BombaAgua(2),
-                  ),
-                )
               ],
             ),
     );
@@ -42,14 +42,15 @@ class _WaterLevelsViewState extends State<WaterLevelsView> {
 
 
   Widget aguas(){
-    return Container(
+    return MyContainer(
     //  color: Colors.purpleAccent,
-      margin: EdgeInsets.only(left: 150),
+      margin: EdgeInsets.only(right: SC.right(20)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          RowOfWaterTanks(),
-          RowOfWaterValves(),
+          RowOfWaterTanks1(),
+          RowOfWaterTanks2(),
         ],
       ),
     );
@@ -57,48 +58,37 @@ class _WaterLevelsViewState extends State<WaterLevelsView> {
 
 
 
-
-  Widget RowOfWaterTanks(){
-    return Container(
- //     color: Colors.red,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          AguasLimpias(2),
-          AguasSucias(2),
-          AguasNegras(2),
-        ],
-      ),
-    );
-  }
-
-  Widget RowOfWaterValves(){
+  Widget RowOfWaterTanks2(){
     return Container(
  //     color: Colors.blue,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          AguasLimpias(3),
-          AguasSucias(3),
-          AguasNegras(3),
+          AguasNegras(2),
+          BombaAgua(2),
+      //    AguasNegras(3),
         ],
       ),
     );
   }
 
 
-
-
-
-
-  Widget circulito2(size, color){
-    //this is base circle
+  Widget RowOfWaterTanks1(){
     return Container(
-      child: CustomPaint(painter: DrawCircle(size,color,PaintingStyle.stroke,3.0) ),
+      //     color: Colors.blue,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          AguasLimpias(2),
+          AguasSucias(2),
+          //    AguasNegras(3),
+        ],
+      ),
     );
   }
 
-Widget WaterValve(title){
+
+  Widget WaterValve(title){
   return
   Container(
   margin: EdgeInsets.all(10),
@@ -135,3 +125,4 @@ Widget WaterValve(title){
   );
 }
 }
+

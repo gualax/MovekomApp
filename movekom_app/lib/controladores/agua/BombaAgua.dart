@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/blocs/agua_blocs/bomba_agua_bloc.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
@@ -16,6 +18,7 @@ class BombaAgua extends StatelessWidget {
   BombaAgua(this.widgetType);
   @override
   Widget build(BuildContext context) {
+    SC().init(context);
     title = AppLocalizations.of(context)
         .translate("bomba_de_agua");
     final bomabaAguaBloc = BlocProvider.of<BombaAguaBloc>(context);
@@ -46,12 +49,12 @@ class BombaAgua extends StatelessWidget {
               colorTxt = Colors.grey;
             }
 
-            return Container(
-                margin: EdgeInsets.only(right: 150),
-                width: 220,
-                height: 250,
+            return MyContainer(
+                margin: EdgeInsets.all(SC.all(7)),
+                width: 200,
+                height: 210,
                 decoration: new BoxDecoration(
-                    color: MyColors.ContainerColor
+                    color: MyColors.baseColor
                 ),
                 child: Stack(
                     children: [
@@ -89,7 +92,6 @@ class BombaAgua extends StatelessWidget {
                         ),
                       ),
                       Positioned.fill(
-
                         /// OFF / ON
                         left: 10,
                         bottom: 4,
@@ -165,12 +167,12 @@ class BombaAgua extends StatelessWidget {
               colorButton = Colors.white;
               colorTxt = Colors.grey;
             }
-            return Container(
+            return MyContainer(
                 margin: EdgeInsets.all( 7),
                 width: 137,
                 height: 137,
                 decoration: new BoxDecoration(
-                    color: MyColors.ContainerColor
+                    color: MyColors.baseColor
                 ),
                 child: Stack(
                     children: [

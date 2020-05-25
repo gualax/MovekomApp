@@ -4,6 +4,7 @@ import 'package:movekomapp/Utils/SizeConfig.dart';
 import 'package:movekomapp/pantallas/Configuration/ConfigMenuPage.dart';
 import 'package:movekomapp/pantallas/ManualesPage/ManualesMenuPage.dart';
 import 'package:movekomapp/pantallas/ModesPage/ModesMenuPage.dart';
+import 'package:movekomapp/pantallas/Reles/ElectricityReleView.dart';
 import 'package:movekomapp/pantallas/Tools/ToolsMenuPage.dart';
 import 'package:movekomapp/pantallas/Warnings/WarningMenuPage.dart';
 import 'package:movekomapp/pantallas/ilumination/LigthsMenuPage.dart';
@@ -64,6 +65,11 @@ class _HomePageState extends State<HomePage> {
                 title: new Text(""),
               ),
               new BottomNavigationBarItem(
+                icon: iconSvg("assets/icons/rele_bar_icon.svg", true),
+                activeIcon: activeIcon("assets/icons/rele_bar_icon.svg"),
+                title: new Text(""),
+              ),
+              new BottomNavigationBarItem(
                 icon: iconSvg("assets/icons/gota_agua.svg",true),
                 activeIcon: activeIcon("assets/icons/gota_agua.svg"),
                 title: new Text(""),
@@ -98,42 +104,7 @@ class _HomePageState extends State<HomePage> {
                 activeIcon: activeIcon("assets/icons/config2.svg"),
                 title: new Text(""),
               ),
-              new BottomNavigationBarItem(
-                icon: iconSvg("assets/icons/360.svg", false),
-                title: new Text(""),
-              ),
-              new BottomNavigationBarItem(
-                icon: iconSvg("assets/icons/matafuego.svg", false),
-                title: new Text(""),
-              ),
-              new BottomNavigationBarItem(
-                icon: iconSvg("assets/icons/play.svg",false),
-                title: new Text(""),
-              ),
-              new BottomNavigationBarItem(
-                icon: iconSvg("assets/icons/volante.svg",false),
-                title: new Text(""),
-              ),
-              new BottomNavigationBarItem(
-                icon: iconSvg("assets/icons/candado.svg", false),
-                title: new Text(""),
-              ),
-              new BottomNavigationBarItem(
-                icon: iconSvg("assets/icons/slide_out.svg",false),
-                title: new Text(""),
-              ),
-              new BottomNavigationBarItem(
-                icon: iconSvg("assets/icons/suspension.svg",false),
-                title: new Text(""),
-              ),
-              new BottomNavigationBarItem(
-                icon: iconSvg("assets/images/tyre.svg", false),
-                title: new Text(""),
-              ),
-              new BottomNavigationBarItem(
-                icon: iconSvg("assets/images/capa_2.svg",false),
-                title: new Text(""),
-              ),
+
             ]),
         body: show(_currentIndex, context), // new
     );
@@ -145,6 +116,7 @@ class _HomePageState extends State<HomePage> {
       PrincipalHome(),
       ClimaPage(),
       ElectricityPage(),
+      ElectricitySettingsView(),
       WaterMenuPage(),
       LightsMenuPage(),
       ModesMenuPage(),
@@ -211,6 +183,7 @@ void changeBarTitle(index){
     "HOME",
     "CLIMA",
     "ELECTRICIDAD",
+    "ELECTRICIDAD",
     "AGUA",
     "ILUMINACION",
     "MODOS",
@@ -218,19 +191,19 @@ void changeBarTitle(index){
     "ACCESORIOS",
     "AVISOS",
     "AJUSTES",
-
   ];
   List<String> subtitles = [
-    " PANTALLA GENERAL",
-    " PANTALLA GENERAL",
-    " ESTADO DE BATERIAS",
-    " NIVELES DEPOSITOS Y VALVULAS",
-    " ILUMINACION",
-    " MODOS INTELIGENTES DE FUNCIONAMIENTO",
-    " MANUALES Y LIBROS DE INSTRUCCIONES",
-    " EQUIPOS ACCESORIOS DEL VEHICULO",
-    " REGISTRO DE AVERIAS Y FALLOS",
-    " AJUSTES DEL SISTEMA"
+    "   PANTALLA GENERAL",
+    "   EQUIPOS DE CLIMATIAZACION",
+    "   ESTADO DE BATERIAS",
+    "   AJUSTES Y CUADRO ELECTRICO",
+    "   NIVELES DEPOSITOS Y VALVULAS",
+    "   ILUMINACION",
+    "   MODOS INTELIGENTES DE FUNCIONAMIENTO",
+    "   MANUALES Y LIBROS DE INSTRUCCIONES",
+    "   EQUIPOS ACCESORIOS DEL VEHICULO",
+    "   REGISTRO DE AVERIAS Y FALLOS",
+    "   AJUSTES DEL SISTEMA"
   ];
   setBarTitle(titles[index], subtitles[index]);
 }

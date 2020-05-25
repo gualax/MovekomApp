@@ -73,7 +73,7 @@ class _BluetoothControllerState extends State<BluetoothController> {
        height: 200,
        width: 300,
        decoration: new BoxDecoration(
-          color: MyColors.ContainerColor
+          color: MyColors.baseColor
       ),
       child: Stack(
         children: <Widget>[

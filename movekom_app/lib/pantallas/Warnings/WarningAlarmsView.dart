@@ -52,7 +52,7 @@ class _WarningAlarmsViewState extends State<WarningAlarmsView> {
       height: 100,
       width: 900,
       decoration: new BoxDecoration(
-          color: MyColors.ContainerColor,
+          color: MyColors.baseColor,
       ),
     );
   }
@@ -61,7 +61,7 @@ class _WarningAlarmsViewState extends State<WarningAlarmsView> {
     return Container(
       height: 100, width: 100,
       decoration: new BoxDecoration(
-        color: MyColors.ContainerColor,
+        color: MyColors.baseColor,
       ),
     );
   }
@@ -70,7 +70,7 @@ class _WarningAlarmsViewState extends State<WarningAlarmsView> {
     return Container(
       height: 100, width: 100,
       decoration: new BoxDecoration(
-        color: MyColors.ContainerColor,
+        color: MyColors.baseColor,
       ),
     );
   }

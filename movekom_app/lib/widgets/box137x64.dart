@@ -65,7 +65,7 @@ Widget box137x64_carga(title,iconRoute,valueAh,state){
       width: SizeConf.wid(137),
       height: SizeConf.hei(64),
       decoration: new BoxDecoration(
-          color: MyColors.ContainerColor
+          color: MyColors.baseColor
       ), child: Stack(children: [
     Positioned.fill( /// icono
       left:SC.left(7),

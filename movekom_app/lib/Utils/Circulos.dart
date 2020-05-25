@@ -6,11 +6,12 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 
 import 'DrawCircle.dart';
 import 'MyColors.dart';
+import 'SC.dart';
 
 Widget circuloConSombra(dim,color){
   return Container(
-      width: dim,
-      height: dim,
+      width: SC.wid(dim),
+      height: SC.hei(dim),
       decoration: new BoxDecoration(
         shape: BoxShape.circle,
         color:color,
@@ -52,7 +53,7 @@ Widget circleIndicator(value, color){
     center: new Text((value).toString() +"%",
       style: MyTextStyle.estiloBold(20, Colors.white),),
     progressColor: color,
-    backgroundColor: MyColors.ContainerColor,
+    backgroundColor: MyColors.baseColor,
   );
 }
 
@@ -64,7 +65,7 @@ Widget circleIndicatorBateria(value, color,dim){
     center: new Text((value).toString() +"%",
       style: MyTextStyle.estiloBold(20, Colors.white),),
     progressColor: color,
-    backgroundColor: MyColors.ContainerColor,
+    backgroundColor: MyColors.baseColor,
   );
 }
 
@@ -78,7 +79,7 @@ Widget circleIndicator_big(value, color){
     center: new Text((value).toString() +"%",
       style: MyTextStyle.estiloBold(25, Colors.white),),
     progressColor: color,
-    backgroundColor: MyColors.ContainerColor,
+    backgroundColor: MyColors.baseColor,
   );
 }
 

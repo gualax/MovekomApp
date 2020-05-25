@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
 import 'package:movekomapp/blocs/iluminacion_blocs/dowligth_bloc.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/slider_theme.dart';
@@ -117,12 +118,12 @@ class Downligth extends StatelessWidget {
                   downlightBloc.add(Enable());
                 }
               },
-              child: Container(
+              child: MyContainer(
                 margin: EdgeInsets.all(5),
                 width: 66,
                 height: 137,
                 decoration: new BoxDecoration(
-                  color: MyColors.ContainerColor,
+                  color: MyColors.baseColor,
                 ),
                 child: Stack(
                   children: <Widget>[

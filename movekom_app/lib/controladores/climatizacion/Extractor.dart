@@ -2,7 +2,11 @@ import 'package:circle_list/circle_list.dart';
 import 'package:circle_list/radial_drag_gesture_detector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movekomapp/Utils/Circulos.dart';
+import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/blocs/climatizacion/extractor_bloc.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/flecha_indicador.dart';
@@ -40,22 +44,22 @@ class _ExtractorState extends State<Extractor> {
             on_off = "Presionar para encender";
           }
           return
-          Container(
-            margin: EdgeInsets.all(5),
-            width: 420,
+          MyContainer(
+            margin: EdgeInsets.all(SC.all(7)),
+            width: 380,
             height: 174,
             decoration: new BoxDecoration(
-                color: Color(0xff2d3033)
+                color: MyColors.baseColor
             ),
             child: Stack(
               children: <Widget>[
                 Positioned.fill(
-                    left: 10,
+                    left: 35,
                     top: 10,
                     child: Align(
                       alignment: Alignment.topLeft,
                       child: Text(title,
-                        style: MyTextStyle.estiloBold(30, colorText),),
+                        style: MyTextStyle.estiloBold(25, colorText),),
                     )
                 ),
                 Positioned.fill(
@@ -67,6 +71,14 @@ class _ExtractorState extends State<Extractor> {
                     )
                 ),
                 Positioned.fill(
+                    left: 10,
+                    top: 15,
+                    child: Align(
+                      alignment: Alignment.topLeft,
+                      child: circuloConSombra(15, colorImg),
+                    )
+                ),
+                Positioned.fill(
                     left: 30,
                     child: Align(
                       alignment: Alignment.center,
@@ -75,16 +87,16 @@ class _ExtractorState extends State<Extractor> {
                     )
                 ),
                 Positioned.fill(
-                    left: 30,
+                    left: 20,
                     bottom: 15,
                     child: Align(
                       alignment: Alignment.bottomCenter,
                       child: Text(on_off,
-                        style: MyTextStyle.estiloBold(20, colorText),),
+                        style: MyTextStyle.estiloBold(17, colorText),),
                     )
                 ),
                 Positioned(
-                  left: 360,
+                  left: 320,
                   bottom: 1, top: 1,
                   child: Align(
                     alignment: Alignment.center,
@@ -92,7 +104,7 @@ class _ExtractorState extends State<Extractor> {
                   ),
                 ),
                 Positioned(
-                 left: 360,
+                 left: 320,
                   top:13,
                   child: Align(
                     alignment: Alignment.center,
@@ -101,11 +113,10 @@ class _ExtractorState extends State<Extractor> {
                 ),
                 Positioned.fill(
                     right: 200,
-                    bottom: 5,
                     child: Align(
                       alignment: Alignment.bottomCenter,
                       child: IconButton(
-                        icon: Icon(Icons.power_settings_new), iconSize: 30,
+                        icon: Icon(Icons.power_settings_new), iconSize: 25,
                         color: colorIcon,
                         onPressed: () {
                           print("state" + state.isEnabled.toString());

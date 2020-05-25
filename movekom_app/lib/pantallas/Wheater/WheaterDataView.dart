@@ -58,7 +58,7 @@ class _WheaterDataViewState extends State<WheaterDataView> {
         width: 170,
         height: 135,
         decoration: new BoxDecoration(
-            color: MyColors.ContainerColor
+            color: MyColors.baseColor
         ),
         child: Stack(
           children: <Widget>[
@@ -122,7 +122,7 @@ class _WheaterDataViewState extends State<WheaterDataView> {
         width: 699,
         height: 160,
         decoration: new BoxDecoration(
-            color: MyColors.ContainerColor
+            color: MyColors.baseColor
         ),
         child: Center(
           child: Container(

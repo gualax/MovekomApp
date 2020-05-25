@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:movekomapp/pantallas/Water/WaterBoilerView.dart';
 import 'package:movekomapp/pantallas/Water/WaterLevelsView.dart';
 
+import 'WaterValvesView.dart';
+
 class WaterMenuPage extends StatefulWidget {
   @override
   _WaterMenuPageState createState() => _WaterMenuPageState();
@@ -45,7 +47,7 @@ class _WaterMenuPageState extends State<WaterMenuPage> {
   Widget show(int index, context) {
     List<Widget> _children = [
       WaterLevelsView(),
-      WaterBoilerView(),
+      WaterValvesView(),
     ];
     return _children[index];
   }
@@ -66,8 +68,8 @@ class _WaterMenuPageState extends State<WaterMenuPage> {
           unselectedLabelColor: Colors.white,
           labelColor: Colors.lightGreenAccent,
           tabs: [
-            Tab(text: "NIVELES"),
-            Tab(text: "BOILER"),
+            Tab(text: "AGUA"),
+            Tab(text: "VALVULAS"),
           ],
         ),
       ),

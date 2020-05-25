@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movekomapp/Utils/SC.dart';
 
 class MyTextStyle {
 
@@ -9,7 +10,7 @@ class MyTextStyle {
         fontWeight: FontWeight.w300,
         fontFamily: "Mada",
         fontStyle:  FontStyle.normal,
-        fontSize: dim
+        fontSize: SC.all(dim)
     );
   }
 
@@ -19,7 +20,7 @@ class MyTextStyle {
         fontWeight: FontWeight.bold,
         fontFamily: "Mada",
         fontStyle: FontStyle.normal,
-        fontSize: dim
+        fontSize: SC.all(dim),
     );
   }
   static TextStyle estiloBox(double dim,color) {
@@ -28,7 +29,7 @@ class MyTextStyle {
         fontWeight: FontWeight.bold,
         fontFamily: "Mada",
         fontStyle: FontStyle.normal,
-        fontSize: dim
+        fontSize: SC.all(dim)
     );
   }
 

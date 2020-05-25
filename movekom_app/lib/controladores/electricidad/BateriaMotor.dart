@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/Utils/SizeConf.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/bateria_motor_bloc.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
+import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
 
@@ -34,14 +37,14 @@ class BateriaMotor extends StatelessWidget {
         BlocBuilder<BateriaMotorBloc,BateriaMotorState>(
             builder: ( context, state) {
               if (state.isEnabled) {
-                color = Colors.lightGreen;
-                colorText = Colors.white;
+                color = MyColors.principalColor;
+                colorText = MyColors.textColor;
                 iconColor = color;
                 on_off_Text = "Pulsar para apagar bateria";
               } else {
-                color = Colors.grey;
-                colorText = Colors.grey;
-                iconColor = Colors.white;
+                color = MyColors.inactiveColor;
+                colorText = MyColors.inactiveColor;
+                iconColor = MyColors.textColor;
                 on_off_Text = "Pulsar para encender bateria";
               }
               return Container(
@@ -49,7 +52,7 @@ class BateriaMotor extends StatelessWidget {
                   width: 200,
                   height: 214,
                   decoration: new BoxDecoration(
-                      color: MyColors.ContainerColor
+                      color: MyColors.baseColor
                   ),
                   child: Stack(
                       children: [
@@ -156,37 +159,40 @@ class BateriaMotor extends StatelessWidget {
       return
         BlocBuilder<BateriaMotorBloc,BateriaMotorState>(
             builder: ( context, state) {
-              Color color;
+              Color color, colorText;
               if(state.isEnabled){
                 color = Colors.lightGreen;
+                colorText = MyColors.textColor;
               }else{
                 color = Colors.grey;
+                colorText = MyColors.inactiveColor;
+
               }
-              return Container(
-                  margin: EdgeInsets.all(7),
-                  width: SizeConf.x(110), //137
-                  height: SizeConf.y(180),
+              return MyContainer(
+                  margin: EdgeInsets.all(SC.all(7)),
+                  width: 137, //137
+                  height:137,
                   decoration: new BoxDecoration(
-                      color: MyColors.ContainerColor
+                      color: MyColors.baseColor
                   ),
                   child: Stack(
                       children: [
-                        Positioned.fill( /// icono bateria
-                          top: SizeConf.y(20),
+                        MyPositioned.fill( /// icono bateria
+                          top: 10,
                           child: Align(
                             alignment: Alignment.center,
                             child: circleIndicatorBatery_small(state.valueBat, color, SizeConf.all(50),SizeConf.all(90)),
                           ),
                         ),
-                        Positioned.fill(/// titulo
-                          top: SizeConf.y(4),
+                        MyPositioned.fill(/// titulo
+                          top:4,
                           child: Align(
                             alignment: Alignment.topCenter,
                             child: RichText(
                                 text: TextSpan(
                                     children: [
                                       TextSpan(
-                                          style: MyTextStyle.estiloBold(SizeConf.all(15), color),
+                                          style: MyTextStyle.estiloBold(15, colorText),
                                           text: title),
                                     ]
                                 )

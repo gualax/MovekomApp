@@ -34,7 +34,7 @@ bool isFisrtRender = true;
               child: CircleList(
                 centerWidget: animatedBoiler,
                 rotateMode: RotateMode.stopRotate,
-                outerRadius: 220,
+                outerRadius: 210,
                 innerRadius: 120,
                 origin: Offset(0, 0),
                 children:  _radialListItems(),

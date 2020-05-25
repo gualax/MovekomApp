@@ -54,7 +54,7 @@ class _WeatherBoxState extends State<WeatherBox> {
         height: 135,
         margin: EdgeInsets.only(left: 5, right: 5),
         decoration: new BoxDecoration(
-          color: MyColors.ContainerColor,
+          color: MyColors.baseColor,
         ),
         child: Stack(
           children: <Widget>[
@@ -133,7 +133,7 @@ Widget boxWithIndicator(){
       height: 135,
       margin: EdgeInsets.only(left: 5, right: 5),
       decoration: new BoxDecoration(
-     color: MyColors.ContainerColor,
+     color: MyColors.baseColor,
       ),
     child: Center(
       child: Container(
