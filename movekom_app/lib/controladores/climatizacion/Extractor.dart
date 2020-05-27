@@ -7,6 +7,7 @@ import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/blocs/climatizacion/extractor_bloc.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
+import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/flecha_indicador.dart';
@@ -18,7 +19,7 @@ class Extractor extends StatefulWidget {
 }
 
 class _ExtractorState extends State<Extractor> {
-  String title = "Extractor";
+  String title = "EXTRACTOR";
   ExtractorBloc bloc;
   @override
   Widget build(BuildContext context) {
@@ -33,14 +34,14 @@ class _ExtractorState extends State<Extractor> {
         builder: (context, state) {
           bloc = BlocProvider.of<ExtractorBloc>(context);
           if(state.isEnabled){
-            colorIcon = Colors.lightGreenAccent;
-            colorImg = Colors.lightGreenAccent;
-            colorText = Colors.white;
+            colorIcon = MyColors.principal;
+            colorImg = MyColors.principal;
+            colorText = MyColors.text;
             on_off = "Presionar para apagar";
           } else{
-            colorIcon = Colors.white;
-            colorImg = Colors.grey;
-            colorText = Colors.grey;
+            colorIcon = MyColors.text;
+            colorImg = MyColors.inactive;
+            colorText = MyColors.inactive;
             on_off = "Presionar para encender";
           }
           return
@@ -53,16 +54,16 @@ class _ExtractorState extends State<Extractor> {
             ),
             child: Stack(
               children: <Widget>[
-                Positioned.fill(
+                MyPositioned.fill(
                     left: 35,
                     top: 10,
                     child: Align(
                       alignment: Alignment.topLeft,
                       child: Text(title,
-                        style: MyTextStyle.estiloBold(25, colorText),),
+                        style: MyTextStyle.estiloBold(20, colorText),),
                     )
                 ),
-                Positioned.fill(
+                MyPositioned.fill(
                     left: 20,
                     top: 10,
                     child: Align(
@@ -70,7 +71,7 @@ class _ExtractorState extends State<Extractor> {
                       child: iconSvgD("assets/icons/fan.svg", colorImg, 70),
                     )
                 ),
-                Positioned.fill(
+                MyPositioned.fill(
                     left: 10,
                     top: 15,
                     child: Align(
@@ -78,7 +79,7 @@ class _ExtractorState extends State<Extractor> {
                       child: circuloConSombra(15, colorImg),
                     )
                 ),
-                Positioned.fill(
+                MyPositioned.fill(
                     left: 30,
                     child: Align(
                       alignment: Alignment.center,
@@ -86,7 +87,7 @@ class _ExtractorState extends State<Extractor> {
                         style: MyTextStyle.estiloBold(70, colorText),),
                     )
                 ),
-                Positioned.fill(
+                MyPositioned.fill(
                     left: 20,
                     bottom: 15,
                     child: Align(
@@ -95,28 +96,28 @@ class _ExtractorState extends State<Extractor> {
                         style: MyTextStyle.estiloBold(17, colorText),),
                     )
                 ),
-                Positioned(
+                MyPositioned(
                   left: 320,
                   bottom: 1, top: 1,
                   child: Align(
                     alignment: Alignment.center,
-                    child: calefa_indic_img(148.0),
+                    child: extractor_indic_img(148.0),
                   ),
                 ),
-                Positioned(
+                MyPositioned(
                  left: 320,
                   top:13,
                   child: Align(
                     alignment: Alignment.center,
-                    child: circularList(75.0,60.0),
+                    child: circularListExtractor(SC.all(75.0),SC.all(60)),
                   ),
                 ),
-                Positioned.fill(
-                    right: 200,
+                MyPositioned.fill(
+                    right: 200, top: 120,
                     child: Align(
                       alignment: Alignment.bottomCenter,
                       child: IconButton(
-                        icon: Icon(Icons.power_settings_new), iconSize: 25,
+                        icon: Icon(Icons.power_settings_new), iconSize: SC.all(25),
                         color: colorIcon,
                         onPressed: () {
                           print("state" + state.isEnabled.toString());
@@ -136,7 +137,7 @@ class _ExtractorState extends State<Extractor> {
   }
 
 
-  Widget circularList(outerRadius,innerRadius) {
+  Widget circularListExtractor(outerRadius,innerRadius) {
     double  _lastAngle, _radAngle;
     return
       BlocBuilder<ExtractorBloc,ExtractorState>(
@@ -148,13 +149,13 @@ class _ExtractorState extends State<Extractor> {
             _lastAngle = state.valueAngle;
             if(state.isEnabled){
               rotateMode = RotateMode.allRotate;
-              colorIndic = Colors.lightGreenAccent;
+              colorIndic = MyColors.principal;
             }else{
               rotateMode = RotateMode.stopRotate;
-              colorIndic = Colors.grey;
+              colorIndic = MyColors.inactive;
             }
             return
-              Container(
+              MyContainer(
                 child: Transform.rotate(
                   angle: 135,
                   child: CircleList(
@@ -181,7 +182,7 @@ class _ExtractorState extends State<Extractor> {
                     innerRadius: innerRadius,
                     origin: Offset(0, 0),
                     children: [
-                      flechaIndicador(_radAngle,35.0),
+                      flechaIndicador(_radAngle,40.0),
                     ],
                   ),
                 ),
@@ -192,8 +193,8 @@ class _ExtractorState extends State<Extractor> {
 
 
 
-  Widget calefa_indic_img(dim){
-    return Container(
+  Widget extractor_indic_img(dim){
+    return MyContainer(
         height: dim,
         width: dim,
         //margin: EdgeInsets.all(dim),

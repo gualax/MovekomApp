@@ -1,3 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="60" height="30" viewBox="0 0 60 30">
-  <text id="OFF" fill="#323232" font-size="30" font-family="Helvetica-Bold, Helvetica" font-weight="700"><tspan x="0" y="23">OFF</tspan></text>
-</svg>
+<svg height="30" viewBox="0 0 60 30" width="60" xmlns="http://www.w3.org/2000/svg"><text fill="#323232" font-family="Helvetica-Bold, Helvetica" font-size="30" font-weight="700"><tspan x="0" y="23">OFF</tspan></text></svg>

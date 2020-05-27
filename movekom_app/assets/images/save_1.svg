@@ -1,14 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="63" height="64.348" viewBox="0 0 63 64.348">
-    <defs>
-        <style>
-            .prefix__cls-1{fill:none;stroke:#fff}
-        </style>
-    </defs>
-    <g id="prefix__save_1_" data-name="save (1)" transform="translate(.5 .5)">
-        <path id="prefix__Trazado_365" d="M62.5 10.783v52.565H.5V0h51.217z" class="prefix__cls-1" data-name="Trazado 365" transform="translate(-.5)"/>
-        <path id="prefix__Rectángulo_1161" d="M0 0H41V28H0z" class="prefix__cls-1" data-name="Rectángulo 1161" transform="translate(10 35)"/>
-        <path id="prefix__Rectángulo_1162" d="M0 0H37.783V16.224H0z" data-name="Rectángulo 1162" transform="translate(11.435 36.043)" style="fill:#ebba16"/>
-        <path id="prefix__Trazado_477" d="M0 0h35v21H0z" class="prefix__cls-1" data-name="Trazado 477" transform="translate(12)"/>
-        <path id="prefix__Rectángulo_1164" d="M0 0H6V10H0z" data-name="Rectángulo 1164" transform="translate(36 6)" style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:2px;fill:none;stroke:#fff"/>
-    </g>
-</svg>
+<svg height="64.348" viewBox="0 0 63 64.348" width="63" xmlns="http://www.w3.org/2000/svg"><path d="m62.5 10.783v52.565h-62v-63.348h51.217z" fill="none" stroke="#fff" transform="translate(0 .5)"/><path d="m0 0h41v28h-41z" fill="none" stroke="#fff" transform="translate(10.5 35.5)"/><path d="m0 0h37.783v16.224h-37.783z" fill="#ebba16" transform="translate(11.935 36.543)"/><g fill="none" stroke="#fff"><path d="m0 0h35v21h-35z" transform="translate(12.5 .5)"/><path d="m0 0h6v10h-6z" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" transform="translate(36.5 6.5)"/></g></svg>

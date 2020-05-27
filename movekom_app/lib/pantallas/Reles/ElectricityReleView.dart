@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
+import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
 
@@ -17,8 +20,8 @@ class _ElectricitySettingsViewState extends State<ElectricitySettingsView> {
         children: <Widget>[
           Expanded(
             //flex: 2,
-            child: Container(
-              margin: EdgeInsets.only(left: 20),
+            child: MyContainer(
+              margin: EdgeInsets.only(left: SC.left(20)),
         //        color: Colors.lightGreen,
               alignment: Alignment.center,
               child: ajusteDeBateria(),
@@ -27,7 +30,7 @@ class _ElectricitySettingsViewState extends State<ElectricitySettingsView> {
           Expanded(
             flex: 3,
             child: Container(
-              margin: EdgeInsets.only(right: 20),
+              margin: EdgeInsets.only(right: SC.right(20)),
          //        color: Colors.blue,
               alignment: Alignment.center,
               child: releContainer(),
@@ -40,8 +43,8 @@ class _ElectricitySettingsViewState extends State<ElectricitySettingsView> {
 
 
   Widget releContainer(){
-    return Container (
-      margin: EdgeInsets.only(right: 80),
+    return MyContainer (
+      margin: EdgeInsets.only(right: SC.right(80)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -74,8 +77,8 @@ Widget releRow(){
 
 
 Widget rele(){
-  return Container(
-      margin: EdgeInsets.all(8),
+  return MyContainer(
+      margin: EdgeInsets.all(SC.all(8)),
       width: 83,
       height: 83,
       decoration: new BoxDecoration(
@@ -89,7 +92,7 @@ Widget rele(){
 
 
 Widget ajusteDeBateria(){
-    return Container(
+    return MyContainer(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -104,8 +107,8 @@ Widget ajusteDeBateria(){
 }
 
 Widget cargador(){
-    return Container(
-      margin: EdgeInsets.only(left: 50),
+    return MyContainer(
+      margin: EdgeInsets.only(left: SC.left(50)),
       height: 110,
       width: 200,
       decoration: new BoxDecoration(
@@ -113,13 +116,13 @@ Widget cargador(){
       ),
       child:  Stack(
         children: <Widget>[
-          Positioned.fill(
+          MyPositioned.fill(
               child: Align(
                 alignment: Alignment.center,
                 child: rectangulo(),
               )
           ),
-          Positioned.fill(
+          MyPositioned.fill(
               child: Align(
                 alignment: Alignment.topCenter,
                 child: Text("Tipo de bateria",
@@ -127,7 +130,7 @@ Widget cargador(){
                   textAlign: TextAlign.center,),
               )
           ),
-          Positioned.fill(
+          MyPositioned.fill(
               child: Align(
                 alignment: Alignment.center,
                 child: Text("AG",
@@ -141,7 +144,7 @@ Widget cargador(){
 }
 
 Widget rectangulo(){
-return Container(
+return MyContainer(
     height: 50,
     width:90,
   decoration:new BoxDecoration(
@@ -151,9 +154,9 @@ return Container(
 }
 
   Widget titleWidget(){
-    return Container(
-      padding: EdgeInsets.all(5),
-      margin: EdgeInsets.only(left: 50),
+    return MyContainer(
+      padding: EdgeInsets.all(SC.all(5)),
+      margin: EdgeInsets.only(left: SC.left(50)),
       height: 40,
       width:200,
       decoration:new BoxDecoration(

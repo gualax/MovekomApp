@@ -83,3 +83,16 @@ Widget circleIndicator_big(value, color){
   );
 }
 
+
+Widget indicadorCircularLleno(value, color,radius){
+  return CircularPercentIndicator(
+    radius: radius,
+    lineWidth: 12,
+    percent: (value)/100,
+    center: new Text((value).toString() +"%",
+      style: MyTextStyle.estiloBold(25, Colors.white),),
+    progressColor: color,
+    backgroundColor: MyColors.baseColor,
+  );
+}
+

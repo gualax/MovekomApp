@@ -54,26 +54,23 @@ class AguasNegras extends StatelessWidget {
           builder: ( context, state) {
             return MyContainer(
                 margin: EdgeInsets.all(SC.all(7)),
-                width: SizeConfig.h * 11,
-                height: SizeConfig.v * 18,
+                width: 130,
+                height: 130,
                 decoration: new BoxDecoration(
                     color: MyColors.baseColor
                 ),
                 child: Stack(
                     children: [
-                      Positioned.fill(/// Circulo
-                        top:  SizeConfig.v * 4,
-                        bottom: SizeConfig.v * 1,
-                        left: SizeConfig.h * 1,
-                        right: SizeConfig.h * 1,
+                      MyPositioned.fill(/// Circulo
+                        top: 27, bottom: 14,
                         child: Align(
                           alignment: Alignment.center,
                           child: agua_negra_Img(state.valueAmp),
                         ),
                       ),
                       // Valvulas (Todas)
-                      Positioned.fill(/// Titulo
-                        top: SizeConfig.v * 1,
+                      MyPositioned.fill(/// Titulo
+                        top: 5,
                         child: Align(
                           alignment: Alignment.topCenter,
                           child: RichText(
@@ -81,7 +78,7 @@ class AguasNegras extends StatelessWidget {
                                   children: [
                                     TextSpan(
                                         style: MyTextStyle.estiloBold(
-                                            SizeConfig.v * 2, Colors.white),
+                                            12, Colors.white),
                                         text: title
                                     ),
                                   ]
@@ -89,8 +86,8 @@ class AguasNegras extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Positioned.fill(/// value
-                        top: SizeConfig.v * 2.5,
+                      MyPositioned.fill(/// value
+                        top: 15,
                         child: Align(
                           alignment: Alignment.center,
                           child: RichText(
@@ -98,7 +95,7 @@ class AguasNegras extends StatelessWidget {
                                   children: [
                                     TextSpan(
                                         style: MyTextStyle.estiloBold(
-                                            SizeConfig.v * 3.5, Colors.white),
+                                            15, Colors.white),
                                         text: state.valueAmp.toString() + "%"
                                     ),
                                   ]

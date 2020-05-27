@@ -18,20 +18,20 @@ class _ElectricityPageState extends State<ElectricityPage> {
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       backgroundColor: Colors.black,
-        body: Container(
+        body: MyContainer(
          // color: Colors.blueGrey,
           margin: EdgeInsets.only(top: 25),
           child: Column(
           children: <Widget>[
               Expanded(
                 flex: 7,
-                child: Container(
+                child: MyContainer(
            //       color: Colors.yellowAccent,
                   child: show(_currentIndex, context),
                 ),
               ),
             Expanded(
-              child: Container(
+              child: MyContainer(
               //  color: Colors.blueGrey,
                 child: buttonTabTextMenu(),
               ),

@@ -193,32 +193,33 @@ class MyPositioned extends ParentDataWidget<Stack> {
     bool needsLayout = false;
 
     if (parentData.left != left) {
-      parentData.left = left;
+      parentData.left = SC.left(left);
       needsLayout = true;
     }
 
     if (parentData.top != top) {
-      parentData.top = top;
+      parentData.top = SC.top(top);
       needsLayout = true;
     }
 
     if (parentData.right != right) {
-      parentData.right = right;
+      print("MyPostioned : " + right.toString());
+      parentData.right = SC.right(right);
       needsLayout = true;
     }
 
     if (parentData.bottom != bottom) {
-      parentData.bottom = bottom;
+      parentData.bottom = SC.bot(bottom);
       needsLayout = true;
     }
 
     if (parentData.width != width) {
-      parentData.width = width;
+      parentData.width = SC.wid(width);
       needsLayout = true;
     }
 
     if (parentData.height != height) {
-      parentData.height = height;
+      parentData.height = SC.hei(height);
       needsLayout = true;
     }
 

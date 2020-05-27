@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
@@ -44,7 +45,7 @@ class _FechaWidgetState extends State<FechaWidget> {
   Widget box137x137_Fecha_Hora(){
     return
       MyContainer(
-          margin: EdgeInsets.all(7),
+          margin: EdgeInsets.all(SC.all(7)),
           width: 137,
           height: 137,
           decoration: new BoxDecoration(
@@ -56,7 +57,7 @@ class _FechaWidgetState extends State<FechaWidget> {
               bottom: 14,
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: iconSvgD("assets/icons/calendario.svg", Colors.white,30),
+                child: iconSvgD("assets/icons/calendario.svg", MyColors.text,30),
               ),
             ),
             // Valvulas (Todas)
@@ -68,7 +69,7 @@ class _FechaWidgetState extends State<FechaWidget> {
                     text: TextSpan(
                         children: [
                           TextSpan(
-                              style: MyTextStyle.estiloBold(15, Colors.white),
+                              style: MyTextStyle.estiloBold(15, MyColors.text),
                               text: "FECHA / HORA"
                           ),
                         ]
@@ -85,7 +86,7 @@ class _FechaWidgetState extends State<FechaWidget> {
                     text: TextSpan(
                         children: [
                           TextSpan(
-                            style: MyTextStyle.estilo(13, Colors.white),
+                            style: MyTextStyle.estilo(13, MyColors.text),
                             text: dateTime.day.toString() + " " + diaStr(dateTime.weekday),
                           ),
                         ]
@@ -101,7 +102,7 @@ class _FechaWidgetState extends State<FechaWidget> {
                     text: TextSpan(
                         children: [
                           TextSpan(
-                            style: MyTextStyle.estilo(40, Colors.white),
+                            style: MyTextStyle.estilo(40, MyColors.text),
                             text: dateTime.hour.toString() + ":" + dateTime.minute.toString(),
                           ),
                         ]

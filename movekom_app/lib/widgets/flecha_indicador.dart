@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'dart:math';
+
+import 'package:movekomapp/responsive_ui/mi_container.dart';
 
 Widget flechaIndicador(angle,dim){
   return Transform.rotate(
     angle:angle ,
     child: Transform.rotate(
       angle:  pi,
-      child: Container(
-        height: dim,
-          width: dim,
+      child: MyContainer(
+        height: SC.hei(dim),
+          width: SC.wid(dim),
           //margin: EdgeInsets.all(dim),
           decoration: new BoxDecoration(
             image: DecorationImage(

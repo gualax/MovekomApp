@@ -28,6 +28,7 @@ class _AireAcondicionadoState extends State<AireAcondicionado> {
   @override
   Widget build(BuildContext context) {
     SC().init(context);
+    acondicionadoBloc = BlocProvider.of<AireAcondicionadoBloc>(context);
     if (widget.widgetType == 1) {
       return _aireAcondWidget();
     } else {
@@ -43,16 +44,15 @@ class _AireAcondicionadoState extends State<AireAcondicionado> {
     return
       BlocBuilder<AireAcondicionadoBloc,AireAcondicionadoState>(
           builder: ( context, state) {
-           acondicionadoBloc = BlocProvider.of<AireAcondicionadoBloc>(context);
             if(state.isEnabled){
-              colorText = Colors.white;
-              colorButton = Colors.lightGreenAccent;
-              colorIcon = Colors.lightGreenAccent;
+              colorText = MyColors.text;
+              colorButton = MyColors.principal;
+              colorIcon = MyColors.principal;
               text_on_off = "Pulse para apagar";
             }else{
-              colorText = Colors.grey;
-              colorButton = Colors.white;
-              colorIcon = Colors.grey;
+              colorText = MyColors.inactive;
+              colorButton = MyColors.text;
+              colorIcon = MyColors.inactive;
               text_on_off = "Pulse para encender";
             }
             return MyContainer(
@@ -99,8 +99,8 @@ class _AireAcondicionadoState extends State<AireAcondicionado> {
                       )
                   ),
                   MyPositioned.fill(
-                      left: 30,
-                      bottom: 22,
+                      left: 5,
+                      bottom: 30,
                       child: Align(
                         alignment: Alignment.bottomCenter,
                         child: Text(text_on_off,
@@ -108,12 +108,11 @@ class _AireAcondicionadoState extends State<AireAcondicionado> {
                       )
                   ),
                   MyPositioned.fill(
-                      right: 170,
-                      bottom: 10,
+                      right: 230, top:300,
                       child: Align(
-                        alignment: Alignment.bottomCenter,
+                    //    alignment: Alignment.bottomCenter,
                         child: IconButton(
-                          icon: Icon(Icons.power_settings_new), iconSize: 30,
+                          icon: Icon(Icons.power_settings_new), iconSize: SC.all(30),
                           color: colorButton,
                           onPressed: () {
                             if(state.isEnabled){
@@ -144,7 +143,7 @@ class _AireAcondicionadoState extends State<AireAcondicionado> {
                     left: 270,
                     child: Align(
                       alignment: Alignment.center,
-                      child: circularList(acondicionadoBloc),
+                      child: circularListAA(SC.all(192),SC.all(150)),
                     ),
                   ),
                   MyPositioned(
@@ -152,7 +151,7 @@ class _AireAcondicionadoState extends State<AireAcondicionado> {
                     child: Align(
                       alignment: Alignment.bottomRight,
                       child:Text("15ºC",
-                        style: MyTextStyle.estiloBold(20, Colors.white),),
+                        style: MyTextStyle.estiloBold(20, MyColors.text),),
                     ),
                   ),
                   MyPositioned(
@@ -160,7 +159,7 @@ class _AireAcondicionadoState extends State<AireAcondicionado> {
                     child: Align(
                       alignment: Alignment.topRight,
                       child:Text("35ºC",
-                        style: MyTextStyle.estiloBold(20, Colors.white),),
+                        style: MyTextStyle.estiloBold(20, MyColors.text),),
                     ),
                   ),
                 ],
@@ -173,7 +172,7 @@ class _AireAcondicionadoState extends State<AireAcondicionado> {
 
 
 // (-pi, 0.0)
-  Widget circularList(acondicionadoBloc) {
+  Widget circularListAA(outerRadius,innerRadius) {
     double  _lastAngle, _radAngle;
     return
       BlocBuilder<AireAcondicionadoBloc,AireAcondicionadoState>(
@@ -184,10 +183,10 @@ class _AireAcondicionadoState extends State<AireAcondicionado> {
             _lastAngle = state.valueAngle;
             if(state.isEnabled){
               rotateMode = RotateMode.allRotate;
-              colorIndic = Colors.lightGreenAccent;
+              colorIndic = MyColors.principal;
             }else{
               rotateMode = RotateMode.stopRotate;
-              colorIndic = Colors.grey;
+              colorIndic = MyColors.inactive;
             }
             return
               MyContainer(
@@ -213,11 +212,11 @@ class _AireAcondicionadoState extends State<AireAcondicionado> {
                     },
                     rotateMode: rotateMode,
                     initialAngle:_radAngle,
-                    outerRadius: 192,
-                    innerRadius: 150,
+                    outerRadius: outerRadius,
+                    innerRadius: innerRadius,
                     origin: Offset(0, 0),
                     children: [
-                      flechaIndicador(_radAngle,55.0),
+                      flechaIndicador(_radAngle,60.0),
                     ],
                   ),
                 ),
@@ -262,12 +261,12 @@ class _AireAcondicionadoState extends State<AireAcondicionado> {
     return BlocBuilder<AireAcondicionadoBloc,AireAcondicionadoState>(
         builder: ( context, state) {
           if(state.isEnabled){
-            color = Colors.lightGreenAccent;
-            colorText = Colors.white;
+            color = MyColors.principal;
+            colorText = MyColors.text;
             on_off = "ON";
           } else {
-            color = Colors.grey;
-            colorText = Colors.grey;
+            color = MyColors.inactive;
+            colorText = MyColors.inactive;
             on_off = "OFF";
           }
           return  ClipRect(

@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
+import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/cargador_baterias_bloc.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
@@ -24,20 +25,20 @@ class CargadorBaterias extends StatelessWidget {
       BlocBuilder<CargadorBateriaBloc,CargadorBateriaState>(
         builder: ( context, state) {
           if(state.isEnabled){
-            iconColor =  Colors.lightGreen;
-            circleColor =  Colors.lightGreen;
-            colorTex = Colors.white;
+            iconColor =  MyColors.principal;
+            circleColor =  MyColors.principal;
+            colorTex = MyColors.text;
             on_off_Text = "Pulsar para apagar";
           }else{
-            colorTex = Colors.grey;
-            circleColor = Colors.grey;
-            iconColor = Colors.white;
+            colorTex = MyColors.inactive;
+            circleColor = MyColors.inactive;
+            iconColor = MyColors.text;
             on_off_Text = "Pulsar para encender";
           }
           return Container(
-            width: 350, height: 220,
+            width: 420, height: 220,
             decoration: new BoxDecoration(
-              color: Color(0xff2d3033),
+              color: MyColors.baseColor,
             ),
             child: Stack(
               children: <Widget>[

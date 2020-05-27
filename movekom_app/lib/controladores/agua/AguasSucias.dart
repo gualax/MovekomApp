@@ -23,11 +23,8 @@ class AguasSucias extends StatelessWidget {
     SizeConfig().init(context);
     title = AppLocalizations.of(context)
         .translate("aguas_sucias");
-
      aguasSuciasBloc = BlocProvider.of<AguasSuciasBloc>(context);
-
-
-
+     
     switch (widgetType){
       case 1:
         return aguas_sucias_principal();
@@ -56,28 +53,25 @@ class AguasSucias extends StatelessWidget {
     return
       BlocBuilder<AguasSuciasBloc,AguasSuciasState>(
           builder: ( context, state) {
-            return Container(
-                margin: EdgeInsets.all(SizeConfig.p * 0.7),
-                width: SizeConfig.h * 11,
-                height: SizeConfig.v * 18,
+            return MyContainer(
+                margin: EdgeInsets.all(SC.all(7)),
+                width: 130,
+                height: 130,
                 decoration: new BoxDecoration(
                     color: MyColors.baseColor
                 ),
                 child: Stack(
                     children: [
-                      Positioned.fill(/// Circulo
-                        top:  SizeConfig.v * 4,
-                        bottom: SizeConfig.v * 1,
-                        left: SizeConfig.h * 1,
-                        right: SizeConfig.h * 1,
+                      MyPositioned.fill(/// Circulo
+                        top: 27, bottom: 14,
                         child: Align(
                           alignment: Alignment.center,
                           child: agua_sucia_Img(state.valueAmp),
                         ),
                       ),
                       // Valvulas (Todas)
-                      Positioned.fill(/// Titulo
-                        top: SizeConfig.v * 1,
+                      MyPositioned.fill(/// Titulo
+                        top: 5,
                         child: Align(
                           alignment: Alignment.topCenter,
                           child: RichText(
@@ -85,7 +79,7 @@ class AguasSucias extends StatelessWidget {
                                   children: [
                                     TextSpan(
                                         style: MyTextStyle.estiloBold(
-                                            SizeConfig.v * 2, Colors.white),
+                                            12, MyColors.text),
                                         text: title
                                     ),
                                   ]
@@ -93,8 +87,8 @@ class AguasSucias extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Positioned.fill(/// value
-                        top: SizeConfig.v * 2.5,
+                      MyPositioned.fill(/// value
+                        top: 15,
                         child: Align(
                           alignment: Alignment.center,
                           child: RichText(
@@ -102,7 +96,7 @@ class AguasSucias extends StatelessWidget {
                                   children: [
                                     TextSpan(
                                         style: MyTextStyle.estiloBold(
-                                            SizeConfig.v * 3.5, Colors.white),
+                                            15, MyColors.text),
                                         text: state.valueAmp.toString() + "%"
                                     ),
                                   ]
@@ -150,7 +144,7 @@ class AguasSucias extends StatelessWidget {
                                   children: [
                                     TextSpan(
                                         style: MyTextStyle.estiloBold(
-                                            SizeConfig.v * 2.2, Colors.white),
+                                            SizeConfig.v * 2.2, MyColors.text),
                                         text: title
                                     ),
                                   ]
@@ -167,7 +161,7 @@ class AguasSucias extends StatelessWidget {
                                   children: [
                                     TextSpan(
                                         style: MyTextStyle.estiloBold(
-                                            SizeConfig.v * 5, Colors.white),
+                                            SizeConfig.v * 5, MyColors.text),
                                         text: state.valueAmp.toString() + "%"
                                     ),
                                   ]
@@ -188,11 +182,11 @@ class AguasSucias extends StatelessWidget {
       BlocBuilder<AguasSuciasBloc,AguasSuciasState>(
           builder: ( context, state) {
             if(state.isEnabled){
-              colorButton = Colors.lightGreenAccent;
-              colorImg = Colors.white;
+              colorButton = MyColors.principal;
+              colorImg = MyColors.text;
             }else{
-              colorImg = Colors.grey;
-              colorButton = Colors.white;
+              colorImg = MyColors.inactive;
+              colorButton = MyColors.text;
             }
             return MyContainer(
                 margin: EdgeInsets.all(10),
@@ -214,7 +208,7 @@ class AguasSucias extends StatelessWidget {
                                 children: [
                                   TextSpan(
                                       style: MyTextStyle.estiloBold(
-                                          15, Colors.white),
+                                          15, MyColors.text),
                                       text: "Aguas sucias"
                                   ),
                                 ]
@@ -231,7 +225,7 @@ class AguasSucias extends StatelessWidget {
                             height: 100,
                             width: 25,
                             decoration: new BoxDecoration(
-                              color:state.isEnabled?  Colors.grey : MyColors.baseColor,
+                              color:state.isEnabled?  MyColors.inactive : MyColors.baseColor,
                             ),
                           )
                       ),
@@ -270,7 +264,7 @@ class AguasSucias extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(text,
-                    style: MyTextStyle.estiloBold(15, Colors.white),),
+                    style: MyTextStyle.estiloBold(15, MyColors.text),),
                 ),
               ),
             );
@@ -296,7 +290,7 @@ class AguasSucias extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(text,
-                    style: MyTextStyle.estiloBold(15, Colors.white),),
+                    style: MyTextStyle.estiloBold(15, MyColors.text),),
                 ),
               ),
             );

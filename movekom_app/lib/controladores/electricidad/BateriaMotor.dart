@@ -37,115 +37,121 @@ class BateriaMotor extends StatelessWidget {
         BlocBuilder<BateriaMotorBloc,BateriaMotorState>(
             builder: ( context, state) {
               if (state.isEnabled) {
-                color = MyColors.principalColor;
-                colorText = MyColors.textColor;
+                color = MyColors.principal;
+                colorText = MyColors.text;
                 iconColor = color;
-                on_off_Text = "Pulsar para apagar bateria";
+                on_off_Text = "Desconectar";
               } else {
-                color = MyColors.inactiveColor;
-                colorText = MyColors.inactiveColor;
-                iconColor = MyColors.textColor;
-                on_off_Text = "Pulsar para encender bateria";
+                color = MyColors.inactive;
+                colorText = MyColors.inactive;
+                iconColor = MyColors.text;
+                on_off_Text = "Conectar";
               }
-              return Container(
-                  margin: EdgeInsets.all(5),
-                  width: 200,
-                  height: 214,
-                  decoration: new BoxDecoration(
-                      color: MyColors.baseColor
-                  ),
-                  child: Stack(
-                      children: [
-                        Positioned.fill(
-
-                          /// valor bateria
-                          right: 20,
-                          child: Align(
-                            alignment: Alignment.centerRight,
-                            child: circleIndicatorBatery_big(state.valueBat, color,56.0),
-                          ),
-                        ),
-                        Positioned.fill(
-
-                          /// titulo
-                          top: 4,
-                          left: 10,
-                          child: Align(
-                            alignment: Alignment.topLeft,
-                            child: RichText(
-                                text: TextSpan(
-                                    children: [
-                                      TextSpan(
-                                          style: MyTextStyle.estiloBold(
-                                              20, colorText),
-                                          text: title),
-                                    ]
-                                )
+              return GestureDetector(
+                onTap: (){
+                  if (state.isEnabled) {
+                    bateriaMotorBloc.add(DisableBatery());
+                  } else {
+                    bateriaMotorBloc.add(EnableBatery());
+                  }
+                },
+                child: MyContainer(
+                    margin: EdgeInsets.all(SC.all(5)),
+                    width: 200,
+                    height: 210,
+                    decoration: new BoxDecoration(
+                        color: MyColors.baseColor
+                    ),
+                    child: Stack(
+                        children: [
+                          MyPositioned.fill(
+                            /// valor bateria
+                            right: 20,
+                            child: Align(
+                              alignment: Alignment.centerRight,
+                              child: circleIndicatorBatery_big(state.valueBat, color,SC.all(56),SC.all(100)),
                             ),
                           ),
-                        ),
-                        Positioned.fill(
-
-                          /// valueVolt
-                          left: 7,
-                          bottom: 30,
-                          child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                                state.valueVolt.toString() + "V",
-                                style: MyTextStyle.estiloBold(16, colorText),
-                                textAlign: TextAlign.center
+                          MyPositioned.fill(
+                            /// titulo
+                            top: 4,
+                            left: 10,
+                            child: Align(
+                              alignment: Alignment.topLeft,
+                              child: RichText(
+                                  text: TextSpan(
+                                      children: [
+                                        TextSpan(
+                                            style: MyTextStyle.estiloBold(
+                                                20, colorText),
+                                            text: title),
+                                      ]
+                                  )
+                              ),
                             ),
                           ),
-                        ),
-                        Positioned.fill(
-
-                          ///  /// valueAmp
-                            top: 30,
+                          MyPositioned.fill(
+                            /// valueVolt
                             left: 7,
+                            bottom: 30,
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                  state.valueAmp.toString() + "A",
+                                  state.valueVolt.toString() + "V",
                                   style: MyTextStyle.estiloBold(16, colorText),
                                   textAlign: TextAlign.center
                               ),
-                            )
-                        ),
-                        Positioned.fill(
+                            ),
+                          ),
+                          MyPositioned.fill(
 
-                          ///  /// valueAmp
-                            bottom: 20,
-                            left: 30,
-                            child: Align(
-                              alignment: Alignment.bottomCenter,
-                              child: Text(
-                                  on_off_Text,
-                                  style: MyTextStyle.estiloBold(12, colorText),
-                                  textAlign: TextAlign.center
-                              ),
-                            )
-                        ),
-                        Positioned.fill(
-                            right: 170,
-                            bottom: 5,
-                            child: Align(
-                              alignment: Alignment.bottomCenter,
-                              child: IconButton(
-                                icon: Icon(Icons.power_settings_new),
-                                iconSize: 30,
-                                color: iconColor,
-                                onPressed: () {
-                                  if (state.isEnabled) {
-                                    bateriaMotorBloc.add(DisableBatery());
-                                  } else {
-                                    bateriaMotorBloc.add(EnableBatery());
-                                  }
-                                },
-                              ),
-                            )
-                        )
-                      ])
+                            ///  /// valueAmp
+                              top: 30,
+                              left: 7,
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                    state.valueAmp.toString() + "A",
+                                    style: MyTextStyle.estiloBold(16, colorText),
+                                    textAlign: TextAlign.center
+                                ),
+                              )
+                          ),
+                          MyPositioned.fill(
+
+                            ///  /// valueAmp
+                              bottom: 20,
+                              left: 30,
+                              child: Align(
+                                alignment: Alignment.bottomCenter,
+                                child: Text(
+                                    on_off_Text,
+                                    style: MyTextStyle.estiloBold(12, colorText),
+                                    textAlign: TextAlign.center
+                                ),
+                              )
+                          ),
+                          MyPositioned.fill(
+                              right: 170,
+                              bottom: 5,
+                              child: Align(
+                                alignment: Alignment.bottomCenter,
+                                child: IconButton(
+                                  icon: Icon(Icons.power_settings_new),
+                                  iconSize: SC.all(30),
+                                  color: iconColor,
+                                  onPressed: () {
+                                    if (state.isEnabled) {
+                                      bateriaMotorBloc.add(DisableBatery());
+                                    } else {
+                                      bateriaMotorBloc.add(EnableBatery());
+                                    }
+                                  },
+                                ),
+                              )
+                          )
+                        ])
+                ),
               );
             }
         );
@@ -162,10 +168,10 @@ class BateriaMotor extends StatelessWidget {
               Color color, colorText;
               if(state.isEnabled){
                 color = Colors.lightGreen;
-                colorText = MyColors.textColor;
+                colorText = MyColors.text;
               }else{
                 color = Colors.grey;
-                colorText = MyColors.inactiveColor;
+                colorText = MyColors.inactive;
 
               }
               return MyContainer(
@@ -208,13 +214,13 @@ class BateriaMotor extends StatelessWidget {
 
 
 
-    Widget circleIndicatorBatery_big(value,color,radius){
+    Widget circleIndicatorBatery_big(value,color,radius,innerRadius){
       return Container (
         child: Stack(
           alignment: Alignment.center,
           children: <Widget>[
             circulito(radius,color),
-            circleIndicator_big(value, color)
+            indicadorCircularLleno(value, color,innerRadius)
           ],
         ),
       );

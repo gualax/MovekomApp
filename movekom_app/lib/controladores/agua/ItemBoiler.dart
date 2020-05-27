@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/blocs/boiler_bloc.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
+import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
@@ -61,23 +63,23 @@ class _ItemBoilerState extends State<ItemBoiler> {
         alignment: Alignment.center,
         child: Stack(
           children: <Widget>[
-            Positioned.fill(
+            MyPositioned.fill(
               child:Align(
                   alignment: Alignment.center,
-                  child: iconSvgD(widget.listItem.iconRoute, _selected ? Colors.lightGreenAccent : Colors.white, 35)
+                  child: iconSvgD(widget.listItem.iconRoute, _selected ? MyColors.principal : MyColors.text, 35)
               ),
             ),
-            Positioned.fill(
+            MyPositioned.fill(
                 child: Align(
                   alignment: Alignment.topCenter,
-                  child: Text(widget.listItem.number.toString(),style: MyTextStyle.estiloBold(10, Colors.white),),
+                  child: Text(widget.listItem.number.toString(),style: MyTextStyle.estiloBold(10, MyColors.text),),
                 )
             ),
-            Positioned.fill(
+            MyPositioned.fill(
               top: 40,
                 child: Align(
                   alignment: Alignment.bottomCenter,
-                  child: Text(textoIcon,style: MyTextStyle.estiloBold(25, Colors.white),
+                  child: Text(textoIcon,style: MyTextStyle.estiloBold(25, MyColors.text),
                   textAlign: TextAlign.center),
                 )
             ),
@@ -105,31 +107,31 @@ class _ItemBoilerState extends State<ItemBoiler> {
             }else{
               textoIcon = widget.listItem.valueTemp.toString();
             }
-            return GestureDetector(
-              onTap: widget.onSelect,
-              child: Container(
-      width: 100,
-      height: 100,
-      alignment: Alignment.center,
-      child: Stack(
+        return GestureDetector(
+         onTap: widget.onSelect,
+         child: MyContainer(
+          width: 100,
+          height: 100,
+        alignment: Alignment.center,
+        child: Stack(
         children: <Widget>[
-          Positioned.fill(
+          MyPositioned.fill(
             child:Align(
                 alignment: Alignment.center,
-                child: iconSvgD(widget.listItem.iconRoute, _selected ? Colors.lightGreenAccent : Colors.white, 40)
+                child: iconSvgD(widget.listItem.iconRoute, _selected ? MyColors.principal : MyColors.text, 40)
             ),
           ),
-          Positioned.fill(
+          MyPositioned.fill(
               child: Align(
                 alignment: Alignment.topCenter,
-                child: Text(widget.listItem.number.toString(),style: MyTextStyle.estiloBold(10, Colors.white),),
+                child: Text(widget.listItem.number.toString(),style: MyTextStyle.estiloBold(10, MyColors.text),),
               )
           ),
-          Positioned.fill(
+          MyPositioned.fill(
               top: 40,
               child: Align(
                 alignment: Alignment.bottomCenter,
-                child: Text(textoIcon,style: MyTextStyle.estiloBold(25, Colors.white),
+                child: Text(textoIcon,style: MyTextStyle.estiloBold(25, MyColors.text),
                     textAlign: TextAlign.center),
               )
           ),
@@ -168,7 +170,7 @@ class widgetBoiler extends StatelessWidget {
       });
       return  ClipRect(
       child: MyContainer(
-          margin: EdgeInsets.all(7),
+          margin: EdgeInsets.all(SC.all(7)),
           width: 225,
           height: 140,
           decoration: BoxDecoration(
@@ -176,60 +178,60 @@ class widgetBoiler extends StatelessWidget {
           ),
           child: Stack(children: [
             // Valvulas (Todas)
-            Positioned.fill(  ///titulo
+            MyPositioned.fill(  ///titulo
               top: 4,
               left: 8,
               child:   Align(
                 alignment: Alignment.topLeft,
                 child: Text(
                   "Boiler",
-                  style: MyTextStyle.estiloBold(18, Colors.white),
+                  style: MyTextStyle.estiloBold(18, MyColors.text),
                 ),
               ),
             ),
-            Positioned.fill(/// circulito
+            MyPositioned.fill(/// circulito
                 top: 10, right: 10,
                 child: Align(
                   alignment: Alignment.topRight,
-                  child: circuloConSombra(17.0, Colors.lightGreenAccent),
+                  child: circuloConSombra(17.0, MyColors.principal),
                 )
             ),
-            Positioned.fill(    ///textAbajoIzq
+            MyPositioned.fill(    ///textAbajoIzq
               left: 8,
               bottom: 6,
               child: Align(
                 alignment: Alignment.bottomLeft,
                 child: Text(
                   "ON",
-                  style: MyTextStyle.estilo(18, Colors.lightGreenAccent),
+                  style: MyTextStyle.estilo(18, MyColors.principal),
                 ),
               ),
             ),
-            Positioned.fill(  ///textAbajoDer
+            MyPositioned.fill(  ///textAbajoDer
               right: 8,
               bottom: 6,
               child:  Align(
                 alignment: Alignment.bottomRight,
                 child: Text(
                   "Consumo " + "2.65" + "A",
-                  style: MyTextStyle.estilo(18, Colors.white),
+                  style: MyTextStyle.estilo(18, MyColors.text),
                 ),
               ),
             ),
-            Positioned.fill(  ///icon
+            MyPositioned.fill(  ///icon
               left: 25,
               child:  Align(
                 alignment: Alignment.centerLeft,
-                child: iconSvgD(itemBoiler.iconRoute, Colors.lightGreenAccent, 50),
+                child: iconSvgD(itemBoiler.iconRoute, MyColors.principal, 50),
               ),
             ),
-            Positioned.fill(  ///textValue
+            MyPositioned.fill(  ///textValue
               right: 30,
               child:  Align(
                 alignment: Alignment.centerRight,
                 child: Text(
                   itemBoiler.valueTemp.toString(),
-                  style: MyTextStyle.estiloBold(45, Colors.white),
+                  style: MyTextStyle.estiloBold(45, MyColors.text),
                 ),
               ),
             )

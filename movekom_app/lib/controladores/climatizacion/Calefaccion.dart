@@ -24,10 +24,11 @@ class Calefaccion extends StatefulWidget {
 class _CalefaccionState extends State<Calefaccion> {
   final String title = "CALEFACCION";
   bool isFisrtRender = true;
+  CalefaccionBloc calefaccionBloc;
   @override
   Widget build(BuildContext context) {
     SC().init(context);
-    final calefaccionBloc = BlocProvider.of<CalefaccionBloc>(context);
+     calefaccionBloc = BlocProvider.of<CalefaccionBloc>(context);
     if (widget.widgetType == 1) {
       return _calefaccionWidget();
     } else {
@@ -44,14 +45,14 @@ class _CalefaccionState extends State<Calefaccion> {
       BlocBuilder<CalefaccionBloc,CalefaccionState>(
           builder: ( context, state) {
             if(state.isEnabled){
-              colorText = Colors.white;
-              colorButton = Colors.lightGreenAccent;
-              colorIcon = Colors.lightGreenAccent;
+              colorText = MyColors.text;
+              colorButton = MyColors.principal;
+              colorIcon = MyColors.principal;
               text_on_off = "Pulse para apagar";
             }else{
-              colorText = Colors.grey;
-              colorButton = Colors.white;
-              colorIcon = Colors.grey;
+              colorText = MyColors.inactive;
+              colorButton = MyColors.text;
+              colorIcon = MyColors.inactive;
               text_on_off = "Pulse para encender";
             }
             return MyContainer(
@@ -98,8 +99,8 @@ class _CalefaccionState extends State<Calefaccion> {
                       )
                   ),
                   MyPositioned.fill(
-                      left: 30,
-                      bottom: 22,
+                      left: 5,
+                      bottom: 30,
                       child: Align(
                         alignment: Alignment.bottomCenter,
                         child: Text(text_on_off,
@@ -107,12 +108,11 @@ class _CalefaccionState extends State<Calefaccion> {
                       )
                   ),
                   MyPositioned.fill(
-                      right: 170,
-                      bottom: 10,
+                      right: 230, top:300,
                       child: Align(
-                        alignment: Alignment.bottomCenter,
+                     //   alignment: Alignment.bottomCenter,
                         child: IconButton(
-                          icon: Icon(Icons.power_settings_new), iconSize: 30,
+                          icon: Icon(Icons.power_settings_new), iconSize: SC.all(30),
                           color: colorButton,
                           onPressed: () {
                             if(state.isEnabled){
@@ -136,14 +136,14 @@ class _CalefaccionState extends State<Calefaccion> {
                     bottom: 14,
                     child: Align(
                       alignment: Alignment.center,
-                       child: calefa_indic_img(360.0),
+                       child: calefa_indic_img(SC.all(360)),
                     ),
                   ),
                   MyPositioned(
                     left: 270,
                     child: Align(
                       alignment: Alignment.center,
-                      child: circularList(calefaccionBloc),
+                      child: circularListCalefaccion(SC.all(192),SC.all(150)),
                     ),
                   ),
                   MyPositioned(
@@ -151,7 +151,7 @@ class _CalefaccionState extends State<Calefaccion> {
                     child: Align(
                       alignment: Alignment.bottomRight,
                       child:Text("15ºC",
-                        style: MyTextStyle.estiloBold(20, Colors.white),),
+                        style: MyTextStyle.estiloBold(20, MyColors.text),),
                     ),
                   ),
                   MyPositioned(
@@ -159,7 +159,7 @@ class _CalefaccionState extends State<Calefaccion> {
                     child: Align(
                       alignment: Alignment.topRight,
                       child:Text("35ºC",
-                        style: MyTextStyle.estiloBold(20, Colors.white),),
+                        style: MyTextStyle.estiloBold(20, MyColors.text),),
                     ),
                   ),
                 ],
@@ -172,7 +172,7 @@ class _CalefaccionState extends State<Calefaccion> {
 
 
 // (-pi, 0.0)
-  Widget circularList(calefaccionBloc) {
+  Widget circularListCalefaccion(outerRadius,innerRadius) {
     double  _lastAngle, _radAngle;
     return
       BlocBuilder<CalefaccionBloc,CalefaccionState>(
@@ -186,7 +186,7 @@ class _CalefaccionState extends State<Calefaccion> {
               colorIndic = Colors.lightGreenAccent;
             }else{
               rotateMode = RotateMode.stopRotate;
-              colorIndic = Colors.grey;
+              colorIndic = MyColors.inactive;
             }
             return
               MyContainer(
@@ -212,11 +212,11 @@ class _CalefaccionState extends State<Calefaccion> {
                     },
                     rotateMode: rotateMode,
                     initialAngle:_radAngle,
-                    outerRadius: 192,
-                    innerRadius: 150,
+                    outerRadius: outerRadius,
+                    innerRadius: innerRadius,
                     origin: Offset(0, 0),
                     children: [
-                      flechaIndicador(_radAngle,55.0),
+                      flechaIndicador(_radAngle,60.0),
                     ],
                   ),
                 ),
@@ -240,7 +240,7 @@ class _CalefaccionState extends State<Calefaccion> {
   }
 
   Widget calefa_indic_img(dim){
-    return Container(
+    return MyContainer(
             height: dim,
             width: dim,
             //margin: EdgeInsets.all(dim),
@@ -262,11 +262,11 @@ class _CalefaccionState extends State<Calefaccion> {
       builder: ( context, state) {
        if(state.isEnabled){
           color = Colors.lightGreenAccent;
-          colorText = Colors.white;
+          colorText = MyColors.text;
           on_off = "ON";
         } else {
-          color = Colors.grey;
-          colorText = Colors.grey;
+          color = MyColors.inactive;
+          colorText = MyColors.inactive;
           on_off = "OFF";
        }
     return  ClipRect(
@@ -279,7 +279,7 @@ class _CalefaccionState extends State<Calefaccion> {
           ),
           child: Stack(children: [
             // Valvulas (Todas)
-            Positioned.fill(  ///titulo
+            MyPositioned.fill(  ///titulo
               top: 4,
               left: 8,
               child:   Align(
@@ -290,14 +290,14 @@ class _CalefaccionState extends State<Calefaccion> {
                 ),
               ),
             ),
-            Positioned.fill(/// circulito
+            MyPositioned.fill(/// circulito
                 top: 10, right: 10,
                 child: Align(
                   alignment: Alignment.topRight,
                   child: circuloConSombra(17.0, color),
                 )
             ),
-            Positioned.fill(    ///textAbajoIzq
+            MyPositioned.fill(    ///textAbajoIzq
               left: 8,
               bottom: 6,
               child: Align(
@@ -308,7 +308,7 @@ class _CalefaccionState extends State<Calefaccion> {
                 ),
               ),
             ),
-            Positioned.fill(  ///textAbajoDer
+            MyPositioned.fill(  ///textAbajoDer
               right: 8,
               bottom: 6,
               child:  Align(
@@ -319,14 +319,14 @@ class _CalefaccionState extends State<Calefaccion> {
                 ),
               ),
             ),
-            Positioned.fill(  ///icon
+            MyPositioned.fill(  ///icon
               left: 25,
               child:  Align(
                 alignment: Alignment.centerLeft,
                 child: iconSvgD("assets/icons/fire.svg", color, 75),
               ),
             ),
-            Positioned.fill(  ///textValue
+            MyPositioned.fill(  ///textValue
               right: 20,
               child:  Align(
                 alignment: Alignment.centerRight,

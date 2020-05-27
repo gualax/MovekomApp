@@ -7,6 +7,7 @@ import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/blocs/agua_blocs/bomba_agua_bloc.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
+import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
@@ -39,14 +40,14 @@ class BombaAgua extends StatelessWidget {
           builder: ( context, state) {
             if (state.isEnabled) {
               txtState = "ON";
-              colorIcon = Colors.lightGreenAccent;
-              colorTxt = Colors.white;
-              colorButton = Colors.lightGreenAccent;
+              colorIcon = MyColors.principal;
+              colorTxt = MyColors.text;
+              colorButton = MyColors.principal;
             } else {
               txtState = "OFF";
-              colorIcon = Colors.grey;
-              colorButton = Colors.white;
-              colorTxt = Colors.grey;
+              colorIcon = MyColors.inactive;
+              colorButton = MyColors.text;
+              colorTxt = MyColors.inactive;
             }
 
             return MyContainer(
@@ -158,32 +159,32 @@ class BombaAgua extends StatelessWidget {
           builder: ( context, state) {
             if (state.isEnabled) {
               txtState = "ON";
-              colorIcon = Colors.lightGreenAccent;
-              colorTxt = Colors.white;
-              colorButton = Colors.lightGreenAccent;
+              colorIcon = MyColors.principal;
+              colorTxt = MyColors.text;
+              colorButton = MyColors.principal;
             } else {
               txtState = "OFF";
-              colorIcon = Colors.grey;
-              colorButton = Colors.white;
-              colorTxt = Colors.grey;
+              colorIcon = MyColors.inactive;
+              colorButton = MyColors.text;
+              colorTxt = MyColors.inactive;
             }
             return MyContainer(
-                margin: EdgeInsets.all( 7),
-                width: 137,
-                height: 137,
+                margin: EdgeInsets.all(7),
+                width: 130,
+                height: 130,
                 decoration: new BoxDecoration(
                     color: MyColors.baseColor
                 ),
                 child: Stack(
                     children: [
-                      Positioned.fill(/// circulito
+                      MyPositioned.fill(/// circulito
                           top: 10, right: 10,
                           child: Align(
                             alignment: Alignment.topRight,
                             child: circuloConSombra(12.0, colorIcon),
                           )
                       ),
-                      Positioned.fill(/// Icono
+                      MyPositioned.fill(/// Icono
                         bottom: 10,
                         child: Align(
                           alignment: Alignment.center,
@@ -192,7 +193,7 @@ class BombaAgua extends StatelessWidget {
                         ),
                       ),
                       // Valvulas (Todas)
-                      Positioned.fill(/// Titulo
+                      MyPositioned.fill(/// Titulo
                         top: 7,
                         left:5 ,
                         child: Align(
@@ -209,7 +210,7 @@ class BombaAgua extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Positioned.fill(/// OFF / ON
+                      MyPositioned.fill(/// OFF / ON
                         left: 10,
                         bottom: 4,
                         child: Align(
@@ -226,7 +227,7 @@ class BombaAgua extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Positioned.fill(///amp
+                      MyPositioned.fill(///amp
                         right: 10,
                         bottom: 4,
                         child: Align(
@@ -242,13 +243,13 @@ class BombaAgua extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Positioned.fill(
-                        top: 10,
+                      MyPositioned.fill(
+                        top: 85,
                           child: Align(
                             alignment: Alignment.bottomCenter,
                             child: IconButton(
                               icon: Icon(Icons.power_settings_new),
-                              iconSize: 20,
+                              iconSize: SC.all(20),
                               color: colorButton,
                               onPressed: () {
                                 if (state.isEnabled) {

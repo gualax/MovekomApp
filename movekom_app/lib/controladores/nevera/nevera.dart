@@ -1,10 +1,12 @@
+
+
+
 import 'package:circle_list/circle_list.dart';
 import 'package:circle_list/radial_drag_gesture_detector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
-import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/nevera_bloc.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
@@ -12,21 +14,20 @@ import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/flecha_indicador.dart';
 
-
 class Nevera extends StatefulWidget {
   @override
-  _NeveraState createState() => _NeveraState();
+  _ExtractorState createState() => _ExtractorState();
 }
 
-class _NeveraState extends State<Nevera> {
-  String title = "Nevera";
+class _ExtractorState extends State<Nevera> {
+  String title = "NEVERA";
   NeveraBloc bloc;
   @override
   Widget build(BuildContext context) {
-    return nevera_tools();
+    return extractor();
   }
 
-  Widget nevera_tools() {
+  Widget extractor() {
     Color colorIcon, colorImg, colorText;
     String on_off;
     return
@@ -34,24 +35,21 @@ class _NeveraState extends State<Nevera> {
           builder: (context, state) {
             bloc = BlocProvider.of<NeveraBloc>(context);
             if(state.isEnabled){
-              colorIcon = Colors.lightGreenAccent;
-              colorImg = Colors.lightGreenAccent;
-              colorText = Colors.white;
+              colorIcon = MyColors.principal;
+              colorImg = MyColors.principal;
+              colorText = MyColors.text;
               on_off = "Presionar para apagar";
             } else{
-              colorIcon = Colors.white;
-              colorImg = Colors.grey;
-              colorText = Colors.grey;
+              colorIcon = MyColors.text;
+              colorImg = MyColors.inactive;
+              colorText = MyColors.inactive;
               on_off = "Presionar para encender";
             }
-            return
-              MyContainer(
-                margin: EdgeInsets.all(SC.all(7)),
-                width: 380,
-                height: 174,
-                decoration: new BoxDecoration(
-                    color: MyColors.baseColor
-                ),
+            return MyContainer(
+              width: 420, height: 220,
+              decoration: new BoxDecoration(
+                color: MyColors.baseColor,
+              ),
                 child: Stack(
                   children: <Widget>[
                     MyPositioned.fill(
@@ -68,7 +66,7 @@ class _NeveraState extends State<Nevera> {
                         top: 10,
                         child: Align(
                           alignment: Alignment.centerLeft,
-                          child: iconSvgD("assets/icons/nevera.svg", colorImg, 70),
+                          child: iconSvgD("assets/icons/nevera.svg", colorImg, 90),
                         )
                     ),
                     MyPositioned.fill(
@@ -97,19 +95,19 @@ class _NeveraState extends State<Nevera> {
                         )
                     ),
                     MyPositioned(
-                      left: 320,
+                      left: 335,
                       bottom: 1, top: 1,
                       child: Align(
                         alignment: Alignment.center,
-                        child: calefa_indic_img(148.0),
+                        child: nevera_indic_img(200.0),
                       ),
                     ),
                     MyPositioned(
-                      left: 320,
-                      top:13,
+                      left: 335,
+                      top:35,
                       child: Align(
                         alignment: Alignment.center,
-                        child: circularList(75.0,60.0),
+                        child: circularList(75.0,55.0),
                       ),
                     ),
                     MyPositioned.fill(
@@ -149,16 +147,18 @@ class _NeveraState extends State<Nevera> {
             _lastAngle = state.valueAngle;
             if(state.isEnabled){
               rotateMode = RotateMode.allRotate;
-              colorIndic = Colors.lightGreenAccent;
+              colorIndic = MyColors.principal;
             }else{
               rotateMode = RotateMode.stopRotate;
-              colorIndic = Colors.grey;
+              colorIndic = MyColors.inactive;
             }
             return
-              Container(
+              MyContainer(
                 child: Transform.rotate(
                   angle: 135,
                   child: CircleList(
+                //    innerCircleColor: Colors.red,
+                 //   outerCircleColor:Colors.cyanAccent ,
                     dragAngleRange: DragAngleRange(-0.02, 0.02),
                     onDragUpdate: (PolarCoord updatedCord) {
                       _lastAngle = updatedCord.getAngle();
@@ -182,7 +182,7 @@ class _NeveraState extends State<Nevera> {
                     innerRadius: innerRadius,
                     origin: Offset(0, 0),
                     children: [
-                      flechaIndicador(_radAngle,35.0),
+                      flechaIndicador(_radAngle,40.0),
                     ],
                   ),
                 ),
@@ -193,14 +193,14 @@ class _NeveraState extends State<Nevera> {
 
 
 
-  Widget calefa_indic_img(dim){
-    return Container(
+  Widget nevera_indic_img(dim){
+    return MyContainer(
         height: dim,
         width: dim,
         //margin: EdgeInsets.all(dim),
         decoration: new BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/circulo_boiler_img.png"),
+            image: AssetImage("assets/images/nevera_rueda_img.png"),
             fit: BoxFit.contain,
           ),
         )

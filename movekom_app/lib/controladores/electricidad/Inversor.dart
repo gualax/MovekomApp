@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/inversor_bloc.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
+import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/indicador_rojo.dart';
@@ -35,24 +37,24 @@ Widget inversor_big(){
       builder: ( context, state) {
         inversorBloc = BlocProvider.of<InversorBloc>(context);
       if(state.isEnabled){
-        iconColor =  Colors.lightGreen;
-        circleColor =  Colors.lightGreen;
-        colorTex = Colors.white;
+        iconColor =  MyColors.principal;
+        circleColor =  MyColors.principal;
+        colorTex = MyColors.text;
         on_off_Text = "Pulsar para apagar";
       }else{
-        colorTex = Colors.grey;
-        circleColor = Colors.grey;
-        iconColor = Colors.white;
+        colorTex = MyColors.inactive;
+        circleColor = MyColors.inactive;
+        iconColor = MyColors.text;
         on_off_Text = "Pulsar para encender";
       }
-      return Container(
-        width: 350, height: 220,
+      return MyContainer(
+        width: 420, height: 220,
         decoration: new BoxDecoration(
           color: MyColors.baseColor,
         ),
         child: Stack(
           children: <Widget>[
-            Positioned.fill(
+            MyPositioned.fill(
                 left: 10, top: 10,
                 child: Align(
                   alignment: Alignment.topLeft,
@@ -60,21 +62,21 @@ Widget inversor_big(){
                     style: MyTextStyle.estiloBold(20, colorTex),),
                 )
             ),
-            Positioned.fill(
+            MyPositioned.fill(
                 child: Align(
                   alignment: Alignment.center,
                   child: Text(state.valueAmp.toString(),
                     style: MyTextStyle.estiloBold(60, colorTex),),
                 )
             ),
-            Positioned.fill(
+            MyPositioned.fill(
                 left: 20,
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: iconSvgD("assets/icons/cable.svg", colorTex, 60),
                 )
             ),
-            Positioned.fill(/// valueAmp
+            MyPositioned.fill(/// valueAmp
                 bottom: 20, left: 60,
                 child: Align(
                   alignment: Alignment.bottomLeft,
@@ -85,7 +87,7 @@ Widget inversor_big(){
                   ),
                 )
             ),
-            Positioned.fill(
+            MyPositioned.fill(
                 left: 15, bottom: 5,
                 child: Align(
                   alignment: Alignment.bottomLeft,
@@ -101,7 +103,7 @@ Widget inversor_big(){
                   },),
                 )
             ),
-            Positioned.fill(/// temporizacion
+            MyPositioned.fill(/// temporizacion
                 bottom: 20, left: 250, right: 20,
                 child: Align(
                   alignment: Alignment.bottomRight,
@@ -112,7 +114,7 @@ Widget inversor_big(){
                   ),
                 )
             ),
-            Positioned.fill(/// icono timer
+            MyPositioned.fill(/// icono timer
                 bottom: 42, right: 38,
                 child: Align(
                   alignment: Alignment.bottomRight,
@@ -126,14 +128,14 @@ Widget inversor_big(){
                   },),
                 )
             ),
-            Positioned.fill(/// circulito
+            MyPositioned.fill(/// circulito
                 top: 20, right: 20,
                 child: Align(
                   alignment: Alignment.topRight,
                   child: circuloConSombra(20.0, circleColor),
                 )
             ),
-            Positioned.fill(
+            MyPositioned.fill(
                 bottom: 40,
                 child: Align(
                   alignment: Alignment.center,
@@ -156,18 +158,18 @@ Widget inversor_big(){
       BlocBuilder<InversorBloc,InversorState>(
     builder: ( context, state) {
     if(state.isEnabled){
-      color = Colors.lightGreenAccent;
-      colorText = Colors.white;
+      color = MyColors.principal;
+      colorText = MyColors.text;
       on_off = "ON";
     }else{
-      color = Colors.grey;
-      colorText = Colors.grey;
+      color = MyColors.inactive;
+      colorText = MyColors.inactive;
       on_off = "OFF";
     }
 
     return  ClipRect(
       child: MyContainer(
-          margin: EdgeInsets.all(7),
+          margin: EdgeInsets.all(SC.all(7)),
           width: 225,
           height: 140,
           decoration: BoxDecoration(
@@ -175,7 +177,7 @@ Widget inversor_big(){
           ),
           child: Stack(children: [
             // Valvulas (Todas)
-            Positioned.fill(  ///titulo
+            MyPositioned.fill(  ///titulo
               top: 4,
               left: 8,
               child:   Align(
@@ -186,7 +188,7 @@ Widget inversor_big(){
                 ),
               ),
             ),
-            Positioned.fill(    ///textAbajoIzq
+            MyPositioned.fill(    ///textAbajoIzq
               left: 8,
               bottom: 6,
               child:  Align(
@@ -197,7 +199,7 @@ Widget inversor_big(){
                 ),
               ),
             ),
-            Positioned.fill(  ///textAbajoDer
+            MyPositioned.fill(  ///textAbajoDer
               right: 8,
               bottom: 6,
               child:  Align(
@@ -208,14 +210,14 @@ Widget inversor_big(){
                 ),
               ),
             ),
-            Positioned.fill(  ///icon
+            MyPositioned.fill(  ///icon
               left: 30,
               child:  Align(
                 alignment: Alignment.centerLeft,
                 child: iconSvgD("assets/icons/bat_enchufe.svg", color, 60),
               ),
             ),
-            Positioned.fill(    ///textAbajoIzq
+            MyPositioned.fill(    ///textAbajoIzq
               right: 65,
               child:  Align(
                 alignment: Alignment.centerRight,
@@ -225,7 +227,7 @@ Widget inversor_big(){
                 ),
               ),
             ),
-            Positioned.fill(    ///textAbajoIzq
+            MyPositioned.fill(    ///textAbajoIzq
               right: 20,top:10,
               child:  Align(
                 alignment: Alignment.centerRight,
@@ -235,7 +237,7 @@ Widget inversor_big(){
                 ),
               ),
             ),
-            Positioned.fill(/// circulito
+            MyPositioned.fill(/// circulito
                 top: 10, right: 10,
                 child: Align(
                   alignment: Alignment.topRight,

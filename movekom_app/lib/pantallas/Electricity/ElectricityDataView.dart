@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
 
@@ -10,7 +13,7 @@ class ElectricityDataView extends StatefulWidget {
 class _ElectricityDataViewState extends State<ElectricityDataView> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return MyContainer(
       child: electricityDatos(),
     );
   }
@@ -25,8 +28,6 @@ class _ElectricityDataViewState extends State<ElectricityDataView> {
           rowOfboxes(),
           rowOfboxes(),
           rowOfboxes(),
-          rowOfboxes(),
-
           //      graphic("GRAFICO DE CARGA"),
       //    graphic("GRAFICO DE DESCARGA"),
         ],
@@ -47,7 +48,7 @@ class _ElectricityDataViewState extends State<ElectricityDataView> {
 
 
   Widget rowOfboxes() {
-    return Container(
+    return MyContainer(
       //    color: Colors.green,
       margin: EdgeInsets.all(3),
       child: Row(
@@ -67,12 +68,12 @@ class _ElectricityDataViewState extends State<ElectricityDataView> {
   }
 
   Widget boxCarga() {
-    return Container(
-      margin: EdgeInsets.all(3),
+    return MyContainer(
+      margin: EdgeInsets.all(SC.all(3)),
       width: 137,
-      height: 67,
+      height: 65,
       decoration: new BoxDecoration(
-          color: Color(0xff2d3033)
+          color: MyColors.baseColor
       ),
       child: Stack(
         children: <Widget>[

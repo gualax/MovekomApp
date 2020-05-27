@@ -55,28 +55,25 @@ class AguasLimpias extends StatelessWidget {
       return
         BlocBuilder<AguasLimpiasBloc,AguasLimpiasState>(
             builder: ( context, state) {
-            return Container(
+            return MyContainer(
                 margin: EdgeInsets.all(SC.all(7)),
-                width: SizeConfig.h * 11,
-                height: SizeConfig.v * 18,
+                width: 130,
+                height: 130,
                 decoration: new BoxDecoration(
                     color: MyColors.baseColor
                 ),
                 child: Stack(
                     children: [
-                      Positioned.fill(/// Circulo
-                        top:  SizeConfig.v * 4,
-                        bottom: SizeConfig.v * 1,
-                        left: SizeConfig.h * 1,
-                        right: SizeConfig.h * 1,
+                      MyPositioned.fill(/// Circulo
+                        top: 27, bottom: 14,
                         child: Align(
                           alignment: Alignment.center,
                           child: agua_limpia_Img(state.valueAmp),
                         ),
                       ),
                       // Valvulas (Todas)
-                      Positioned.fill(/// Titulo
-                        top: SizeConfig.v * 1,
+                      MyPositioned.fill(/// Titulo
+                        top: 5,
                         child: Align(
                           alignment: Alignment.topCenter,
                           child: RichText(
@@ -84,7 +81,7 @@ class AguasLimpias extends StatelessWidget {
                                   children: [
                                     TextSpan(
                                         style: MyTextStyle.estiloBold(
-                                            SizeConfig.v * 2, Colors.white),
+                                            12, MyColors.text),
                                         text: title
                                     ),
                                   ]
@@ -92,8 +89,8 @@ class AguasLimpias extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Positioned.fill(/// value
-                        top: SizeConfig.v * 2.5,
+                      MyPositioned.fill(/// value
+                        top: 15,
                         child: Align(
                           alignment: Alignment.center,
                           child: RichText(
@@ -101,7 +98,7 @@ class AguasLimpias extends StatelessWidget {
                                   children: [
                                     TextSpan(
                                         style: MyTextStyle.estiloBold(
-                                            SizeConfig.v * 3.5, Colors.white),
+                                            18, MyColors.text),
                                         text: state.valueAmp.toString() + "%"
                                     ),
                                   ]
@@ -149,7 +146,7 @@ class AguasLimpias extends StatelessWidget {
                                   children: [
                                     TextSpan(
                                         style: MyTextStyle.estiloBold(
-                                            SizeConfig.v * 2.2, Colors.white),
+                                            SizeConfig.v * 2.2, MyColors.text),
                                         text: title
                                     ),
                                   ]
@@ -166,7 +163,7 @@ class AguasLimpias extends StatelessWidget {
                                   children: [
                                     TextSpan(
                                         style: MyTextStyle.estiloBold(
-                                            SizeConfig.v * 5, Colors.white),
+                                            SizeConfig.v * 5, MyColors.text),
                                         text: state.valueAmp.toString() + "%"
                                     ),
                                   ]
@@ -187,11 +184,11 @@ class AguasLimpias extends StatelessWidget {
       BlocBuilder<AguasLimpiasBloc,AguasLimpiasState>(
           builder: ( context, state) {
             if(state.isEnabled){
-              colorButton = Colors.lightGreenAccent;
-              colorImg = Colors.white;
+              colorButton = MyColors.principal;
+              colorImg = MyColors.text;
             }else{
-              colorImg = Colors.grey;
-              colorButton = Colors.white;
+              colorImg = MyColors.inactive;
+              colorButton = MyColors.text;
             }
           return Container(
               margin: EdgeInsets.all(10),
@@ -211,7 +208,7 @@ class AguasLimpias extends StatelessWidget {
                               children: [
                                 TextSpan(
                                     style: MyTextStyle.estiloBold(
-                                        15, Colors.white),
+                                        15, MyColors.text),
                                     text: "Aguas limpias"
                                 ),
                               ]
@@ -266,7 +263,7 @@ class AguasLimpias extends StatelessWidget {
             ),
               child: Center(
                 child: Text(text,
-                  style: MyTextStyle.estiloBold(15, Colors.white),),
+                  style: MyTextStyle.estiloBold(15, MyColors.text),),
               ),
           ),
           );
@@ -292,7 +289,7 @@ class AguasLimpias extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(text,
-                    style: MyTextStyle.estiloBold(15, Colors.white),),
+                    style: MyTextStyle.estiloBold(15, MyColors.text),),
                 ),
               ),
             );

@@ -15,6 +15,7 @@ import 'package:movekomapp/controladores/modos/ModoHighwayToHell.dart';
 import 'package:movekomapp/controladores/modos/ModoLimpiezaTuberias.dart';
 import 'package:movekomapp/controladores/modos/ModoParking.dart';
 import 'package:movekomapp/controladores/nevera/nevera.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
 
 class ToolsMenuPage extends StatefulWidget {
   @override
@@ -29,18 +30,60 @@ class _ToolsMenuPageState extends State<ToolsMenuPage> {
     SizeConfig().init(context);
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Container(
+      body: MyContainer(
+        padding: EdgeInsets.only(right: 125,left: 125),
+        margin: EdgeInsets.all(30),
         alignment: Alignment.center,
-        child: box(),
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          children: <Widget>[
+            rows1(),
+            rows2(),
+          ],
+        ),
       ),
     );
   }
 
+Widget rows1(){
+    return MyContainer(
+      margin: EdgeInsets.all(10),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Nevera(),
+          Inversor(2),
+        ],
+      ),
+    );
+}
+
+
+  Widget rows2(){
+    return MyContainer(
+      margin: EdgeInsets.all(10),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          CargadorBaterias(),
+          emptyBox(),
+        ],
+      ),
+    );
+  }
+
+  Widget emptyBox(){
+    return MyContainer(
+        width: 420, height: 220,
+    );
+  }
 
   Widget box(){
     return Container(
       padding: EdgeInsets.all(50),
-      margin: EdgeInsets.all(20),
+      margin: EdgeInsets.only(left: 80,right: 80,top:50,bottom: 50),
       child: GridView.count(
         childAspectRatio: 2.7,
         crossAxisCount: 2,

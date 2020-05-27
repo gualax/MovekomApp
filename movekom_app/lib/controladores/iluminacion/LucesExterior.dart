@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
 import 'package:movekomapp/blocs/iluminacion_blocs/luces_parque_bloc.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
@@ -45,14 +46,14 @@ class LucesExterior extends StatelessWidget {
                   right: SizeConfig.h * 3, bottom: SizeConfig.v * 2,
                   child: Align(
                     alignment: Alignment.centerRight,
-                    child: iconSvgD("assets/icons/park.svg", Colors.lightGreenAccent.withAlpha(state.valueDimer.round() + 20), 65),
+                    child: iconSvgD("assets/icons/park.svg", MyColors.principal.withAlpha(state.valueDimer.round() + 20), 65),
                   ),
                 ),
                 Positioned.fill(
                   left: SizeConfig.h * 3, bottom: SizeConfig.v * 1,
                   child: Align(
                     alignment: Alignment.centerLeft,
-                    child: iconSvgD("assets/icons/lampara.svg",  Colors.lightGreenAccent.withAlpha(state.valueDimer.round() + 20), 40),
+                    child: iconSvgD("assets/icons/lampara.svg",  MyColors.principal.withAlpha(state.valueDimer.round() + 20), 40),
                   ),
                 ),
                 Positioned.fill(
@@ -83,7 +84,7 @@ class LucesExterior extends StatelessWidget {
                       text: TextSpan(
                           children: [
                             TextSpan(
-                                style: MyTextStyle.estiloBold(SizeConfig.v * 2.6, Colors.white),
+                                style: MyTextStyle.estiloBold(SizeConfig.v * 2.6, MyColors.text),
                                 text: title),
                           ]
                       )
@@ -106,7 +107,7 @@ class LucesExterior extends StatelessWidget {
       builder: ( context, state) {
       lucesCocinaBloc = BlocProvider.of<LucesParqueBloc>(context);
       if(state.isEnabled ){
-        color = Colors.lightGreen;
+        color = MyColors.principal;
         text = "ON";
       }else {
         color = Colors.grey;
@@ -121,7 +122,7 @@ class LucesExterior extends StatelessWidget {
             }
         },
         child: MyContainer(
-           margin: EdgeInsets.all(5),
+           margin: EdgeInsets.all(SC.all(5)),
           width: 66,
           height: 137,
           decoration: new BoxDecoration(

@@ -2,7 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/cargador_220.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
+import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/amperimetro.dart';
@@ -19,58 +22,58 @@ class Cargador220 extends StatelessWidget {
     return
       BlocBuilder<Cargador220Bloc,Cargador220State>(
           builder: ( context, state) {
-          return Container(
+          return MyContainer(
             margin: EdgeInsets.all(5),
             width: 200,
-            height: 214,
+            height: 210,
             decoration: new BoxDecoration(
-                color: Color(0xff2d3033)
+                color: MyColors.baseColor
             ),
             child: Stack(
               children: <Widget>[
-                Positioned.fill(
+                MyPositioned.fill(
                   right: 10,
                   left: 10,
                   bottom: 20,
                   child: Align(
                     alignment: Alignment.topRight,
-                    child: amperimetroImg(state.valueAmp, 30.0),
+                    child: amperimetroImg(state.valueAmp, SC.all(30)),
                   ),
                 ),
-                Positioned.fill(
+                MyPositioned.fill(
                   top: 10,
                   left: 10,
                   child: Align(
                     alignment: Alignment.topLeft,
                     child: Text(title,
-                        style: MyTextStyle.estiloBold(20, MyColors.textColor)),
+                        style: MyTextStyle.estiloBold(20, MyColors.text)),
                   ),
                 ),
-                Positioned.fill(
+                MyPositioned.fill(
                   top: 10,
                   child: Align(
                     alignment: Alignment.center,
                     child: Text(
                         state.valueAmp.toString(),
-                        style: MyTextStyle.estiloBold(55, MyColors.textColor)),
+                        style: MyTextStyle.estiloBold(55, MyColors.text)),
                   ),
                 ),
-                Positioned.fill(
+                MyPositioned.fill(
                   top: 85,
                   child: Align(
                     alignment: Alignment.center,
                     child: Text(
-                        "Ah", style: MyTextStyle.estiloBold(30, MyColors.textColor)),
+                        "Ah", style: MyTextStyle.estiloBold(30, MyColors.text)),
                   ),
                 ),
-                Positioned.fill(
+                MyPositioned.fill(
                   left: 10,
                   bottom: 20,
                   child: Align(
                     alignment: Alignment.bottomLeft,
                     child: iconSvgD(
-                        "assets/icons/energy_2.svg", MyColors.principalColor,
-                        30.0),
+                        "assets/icons/energy_2.svg", MyColors.principal,
+                        30),
                   ),
                 ),
               ],

@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/FloatingMenu.dart';
@@ -58,8 +59,19 @@ void main(){
     ),
   );
 
+/*
   runApp(
-      MyApp(weatherRepository: weatherRepository)
+      DevicePreview(
+          child: MyApp(weatherRepository: weatherRepository)
+      )
+  );
+
+ */
+
+  runApp(
+      DevicePreview(
+        child: MyApp(weatherRepository: weatherRepository)
+     )
   );
 }
 
@@ -122,8 +134,9 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         initialRoute: '/',
-        routes: {
-          '/': (context) => HomePage(indexToShow:0),   //HomePage(indexToShow:0),
+          builder: DevicePreview.appBuilder,
+          routes: {
+         // '/': (context) => HomePage(indexToShow:0),   //HomePage(indexToShow:0),
           '/menus': (context) => FloatingMenu(),
           '/principal': (context) => PrincipalHome(),
         },
@@ -151,8 +164,8 @@ class MyApp extends StatelessWidget {
             }
           }
           return supportedLocales.first;
-        }
-      //  home: HomePage(title: 'Flutter Demo Home Page'),
+        },
+       home: HomePage(indexToShow:0),
       ),
     );
   }

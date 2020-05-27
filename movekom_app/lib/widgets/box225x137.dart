@@ -4,7 +4,9 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
+import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
@@ -220,23 +222,23 @@ Widget box225x140_add_device(){
     child: MyContainer(
       width: 225,
       height: 140,
-        margin: EdgeInsets.all(10),
+        margin: EdgeInsets.all(SC.all(10)),
         child: DottedBorder(
       dashPattern: [8, 4],
       strokeWidth: 2,
       color: Colors.white,
-      child: Container(
+      child: MyContainer(
             width: 225,
             height: 140,
             child: Stack(
               children: <Widget>[
-                Positioned.fill(
+                MyPositioned.fill(
                     child: Align(
                       alignment: Alignment.center,
                         child: Icon(Icons.add,size: 65,color: Colors.white,)
                     )
                 ),
-                Positioned.fill(
+                MyPositioned.fill(
                     child: Align(
                         alignment: Alignment.bottomCenter,
                         child: Text("AÑADIR DISPOSITIVO",
