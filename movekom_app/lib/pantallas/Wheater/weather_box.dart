@@ -163,7 +163,6 @@ Widget boxWithIndicator(){
       List<Placemark> p = await geolocator.placemarkFromCoordinates(
           position.latitude, position.longitude);
       Placemark place = p[0];
-      print(place.locality);
       setState(() {
         _currentAddress = place.administrativeArea;
         _weatherBloc.add(FetchWeather(city: place.administrativeArea,indexDay: widget.indexDay));

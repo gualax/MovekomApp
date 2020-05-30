@@ -5,6 +5,7 @@ import 'package:movekomapp/Utils/DrawCircle.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
+import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/aguas.dart';
@@ -227,23 +228,23 @@ Widget box137x137_Temperatura(context,title, valueHum, valueTemp){
             color: MyColors.baseColor
         ), child: Stack(
         children: [
-          Positioned.fill(
-            left: SC.left(7),
+          MyPositioned.fill(
+            left: 7,
             child: Align(
               alignment: Alignment.centerLeft,
-              child: iconSvgD("assets/images/temperature_1.svg", Colors.white,35),
+              child: iconSvgD("assets/images/temperature_1.svg", MyColors.text,35),
             ),
           ),
           // Valvulas (Todas)
-          Positioned.fill(   /// Texto del medio
-              left: SC.left(20),
+          MyPositioned.fill(   /// Texto del medio
+              left: 20,
               child:   Align(
                 alignment: Alignment.center,
                 child: RichText(
                     text: TextSpan(
                         children: [
                           TextSpan(
-                              style: MyTextStyle.estiloBold(36, Colors.white),
+                              style: MyTextStyle.estiloBold(36, MyColors.text),
                               text: valueTemp
                           ),
                         ]
@@ -251,15 +252,15 @@ Widget box137x137_Temperatura(context,title, valueHum, valueTemp){
                 ),
               ),
           ),
-          Positioned.fill(
-            top: SC.top(4),
+          MyPositioned.fill(
+            top: 4,
             child:   Align(
               alignment: Alignment.topCenter,
               child: RichText(
                   text: TextSpan(
                       children: [
                         TextSpan(
-                            style:MyTextStyle.estiloBold(15, Colors.white),
+                            style:MyTextStyle.estiloBold(15, MyColors.text),
                             text: title ),
                       ]
                   )
@@ -272,7 +273,7 @@ Widget box137x137_Temperatura(context,title, valueHum, valueTemp){
             start: SC.left(10),
             child:   Text(
                 "Humedad",
-                style: estilo(),
+                style: MyTextStyle.estilo(15, MyColors.text),
                 textAlign: TextAlign.center
             ),
           ),
@@ -281,7 +282,7 @@ Widget box137x137_Temperatura(context,title, valueHum, valueTemp){
               end: SC.right(10),
               child:   Text(
                   valueHum,
-                  style: estilo(),
+                  style: MyTextStyle.estilo(15, MyColors.text),
                   textAlign: TextAlign.center
               )
           )

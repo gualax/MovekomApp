@@ -6,7 +6,7 @@ import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
 class AmperimetroGeneral extends StatelessWidget {
-  String title = "Amperimetro general";
+  String title = "AMPERIMETRO GENERAL";
   @override
   Widget build(BuildContext context) {
     return amperimetro_general();
@@ -16,7 +16,7 @@ class AmperimetroGeneral extends StatelessWidget {
 
   Widget amperimetro_general(){
     return MyContainer(
-      margin: EdgeInsets.all(5),
+      margin: EdgeInsets.all(SC.all(5)),
       width: 410,
       height: 210,
       decoration: new BoxDecoration(
@@ -45,7 +45,7 @@ class AmperimetroGeneral extends StatelessWidget {
             left: 10,
             child: Align(
               alignment: Alignment.centerLeft,
-              child: img_rayito(SC.all(250)),
+              child: img_rayito(SC.all(120)),
             ),
           ),
           MyPositioned.fill(

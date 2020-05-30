@@ -45,91 +45,100 @@ class _ExtractorState extends State<Extractor> {
             on_off = "Presionar para encender";
           }
           return
-          MyContainer(
-            margin: EdgeInsets.all(SC.all(7)),
-            width: 380,
-            height: 174,
-            decoration: new BoxDecoration(
-                color: MyColors.baseColor
-            ),
-            child: Stack(
-              children: <Widget>[
-                MyPositioned.fill(
-                    left: 35,
-                    top: 10,
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(title,
-                        style: MyTextStyle.estiloBold(20, colorText),),
-                    )
-                ),
-                MyPositioned.fill(
-                    left: 20,
-                    top: 10,
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: iconSvgD("assets/icons/fan.svg", colorImg, 70),
-                    )
-                ),
-                MyPositioned.fill(
-                    left: 10,
-                    top: 15,
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: circuloConSombra(15, colorImg),
-                    )
-                ),
-                MyPositioned.fill(
-                    left: 30,
+          GestureDetector(
+            onTap: (){
+              if(state.isEnabled){
+                bloc.add(DisableExtractor());
+              }else{
+                bloc.add(EnableExtractor());
+              }
+            },
+            child: MyContainer(
+              margin: EdgeInsets.all(SC.all(7)),
+              width: 380,
+              height: 174,
+              decoration: new BoxDecoration(
+                  color: MyColors.baseColor
+              ),
+              child: Stack(
+                children: <Widget>[
+                  MyPositioned.fill(
+                      left: 35,
+                      top: 10,
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(title,
+                          style: MyTextStyle.estiloBold(20, colorText),),
+                      )
+                  ),
+                  MyPositioned.fill(
+                      left: 20,
+                      top: 10,
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: iconSvgD("assets/icons/fan.svg", colorImg, 70),
+                      )
+                  ),
+                  MyPositioned.fill(
+                      left: 10,
+                      top: 15,
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: circuloConSombra(15, colorImg),
+                      )
+                  ),
+                  MyPositioned.fill(
+                      left: 30,
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text(state.valueExt.toString(),
+                          style: MyTextStyle.estiloBold(70, colorText),),
+                      )
+                  ),
+                  MyPositioned.fill(
+                      left: 20,
+                      bottom: 15,
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text(on_off,
+                          style: MyTextStyle.estiloBold(17, colorText),),
+                      )
+                  ),
+                  MyPositioned(
+                    left: 320,
+                    bottom: 1, top: 1,
                     child: Align(
                       alignment: Alignment.center,
-                      child: Text(state.valueExt.toString(),
-                        style: MyTextStyle.estiloBold(70, colorText),),
-                    )
-                ),
-                MyPositioned.fill(
-                    left: 20,
-                    bottom: 15,
-                    child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Text(on_off,
-                        style: MyTextStyle.estiloBold(17, colorText),),
-                    )
-                ),
-                MyPositioned(
-                  left: 320,
-                  bottom: 1, top: 1,
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: extractor_indic_img(148.0),
+                      child: extractor_indic_img(148.0),
+                    ),
                   ),
-                ),
-                MyPositioned(
-                 left: 320,
-                  top:13,
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: circularListExtractor(SC.all(75.0),SC.all(60)),
-                  ),
-                ),
-                MyPositioned.fill(
-                    right: 200, top: 120,
+                  MyPositioned(
+                   left: 320,
+                    top:13,
                     child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: IconButton(
-                        icon: Icon(Icons.power_settings_new), iconSize: SC.all(25),
-                        color: colorIcon,
-                        onPressed: () {
-                          print("state" + state.isEnabled.toString());
-                          if(state.isEnabled){
-                            bloc.add(DisableExtractor());
-                          }else{
-                            bloc.add(EnableExtractor());
-                          }
-                        },),
-                    )
-                ),
-              ],
+                      alignment: Alignment.center,
+                      child: circularListExtractor(SC.all(75.0),SC.all(60)),
+                    ),
+                  ),
+                  MyPositioned.fill(
+                      right: 200, top: 120,
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: IconButton(
+                          icon: Icon(Icons.power_settings_new), iconSize: SC.all(25),
+                          color: colorIcon,
+                          onPressed: () {
+                            print("state" + state.isEnabled.toString());
+                            if(state.isEnabled){
+                              bloc.add(DisableExtractor());
+                            }else{
+                              bloc.add(EnableExtractor());
+                            }
+                          },),
+                      )
+                  ),
+                ],
+              ),
             ),
           );
         }

@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
 import 'package:movekomapp/blocs/iluminacion_blocs/luces_cocina_bloc.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
@@ -26,7 +27,7 @@ class LucesCocina extends StatelessWidget {
             width: SizeConfig.h * 17,
             height: SizeConfig.v * 19,
             decoration: new BoxDecoration(
-                color: Color(0xff2d3033)
+                color: MyColors.baseColor
             ),
             child: Stack(
               children: [

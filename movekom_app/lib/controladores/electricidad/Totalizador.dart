@@ -29,7 +29,7 @@ class Totalizador extends StatelessWidget {
                   text: TextSpan(
                       children: [
                         TextSpan(
-                            style:MyTextStyle.estiloBold(15, Colors.white),
+                            style:MyTextStyle.estiloBold(15, MyColors.text),
                             text: "Totalizador" ),
                       ]
                   )
@@ -57,7 +57,7 @@ class Totalizador extends StatelessWidget {
               child:  Align(
                 alignment: Alignment.center,
                 child:Text("20"+"Ah",
-                  style: MyTextStyle.estiloBold(30, Colors.white) ,),
+                  style: MyTextStyle.estiloBold(30, MyColors.text) ,),
               ),
             ),
           ])

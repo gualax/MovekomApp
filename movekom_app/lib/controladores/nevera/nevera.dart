@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/nevera_bloc.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
@@ -15,6 +16,9 @@ import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/flecha_indicador.dart';
 
 class Nevera extends StatefulWidget {
+  int widgetType;
+
+  Nevera(this.widgetType);
   @override
   _ExtractorState createState() => _ExtractorState();
 }
@@ -24,10 +28,15 @@ class _ExtractorState extends State<Nevera> {
   NeveraBloc bloc;
   @override
   Widget build(BuildContext context) {
-    return extractor();
+
+    if (widget.widgetType == 1) {
+      return nevera_principal();
+    } else {
+      return nevera_big();
+    }
   }
 
-  Widget extractor() {
+  Widget nevera_big() {
     Color colorIcon, colorImg, colorText;
     String on_off;
     return
@@ -45,91 +54,101 @@ class _ExtractorState extends State<Nevera> {
               colorText = MyColors.inactive;
               on_off = "Presionar para encender";
             }
-            return MyContainer(
-              width: 420, height: 220,
-              decoration: new BoxDecoration(
-                color: MyColors.baseColor,
-              ),
-                child: Stack(
-                  children: <Widget>[
-                    MyPositioned.fill(
-                        left: 35,
-                        top: 10,
-                        child: Align(
-                          alignment: Alignment.topLeft,
-                          child: Text(title,
-                            style: MyTextStyle.estiloBold(25, colorText),),
-                        )
-                    ),
-                    MyPositioned.fill(
-                        left: 20,
-                        top: 10,
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: iconSvgD("assets/icons/nevera.svg", colorImg, 90),
-                        )
-                    ),
-                    MyPositioned.fill(
-                        left: 10,
-                        top: 15,
-                        child: Align(
-                          alignment: Alignment.topLeft,
-                          child: circuloConSombra(15, colorImg),
-                        )
-                    ),
-                    MyPositioned.fill(
-                        left: 30,
+            return GestureDetector(
+              onTap: (){
+                print("state" + state.isEnabled.toString());
+                if(state.isEnabled){
+                  bloc.add(DisableNevera());
+                }else{
+                  bloc.add(EnableNevera());
+                }
+              },
+              child: MyContainer(
+                width: 420, height: 220,
+                decoration: new BoxDecoration(
+                  color: MyColors.baseColor,
+                ),
+                  child: Stack(
+                    children: <Widget>[
+                      MyPositioned.fill(
+                          left: 35,
+                          top: 10,
+                          child: Align(
+                            alignment: Alignment.topLeft,
+                            child: Text(title,
+                              style: MyTextStyle.estiloBold(25, colorText),),
+                          )
+                      ),
+                      MyPositioned.fill(
+                          left: 20,
+                          top: 10,
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: iconSvgD("assets/icons/nevera.svg", colorImg, 90),
+                          )
+                      ),
+                      MyPositioned.fill(
+                          left: 10,
+                          top: 15,
+                          child: Align(
+                            alignment: Alignment.topLeft,
+                            child: circuloConSombra(15, colorImg),
+                          )
+                      ),
+                      MyPositioned.fill(
+                          left: 30,
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Text(state.valueExt.toString(),
+                              style: MyTextStyle.estiloBold(70, colorText),),
+                          )
+                      ),
+                      MyPositioned.fill(
+                          left: 20,
+                          bottom: 15,
+                          child: Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Text(on_off,
+                              style: MyTextStyle.estiloBold(17, colorText),),
+                          )
+                      ),
+                      MyPositioned(
+                        left: 335,
+                        bottom: 1, top: 1,
                         child: Align(
                           alignment: Alignment.center,
-                          child: Text(state.valueExt.toString(),
-                            style: MyTextStyle.estiloBold(70, colorText),),
-                        )
-                    ),
-                    MyPositioned.fill(
-                        left: 20,
-                        bottom: 15,
-                        child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Text(on_off,
-                            style: MyTextStyle.estiloBold(17, colorText),),
-                        )
-                    ),
-                    MyPositioned(
-                      left: 335,
-                      bottom: 1, top: 1,
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: nevera_indic_img(200.0),
+                          child: nevera_indic_img(200.0),
+                        ),
                       ),
-                    ),
-                    MyPositioned(
-                      left: 335,
-                      top:35,
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: circularList(75.0,55.0),
-                      ),
-                    ),
-                    MyPositioned.fill(
-                        right: 200,
+                      MyPositioned(
+                        left: 335,
+                        top:35,
                         child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: IconButton(
-                            icon: Icon(Icons.power_settings_new), iconSize: 25,
-                            color: colorIcon,
-                            onPressed: () {
-                              print("state" + state.isEnabled.toString());
-                              if(state.isEnabled){
-                                bloc.add(DisableNevera());
-                              }else{
-                                bloc.add(EnableNevera());
-                              }
-                            },),
-                        )
-                    ),
-                  ],
+                          alignment: Alignment.center,
+                          child: circularList(75.0,55.0),
+                        ),
+                      ),
+                      MyPositioned.fill(
+                          right: 200,
+                          child: Align(
+                            alignment: Alignment.bottomCenter,
+                            child: IconButton(
+                              icon: Icon(Icons.power_settings_new), iconSize: 25,
+                              color: colorIcon,
+                              onPressed: () {
+                                print("state" + state.isEnabled.toString());
+                                if(state.isEnabled){
+                                  bloc.add(DisableNevera());
+                                }else{
+                                  bloc.add(EnableNevera());
+                                }
+                              },),
+                          )
+                      ),
+                    ],
+                  ),
                 ),
-              );
+            );
           }
       );
   }
@@ -208,4 +227,69 @@ class _ExtractorState extends State<Nevera> {
   }
 
 
-}
+  Widget nevera_principal() {
+    return
+      BlocBuilder<NeveraBloc, NeveraState>(
+         builder: (context, state) {
+        bloc = BlocProvider.of<NeveraBloc>(context);
+        return   MyContainer(
+        margin: EdgeInsets.all(SC.all(7)),
+        width: 137,
+        height: 137,
+        decoration: new BoxDecoration(
+        color: MyColors.baseColor
+        ), child: Stack(
+          children: <Widget>[
+            MyPositioned.fill(
+              top:5,
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: Text("NEVERA",
+                    style:MyTextStyle.estiloBold(15, MyColors.text)),
+                )
+            ),
+            MyPositioned.fill(
+                top:5, left: 15,
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: iconSvgD("assets/icons/nevera.svg", MyColors.principal, 60),
+                )
+            ),
+            MyPositioned.fill(
+                top:10, right: 10,
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: circuloConSombra(10, MyColors.principal),
+                )
+            ),
+            MyPositioned.fill(
+                top:10, right: 10,
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: circuloConSombra(10, MyColors.principal),
+                )
+            ),
+            MyPositioned.fill(
+                right: 20,
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(state.valueExt.toString(),
+                    style: MyTextStyle.estiloBold(30, MyColors.text) ,),
+                )
+            ),
+            MyPositioned.fill(
+                right: 20, bottom: 10,
+                child: Align(
+                  alignment: Alignment.bottomRight,
+                  child: Text("Cº",
+                    style: MyTextStyle.estiloBold(15, MyColors.text) ,),
+                )
+            )
+          ],
+      )
+      );
+        }
+      );
+  }
+
+  }

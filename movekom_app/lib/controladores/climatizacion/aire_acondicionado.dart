@@ -55,114 +55,123 @@ class _AireAcondicionadoState extends State<AireAcondicionado> {
               colorIcon = MyColors.inactive;
               text_on_off = "Pulse para encender";
             }
-            return MyContainer(
-              margin: EdgeInsets.all(SC.all(12)),
-              width: 380,
-              height: 388,
-              decoration: new BoxDecoration(
-                  color: MyColors.baseColor
-              ),
-              child: Stack(
-                children: <Widget>[
-                  MyPositioned.fill(
-                      left: 50,
-                      top: 15,
+            return GestureDetector(
+              onTap: (){
+                if(state.isEnabled){
+                  acondicionadoBloc.add(DisableAireAcondicionado());
+                }else{
+                  acondicionadoBloc.add(EnableAireAcondicionado());
+                }
+              },
+              child: MyContainer(
+                margin: EdgeInsets.all(SC.all(12)),
+                width: 380,
+                height: 388,
+                decoration: new BoxDecoration(
+                    color: MyColors.baseColor
+                ),
+                child: Stack(
+                  children: <Widget>[
+                    MyPositioned.fill(
+                        left: 50,
+                        top: 15,
+                        child: Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(title,
+                            style: MyTextStyle.estiloBold(25, colorText),),
+                        )
+                    ),
+                    MyPositioned.fill(
+                        bottom: 120,
+                        right: 40,
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Text("Temperature ºC",
+                            style: MyTextStyle.estiloBold(18, colorText),),
+                        )
+                    ),
+                    MyPositioned.fill(
+                        left: 20,
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Text(state.valueTemp.toString(),
+                            style: MyTextStyle.estiloBold(100, colorText),),
+                        )
+                    ),
+                    MyPositioned.fill(
+                        left: 20,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: iconSvgD(
+                              "assets/icons/fire.svg", colorIcon, 130),
+                        )
+                    ),
+                    MyPositioned.fill(
+                        left: 5,
+                        bottom: 30,
+                        child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Text(text_on_off,
+                            style: MyTextStyle.estiloBold(20, colorText),),
+                        )
+                    ),
+                    MyPositioned.fill(
+                        right: 230, top:300,
+                        child: Align(
+                      //    alignment: Alignment.bottomCenter,
+                          child: IconButton(
+                            icon: Icon(Icons.power_settings_new), iconSize: SC.all(30),
+                            color: colorButton,
+                            onPressed: () {
+                              if(state.isEnabled){
+                                acondicionadoBloc.add(DisableAireAcondicionado());
+                              }else{
+                                acondicionadoBloc.add(EnableAireAcondicionado());
+                              }
+                            },),
+                        )
+                    ),
+                    MyPositioned.fill(
+                      top: 22,
+                      left: 20,
                       child: Align(
                         alignment: Alignment.topLeft,
-                        child: Text(title,
-                          style: MyTextStyle.estiloBold(25, colorText),),
-                      )
-                  ),
-                  MyPositioned.fill(
-                      bottom: 120,
-                      right: 40,
+                        child: circuloConSombra(15.0, colorIcon),
+                      ),
+                    ),
+                    MyPositioned(
+                      left: 270,
+                      bottom: 14,
                       child: Align(
                         alignment: Alignment.center,
-                        child: Text("Temperature ºC",
-                          style: MyTextStyle.estiloBold(18, colorText),),
-                      )
-                  ),
-                  MyPositioned.fill(
-                      left: 20,
+                        child: aire_acond_indic_img(360.0),
+                      ),
+                    ),
+                    MyPositioned(
+                      left: 270,
                       child: Align(
                         alignment: Alignment.center,
-                        child: Text(state.valueTemp.toString(),
-                          style: MyTextStyle.estiloBold(100, colorText),),
-                      )
-                  ),
-                  MyPositioned.fill(
-                      left: 20,
+                        child: circularListAA(SC.all(192),SC.all(150)),
+                      ),
+                    ),
+                    MyPositioned(
+                      bottom: 10, right: 10,
                       child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: iconSvgD(
-                            "assets/icons/fire.svg", colorIcon, 130),
-                      )
-                  ),
-                  MyPositioned.fill(
-                      left: 5,
-                      bottom: 30,
+                        alignment: Alignment.bottomRight,
+                        child:Text("15ºC",
+                          style: MyTextStyle.estiloBold(20, MyColors.text),),
+                      ),
+                    ),
+                    MyPositioned(
+                      top: 10, right: 10,
                       child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Text(text_on_off,
-                          style: MyTextStyle.estiloBold(20, colorText),),
-                      )
-                  ),
-                  MyPositioned.fill(
-                      right: 230, top:300,
-                      child: Align(
-                    //    alignment: Alignment.bottomCenter,
-                        child: IconButton(
-                          icon: Icon(Icons.power_settings_new), iconSize: SC.all(30),
-                          color: colorButton,
-                          onPressed: () {
-                            if(state.isEnabled){
-                              acondicionadoBloc.add(DisableAireAcondicionado());
-                            }else{
-                              acondicionadoBloc.add(EnableAireAcondicionado());
-                            }
-                          },),
-                      )
-                  ),
-                  MyPositioned.fill(
-                    top: 22,
-                    left: 20,
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: circuloConSombra(15.0, colorIcon),
+                        alignment: Alignment.topRight,
+                        child:Text("35ºC",
+                          style: MyTextStyle.estiloBold(20, MyColors.text),),
+                      ),
                     ),
-                  ),
-                  MyPositioned(
-                    left: 270,
-                    bottom: 14,
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: aire_acond_indic_img(360.0),
-                    ),
-                  ),
-                  MyPositioned(
-                    left: 270,
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: circularListAA(SC.all(192),SC.all(150)),
-                    ),
-                  ),
-                  MyPositioned(
-                    bottom: 10, right: 10,
-                    child: Align(
-                      alignment: Alignment.bottomRight,
-                      child:Text("15ºC",
-                        style: MyTextStyle.estiloBold(20, MyColors.text),),
-                    ),
-                  ),
-                  MyPositioned(
-                    top: 10, right: 10,
-                    child: Align(
-                      alignment: Alignment.topRight,
-                      child:Text("35ºC",
-                        style: MyTextStyle.estiloBold(20, MyColors.text),),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             );
           }

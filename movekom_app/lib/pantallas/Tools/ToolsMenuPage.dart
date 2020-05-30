@@ -52,7 +52,7 @@ Widget rows1(){
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Nevera(),
+          Nevera(2),
           Inversor(2),
         ],
       ),
@@ -92,7 +92,7 @@ Widget rows1(){
         children:[
           Inversor(2),
           CargadorBaterias(),
-          Nevera(),
+          Nevera(2),
         ]
       ),
     );

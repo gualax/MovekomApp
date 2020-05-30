@@ -14,7 +14,7 @@ import 'package:movekomapp/widgets/MyTextStyle.dart';
 
 class BateriaMotor extends StatelessWidget {
   int widgetType;
-  final String title = "Bateria Motor";
+  final String title = "BATERIA MOTOR";
 
   BateriaMotor(this.widgetType);
   @override
@@ -83,7 +83,7 @@ class BateriaMotor extends StatelessWidget {
                                       children: [
                                         TextSpan(
                                             style: MyTextStyle.estiloBold(
-                                                20, colorText),
+                                                17, colorText),
                                             text: title),
                                       ]
                                   )
@@ -187,13 +187,13 @@ class BateriaMotor extends StatelessWidget {
                           top: 10,
                           child: Align(
                             alignment: Alignment.center,
-                            child: circleIndicatorBatery_small(state.valueBat, color, SizeConf.all(50),SizeConf.all(90)),
+                            child: circleIndicatorBatery_small(state.valueBat, color, SizeConf.all(45),SizeConf.all(85)),
                           ),
                         ),
                         MyPositioned.fill(/// titulo
-                          top:4,
+                          top:4, left:5,
                           child: Align(
-                            alignment: Alignment.topCenter,
+                            alignment: Alignment.topLeft,
                             child: RichText(
                                 text: TextSpan(
                                     children: [

@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
 import 'package:movekomapp/blocs/modos_blocs/modo_antiheladas_bloc.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
+import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
@@ -25,23 +28,23 @@ class ModoAntiHeladasBasico extends StatelessWidget {
           builder: ( context, state) {
             final modoEcoBloc = BlocProvider.of<ModoAntiHeladasBasicoBloc>(context);
             if(state.isEnabled){
-              colorIcon = Colors.lightGreenAccent;
-              colorIndic = Colors.lightGreenAccent;
+              colorIcon = MyColors.principal;
+              colorIndic = MyColors.principal;
             }else{
               colorIcon = Colors.white;
               colorIndic = Colors.grey;
             }
 
-            return Container(
-              margin: EdgeInsets.only(top: 10, left: 15, right: 15),
-              width: SizeConfig.h * 17,
-              height: SizeConfig.v * 34,
+            return MyContainer(
+              margin: EdgeInsets.only(top: SC.top(10), left: SC.left(15), right: SC.right(15)),
+              width: 210,
+              height: 250,
               decoration: new BoxDecoration(
                   color: MyColors.baseColor
               ),
               child: Stack(
                 children: <Widget>[
-                  Positioned.fill(
+                  MyPositioned.fill(
                       left: 10, top: 5,
                       child: Align(
                         alignment: Alignment.topLeft,
@@ -49,27 +52,27 @@ class ModoAntiHeladasBasico extends StatelessWidget {
                           title, style: MyTextStyle.estilo(17, Colors.white),),
                       )
                   ),
-                  Positioned.fill(
+                  MyPositioned.fill(
                       top: 10, right: 10,
                       child: Align(
                         alignment: Alignment.topRight,
                         child: circuloConSombra(17.0, colorIndic),
                       )
                   ),
-                  Positioned.fill(
+                  MyPositioned.fill(
                       bottom: 75, left: 20,
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: iconSvgD("assets/icons/modo_antiheladas.svg", colorIndic, 55),
                       )
                   ),
-                  Positioned.fill(
+                  MyPositioned.fill(
                       left: 10,
                       child: Align(
                         alignment: Alignment.bottomLeft,
                         child: IconButton(
                           icon: Icon(Icons.power_settings_new),
-                          iconSize: 30,
+                          iconSize: SC.all(30),
                           color: colorIcon,
                           onPressed: () {
                             if(state.isEnabled){
@@ -81,7 +84,7 @@ class ModoAntiHeladasBasico extends StatelessWidget {
                         ),
                       )
                   ),
-                  Positioned.fill(
+                  MyPositioned.fill(
                       bottom: 15, left: 15,
                       child: Align(
                         alignment: Alignment.bottomCenter,
@@ -89,19 +92,19 @@ class ModoAntiHeladasBasico extends StatelessWidget {
                           style: MyTextStyle.estilo(12, Colors.white),),
                       )
                   ),
-                  Positioned.fill(
+                  MyPositioned.fill(
                       right: 20, bottom: 75,
                       child: Align(
                         alignment: Alignment.centerRight,
                         child: IconButton(
                           icon: Icon(Icons.access_time),
-                          iconSize: 30,
+                          iconSize: SC.all(30),
                           color: Colors.grey,
                           onPressed: () {},
                         ),
                       )
                   ),
-                  Positioned.fill(
+                  MyPositioned.fill(
                       top: 75,
                       child: Align(
                         alignment: Alignment.center,

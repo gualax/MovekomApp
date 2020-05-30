@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
 import 'package:movekomapp/controladores/modos/ModoAhorroEnergia.dart';
 import 'package:movekomapp/controladores/modos/ModoAntiHeladasAuto.dart';
@@ -13,6 +14,7 @@ import 'package:movekomapp/controladores/modos/ModoLimpiezaTuberias.dart';
 import 'package:movekomapp/controladores/modos/ModoParking.dart';
 import 'package:movekomapp/pantallas/Warnings/WarningAlarmsView.dart';
 import 'package:movekomapp/pantallas/Warnings/WarningHistoryView.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
 
 class WarningMenuPage extends StatefulWidget {
   @override
@@ -29,20 +31,20 @@ class _WarningMenuPageState extends State<WarningMenuPage> {
     return
       Scaffold(
         backgroundColor: Colors.black,
-        body:  Container(
+        body:  MyContainer(
           // color: Colors.blueGrey,
-            margin: EdgeInsets.only(top: 10),
+            margin: EdgeInsets.only(top: SC.top(10)),
             child: Column(
               children: <Widget>[
                 Expanded(
-                  child: Container(
+                  child: MyContainer(
                 //    color: Colors.yellowAccent,
                     child: buttonTabTextMenu(),
                   ),
                 ),
                 Expanded(
                   flex: 7,
-                  child: Container(
+                  child: MyContainer(
                  //    color: Colors.blueGrey,
                     child: show(_currentIndex, context),
                   ),
@@ -52,7 +54,6 @@ class _WarningMenuPageState extends State<WarningMenuPage> {
         ),
       );
   }
-
 
 
   Widget show(int index, context) {
@@ -67,9 +68,9 @@ class _WarningMenuPageState extends State<WarningMenuPage> {
   Widget buttonTabTextMenu() {
     return DefaultTabController(
       length: 2,
-      child: Container(
+      child: MyContainer(
         alignment: Alignment.center,
-        margin: EdgeInsets.only(right: 200, left: 200),
+        margin: EdgeInsets.only(right: SC.right(200), left: SC.left(200)),
         //color: Colors.yellowAccent,
         child: TabBar(
           onTap: (index) {

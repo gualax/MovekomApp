@@ -62,8 +62,22 @@ Widget circleIndicatorBateria(value, color,dim){
     radius: dim,
     lineWidth: 8,
     percent: (value)/100,
-    center: new Text((value).toString() +"%",
+    center: new Text("14.2" ,
       style: MyTextStyle.estiloBold(20, Colors.white),),
+    progressColor: color,
+    backgroundColor: MyColors.baseColor,
+  );
+}
+
+
+
+Widget circleIndicatorBateriaAux(value, color,dim,valueVolt){
+  return CircularPercentIndicator(
+    radius: dim,
+    lineWidth: 15,
+    percent: (value)/100,
+    center: new Text(valueVolt ,
+      style: MyTextStyle.estiloBold(40, Colors.white)),
     progressColor: color,
     backgroundColor: MyColors.baseColor,
   );

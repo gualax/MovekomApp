@@ -32,7 +32,6 @@ import 'package:movekomapp/pantallas/PrincipalHome.dart';
 import 'package:movekomapp/pantallas/Wheater/whater_api_client.dart';
 import 'package:movekomapp/pantallas/Wheater/wheater_bloc.dart';
 import 'package:movekomapp/pantallas/Wheater/wheather_repository.dart';
-import 'package:movekomapp/pantallas/Wheater/wheather_widget.dart';
 import 'HomePage.dart';
 import 'app.localizations.dart';
 import 'package:movekomapp/blocs/agua_blocs/aguas_negras_bloc.dart';
@@ -69,10 +68,7 @@ void main(){
  */
 
   runApp(
-      DevicePreview(
-        child: MyApp(weatherRepository: weatherRepository)
-     )
-  );
+    MyApp(weatherRepository: weatherRepository));
 }
 
 class MyApp extends StatelessWidget {
@@ -134,7 +130,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         initialRoute: '/',
-          builder: DevicePreview.appBuilder,
+        //  builder: DevicePreview.appBuilder,
           routes: {
          // '/': (context) => HomePage(indexToShow:0),   //HomePage(indexToShow:0),
           '/menus': (context) => FloatingMenu(),

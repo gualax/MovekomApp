@@ -47,102 +47,111 @@ Widget inversor_big(){
         iconColor = MyColors.text;
         on_off_Text = "Pulsar para encender";
       }
-      return MyContainer(
-        width: 420, height: 220,
-        decoration: new BoxDecoration(
-          color: MyColors.baseColor,
-        ),
-        child: Stack(
-          children: <Widget>[
-            MyPositioned.fill(
-                left: 10, top: 10,
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(title,
-                    style: MyTextStyle.estiloBold(20, colorTex),),
-                )
-            ),
-            MyPositioned.fill(
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Text(state.valueAmp.toString(),
-                    style: MyTextStyle.estiloBold(60, colorTex),),
-                )
-            ),
-            MyPositioned.fill(
-                left: 20,
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: iconSvgD("assets/icons/cable.svg", colorTex, 60),
-                )
-            ),
-            MyPositioned.fill(/// valueAmp
-                bottom: 20, left: 60,
-                child: Align(
-                  alignment: Alignment.bottomLeft,
-                  child: Text(
-                      on_off_Text,
-                      style: MyTextStyle.estiloBold(12, colorTex),
-                      textAlign: TextAlign.center
-                  ),
-                )
-            ),
-            MyPositioned.fill(
-                left: 15, bottom: 5,
-                child: Align(
-                  alignment: Alignment.bottomLeft,
-                  child: IconButton(
-                    icon: Icon(Icons.power_settings_new), iconSize: 30,
-                    color: iconColor,
-                    onPressed: () {
-                    if(state.isEnabled){
-                      inversorBloc.add(DisableInversor());
-                    }else{
-                      inversorBloc.add(EnableInversor());
-                    }
-                  },),
-                )
-            ),
-            MyPositioned.fill(/// temporizacion
-                bottom: 20, left: 250, right: 20,
-                child: Align(
-                  alignment: Alignment.bottomRight,
-                  child: Text(
-                      "Establecer temporizacion",
-                      style: MyTextStyle.estiloBold(12, colorTex),
-                      textAlign: TextAlign.center
-                  ),
-                )
-            ),
-            MyPositioned.fill(/// icono timer
-                bottom: 42, right: 38,
-                child: Align(
-                  alignment: Alignment.bottomRight,
-                  child: IconButton(
-                    icon: Icon(Icons.access_time), iconSize: 30,
-                    color: colorTex, onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) => TemporizadorPopup(),
-                    );
-                  },),
-                )
-            ),
-            MyPositioned.fill(/// circulito
-                top: 20, right: 20,
-                child: Align(
-                  alignment: Alignment.topRight,
-                  child: circuloConSombra(20.0, circleColor),
-                )
-            ),
-            MyPositioned.fill(
-                bottom: 40,
-                child: Align(
-                  alignment: Alignment.center,
-                  child: inidicadorRojoImg(state.valueAmp,45.0),
-                )
-            ),
-          ],
+      return GestureDetector(
+        onTap: (){
+          if(state.isEnabled){
+            inversorBloc.add(DisableInversor());
+          }else{
+            inversorBloc.add(EnableInversor());
+          }
+        },
+        child: MyContainer(
+          width: 420, height: 220,
+          decoration: new BoxDecoration(
+            color: MyColors.baseColor,
+          ),
+          child: Stack(
+            children: <Widget>[
+              MyPositioned.fill(
+                  left: 10, top: 10,
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(title,
+                      style: MyTextStyle.estiloBold(20, colorTex),),
+                  )
+              ),
+              MyPositioned.fill(
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text(state.valueAmp.toString(),
+                      style: MyTextStyle.estiloBold(60, colorTex),),
+                  )
+              ),
+              MyPositioned.fill(
+                  left: 20,
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: iconSvgD("assets/icons/cable.svg", colorTex, 60),
+                  )
+              ),
+              MyPositioned.fill(/// valueAmp
+                  bottom: 20, left: 60,
+                  child: Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Text(
+                        on_off_Text,
+                        style: MyTextStyle.estiloBold(12, colorTex),
+                        textAlign: TextAlign.center
+                    ),
+                  )
+              ),
+              MyPositioned.fill(
+                  left: 15, bottom: 5,
+                  child: Align(
+                    alignment: Alignment.bottomLeft,
+                    child: IconButton(
+                      icon: Icon(Icons.power_settings_new), iconSize: 30,
+                      color: iconColor,
+                      onPressed: () {
+                      if(state.isEnabled){
+                        inversorBloc.add(DisableInversor());
+                      }else{
+                        inversorBloc.add(EnableInversor());
+                      }
+                    },),
+                  )
+              ),
+              MyPositioned.fill(/// temporizacion
+                  bottom: 20, left: 250, right: 20,
+                  child: Align(
+                    alignment: Alignment.bottomRight,
+                    child: Text(
+                        "Establecer temporizacion",
+                        style: MyTextStyle.estiloBold(12, colorTex),
+                        textAlign: TextAlign.center
+                    ),
+                  )
+              ),
+              MyPositioned.fill(/// icono timer
+                  bottom: 42, right: 38,
+                  child: Align(
+                    alignment: Alignment.bottomRight,
+                    child: IconButton(
+                      icon: Icon(Icons.access_time), iconSize: 30,
+                      color: colorTex, onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) => TemporizadorPopup(),
+                      );
+                    },),
+                  )
+              ),
+              MyPositioned.fill(/// circulito
+                  top: 20, right: 20,
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: circuloConSombra(20.0, circleColor),
+                  )
+              ),
+              MyPositioned.fill(
+                  bottom: 40,
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: inidicadorRojoImg(state.valueAmp,45.0),
+                  )
+              ),
+            ],
+          ),
         ),
       );
     }

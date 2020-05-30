@@ -78,7 +78,7 @@ class AguasNegras extends StatelessWidget {
                                   children: [
                                     TextSpan(
                                         style: MyTextStyle.estiloBold(
-                                            12, Colors.white),
+                                            12, MyColors.text),
                                         text: title
                                     ),
                                   ]
@@ -95,7 +95,7 @@ class AguasNegras extends StatelessWidget {
                                   children: [
                                     TextSpan(
                                         style: MyTextStyle.estiloBold(
-                                            15, Colors.white),
+                                            15, MyColors.text),
                                         text: state.valueAmp.toString() + "%"
                                     ),
                                   ]
@@ -143,7 +143,7 @@ class AguasNegras extends StatelessWidget {
                                   children: [
                                     TextSpan(
                                         style: MyTextStyle.estiloBold(
-                                            SizeConfig.v * 2.2, Colors.white),
+                                            SizeConfig.v * 2.2, MyColors.text),
                                         text: title
                                     ),
                                   ]
@@ -160,7 +160,7 @@ class AguasNegras extends StatelessWidget {
                                   children: [
                                     TextSpan(
                                         style: MyTextStyle.estiloBold(
-                                            SizeConfig.v * 5, Colors.white),
+                                            SizeConfig.v * 5, MyColors.text),
                                         text: state.valueAmp.toString() + "%"
                                     ),
                                   ]
@@ -180,11 +180,11 @@ class AguasNegras extends StatelessWidget {
       BlocBuilder<AguasNegrasBloc,AguasNegrasState>(
           builder: ( context, state) {
             if(state.isEnabled){
-              colorButton = Colors.lightGreenAccent;
-              colorImg = Colors.white;
+              colorButton = MyColors.principal;
+              colorImg = MyColors.text;
             }else{
-              colorImg = Colors.grey;
-              colorButton = Colors.white;
+              colorImg = MyColors.inactive;
+              colorButton = MyColors.text;
             }
             return MyContainer(
                 margin: EdgeInsets.all(10),
@@ -204,7 +204,7 @@ class AguasNegras extends StatelessWidget {
                                 children: [
                                   TextSpan(
                                       style: MyTextStyle.estiloBold(
-                                          15, Colors.white),
+                                          15, MyColors.text),
                                       text: "Aguas negras"
                                   ),
                                 ]
@@ -258,7 +258,7 @@ class AguasNegras extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(text,
-                    style: MyTextStyle.estiloBold(15, Colors.white),),
+                    style: MyTextStyle.estiloBold(15, MyColors.text),),
                 ),
               ),
             );
@@ -284,7 +284,7 @@ class AguasNegras extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(text,
-                    style: MyTextStyle.estiloBold(15, Colors.white),),
+                    style: MyTextStyle.estiloBold(15, MyColors.text),),
                 ),
               ),
             );

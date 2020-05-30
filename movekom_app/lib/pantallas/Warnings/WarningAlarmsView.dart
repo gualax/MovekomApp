@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
 
 class WarningAlarmsView extends StatefulWidget {
   @override
@@ -33,8 +35,8 @@ class _WarningAlarmsViewState extends State<WarningAlarmsView> {
   }
 
   Widget alertRow(){
-    return Container(
-      margin: EdgeInsets.all(10),
+    return MyContainer(
+      margin: EdgeInsets.all(SC.all(10)),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -48,7 +50,7 @@ class _WarningAlarmsViewState extends State<WarningAlarmsView> {
   }
 
   Widget alertBox(){
-    return Container(
+    return MyContainer(
       height: 100,
       width: 900,
       decoration: new BoxDecoration(
@@ -58,7 +60,7 @@ class _WarningAlarmsViewState extends State<WarningAlarmsView> {
   }
 
   Widget deleteBox(){
-    return Container(
+    return MyContainer(
       height: 100, width: 100,
       decoration: new BoxDecoration(
         color: MyColors.baseColor,
@@ -67,7 +69,7 @@ class _WarningAlarmsViewState extends State<WarningAlarmsView> {
   }
 
   Widget criticBox(){
-    return Container(
+    return MyContainer(
       height: 100, width: 100,
       decoration: new BoxDecoration(
         color: MyColors.baseColor,

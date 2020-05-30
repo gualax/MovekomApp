@@ -179,9 +179,9 @@ class _WeatherListWidgetState extends State<WeatherListWidget> {
       print(place.toString());
       print(place.toJson());
       setState(() {
-        _currentLocality = place.administrativeArea;
-        _currentCountry = place.country;
-        _weatherBloc.add(FetchWeatherList(city: place.administrativeArea));
+        _currentLocality = "Madrid";
+        _currentCountry = "España";
+        _weatherBloc.add(FetchWeatherList(city: "Madrid"));
       });
     } catch (e) {
       print(e);

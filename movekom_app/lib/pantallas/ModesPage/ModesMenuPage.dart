@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
 import 'package:movekomapp/controladores/modos/ModoAhorroEnergia.dart';
 import 'package:movekomapp/controladores/modos/ModoAntiHeladasAuto.dart';
@@ -11,6 +12,7 @@ import 'package:movekomapp/controladores/modos/ModoEmergencia.dart';
 import 'package:movekomapp/controladores/modos/ModoHighwayToHell.dart';
 import 'package:movekomapp/controladores/modos/ModoLimpiezaTuberias.dart';
 import 'package:movekomapp/controladores/modos/ModoParking.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
 
 class ModesMenuPage extends StatefulWidget {
   @override
@@ -92,10 +94,10 @@ class _ModesMenuPageState extends State<ModesMenuPage> {
 
 
   Widget box(){
-    return Container(
-      margin: EdgeInsets.only(top:20,left: 15,right: 15),
-      width: SizeConfig.h * 17,
-      height: SizeConfig.v * 34,
+    return MyContainer(
+      margin: EdgeInsets.only(top:SC.top(10),left:SC.left(15),right: SC.right(15)),
+      width: 210,
+      height: 250,
       decoration: new BoxDecoration(
           color: MyColors.baseColor
       ),

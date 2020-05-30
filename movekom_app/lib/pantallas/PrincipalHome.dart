@@ -2,11 +2,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:getflutter/components/carousel/gf_items_carousel.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/Utils/SizeConf.dart';
-import 'package:movekomapp/app.localizations.dart';
 import 'package:movekomapp/controladores/agua/AguasLimpias.dart';
 import 'package:movekomapp/controladores/agua/AguasNegras.dart';
 import 'package:movekomapp/controladores/agua/AguasSucias.dart';
@@ -14,7 +12,6 @@ import 'package:movekomapp/controladores/agua/BombaAgua.dart';
 import 'package:movekomapp/controladores/agua/ItemBoiler.dart';
 import 'package:movekomapp/controladores/climatizacion/Calefaccion.dart';
 import 'package:movekomapp/controladores/electricidad/BateriaAux1.dart';
-import 'package:movekomapp/controladores/electricidad/BateriaAux2.dart';
 import 'package:movekomapp/controladores/electricidad/BateriaMotor.dart';
 import 'package:movekomapp/controladores/electricidad/Inversor.dart';
 import 'package:movekomapp/controladores/electricidad/Totalizador.dart';
@@ -22,11 +19,8 @@ import 'package:movekomapp/controladores/iluminacion/Downligth.dart';
 import 'package:movekomapp/controladores/iluminacion/LucesExterior.dart';
 import 'package:movekomapp/controladores/iluminacion/LuzGeneral.dart';
 import 'package:movekomapp/controladores/iluminacion/Upligth.dart';
-import 'package:movekomapp/pantallas/Wheater/current_location.dart';
-import 'package:movekomapp/pantallas/Wheater/weather_box.dart';
+import 'package:movekomapp/controladores/nevera/nevera.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
-import 'package:movekomapp/widgets/IconSvg.dart';
-import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/box137x137.dart';
 import 'package:movekomapp/widgets/box137x64.dart';
 import 'package:movekomapp/widgets/box225x137.dart';
@@ -73,7 +67,7 @@ Widget horizontalList(){
           widgetBoiler(),
           Calefaccion(1),
           Inversor(1),
-       //   box225x140_1icon("VALVULAS",2.65 , "assets/icons/valvula.svg",false),
+          box225x140_1icon("VALVULAS",2.65 , "assets/icons/valvula.svg",false),
        //   box225x140_1icon("VALVULAS",2.65 , "assets/icons/valvula.svg",false),
           box225x140_add_device(),
         ],
@@ -84,7 +78,7 @@ Widget horizontalList(){
 
   Widget contenido(){
     return MyContainer(
-      margin: EdgeInsets.only(top: 20),
+      margin: EdgeInsets.only(top: SC.top(20)),
       child: Row( /// elementos uno al lado del otro
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -100,7 +94,7 @@ Widget horizontalList(){
   Widget midleLeftSection(){
   return
   MyContainer (
-    margin: EdgeInsets.all(5),
+    margin: EdgeInsets.all(SC.all(5)),
     child:
     Column(  /// Elementos uno arriba del otro
       mainAxisAlignment: MainAxisAlignment.center,
@@ -115,13 +109,13 @@ Widget horizontalList(){
   Widget midleRigthSection(){
     return
       MyContainer (
-        margin: EdgeInsets.all(5),
+        margin: EdgeInsets.all(SC.all(5)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Row(
               children: <Widget>[
-                FechaWidget(),
+                Nevera(1),
                 FechaWidget(),
               ],
             ),
@@ -165,7 +159,7 @@ Widget horizontalList(){
   Widget leftSection(){
     return
     MyContainer (
-      margin: EdgeInsets.all(5),
+      margin: EdgeInsets.all(SC.all(5)),
       child:
     Row(  /// Elementos uno arriba del otro
       mainAxisAlignment: MainAxisAlignment.center,
@@ -196,7 +190,7 @@ Widget horizontalList(){
         child: Column (
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            bateriaAuxiliar(),
+            BateriaMotorAux1(1),
             principalLeftRow2(),
           ],
         ),
@@ -206,7 +200,7 @@ Widget horizontalList(){
   Widget bateriaAuxiliar(){
     return
       MyContainer(
-        margin: EdgeInsets.only(bottom: SC.all(15)),
+        margin: EdgeInsets.only(bottom: SC.bot(15)),
          width: 288, height:200, //200 //288
          decoration: new BoxDecoration(
             color: MyColors.baseColor,
@@ -249,8 +243,7 @@ Widget horizontalList(){
           Upligth(1),
           Downligth(1),
         ],
-      )
-      ,
+      ),
     );
   }
 

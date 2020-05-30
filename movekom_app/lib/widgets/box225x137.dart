@@ -75,8 +75,8 @@ Widget box225x140_1icon_text(title, double valueAmp,
    on_off = "OFF";
   }
   return  ClipRect(
-    child: Container(
-        margin: EdgeInsets.all(7),
+    child: MyContainer(
+        margin: EdgeInsets.all(SC.all(7)),
         width: 225,
         height: 140,
         decoration: BoxDecoration(
@@ -84,7 +84,7 @@ Widget box225x140_1icon_text(title, double valueAmp,
         ),
         child: Stack(children: [
           // Valvulas (Todas)
-          Positioned.fill(  ///titulo
+          MyPositioned.fill(  ///titulo
             top: 4,
              left: 8,
              child:   Align(
@@ -95,14 +95,14 @@ Widget box225x140_1icon_text(title, double valueAmp,
             ),
             ),
           ),
-          Positioned.fill(/// circulito
+          MyPositioned.fill(/// circulito
               top: 10, right: 10,
               child: Align(
                 alignment: Alignment.topRight,
                 child: circuloConSombra(17.0, color),
               )
           ),
-          Positioned.fill(    ///textAbajoIzq
+          MyPositioned.fill(    ///textAbajoIzq
             left: 8,
             bottom: 6,
             child: Align(
@@ -113,7 +113,7 @@ Widget box225x140_1icon_text(title, double valueAmp,
               ),
             ),
           ),
-          Positioned.fill(  ///textAbajoDer
+          MyPositioned.fill(  ///textAbajoDer
             right: 8,
             bottom: 6,
             child:  Align(
@@ -124,14 +124,14 @@ Widget box225x140_1icon_text(title, double valueAmp,
               ),
             ),
           ),
-          Positioned.fill(  ///icon
+          MyPositioned.fill(  ///icon
             left: 25,
             child:  Align(
               alignment: Alignment.centerLeft,
               child: iconSvgD(iconRoute, color, 75),
             ),
           ),
-          Positioned.fill(  ///textValue
+          MyPositioned.fill(  ///textValue
             right: 30,
             child:  Align(
               alignment: Alignment.centerRight,
@@ -164,7 +164,7 @@ Widget box225x140_1icon(title, double valueAmp,
   
   return  ClipRect(
     child: MyContainer(
-        margin: EdgeInsets.all(7),
+        margin: EdgeInsets.all(SC.all(7)),
         width: 225,
         height: 140,
         decoration: BoxDecoration(
