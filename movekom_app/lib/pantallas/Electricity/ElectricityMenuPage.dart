@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movekomapp/pantallas/Electricity/ElectricityDataView.dart';
+import 'package:movekomapp/pantallas/Electricity/ElectricityGraphicsView.dart';
+import 'package:movekomapp/pantallas/Electricity/ElectricitySettingsView.dart';
 import 'package:movekomapp/pantallas/Reles/ElectricityReleView.dart';
-import 'package:movekomapp/pantallas/Electricity/ElectricityStateView.dart';
+import 'package:movekomapp/pantallas/Electricity/ElectricityGeneralView.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 
 
@@ -44,8 +45,9 @@ class _ElectricityPageState extends State<ElectricityPage> {
 
   Widget show(int index, context) {
     List<Widget> _children = [
-      ElectricityStateView(),
-      ElectricityDataView(),
+      ElectricityGeneralView(),
+      ElectricityGraphicsView(),
+      ElectricitySettingsView()
     ];
     return _children[index];
   }
@@ -53,7 +55,7 @@ class _ElectricityPageState extends State<ElectricityPage> {
 
   Widget buttonTabTextMenu() {
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: MyContainer(
         alignment: Alignment.center,
         margin: EdgeInsets.only(right: 100, left: 100),
@@ -66,8 +68,9 @@ class _ElectricityPageState extends State<ElectricityPage> {
           unselectedLabelColor: Colors.white,
           labelColor: Colors.lightGreenAccent,
           tabs: [
-            Tab(text: "ESTADO"),
-            Tab(text: "DATOS"),
+            Tab(text: "GENERAL"),
+            Tab(text: "GRAFICOS"),
+            Tab(text: "AJUSTES"),
           ],
         ),
       ),

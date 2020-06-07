@@ -5,7 +5,9 @@ import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/controladores/climatizacion/Calefaccion.dart';
 import 'package:movekomapp/controladores/climatizacion/Extractor.dart';
 import 'package:movekomapp/controladores/climatizacion/aire_acondicionado.dart';
+import 'package:movekomapp/pantallas/Wheater/weather_box.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
+import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
@@ -34,7 +36,7 @@ class _WheaterCalefactionViewState extends State<WheaterCalefactionView> {
           children: <Widget>[
             Calefaccion(2),
             container(),
-            AireAcondicionado(2),
+           // AireAcondicionado(2),
           ],
         ),
     );
@@ -45,31 +47,19 @@ class _WheaterCalefactionViewState extends State<WheaterCalefactionView> {
 
   Widget container() {
     return MyContainer(
-    //  margin: EdgeInsets.all(SC.all(12)),
-    //  width: 380,
-  //    height: 388,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
+          WeatherBox("Madrid",0),
           Extractor(),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              box165x67(),
-              box165x67(),
+              box165x67("INTERIOR","25.5"),
+              box165x67("EXTERIOR","25.5"),
             // box247x144(),
-            ],
-          ),
-          bar_historico_temp(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              manuales(),
-              ayuda(),
-              // box247x144(),
             ],
           ),
         ],
@@ -118,7 +108,7 @@ class _WheaterCalefactionViewState extends State<WheaterCalefactionView> {
     );
   }
 
-  Widget box165x67() {
+  Widget box165x67(title, value) {
     return MyContainer(
       margin: EdgeInsets.all(SC.all(5)),
       width: 185,
@@ -126,10 +116,25 @@ class _WheaterCalefactionViewState extends State<WheaterCalefactionView> {
       decoration: new BoxDecoration(
         color: MyColors.baseColor,
       ),
-      child: Align(
-        alignment: Alignment.center,
-        child: Text("25.5ºC",
-            style: MyTextStyle.estiloBold(30, Colors.white)),
+      child: Stack(
+        children: <Widget>[
+          MyPositioned.fill(
+            top:10,
+              child:  Align(
+                alignment: Alignment.center,
+                child: Text("25.5ºC",
+                    style: MyTextStyle.estiloBold(30, Colors.white)),
+              ),
+          ),
+          MyPositioned.fill(
+            left: 10,top: 5,
+            child:  Align(
+              alignment: Alignment.topLeft,
+              child: Text(title,
+                  style: MyTextStyle.estilo(16, Colors.white)),
+            ),
+          )
+        ],
       ),
     );
   }

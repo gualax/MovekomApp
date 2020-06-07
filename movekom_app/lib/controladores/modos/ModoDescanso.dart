@@ -13,7 +13,7 @@ import 'package:movekomapp/widgets/MyTextStyle.dart';
 
 class ModoDescanso extends StatelessWidget {
   String title = "MODO DESCANSO";
-  String description = "Elimina los ruidos nocturnos del compresor de la nevera, y desactiva bomba de agua, inversor.. etc.";
+  String description = "Desactiva los equipos que generan ruido como inversor, bomba de agua etc.. ";
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -35,86 +35,83 @@ class ModoDescanso extends StatelessWidget {
               colorIndic = MyColors.inactive;
             }
 
-            return MyContainer(
-              margin: EdgeInsets.only(top: SC.top(10), left: SC.left(15), right: SC.right(15)),
-              width: 210,
-              height: 250,
-              decoration: new BoxDecoration(
-                  color: MyColors.baseColor
-              ),
-              child: Stack(
-                children: <Widget>[
-                  MyPositioned.fill(
-                      left: 10, top: 5,
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          title, style: MyTextStyle.estilo(17, MyColors.text),),
-                      )
-                  ),
-                  MyPositioned.fill(
-                      top: 10, right: 10,
-                      child: Align(
-                        alignment: Alignment.topRight,
-                        child: circuloConSombra(17.0, colorIndic),
-                      )
-                  ),
-                  MyPositioned.fill(
-                      bottom: 75, left: 20,
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: iconSvgD("assets/icons/modo_descanso.svg", colorIndic, 55),
-                      )
-                  ),
-                  MyPositioned.fill(
-                      left: 10,
-                      child: Align(
-                        alignment: Alignment.bottomLeft,
-                        child: IconButton(
-                          icon: Icon(Icons.power_settings_new),
-                          iconSize: SC.all(30),
-                          color: colorIcon,
-                          onPressed: () {
-                            if(state.isEnabled){
-                              modoEcoBloc.add(Disable());
-                            }else{
-                              modoEcoBloc.add(Enable());
-                            }
-                          },
-                        ),
-                      )
-                  ),
-                  MyPositioned.fill(
-                      bottom: 15, left: 15,
-                      child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Text("Presiona para encender",
-                          style: MyTextStyle.estilo(12, MyColors.text),),
-                      )
-                  ),
-                  MyPositioned.fill(
-                      right: 20, bottom: 75,
-                      child: Align(
-                        alignment: Alignment.centerRight,
-                        child: IconButton(
-                          icon: Icon(Icons.access_time),
-                          iconSize: SC.all(30),
-                          color: MyColors.inactive,
-                          onPressed: () {},
-                        ),
-                      )
-                  ),
-                  MyPositioned.fill(
-                      top: 75,
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: Text(description,
-                          textAlign: TextAlign.center,
-                          style: MyTextStyle.estilo(15, MyColors.text),),
-                      )
-                  ),
-                ],
+            return GestureDetector(
+              onTap: (){
+                if(state.isEnabled){
+                  modoEcoBloc.add(Disable());
+                }else{
+                  modoEcoBloc.add(Enable());
+                }
+              },
+              child: MyContainer(
+                margin: EdgeInsets.only(top: SC.top(10), left: SC.left(15), right: SC.right(15)),
+                width: 210,
+                height: 250,
+                decoration: new BoxDecoration(
+                    color: MyColors.baseColor
+                ),
+                child: Stack(
+                  children: <Widget>[
+                    MyPositioned.fill(
+                        left: 10, top: 5,
+                        child: Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            title, style: MyTextStyle.estilo(16, MyColors.text),),
+                        )
+                    ),
+                    MyPositioned.fill(
+                        top: 10, right: 10,
+                        child: Align(
+                          alignment: Alignment.topRight,
+                          child: circuloConSombra(17.0, colorIndic),
+                        )
+                    ),
+                    MyPositioned.fill(
+                        bottom: 75,
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: iconSvgD("assets/icons/modo_descanso.svg", colorIndic, 55),
+                        )
+                    ),
+                    MyPositioned.fill(
+                        left: 10,
+                        child: Align(
+                          alignment: Alignment.bottomLeft,
+                          child: IconButton(
+                            icon: Icon(Icons.power_settings_new),
+                            iconSize: SC.all(30),
+                            color: colorIcon,
+                            onPressed: () {
+                              if(state.isEnabled){
+                                modoEcoBloc.add(Disable());
+                              }else{
+                                modoEcoBloc.add(Enable());
+                              }
+                            },
+                          ),
+                        )
+                    ),
+                    MyPositioned.fill(
+                        bottom: 15, left: 15,
+                        child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Text("Presiona para encender",
+                            style: MyTextStyle.estilo(12, MyColors.text),),
+                        )
+                    ),
+                    MyPositioned.fill(
+                        top: 75,
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Text(description,
+                            textAlign: TextAlign.center,
+                            style: MyTextStyle.estilo(15, MyColors.text),),
+                        )
+                    ),
+                  ],
 
+                ),
               ),
             );
           });

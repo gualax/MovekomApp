@@ -221,9 +221,9 @@ TextStyle estiloBold() {
 Widget box137x137_Temperatura(context,title, valueHum, valueTemp){
   return
     MyContainer(
-        margin: EdgeInsets.all(SC.all(7)),
+        margin: EdgeInsets.all(SC.all(5)),
         width: 137,
-        height: 137,
+        height: 62,
         decoration: new BoxDecoration(
             color: MyColors.baseColor
         ), child: Stack(
@@ -244,7 +244,7 @@ Widget box137x137_Temperatura(context,title, valueHum, valueTemp){
                     text: TextSpan(
                         children: [
                           TextSpan(
-                              style: MyTextStyle.estiloBold(36, MyColors.text),
+                              style: MyTextStyle.estiloBold(18, MyColors.text),
                               text: valueTemp
                           ),
                         ]
@@ -260,7 +260,7 @@ Widget box137x137_Temperatura(context,title, valueHum, valueTemp){
                   text: TextSpan(
                       children: [
                         TextSpan(
-                            style:MyTextStyle.estiloBold(15, MyColors.text),
+                            style:MyTextStyle.estiloBold(12, MyColors.text),
                             text: title ),
                       ]
                   )
@@ -268,24 +268,6 @@ Widget box137x137_Temperatura(context,title, valueHum, valueTemp){
             ),
           ),
           // OFF
-          PositionedDirectional(
-            bottom: SC.bot(4),
-            start: SC.left(10),
-            child:   Text(
-                "Humedad",
-                style: MyTextStyle.estilo(15, MyColors.text),
-                textAlign: TextAlign.center
-            ),
-          ),
-          PositionedDirectional(  /// value hume
-              bottom: SC.bot(4),
-              end: SC.right(10),
-              child:   Text(
-                  valueHum,
-                  style: MyTextStyle.estilo(15, MyColors.text),
-                  textAlign: TextAlign.center
-              )
-          )
         ])
     );
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
+import 'package:movekomapp/pantallas/Alarm/AlarmMenuPage.dart';
 import 'package:movekomapp/pantallas/Configuration/ConfigMenuPage.dart';
 import 'package:movekomapp/pantallas/ManualesPage/ManualesMenuPage.dart';
 import 'package:movekomapp/pantallas/ModesPage/ModesMenuPage.dart';
@@ -75,6 +76,11 @@ class _HomePageState extends State<HomePage> {
                 title: new Text(""),
               ),
               new BottomNavigationBarItem(
+                icon: iconSvg("assets/icons/candado.svg",true),
+                activeIcon: activeIcon("assets/icons/candado.svg"),
+                title: new Text(""),
+              ),
+              new BottomNavigationBarItem(
                 icon: iconSvg("assets/icons/luz.svg", true),
                 activeIcon: activeIcon("assets/icons/luz.svg"),
                 title: new Text(""),
@@ -116,8 +122,9 @@ class _HomePageState extends State<HomePage> {
       PrincipalHome(),
       ClimaPage(),
       ElectricityPage(),
-      ElectricitySettingsView(),
+      ElectricityReleView(),
       WaterMenuPage(),
+      AlarmMenuPage(),
       LightsMenuPage(),
       ModesMenuPage(),
       ManualesMenuPage(),
@@ -185,6 +192,7 @@ void changeBarTitle(index){
     "ELECTRICIDAD",
     "ELECTRICIDAD",
     "AGUA",
+    "ALARMA",
     "ILUMINACION",
     "MODOS",
     "MANUALES",
@@ -198,6 +206,7 @@ void changeBarTitle(index){
     "   ESTADO DE BATERIAS",
     "   AJUSTES Y CUADRO ELECTRICO",
     "   NIVELES DEPOSITOS Y VALVULAS",
+    "   SISTEMA BASICO DE ALARMA",
     "   ILUMINACION",
     "   MODOS INTELIGENTES DE FUNCIONAMIENTO",
     "   MANUALES Y LIBROS DE INSTRUCCIONES",

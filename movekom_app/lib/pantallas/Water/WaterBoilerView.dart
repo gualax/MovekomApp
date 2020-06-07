@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
 import 'package:movekomapp/blocs/boiler_bloc.dart';
 import 'package:movekomapp/controladores/agua/Boiler.dart';
@@ -29,9 +30,10 @@ class _WaterBoilerViewState extends State<WaterBoilerView> {
 
   Widget boilerBox(boilerBloc) {
     return MyContainer(
+      margin: EdgeInsets.all(SC.all(5)),
       alignment: Alignment.center,
       width: 720,
-      height: 440,
+      height: 335,
       decoration: new BoxDecoration(
           color: MyColors.baseColor
       ),
@@ -47,19 +49,11 @@ class _WaterBoilerViewState extends State<WaterBoilerView> {
               )
           ),
           Positioned.fill(
-              left: 20,
+              left: 20,top:70,
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: iconSvgD(
-                    "assets/icons/fire.svg", Colors.lightGreenAccent, 150),
-              )
-          ),
-          Positioned.fill(
-              left: 100, bottom: 50,
-              child: Align(
-                alignment: Alignment.bottomLeft,
-                child: IconButton(
-                  icon: Icon(Icons.access_time,color: Colors.white), iconSize: 50),
+                    "assets/icons/fire.svg", Colors.lightGreenAccent, 120),
               )
           ),
           Positioned.fill(
@@ -70,16 +64,16 @@ class _WaterBoilerViewState extends State<WaterBoilerView> {
               )
           ),
           Positioned.fill(
-              left: 100,
-              bottom: 180,
+              left: 90,
+              bottom: 70,
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: iconSvgD(
-                    "assets/icons/gota_agua.svg", Colors.lightGreenAccent, 80),
+                    "assets/icons/gota_agua.svg", Colors.lightGreenAccent, 60),
               )
           ),
           Positioned.fill(
-              right: 280, top:20,
+              right: 260, top:50,
               child: Align(
                 alignment: Alignment.center,
                 child: Text("21",
@@ -87,8 +81,8 @@ class _WaterBoilerViewState extends State<WaterBoilerView> {
               )
           ),
           Positioned.fill(
-              right: 300,
-              bottom: 100,
+              right: 280,
+              bottom: 80,
               child: Align(
                 alignment: Alignment.center,
                 child: Text("Temperatura,",
@@ -96,6 +90,7 @@ class _WaterBoilerViewState extends State<WaterBoilerView> {
               )
           ),
           Positioned.fill(
+            right: 20,
               child: Align(
                 alignment: Alignment.centerRight,
                 child: Boiler(),

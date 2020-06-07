@@ -17,12 +17,12 @@ import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
 
-class ElectricityStateView extends StatefulWidget {
+class ElectricityGeneralView extends StatefulWidget {
   @override
-  _ElectricityStateViewState createState() => _ElectricityStateViewState();
+  _ElectricityGeneralViewState createState() => _ElectricityGeneralViewState();
 }
 
-class _ElectricityStateViewState extends State<ElectricityStateView> {
+class _ElectricityGeneralViewState extends State<ElectricityGeneralView> {
 
   @override
   Widget build(BuildContext context) {

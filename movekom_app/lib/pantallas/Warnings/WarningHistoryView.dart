@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/controladores/averias/averiasHistory.dart';
 
 class WarningHistoryView extends StatefulWidget {
   @override
@@ -19,29 +20,20 @@ class _WarningHistoryViewState extends State<WarningHistoryView> {
       margin: EdgeInsets.only(top:15, left:60, right: 60),
       child: ListView(
         children: <Widget>[
-          historyBox(),
-          historyBox(),
-          historyBox(),
-          historyBox(),
-          historyBox(),
-          historyBox(),
-          historyBox(),
-          historyBox(),
-          historyBox(),
+          AveriasHistory(),
+          AveriasHistory(),
+          AveriasHistory(),
+          AveriasHistory(),
+          AveriasHistory(),
+          AveriasHistory(),
+          AveriasHistory(),
+          AveriasHistory(),
+          AveriasHistory(),
         ],
       ),
     );
   }
 
-  Widget historyBox(){
-    return Container(
-      margin: EdgeInsets.all(7),
-      height: 60,
-      width: 1100,
-      decoration: new BoxDecoration(
-        color: MyColors.baseColor,
-      ),
-    );
-  }
+
 
 }

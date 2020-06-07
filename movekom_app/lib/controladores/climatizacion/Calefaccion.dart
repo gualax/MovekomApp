@@ -66,7 +66,7 @@ class _CalefaccionState extends State<Calefaccion> {
               child: MyContainer(
                 margin: EdgeInsets.all(SC.all(12)),
                 width: 380,
-                height: 388,
+                height: 400,
                 decoration: new BoxDecoration(
                     color: MyColors.baseColor
                 ),
@@ -151,7 +151,7 @@ class _CalefaccionState extends State<Calefaccion> {
                       left: 270,
                       child: Align(
                         alignment: Alignment.center,
-                        child: circularListCalefaccion(SC.all(192),SC.all(150)),
+                        child: flechita_indicacion(SC.all(200),SC.all(160)),
                       ),
                     ),
                     MyPositioned(
@@ -181,7 +181,7 @@ class _CalefaccionState extends State<Calefaccion> {
 
 
 // (-pi, 0.0)
-  Widget circularListCalefaccion(outerRadius,innerRadius) {
+  Widget flechita_indicacion(outerRadius,innerRadius) {
     double  _lastAngle, _radAngle;
     return
       BlocBuilder<CalefaccionBloc,CalefaccionState>(

@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
@@ -76,8 +77,24 @@ Widget circleIndicatorBateriaAux(value, color,dim,valueVolt){
     radius: dim,
     lineWidth: 15,
     percent: (value)/100,
-    center: new Text(valueVolt ,
-      style: MyTextStyle.estiloBold(40, Colors.white)),
+    center: Stack(
+      children: <Widget>[
+        MyPositioned.fill(
+          bottom: 20,
+          child: Align(
+            alignment: Alignment.center,
+            child: Text(valueVolt ,
+              style: MyTextStyle.estiloBold(40, Colors.white,)),
+        ),),
+        MyPositioned.fill(
+          top: 50,
+          child: Align(
+            alignment: Alignment.center,
+          child:Text("VOLT" ,
+              style: MyTextStyle.estilo(30, Colors.white,)),
+        ),),
+      ],
+    ),
     progressColor: color,
     backgroundColor: MyColors.baseColor,
   );

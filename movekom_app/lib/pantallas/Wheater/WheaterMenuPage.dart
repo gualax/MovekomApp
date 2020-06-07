@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movekomapp/pantallas/Wheater/WheaterCalefactionView.dart';
-import 'package:movekomapp/pantallas/Wheater/WheaterDataView.dart';
+import 'package:movekomapp/pantallas/Wheater/WheaterHistoryView.dart';
 
 
 class ClimaPage extends StatefulWidget {
@@ -45,7 +45,7 @@ class _ClimaPageState extends State<ClimaPage> {
   Widget show(int index, context) {
     List<Widget> _children = [
       WheaterCalefactionView(),
-      WheaterDataView(),
+      WheaterHistoryView(),
     ];
     return _children[index];
   }
@@ -67,7 +67,7 @@ class _ClimaPageState extends State<ClimaPage> {
           labelColor: Colors.lightGreenAccent,
           tabs: [
             Tab(text: "GENERAL"),
-            Tab(text: "DATOS"),
+            Tab(text: "HISTORIAL"),
           ],
         ),
       ),

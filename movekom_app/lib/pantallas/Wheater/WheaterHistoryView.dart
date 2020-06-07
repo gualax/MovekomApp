@@ -2,18 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sparkline/flutter_sparkline.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
-import 'package:movekomapp/pantallas/Wheater/weather_box.dart';
 import 'package:movekomapp/pantallas/Wheater/weather_list.dart';
-import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
 
-class WheaterDataView extends StatefulWidget {
+class WheaterHistoryView extends StatefulWidget {
   @override
-  _WheaterDataViewState createState() => _WheaterDataViewState();
+  _WheaterHistoryViewState createState() => _WheaterHistoryViewState();
 }
 
-class _WheaterDataViewState extends State<WheaterDataView> {
+class _WheaterHistoryViewState extends State<WheaterHistoryView> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);

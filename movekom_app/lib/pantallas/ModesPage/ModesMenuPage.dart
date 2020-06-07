@@ -11,6 +11,7 @@ import 'package:movekomapp/controladores/modos/ModoEco.dart';
 import 'package:movekomapp/controladores/modos/ModoEmergencia.dart';
 import 'package:movekomapp/controladores/modos/ModoHighwayToHell.dart';
 import 'package:movekomapp/controladores/modos/ModoLimpiezaTuberias.dart';
+import 'package:movekomapp/controladores/modos/ModoPanelSolar.dart';
 import 'package:movekomapp/controladores/modos/ModoParking.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 
@@ -26,10 +27,9 @@ class _ModesMenuPageState extends State<ModesMenuPage> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      backgroundColor: Colors.black,
       body: Container(
         alignment: Alignment.center,
-        child: horizontalList(),
+        child: columns(),
       ),
     );
   }
@@ -52,6 +52,7 @@ class _ModesMenuPageState extends State<ModesMenuPage> {
     return  Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           row1(),
           row2(),
@@ -64,13 +65,17 @@ class _ModesMenuPageState extends State<ModesMenuPage> {
   Widget row1(){
     return  Container(
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          ModoAhorroEnergia(),
-          ModoEco(),
-          ModoEmergencia(),
+          //ModoAhorroEnergia(),
+          ModoPanelSolar(),
+          ModoAntiHeladasAuto(),
           ModoDescanso(),
-          box(),
-          box(),
+     //     ModoEco(),
+      //    ModoEmergencia(),
+      //    box(),
+      //    box(),
         ],
       ),
     );
@@ -80,13 +85,14 @@ class _ModesMenuPageState extends State<ModesMenuPage> {
   Widget row2(){
     return  Container(
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           ModoLimpiezaTuberias(),
           ModoHighwayToHell(),
           ModoParking(),
-          ModoAntiHeladasBasico(),
-          ModoAntiHeladasAuto(),
-          box(),
+      //    ModoAntiHeladasBasico(),
+        //  box(),
         ],
       ),
     );

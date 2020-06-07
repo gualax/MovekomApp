@@ -1,4 +1,3 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/FloatingMenu.dart';
@@ -26,6 +25,7 @@ import 'package:movekomapp/blocs/modos_blocs/modo_eco_bloc.dart';
 import 'package:movekomapp/blocs/modos_blocs/modo_emergencia_bloc.dart';
 import 'package:movekomapp/blocs/modos_blocs/modo_highway_to_hell_bloc.dart';
 import 'package:movekomapp/blocs/modos_blocs/modo_limpieza_bloc.dart';
+import 'package:movekomapp/blocs/modos_blocs/modo_panel_solar_bloc.dart';
 import 'package:movekomapp/blocs/modos_blocs/modo_parking_bloc.dart';
 import 'package:movekomapp/bluetooth/bluetooth_bloc.dart';
 import 'package:movekomapp/pantallas/PrincipalHome.dart';
@@ -121,8 +121,11 @@ class MyApp extends StatelessWidget {
         BlocProvider<ModoAntiHeladasBasicoBloc>(create:(context)=> ModoAntiHeladasBasicoBloc()),
         BlocProvider<ModoAntiHeladasAutoBloc>(create:(context)=> ModoAntiHeladasAutoBloc()),
         BlocProvider<ExtractorBloc>(create:(context)=> ExtractorBloc()),
+        BlocProvider<ModoPanelSolarBloc>(create:(context)=> ModoPanelSolarBloc()),
 
         BlocProvider<BluetoothControllerBloc>(create:(context)=> BluetoothControllerBloc()),
+
+
         BlocProvider<WeatherBloc>(create:(context)=> WeatherBloc(weatherRepository: weatherRepository,)),
         BlocProvider<AireAcondicionadoBloc>(create:(context)=> AireAcondicionadoBloc()),
         BlocProvider<NeveraBloc>(create:(context)=> NeveraBloc()),

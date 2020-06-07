@@ -53,13 +53,17 @@ with SingleTickerProviderStateMixin {
   return BlocBuilder(
     bloc: boilerBloc,
     builder: (BuildContext context, BoilerState state) {
-   //   print("state.valueCord:" + state.valueCord.toString());
+     // print("valueCord:" + state.valueCord.toString());
+    //  print("amgle:" + (state.valueCord * math.pi).toString());
       return Container(
         child: Transform.rotate(
-          angle: state.valueCord/4 * math.pi,
+          angle: -0.5 * math.pi,
           child: Container(
             padding: EdgeInsets.all(10),
-            child: circuloBoiler(),
+            child: Transform.rotate(
+              angle: state.valueCord/3 * math.pi,  //el valor del num / la mitad d los elementos si son 6 enotnces divido *3
+              child: circuloBoiler(),
+            ),
           ),
         ),
       );

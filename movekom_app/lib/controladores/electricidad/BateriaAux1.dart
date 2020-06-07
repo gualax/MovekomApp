@@ -1,10 +1,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movekomapp/HomePage.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/bateria_aux_1_bloc.dart';
+import 'package:movekomapp/pantallas/Electricity/ElectricityMenuPage.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
@@ -174,39 +176,47 @@ class BateriaMotorAux1 extends StatelessWidget {
             colorText = MyColors.inactive;
             colorIcon = MyColors.inactive;
           }
-          return MyContainer(
-              margin: EdgeInsets.only(bottom: SC.bot(15)),
-              width: 288, height:200, //200 //288
-              decoration: new BoxDecoration(
-                color: MyColors.baseColor,
-              ),
-              child: Stack(
-                  children: [
-                    MyPositioned.fill(
-                      /// valor bateria
-                      left: 5,top:20,
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: circleIndicatorBatery_small(state.valueBat, colorIcon, SC.all(80),SC.all(150), state.valueVolt.toStringAsFixed(1)),
-                      ),
-                    ),
-                    MyPositioned.fill(
-                      /// titulo
-                      top: 4, left: 10,
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: RichText(
-                            text: TextSpan(
-                                children: [
-                                  TextSpan(
-                                      style: MyTextStyle.estiloBold(15, colorText),
-                                      text: title),
-                                ]
-                            )
+          return GestureDetector(
+            onTap: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ElectricityPage()),
+              );
+              },
+            child: MyContainer(
+                margin: EdgeInsets.only(bottom: SC.bot(15)),
+                width: 288, height:200, //200 //288
+                decoration: new BoxDecoration(
+                  color: MyColors.baseColor,
+                ),
+                child: Stack(
+                    children: [
+                      MyPositioned.fill(
+                        /// valor bateria
+                        left: 5,top:20,
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: circleIndicatorBatery_small(state.valueBat, colorIcon, SC.all(80),SC.all(150), state.valueVolt.toStringAsFixed(1)),
                         ),
                       ),
-                    ),
-                 ])
+                      MyPositioned.fill(
+                        /// titulo
+                        top: 4, left: 10,
+                        child: Align(
+                          alignment: Alignment.topLeft,
+                          child: RichText(
+                              text: TextSpan(
+                                  children: [
+                                    TextSpan(
+                                        style: MyTextStyle.estiloBold(15, colorText),
+                                        text: title),
+                                  ]
+                              )
+                          ),
+                        ),
+                      ),
+                   ])
+            ),
           );
         }
       );

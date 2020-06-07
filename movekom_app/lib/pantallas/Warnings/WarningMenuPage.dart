@@ -33,7 +33,7 @@ class _WarningMenuPageState extends State<WarningMenuPage> {
         backgroundColor: Colors.black,
         body:  MyContainer(
           // color: Colors.blueGrey,
-            margin: EdgeInsets.only(top: SC.top(10)),
+            margin: EdgeInsets.only(top: SC.top(10),left: SC.left(60),right: SC.right(60)),
             child: Column(
               children: <Widget>[
                 Expanded(

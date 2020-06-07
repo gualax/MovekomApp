@@ -5,8 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/pantallas/Wheater/wheater_bloc.dart';
 import 'package:movekomapp/pantallas/Wheater/wheather_conditions.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
+import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
 class WeatherBox extends StatefulWidget {
@@ -49,60 +52,58 @@ class _WeatherBoxState extends State<WeatherBox> {
     return Center(child: boxWithIndicator());
     } else if (state is WeatherLoaded) {
       final weather = state.weather;
-      return Container(
-        width: 140,
+      return MyContainer(
+        width: 380,
         height: 135,
-        margin: EdgeInsets.only(left: 5, right: 5),
+        margin: EdgeInsets.all(SC.all(5)),
         decoration: new BoxDecoration(
           color: MyColors.baseColor,
         ),
         child: Stack(
           children: <Widget>[
-            Positioned.fill( /// DAY
-                top: 9,
-                left: 7,
+            MyPositioned.fill( /// DAY
+                top: 9, left: 10,
                 child: Align(
                   alignment: Alignment.topLeft,
                   child: Text(
-                   "Hoy", style: MyTextStyle.estiloBold(22, Colors.white),),
+                   "El tiempo hoy" , style: MyTextStyle.estilo(20, Colors.white),),
                 )
             ),
-            Positioned.fill(/// ICON
-            //  right: 13, bottom: 10,
+            MyPositioned.fill(/// ICON
+              left: 150,
               child: Align(
                 alignment: Alignment.center,
                 child:  WeatherConditions(condition: weather.condition), /// icon weather
               ),
             ),
-            Positioned.fill(/// TEMP
-           //   left:10,  bottom: 10,
-              top: 5, right: 5,
+            MyPositioned.fill(/// TEMP
+              right: 150,
               child: Align(
-                alignment: Alignment.topRight,
+                alignment: Alignment.center,
                 child:  Text(
-                  weather.temp.toStringAsFixed(1) + "º", style: MyTextStyle.estiloBold(27, Colors.white),), /// icon weather
+                  weather.temp.toStringAsFixed(1) + "º", style: MyTextStyle.estiloBold(40, Colors.white),), /// icon weather
               ),
             ),
-            Positioned.fill(/// tMIN
-              bottom: 5,
-              left: 5,
+            MyPositioned.fill(/// tMIN
+              bottom: 10,
+              left: 20,
               child: Align(
                 alignment: Alignment.bottomLeft,
                 child: Text(
                   "Min: " + weather.minTemp.toStringAsFixed(1), style: MyTextStyle.estilo(13, Colors.white),),
               ),
             ),
-            Positioned.fill(/// location
-              top: 70,
+            MyPositioned.fill(/// location
+              top: 90,
               child: Align(
                 alignment: Alignment.center,
                 child: Text(
-                  weather.location, style: MyTextStyle.estilo(13, Colors.white),),
+                  weather.location, style: MyTextStyle.estilo(20, Colors.white),),
               ),
             ),
-            Positioned.fill( /// tMax
-              bottom: 5,
-              right: 5,
+            MyPositioned.fill( /// tMax
+              bottom: 10,
+              right: 20,
               child: Align(
                 alignment: Alignment.bottomRight,
                 child: Text(
@@ -165,7 +166,7 @@ Widget boxWithIndicator(){
       Placemark place = p[0];
       setState(() {
         _currentAddress = place.administrativeArea;
-        _weatherBloc.add(FetchWeather(city: place.administrativeArea,indexDay: widget.indexDay));
+        _weatherBloc.add(FetchWeather(city: "Madrid",indexDay: widget.indexDay));
       });
     } catch (e) {
       print(e);

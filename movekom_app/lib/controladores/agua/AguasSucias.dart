@@ -55,8 +55,8 @@ class AguasSucias extends StatelessWidget {
           builder: ( context, state) {
             return MyContainer(
                 margin: EdgeInsets.all(SC.all(7)),
-                width: 130,
-                height: 130,
+                width: 220,
+                height: 282,
                 decoration: new BoxDecoration(
                     color: MyColors.baseColor
                 ),

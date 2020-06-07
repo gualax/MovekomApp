@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:movekomapp/Utils/DrawCircle.dart';
+import 'package:movekomapp/Utils/Circulos.dart';
+import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/controladores/agua/AguasLimpias.dart';
-import 'package:movekomapp/controladores/agua/AguasNegras.dart';
 import 'package:movekomapp/controladores/agua/AguasSucias.dart';
 import 'package:movekomapp/controladores/agua/BombaAgua.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
+import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
@@ -31,7 +32,7 @@ class _WaterLevelsViewState extends State<WaterLevelsView> {
                    // color: Colors.orange,
                     children: <Widget>[
                      aguas(),
-                      WaterBoilerView(),
+                      boilerColumn(),
                     ],
                   ),
                 ),
@@ -39,6 +40,108 @@ class _WaterLevelsViewState extends State<WaterLevelsView> {
             ),
     );
   }
+
+  Widget boilerColumn(){
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        WaterBoilerView(),
+        row(),
+      ],
+    );
+  }
+//720
+  Widget row(){
+    return Row(
+      children: <Widget>[
+        temporizador(),
+        resistencia1(),
+        resistencia2(),
+      ],
+    );
+  }
+
+  Widget resistencia1(){
+    return MyContainer(
+      margin: EdgeInsets.all(SC.all(5)),
+      width: 175,
+        height: 90,
+        decoration: new BoxDecoration(
+            color: MyColors.baseColor
+        ),
+      child: Stack(
+        children: <Widget>[
+          MyPositioned.fill(
+            top:10,
+              child: Align(
+                alignment: Alignment.center,
+                child: iconSvgD("assets/icons/enchufe_boiler.svg", MyColors.principal, 50),
+              )
+          ),
+          MyPositioned.fill(
+            top: 5,
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: Text("Resistencia electrica 1",
+                  style: MyTextStyle.estilo(12, MyColors.text) ,),
+              )
+          ),
+          MyPositioned.fill(
+              top: 5,right: 5,
+              child: Align(
+                alignment: Alignment.topRight,
+                child: circuloConSombra(10, MyColors.principal),
+              )
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget resistencia2(){
+    return MyContainer(
+      margin: EdgeInsets.all(SC.all(5)),
+      width: 175,
+      height: 90,
+      decoration: new BoxDecoration(
+          color: MyColors.baseColor
+      ),
+      child: Stack(
+        children: <Widget>[
+          MyPositioned.fill(
+              left: 30, top: 10,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: iconSvgD("assets/icons/enchufe_boiler.svg", MyColors.principal, 50),
+              )
+          ),
+          MyPositioned.fill(
+            right: 30,  top: 10,
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: iconSvgD("assets/icons/enchufe_boiler.svg", MyColors.principal, 50),
+              )
+          ),
+          MyPositioned.fill(
+              top: 5,
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: Text("Resistencia electrica 1",
+                  style: MyTextStyle.estilo(12, MyColors.text) ,),
+              )
+          ),
+          MyPositioned.fill(
+              top: 5,right: 5,
+              child: Align(
+                alignment: Alignment.topRight,
+                child: circuloConSombra(10, MyColors.principal),
+              )
+          ),
+        ],
+      ),
+    );
+  }
+
 
 
   Widget aguas(){
@@ -62,13 +165,56 @@ class _WaterLevelsViewState extends State<WaterLevelsView> {
     return Container(
  //     color: Colors.blue,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          AguasNegras(2),
+          //AguasNegras(2),
+          invisible(),
           BombaAgua(2),
       //    AguasNegras(3),
         ],
       ),
+    );
+  }
+
+  Widget invisible(){
+  return MyContainer(
+    margin: EdgeInsets.all(SC.all(7)),
+    width: 200,
+    height: 210,
+    );
+  }
+  Widget temporizador(){
+    return MyContainer(
+        margin: EdgeInsets.all(SC.all(5)),
+        width: 350,
+        height: 90,
+        decoration: new BoxDecoration(
+            color: MyColors.baseColor
+        ),
+      child: Stack(
+        children: <Widget>[
+         MyPositioned.fill(
+           bottom: 20,
+          child: Align(
+            alignment: Alignment.center,
+            child: IconButton(
+              icon: Icon(Icons.access_time),
+              iconSize: SC.all(40),
+              color: MyColors.text,
+              onPressed: () {},
+            ),
+          )
+      ),
+          MyPositioned.fill(
+              bottom: 10,
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Text("Establecer temporizador",
+                  style: MyTextStyle.estilo(16, MyColors.text) ,),
+              )
+          ),
+      ],
+    ),
     );
   }
 

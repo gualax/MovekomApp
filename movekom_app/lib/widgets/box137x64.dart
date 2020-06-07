@@ -56,7 +56,7 @@ Widget  iconSvg(assetName,color) {
 
 }
 
-Widget box137x64_carga(title,iconRoute,valueAh,state){
+Widget box137x64_carga(title,valueAh,state){
   Color color;
   if(state){
     color = Colors.lightGreen;
@@ -64,20 +64,12 @@ Widget box137x64_carga(title,iconRoute,valueAh,state){
     color = Colors.grey;
   }
   return MyContainer(
-      margin: EdgeInsets.only(left: SC.left(7),top: SC.top(3),right:SC.right(7),bottom: SC.bot(3)),
-      width: 137,
-      height: 64,
+      margin: EdgeInsets.all(SC.all(4)),
+      width: 90,
+      height: 66,
       decoration: new BoxDecoration(
           color: MyColors.baseColor
       ), child: Stack(children: [
-    MyPositioned.fill( /// icono
-      left: 7,
-      top: 15,
-      child: Align(
-        alignment: Alignment.centerLeft,
-        child: iconSvgD(iconRoute, color,27),
-      ),
-    ),
     MyPositioned.fill( /// titulo
       top: 4,
       child: Align(
@@ -86,7 +78,7 @@ Widget box137x64_carga(title,iconRoute,valueAh,state){
             text: TextSpan(
                 children: [
                   TextSpan(
-                      style:MyTextStyle.estiloBold(12, color),
+                      style:MyTextStyle.estiloBold(11, color),
                       text: title
                   ),
                 ]
@@ -95,15 +87,14 @@ Widget box137x64_carga(title,iconRoute,valueAh,state){
       ),
     ),
     MyPositioned.fill( /// valueAh
-      top: 15,
-      left: 20,
+      top:10,
       child: Align(
         alignment: Alignment.center,
         child: RichText(
             text: TextSpan(
                 children: [
                   TextSpan(
-                      style:MyTextStyle.estilo(17, color),
+                      style:MyTextStyle.estiloBold(20, color),
                       text: valueAh
                   ),
                 ]

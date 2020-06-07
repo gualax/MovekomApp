@@ -32,10 +32,10 @@ class LuzGeneral extends StatelessWidget {
       BlocBuilder<LuzGeneralBloc,LuzGeneralState>(
           builder: ( context, state) {
             luzGeneralBloc = BlocProvider.of<LuzGeneralBloc>(context);
-          return Container(
-            margin: EdgeInsets.all(SizeConfig.h * 0.5),
-            width: SizeConfig.h * 17,
-            height: SizeConfig.v * 19,
+          return MyContainer(
+            margin: EdgeInsets.all(SC.all(5)),
+            width: 209,
+            height: 140,
             decoration: new BoxDecoration(
                 color: MyColors.baseColor
             ),

@@ -48,6 +48,8 @@ class _PrincipalHomeState extends State<PrincipalHome> {
           resizeToAvoidBottomPadding: false,
          // backgroundColor: Colors.black,
         body:Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             contenido(),
             horizontalList(),
@@ -78,9 +80,10 @@ Widget horizontalList(){
 
   Widget contenido(){
     return MyContainer(
-      margin: EdgeInsets.only(top: SC.top(20)),
+   //   margin: EdgeInsets.only(top: SC.top(20)),
       child: Row( /// elementos uno al lado del otro
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           leftSection(),
           midleLeftSection(),
@@ -94,13 +97,13 @@ Widget horizontalList(){
   Widget midleLeftSection(){
   return
   MyContainer (
-    margin: EdgeInsets.all(SC.all(5)),
     child:
     Column(  /// Elementos uno arriba del otro
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         box137x137_Temperatura(mContext,"TEMP. INTERIOR","30%","21.5C"),
-        box137x137_Temperatura(mContext,"TEMP. EXTERIOR","30%","26.5C"),
+        box137x137_Temperatura(mContext,"TEMP. INTERIOR","30%","21.5C"),
+        FechaWidget(),
       ],
     ),
   );
@@ -109,22 +112,11 @@ Widget horizontalList(){
   Widget midleRigthSection(){
     return
       MyContainer (
-        margin: EdgeInsets.all(SC.all(5)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Row(
-              children: <Widget>[
-                Nevera(1),
-                FechaWidget(),
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                  verticalHalfBoxesIlumination(),
-                  verticalHalfBoxesLed(),
-              ],
-            ),
+            BombaAgua(1),
+            Nevera(1),
           ],
         ),
         );
@@ -133,22 +125,11 @@ Widget horizontalList(){
   Widget rightSection(){
       return
         MyContainer (
-          margin: EdgeInsets.all(SC.all(5)),
-          child: Column(
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Row(
-                children: <Widget>[
-                  AguasLimpias(1),
-                  AguasSucias(1),
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  BombaAgua(1),
-                  AguasNegras(1),
-                ],
-              ),
+              AguasLimpias(1),
+              AguasSucias(1),
             ],
           ),
         );
@@ -159,7 +140,6 @@ Widget horizontalList(){
   Widget leftSection(){
     return
     MyContainer (
-      margin: EdgeInsets.all(SC.all(5)),
       child:
     Row(  /// Elementos uno arriba del otro
       mainAxisAlignment: MainAxisAlignment.center,
@@ -187,8 +167,10 @@ Widget horizontalList(){
   Widget column2(){
     return
       MyContainer(
+        margin: EdgeInsets.all(SC.all(5)),
         child: Column (
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             BateriaMotorAux1(1),
             principalLeftRow2(),
@@ -217,9 +199,11 @@ Widget horizontalList(){
       MyContainer(
         child: Row (
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            box137x64_carga("CARGA MOTOR","assets/icons/engine_motor.svg","25.5Ah",true),
-            box137x64_carga("CARGA SOLAR","assets/icons/solar_panel_1.svg","12.5Ah",true),
+            box137x64_carga("MOTOR","25.5Ah",true),
+            box137x64_carga("SOLAR","12.5Ah",true),
+            box137x64_carga("220","12.5Ah",true),
           ],
         ),
       );
