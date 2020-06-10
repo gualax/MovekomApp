@@ -61,6 +61,7 @@ class CargadorBaterias extends StatelessWidget {
                       )
                   ),
                   MyPositioned.fill(
+                    left: 60,
                       child: Align(
                         alignment: Alignment.center,
                         child: Text(state.valueAmp.toString(),
@@ -71,25 +72,25 @@ class CargadorBaterias extends StatelessWidget {
                       left: 20,
                       child: Align(
                         alignment: Alignment.centerLeft,
-                        child: iconSvgD("assets/icons/cable.svg", colorTex, 60),
+                        child: iconSvgD("assets/icons/enchufe_cargador_acc.svg", colorTex, 60),
                       )
                   ),
                   MyPositioned.fill(
                     ///  /// valueAmp
-                      bottom: 20, left: 60,
+                      bottom: 20,
                       child: Align(
-                        alignment: Alignment.bottomLeft,
+                        alignment: Alignment.bottomCenter,
                         child: Text(
                             on_off_Text,
-                            style: MyTextStyle.estiloBold(12, colorTex),
+                            style: MyTextStyle.estiloBold(15, colorTex),
                             textAlign: TextAlign.center
                         ),
                       )
                   ),
                   MyPositioned.fill(
-                      left: 15, bottom: 5,
+                      right: 180, bottom: 5,
                       child: Align(
-                        alignment: Alignment.bottomLeft,
+                        alignment: Alignment.bottomCenter,
                         child: IconButton(
                           icon: Icon(Icons.power_settings_new), iconSize: 30,
                           color: iconColor,
@@ -103,28 +104,6 @@ class CargadorBaterias extends StatelessWidget {
                       )
                   ),
                   MyPositioned.fill(
-                  /// valueAmp
-                      bottom: 20, left: 250, right: 20,
-                      child: Align(
-                        alignment: Alignment.bottomRight,
-                        child: Text(
-                            "Establecer temporizacion",
-                            style: MyTextStyle.estiloBold(12, colorTex),
-                            textAlign: TextAlign.center
-                        ),
-                      )
-                  ),
-                  MyPositioned.fill(
-                    /// valueAmp
-                      bottom: 42, right: 38,
-                      child: Align(
-                        alignment: Alignment.bottomRight,
-                        child: IconButton(
-                          icon: Icon(Icons.access_time), iconSize: 30,
-                          color: colorTex, onPressed: () {},),
-                      )
-                  ),
-                  MyPositioned.fill(
                     ///  /// valueAmp
                       top: 20, right: 20,
                       child: Align(
@@ -133,7 +112,7 @@ class CargadorBaterias extends StatelessWidget {
                       )
                   ),
                   MyPositioned.fill(
-                      bottom: 40,
+                      bottom: 40, left: 60,
                       child: Align(
                         alignment: Alignment.center,
                         child: inidicadorRojoImg(state.valueAmp,45.0),

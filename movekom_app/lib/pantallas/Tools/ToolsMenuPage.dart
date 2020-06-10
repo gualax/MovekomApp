@@ -5,6 +5,7 @@ import 'package:movekomapp/Utils/SizeConfig.dart';
 import 'package:movekomapp/controladores/climatizacion/Extractor.dart';
 import 'package:movekomapp/controladores/electricidad/CargadorDeBateria.dart';
 import 'package:movekomapp/controladores/electricidad/Inversor.dart';
+import 'package:movekomapp/controladores/electricidad/PanelSolar.dart';
 import 'package:movekomapp/controladores/modos/ModoAhorroEnergia.dart';
 import 'package:movekomapp/controladores/modos/ModoAntiHeladasAuto.dart';
 import 'package:movekomapp/controladores/modos/ModoAntiHeladasBasico.dart';
@@ -68,7 +69,7 @@ Widget rows1(){
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           CargadorBaterias(),
-          emptyBox(),
+          PanelSolar(2),
         ],
       ),
     );

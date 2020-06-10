@@ -77,7 +77,7 @@ class _ElectricityGeneralViewState extends State<ElectricityGeneralView> {
         children: <Widget>[
           Alternador(),
           Cargador220(),
-          PanelSolar(),
+          PanelSolar(1),
           Consumos(),
         ],
       ),

@@ -47,12 +47,12 @@ class _ExtractorState extends State<Nevera> {
               colorIcon = MyColors.principal;
               colorImg = MyColors.principal;
               colorText = MyColors.text;
-              on_off = "Presionar para apagar";
+              on_off = "Pulsar para apagar";
             } else{
               colorIcon = MyColors.text;
               colorImg = MyColors.inactive;
               colorText = MyColors.inactive;
-              on_off = "Presionar para encender";
+              on_off = "Pulsar para encender";
             }
             return GestureDetector(
               onTap: (){
@@ -104,12 +104,11 @@ class _ExtractorState extends State<Nevera> {
                           )
                       ),
                       MyPositioned.fill(
-                          left: 20,
                           bottom: 15,
                           child: Align(
                             alignment: Alignment.bottomCenter,
                             child: Text(on_off,
-                              style: MyTextStyle.estiloBold(17, colorText),),
+                              style: MyTextStyle.estiloBold(15, colorText),),
                           )
                       ),
                       MyPositioned(
@@ -129,11 +128,11 @@ class _ExtractorState extends State<Nevera> {
                         ),
                       ),
                       MyPositioned.fill(
-                          right: 200,
+                          right: 180, bottom: 5,
                           child: Align(
                             alignment: Alignment.bottomCenter,
                             child: IconButton(
-                              icon: Icon(Icons.power_settings_new), iconSize: 25,
+                              icon: Icon(Icons.power_settings_new), iconSize: 30,
                               color: colorIcon,
                               onPressed: () {
                                 print("state" + state.isEnabled.toString());
@@ -228,10 +227,19 @@ class _ExtractorState extends State<Nevera> {
 
 
   Widget nevera_principal() {
+    String on_off;
+    Color colorIcon;
     return
       BlocBuilder<NeveraBloc, NeveraState>(
          builder: (context, state) {
         bloc = BlocProvider.of<NeveraBloc>(context);
+        if(state.isEnabled){
+          on_off = "ON";
+          colorIcon = MyColors.principal;
+        }else {
+          on_off = "OFF";
+          colorIcon = MyColors.inactive;
+        }
         return   MyContainer(
         margin: EdgeInsets.all(SC.all(7)),
         width: 137,
@@ -249,9 +257,9 @@ class _ExtractorState extends State<Nevera> {
                 )
             ),
             MyPositioned.fill(
-                top:5, left: 15,
+                top:5,
                 child: Align(
-                  alignment: Alignment.centerLeft,
+                  alignment: Alignment.center,
                   child: iconSvgD("assets/icons/nevera.svg", MyColors.principal, 60),
                 )
             ),
@@ -265,26 +273,18 @@ class _ExtractorState extends State<Nevera> {
             MyPositioned.fill(
                 top:10, right: 10,
                 child: Align(
-                  alignment: Alignment.topRight,
-                  child: circuloConSombra(10, MyColors.principal),
-                )
-            ),
-            MyPositioned.fill(
-                right: 20,
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child: Text(state.valueExt.toString(),
-                    style: MyTextStyle.estiloBold(30, MyColors.text) ,),
-                )
-            ),
-            MyPositioned.fill(
-                right: 20, bottom: 10,
-                child: Align(
-                  alignment: Alignment.bottomRight,
-                  child: Text("Cº",
-                    style: MyTextStyle.estiloBold(15, MyColors.text) ,),
-                )
+              alignment: Alignment.topRight,
+              child: circuloConSombra(10, MyColors.principal),
             )
+            ),
+            MyPositioned.fill(
+                bottom:5, left: 5,
+                child: Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Text(on_off,
+                      style:MyTextStyle.estiloBold(15, colorIcon)),
+                )
+            ),
           ],
       )
       );

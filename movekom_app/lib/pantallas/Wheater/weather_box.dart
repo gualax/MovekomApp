@@ -130,18 +130,76 @@ class _WeatherBoxState extends State<WeatherBox> {
 
 Widget boxWithIndicator(){
   return Container(
-      width: 140,
-      height: 135,
-      margin: EdgeInsets.only(left: 5, right: 5),
+    width: 380,
+    height: 135,
+    margin: EdgeInsets.all(SC.all(5)),
       decoration: new BoxDecoration(
      color: MyColors.baseColor,
       ),
-    child: Center(
-      child: Container(
+      child: MyContainer(
         width: 50,
         height: 50,
-        child: CircularProgressIndicator() ,
-      ),
+      ///  child: CircularProgressIndicator() ,
+        child:  Stack(
+          children: <Widget>[
+            MyPositioned.fill( /// DAY
+                top: 9, left: 10,
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    "El tiempo hoy" , style: MyTextStyle.estilo(20, Colors.white),),
+                )
+            ),
+            MyPositioned.fill(/// ICON
+              child: Align(
+                alignment: Alignment.center,
+                child: CircularProgressIndicator() , /// icon weather
+              ),
+            ),
+            MyPositioned.fill(/// ICON
+              left: 150,
+              child: Align(
+                alignment: Alignment.center,
+                child:  Text("--",
+                  style:MyTextStyle.estilo(15, MyColors.text)), /// icon weather
+              ),
+            ),
+            MyPositioned.fill(/// TEMP
+              right: 150,
+              child: Align(
+                alignment: Alignment.center,
+                child:  Text(
+                  "---", style: MyTextStyle.estiloBold(40, Colors.white),), /// icon weather
+              ),
+            ),
+            MyPositioned.fill(/// tMIN
+              bottom: 10,
+              left: 20,
+              child: Align(
+                alignment: Alignment.bottomLeft,
+                child: Text(
+                  "Min: " + "--", style: MyTextStyle.estilo(13, Colors.white),),
+              ),
+            ),
+            MyPositioned.fill(/// location
+              top: 90,
+              child: Align(
+                alignment: Alignment.center,
+                child: Text(
+                  "--", style: MyTextStyle.estilo(20, Colors.white),),
+              ),
+            ),
+            MyPositioned.fill( /// tMax
+              bottom: 10,
+              right: 20,
+              child: Align(
+                alignment: Alignment.bottomRight,
+                child: Text(
+                  "Max: " + "--", style: MyTextStyle.estilo(13, Colors.white),),
+              ),
+            ),
+          ],
+        ),
     ),
   );
 }

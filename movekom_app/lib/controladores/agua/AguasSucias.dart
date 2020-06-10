@@ -74,34 +74,25 @@ class AguasSucias extends StatelessWidget {
                         top: 5,
                         child: Align(
                           alignment: Alignment.topCenter,
-                          child: RichText(
-                              text: TextSpan(
-                                  children: [
-                                    TextSpan(
+                          child: Text(title,
                                         style: MyTextStyle.estiloBold(
-                                            12, MyColors.text),
-                                        text: title
-                                    ),
-                                  ]
-                              )
-                          ),
-                        ),
-                      ),
+                                            18, MyColors.text),
+                                    ),),),
                       MyPositioned.fill(/// value
                         top: 15,
                         child: Align(
                           alignment: Alignment.center,
-                          child: RichText(
-                              text: TextSpan(
-                                  children: [
-                                    TextSpan(
+                          child: Text( state.valueAmp.toString() + "%",
                                         style: MyTextStyle.estiloBold(
-                                            15, MyColors.text),
-                                        text: state.valueAmp.toString() + "%"
-                                    ),
-                                  ]
-                              )
+                                            45, MyColors.text),
                           ),
+                        ),
+                      ),
+                      MyPositioned.fill(/// Circulo
+                        bottom: 60,
+                        child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child:iconSvgNc("assets/icons/warning.svg", 28),
                         ),
                       ),
                     ])
@@ -124,11 +115,8 @@ class AguasSucias extends StatelessWidget {
                 ),
                 child: Stack(
                     children: [
-                      Positioned.fill(/// Circulo
-                        top:  SizeConfig.v * 5,
-                        bottom: SizeConfig.v * 2,
-                        left: SizeConfig.h * 1,
-                        right: SizeConfig.h * 1,
+                      MyPositioned.fill(/// Circulo
+                         top: 35,bottom: 10,  left: 5, right: 5,
                         child: Align(
                           alignment: Alignment.center,
                           child: agua_sucia_Img(state.valueAmp),
@@ -139,34 +127,27 @@ class AguasSucias extends StatelessWidget {
                         top: SizeConfig.v * 1,
                         child: Align(
                           alignment: Alignment.topCenter,
-                          child: RichText(
-                              text: TextSpan(
-                                  children: [
-                                    TextSpan(
+                          child:Text(title,
                                         style: MyTextStyle.estiloBold(
                                             SizeConfig.v * 2.2, MyColors.text),
-                                        text: title
-                                    ),
-                                  ]
-                              )
                           ),
                         ),
                       ),
-                      Positioned.fill(/// value
-                        top: SizeConfig.v * 2.5,
+                      MyPositioned.fill(/// value
+                        top: 5,
                         child: Align(
                           alignment: Alignment.center,
-                          child: RichText(
-                              text: TextSpan(
-                                  children: [
-                                    TextSpan(
+                          child:Text(state.valueAmp.toString() + "%",
                                         style: MyTextStyle.estiloBold(
                                             SizeConfig.v * 5, MyColors.text),
-                                        text: state.valueAmp.toString() + "%"
-                                    ),
-                                  ]
-                              )
                           ),
+                        ),
+                      ),
+                      MyPositioned.fill(/// Circulo
+                        bottom: 35,
+                        child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child:iconSvgNc("assets/icons/warning.svg", 28),
                         ),
                       ),
                     ])

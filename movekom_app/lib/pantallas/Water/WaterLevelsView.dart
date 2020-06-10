@@ -10,6 +10,7 @@ import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
+import 'package:movekomapp/widgets/temporizador_popup.dart';
 
 import 'WaterBoilerView.dart';
 
@@ -201,7 +202,12 @@ class _WaterLevelsViewState extends State<WaterLevelsView> {
               icon: Icon(Icons.access_time),
               iconSize: SC.all(40),
               color: MyColors.text,
-              onPressed: () {},
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) => TemporizadorPopup(),
+                );
+              },
             ),
           )
       ),

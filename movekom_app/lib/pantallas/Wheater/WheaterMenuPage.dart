@@ -8,8 +8,28 @@ class ClimaPage extends StatefulWidget {
   _ClimaPageState createState() => _ClimaPageState();
 }
 
-class _ClimaPageState extends State<ClimaPage> {
+class _ClimaPageState extends State<ClimaPage>  with SingleTickerProviderStateMixin  {
   int _currentIndex=0;
+  TabController _tabController;
+
+  List<Widget> _children = [
+    WheaterCalefactionView(),
+    WheaterHistoryView(),
+  ];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _tabController = new TabController(vsync: this, length: _children.length);
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _tabController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +45,9 @@ class _ClimaPageState extends State<ClimaPage> {
                     flex: 7,
                     child: Container(
                       //       color: Colors.yellowAccent,
-                      child: show(_currentIndex, context),
+                      child: new TabBarView(
+                          controller: _tabController,
+                          children: _children),
                     ),
                   ),
                   Expanded(
@@ -43,10 +65,6 @@ class _ClimaPageState extends State<ClimaPage> {
 
 
   Widget show(int index, context) {
-    List<Widget> _children = [
-      WheaterCalefactionView(),
-      WheaterHistoryView(),
-    ];
     return _children[index];
   }
 
@@ -62,6 +80,7 @@ class _ClimaPageState extends State<ClimaPage> {
           onTap: (index) {
             changePage(index);
           },
+          controller: _tabController,
           indicatorColor: Colors.lightGreenAccent,
           unselectedLabelColor: Colors.white,
           labelColor: Colors.lightGreenAccent,

@@ -3,10 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
 import 'package:movekomapp/pantallas/Wheater/whather_data_model.dart';
 import 'package:movekomapp/pantallas/Wheater/wheater_bloc.dart';
 import 'package:movekomapp/pantallas/Wheater/wheather_conditions.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
+import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
 class WeatherListWidget extends StatefulWidget {
@@ -56,13 +59,13 @@ class _WeatherListWidgetState extends State<WeatherListWidget> {
     if (state is WeatherEmpty) {
         return Center(child: Text('Please Select a Location'));
         }else if (state is WeatherLoading) {
-        return Center(child: CircularProgressIndicator());
+        return Center(child: loadingWheaterBoxes());
         } else if (state is WeatherLoadedList) {
         final weatherList = state.weatherList;
         print("weatherList");
         print(weatherList);
     return Container(
-      height: 140,
+      height: SC.hei(140),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         /// ver por que solo muestra el utlimo llamado, ver forma desde el el parsing de convertir esto en un array =)
@@ -87,16 +90,16 @@ class _WeatherListWidgetState extends State<WeatherListWidget> {
 
 
   Widget weatherBoxi(Weather weather){
-    return Container(
+    return MyContainer(
       width: 170,
       height: 125,
-      margin: EdgeInsets.only(left: 1, right: 1),
+      margin: EdgeInsets.only(left:SC.left(1), right: SC.right(1)),
       decoration: new BoxDecoration(
         color: MyColors.baseColor,
       ),
       child: Stack(
         children: <Widget>[
-          Positioned.fill( /// DAY
+          MyPositioned.fill( /// DAY
               top: 7,
               left: 10,
               child: Align(
@@ -106,13 +109,13 @@ class _WeatherListWidgetState extends State<WeatherListWidget> {
                   , style: MyTextStyle.estiloBold(18, Colors.white),),
               )
           ),
-          Positioned.fill(/// ICON
+          MyPositioned.fill(/// ICON
             child: Align(
               alignment: Alignment.center,
               child:  WeatherConditions(condition: weather.condition), /// icon weather
             ),
           ),
-          Positioned.fill(/// tMIN
+          MyPositioned.fill(/// tMIN
             bottom: 5,
             left: 5,
             child: Align(
@@ -121,13 +124,90 @@ class _WeatherListWidgetState extends State<WeatherListWidget> {
                 "Min: " + weather.minTemp.toStringAsFixed(1), style: MyTextStyle.estilo(15, Colors.white),),
             ),
           ),
-          Positioned.fill( /// tMax
+          MyPositioned.fill( /// tMax
             bottom: 5,
             right: 5,
             child: Align(
               alignment: Alignment.bottomRight,
               child: Text(
                 "Max: " + weather.maxTemp.toStringAsFixed(1), style: MyTextStyle.estilo(15, Colors.white),),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+
+
+
+Widget loadingWheaterBoxes(){
+
+  return Container(
+    height: SC.hei(140),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      /// ver por que solo muestra el utlimo llamado, ver forma desde el el parsing de convertir esto en un array =)
+      children: <Widget>[
+        weatherBoxiLoading(),
+        weatherBoxiLoading(),
+        weatherBoxiLoading(),
+        weatherBoxiLoading(),
+        weatherBoxiLoading(),
+        weatherBoxiLoading(),
+      ],
+    ),
+  );
+}
+
+  Widget weatherBoxiLoading(){
+    return MyContainer(
+      width: 170,
+      height: 125,
+      margin: EdgeInsets.only(left:SC.left(1), right: SC.right(1)),
+      decoration: new BoxDecoration(
+        color: MyColors.baseColor,
+      ),
+      child: Stack(
+        children: <Widget>[
+          MyPositioned.fill( /// DAY
+              top: 7,
+              left: 10,
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Text( "--"
+                  , style: MyTextStyle.estiloBold(18, Colors.white),),
+              )
+          ),
+          MyPositioned.fill( /// DAY
+              child: Align(
+                alignment: Alignment.center,
+                child: CircularProgressIndicator(),
+              )
+          ),
+          MyPositioned.fill(/// ICON
+            child: Align(
+              alignment: Alignment.center,
+              child:  Text("--",
+                style: MyTextStyle.estilo(15, Colors.white),), /// icon weather
+            ),
+          ),
+          MyPositioned.fill(/// tMIN
+            bottom: 5,
+            left: 5,
+            child: Align(
+              alignment: Alignment.bottomLeft,
+              child: Text(
+                "Min: " + "--", style: MyTextStyle.estilo(15, Colors.white),),
+            ),
+          ),
+          MyPositioned.fill( /// tMax
+            bottom: 5,
+            right: 5,
+            child: Align(
+              alignment: Alignment.bottomRight,
+              child: Text(
+                "Max: " + "--", style: MyTextStyle.estilo(15, Colors.white),),
             ),
           ),
         ],

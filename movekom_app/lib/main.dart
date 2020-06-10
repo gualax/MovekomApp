@@ -27,6 +27,7 @@ import 'package:movekomapp/blocs/modos_blocs/modo_highway_to_hell_bloc.dart';
 import 'package:movekomapp/blocs/modos_blocs/modo_limpieza_bloc.dart';
 import 'package:movekomapp/blocs/modos_blocs/modo_panel_solar_bloc.dart';
 import 'package:movekomapp/blocs/modos_blocs/modo_parking_bloc.dart';
+import 'package:movekomapp/blocs/tab_bloc.dart';
 import 'package:movekomapp/bluetooth/bluetooth_bloc.dart';
 import 'package:movekomapp/pantallas/PrincipalHome.dart';
 import 'package:movekomapp/pantallas/Wheater/whater_api_client.dart';
@@ -76,6 +77,8 @@ class MyApp extends StatelessWidget {
   MyApp({Key key, @required this.weatherRepository})
       : assert(weatherRepository != null),
         super(key: key);
+
+  static final myTabbedPageKey =  new GlobalKey();
 
   // This widget is the root of your application.
   @override
@@ -130,6 +133,8 @@ class MyApp extends StatelessWidget {
         BlocProvider<AireAcondicionadoBloc>(create:(context)=> AireAcondicionadoBloc()),
         BlocProvider<NeveraBloc>(create:(context)=> NeveraBloc()),
 
+        BlocProvider<TabBloc>(create:(context)=> TabBloc()),
+
       ],
       child: MaterialApp(
         initialRoute: '/',
@@ -164,7 +169,7 @@ class MyApp extends StatelessWidget {
           }
           return supportedLocales.first;
         },
-       home: HomePage(indexToShow:0),
+       home: new HomePage(key:myTabbedPageKey,indexPage: 0),
       ),
     );
   }

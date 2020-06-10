@@ -21,10 +21,24 @@ class WarningMenuPage extends StatefulWidget {
   _WarningMenuPageState createState() => _WarningMenuPageState();
 }
 
-class _WarningMenuPageState extends State<WarningMenuPage> {
+class _WarningMenuPageState extends State<WarningMenuPage> with SingleTickerProviderStateMixin {
   BuildContext mContext;
   int _currentIndex=0;
+  TabController _tabController;
 
+
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _tabController = new TabController(vsync: this, length: _children.length);
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _tabController.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -46,7 +60,10 @@ class _WarningMenuPageState extends State<WarningMenuPage> {
                   flex: 7,
                   child: MyContainer(
                  //    color: Colors.blueGrey,
-                    child: show(_currentIndex, context),
+                    child: new TabBarView(
+                      controller: _tabController,
+                      children: _children,
+                    ),
                   ),
                 )
               ],
@@ -55,12 +72,12 @@ class _WarningMenuPageState extends State<WarningMenuPage> {
       );
   }
 
+  List<Widget> _children = [
+    WarningAlarmsView(),
+    WarningHistoryView(),
+  ];
 
   Widget show(int index, context) {
-    List<Widget> _children = [
-      WarningAlarmsView(),
-      WarningHistoryView(),
-    ];
     return _children[index];
   }
 
@@ -76,6 +93,7 @@ class _WarningMenuPageState extends State<WarningMenuPage> {
           onTap: (index) {
             changePage(index);
           },
+          controller: _tabController,
           indicatorColor: Colors.lightGreenAccent,
           unselectedLabelColor: Colors.white,
           labelColor: Colors.lightGreenAccent,

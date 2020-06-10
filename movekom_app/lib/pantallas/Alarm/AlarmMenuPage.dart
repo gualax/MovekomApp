@@ -164,8 +164,8 @@ class _AlarmMenuPageState extends State<AlarmMenuPage> {
             bottom:17,left: 20,
             child: Align(
               alignment: Alignment.bottomCenter,
-              child: Text("Presione para encender",
-                  style: MyTextStyle.estilo(14, MyColors.text)),
+              child: Text("Pulsar para encender",
+                  style: MyTextStyle.estilo(15, MyColors.text)),
             ),
           ),
         ],

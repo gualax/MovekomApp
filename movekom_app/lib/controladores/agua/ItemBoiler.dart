@@ -35,6 +35,7 @@ class ItemBoiler extends StatefulWidget {
 class _ItemBoilerState extends State<ItemBoiler> {
   BoilerBloc boilerBloc;
   bool _selected;
+  String title  = "BOILER";
   @override
   Widget build(BuildContext context) {
     return iconBuble();
@@ -257,6 +258,7 @@ Widget textAligned(int number){
 
 class widgetBoiler extends StatelessWidget {
   RadialListItemViewModel itemBoiler;
+  String title = "BOILER";
   @override
   Widget build(BuildContext context) {
     return widget_boiler();
@@ -292,7 +294,7 @@ class widgetBoiler extends StatelessWidget {
               child:   Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  "Boiler",
+                  title,
                   style: MyTextStyle.estiloBold(18, MyColors.text),
                 ),
               ),

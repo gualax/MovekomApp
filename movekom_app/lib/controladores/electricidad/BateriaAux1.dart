@@ -1,4 +1,5 @@
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/HomePage.dart';
@@ -6,6 +7,8 @@ import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/bateria_aux_1_bloc.dart';
+import 'package:movekomapp/blocs/tab_bloc.dart';
+import 'package:movekomapp/main.dart';
 import 'package:movekomapp/pantallas/Electricity/ElectricityMenuPage.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
@@ -13,12 +16,13 @@ import 'package:movekomapp/widgets/MyTextStyle.dart';
 
 class BateriaMotorAux1 extends StatelessWidget {
   int widgetType;
-  final String title = "BATERIA AUX 1";
-
+  final String title = "BATERIA AUXILIAR";
+   TabBloc tabBloc;
   BateriaMotorAux1(this.widgetType);
   @override
   Widget build(BuildContext context) {
     final bateriaAux1Bloc = BlocProvider.of<BateriaAux1Bloc>(context);
+    tabBloc =  BlocProvider.of<TabBloc>(context);
     if (widgetType == 1) {
       return bateria_aux_principal(bateriaAux1Bloc);
     } else {
@@ -178,10 +182,16 @@ class BateriaMotorAux1 extends StatelessWidget {
           }
           return GestureDetector(
             onTap: (){
-              Navigator.push(
+              // no es la mejor solucion
+            //  Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(indexPage: 2,)));
+             // tabBloc.add(UpdateTab(2));
+
+              Navigator.pushAndRemoveUntil(
                 context,
-                MaterialPageRoute(builder: (context) => ElectricityPage()),
+                CupertinoPageRoute(builder: (context) => HomePage(indexPage: 2,)),
+                    (Route<dynamic> route) => false,
               );
+
               },
             child: MyContainer(
                 margin: EdgeInsets.only(bottom: SC.bot(15)),

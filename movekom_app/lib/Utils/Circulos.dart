@@ -58,13 +58,29 @@ Widget circleIndicator(value, color){
   );
 }
 
-Widget circleIndicatorBateria(value, color,dim){
+Widget circleIndicatorBateria(value, color,dim,valueVolt){
   return CircularPercentIndicator(
     radius: dim,
-    lineWidth: 8,
+    lineWidth: 10,
     percent: (value)/100,
-    center: new Text("14.2" ,
-      style: MyTextStyle.estiloBold(20, Colors.white),),
+    center: Stack(
+      children: <Widget>[
+        MyPositioned.fill(
+          bottom: 20,
+          child: Align(
+            alignment: Alignment.center,
+            child: Text(valueVolt ,
+                style: MyTextStyle.estiloBold(22, Colors.white,)),
+          ),),
+        MyPositioned.fill(
+          top: 30,
+          child: Align(
+            alignment: Alignment.center,
+            child:Text("VOLT" ,
+                style: MyTextStyle.estilo(15, Colors.white,)),
+          ),),
+      ],
+    ),
     progressColor: color,
     backgroundColor: MyColors.baseColor,
   );
@@ -91,7 +107,7 @@ Widget circleIndicatorBateriaAux(value, color,dim,valueVolt){
           child: Align(
             alignment: Alignment.center,
           child:Text("VOLT" ,
-              style: MyTextStyle.estilo(30, Colors.white,)),
+              style: MyTextStyle.estilo(27, Colors.white,)),
         ),),
       ],
     ),

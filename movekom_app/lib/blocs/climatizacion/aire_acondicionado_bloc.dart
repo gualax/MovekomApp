@@ -18,7 +18,6 @@ class DisableAireAcondicionado extends AireAcondicionadoEvent { /// Deshabilita 
 }
 
 class UpdateAireAcondicionado extends AireAcondicionadoEvent { /// Deshabilita la bateria
-  // final int valueTemp;
   final double valueAngle;
   final double radAngle;
   UpdateAireAcondicionado(this.valueAngle,this.radAngle) : super([valueAngle,radAngle]);

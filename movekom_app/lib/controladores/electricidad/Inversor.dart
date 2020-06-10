@@ -67,38 +67,50 @@ Widget inversor_big(){
                   child: Align(
                     alignment: Alignment.topLeft,
                     child: Text(title,
-                      style: MyTextStyle.estiloBold(20, colorTex),),
+                      style: MyTextStyle.estiloBold(28, colorTex),),
                   )
               ),
               MyPositioned.fill(
+                left: 90,
                   child: Align(
                     alignment: Alignment.center,
                     child: Text(state.valueAmp.toString(),
-                      style: MyTextStyle.estiloBold(60, colorTex),),
+                      style: MyTextStyle.estiloBold(80, colorTex),),
                   )
               ),
-              MyPositioned.fill(
-                  left: 20,
+              MyPositioned.fill( /// icon
+                  left: 40,
                   child: Align(
                     alignment: Alignment.centerLeft,
-                    child: iconSvgD("assets/icons/cable.svg", colorTex, 60),
+                    child: iconSvgD("assets/icons/pila_enchufe.svg", circleColor, 80),
                   )
               ),
-              MyPositioned.fill(/// valueAmp
-                  bottom: 20, left: 60,
+              MyPositioned.fill(/// on_off_Text
+                  bottom: 20,
                   child: Align(
-                    alignment: Alignment.bottomLeft,
+                    alignment: Alignment.bottomCenter,
                     child: Text(
                         on_off_Text,
-                        style: MyTextStyle.estiloBold(12, colorTex),
+                        style: MyTextStyle.estiloBold(15, colorTex),
+                        textAlign: TextAlign.center
+                    ),
+                  )
+              ),
+              MyPositioned.fill(/// consumo
+                  bottom: 100, left: 90,
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                        "Consumo",
+                        style: MyTextStyle.estilo(15, colorTex),
                         textAlign: TextAlign.center
                     ),
                   )
               ),
               MyPositioned.fill(
-                  left: 15, bottom: 5,
+                  right: 180, bottom: 5,
                   child: Align(
-                    alignment: Alignment.bottomLeft,
+                    alignment: Alignment.bottomCenter,
                     child: IconButton(
                       icon: Icon(Icons.power_settings_new), iconSize: 30,
                       color: iconColor,
@@ -111,31 +123,6 @@ Widget inversor_big(){
                     },),
                   )
               ),
-              MyPositioned.fill(/// temporizacion
-                  bottom: 20, left: 250, right: 20,
-                  child: Align(
-                    alignment: Alignment.bottomRight,
-                    child: Text(
-                        "Establecer temporizacion",
-                        style: MyTextStyle.estiloBold(12, colorTex),
-                        textAlign: TextAlign.center
-                    ),
-                  )
-              ),
-              MyPositioned.fill(/// icono timer
-                  bottom: 42, right: 38,
-                  child: Align(
-                    alignment: Alignment.bottomRight,
-                    child: IconButton(
-                      icon: Icon(Icons.access_time), iconSize: 30,
-                      color: colorTex, onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) => TemporizadorPopup(),
-                      );
-                    },),
-                  )
-              ),
               MyPositioned.fill(/// circulito
                   top: 20, right: 20,
                   child: Align(
@@ -143,13 +130,7 @@ Widget inversor_big(){
                     child: circuloConSombra(20.0, circleColor),
                   )
               ),
-              MyPositioned.fill(
-                  bottom: 40,
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: inidicadorRojoImg(state.valueAmp,45.0),
-                  )
-              ),
+
             ],
           ),
         ),

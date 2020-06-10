@@ -233,7 +233,7 @@ class BateriaMotor extends StatelessWidget {
           alignment: Alignment.center,
           children: <Widget>[
             circulito(radius,color),
-            circleIndicatorBateria(value, color,innerRadius)
+            circleIndicatorBateria(value, color,innerRadius,"14.2")
           ],
         ),
       );

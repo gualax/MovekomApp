@@ -17,6 +17,9 @@ class ConfigMenuPage extends StatefulWidget {
 }
 
 class _ConfigMenuPageState extends State<ConfigMenuPage> {
+
+
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
