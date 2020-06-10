@@ -260,7 +260,7 @@ class _ExtractorState extends State<Nevera> {
                 top:5,
                 child: Align(
                   alignment: Alignment.center,
-                  child: iconSvgD("assets/icons/nevera.svg", MyColors.principal, 60),
+                  child: iconSvgD("assets/icons/nevera.svg", MyColors.principal, 70),
                 )
             ),
             MyPositioned.fill(
