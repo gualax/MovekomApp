@@ -61,18 +61,29 @@ class CargadorBaterias extends StatelessWidget {
                       )
                   ),
                   MyPositioned.fill(
-                    left: 60,
+                    left: 90,
                       child: Align(
                         alignment: Alignment.center,
                         child: Text(state.valueAmp.toString(),
-                          style: MyTextStyle.estiloBold(60, colorTex),),
+                          style: MyTextStyle.estiloBold(80, colorTex),),
                       )
                   ),
                   MyPositioned.fill(
                       left: 20,
                       child: Align(
                         alignment: Alignment.centerLeft,
-                        child: iconSvgD("assets/icons/enchufe_cargador_acc.svg", colorTex, 60),
+                        child: iconSvgD("assets/icons/enchufe_cargador_acc.svg", iconColor, 60),
+                      )
+                  ),
+                  MyPositioned.fill(/// consumo
+                      bottom: 100, left: 90,
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                            "Carga A",
+                            style: MyTextStyle.estilo(15, colorTex),
+                            textAlign: TextAlign.center
+                        ),
                       )
                   ),
                   MyPositioned.fill(
@@ -109,13 +120,6 @@ class CargadorBaterias extends StatelessWidget {
                       child: Align(
                         alignment: Alignment.topRight,
                         child: circuloConSombra(20.0, circleColor),
-                      )
-                  ),
-                  MyPositioned.fill(
-                      bottom: 40, left: 60,
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: inidicadorRojoImg(state.valueAmp,45.0),
                       )
                   ),
                 ],

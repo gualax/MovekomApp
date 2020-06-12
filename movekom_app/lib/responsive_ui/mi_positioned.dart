@@ -4,7 +4,7 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:movekomapp/Utils/SC.dart';
 
-class MyPositioned extends ParentDataWidget<Stack> {
+class MyPositioned extends ParentDataWidget<StackParentData> {
   /// Creates a widget that controls where a child of a [Stack] is MyPositioned.
   ///
   /// Only two out of the three horizontal values ([left], [right],
@@ -240,4 +240,8 @@ class MyPositioned extends ParentDataWidget<Stack> {
     properties.add(DoubleProperty('width', width, defaultValue: null));
     properties.add(DoubleProperty('height', height, defaultValue: null));
   }
+
+  @override
+  // TODO: implement debugTypicalAncestorWidgetClass
+  Type get debugTypicalAncestorWidgetClass => throw UnimplementedError();
 }

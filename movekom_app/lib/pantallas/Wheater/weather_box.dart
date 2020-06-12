@@ -114,9 +114,7 @@ class _WeatherBoxState extends State<WeatherBox> {
         ),
       );
     } else {
-      return Text(
-        'Something went wrong!',
-        style: TextStyle(color: Colors.red),);
+      return Center(child: boxWithIndicator());
        }
       }
     );

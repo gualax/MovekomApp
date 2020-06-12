@@ -38,7 +38,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget>
     );
 
     _offsetAnimation = Tween<Offset>(
-      begin: const Offset(1.1, 0.0),
+      begin: const Offset(0.0, 1.1),
       end: Offset.zero, //Offset.zero
     ).animate(_controller);
     _controller.forward();

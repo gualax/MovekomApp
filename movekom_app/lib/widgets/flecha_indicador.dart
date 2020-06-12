@@ -10,8 +10,8 @@ Widget flechaIndicador(angle,dim){
     child: Transform.rotate(
       angle:  pi,
       child: MyContainer(
-        height: SC.hei(dim),
-          width: SC.wid(dim),
+        height: dim,
+          width: dim,
           //margin: EdgeInsets.all(dim),
           decoration: new BoxDecoration(
             image: DecorationImage(

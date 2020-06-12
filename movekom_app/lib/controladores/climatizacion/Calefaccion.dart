@@ -55,15 +55,7 @@ class _CalefaccionState extends State<Calefaccion> {
               colorIcon = MyColors.inactive;
               text_on_off = "Pulse para encender";
             }
-            return GestureDetector(
-              onTap: (){
-                if(state.isEnabled){
-                  calefaccionBloc.add(DisableCalefaccion());
-                }else{
-                  calefaccionBloc.add(EnableCalefaccion());
-                }
-              },
-              child: MyContainer(
+            return  MyContainer(
                 margin: EdgeInsets.all(SC.all(12)),
                 width: 380,
                 height: 400,
@@ -170,9 +162,24 @@ class _CalefaccionState extends State<Calefaccion> {
                           style: MyTextStyle.estiloBold(20, MyColors.text),),
                       ),
                     ),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: MyContainer(
+                        width: 265,
+                        height: 400,
+                        child: GestureDetector(
+                          onTap: (){
+                            if(state.isEnabled){
+                              calefaccionBloc.add(DisableCalefaccion());
+                            }else{
+                              calefaccionBloc.add(EnableCalefaccion());
+                            }
+                          },
+                        ),
+                      ),
+                    ),
                   ],
                 ),
-              ),
             );
           }
       );

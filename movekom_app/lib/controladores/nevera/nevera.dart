@@ -88,19 +88,10 @@ class _ExtractorState extends State<Nevera> {
                           )
                       ),
                       MyPositioned.fill(
-                          left: 10,
-                          top: 15,
+                          top: 20, right: 20,
                           child: Align(
-                            alignment: Alignment.topLeft,
-                            child: circuloConSombra(15, colorImg),
-                          )
-                      ),
-                      MyPositioned.fill(
-                          left: 30,
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: Text(state.valueExt.toString(),
-                              style: MyTextStyle.estiloBold(70, colorText),),
+                            alignment: Alignment.topRight,
+                            child: circuloConSombra(20, colorImg),
                           )
                       ),
                       MyPositioned.fill(
@@ -110,22 +101,6 @@ class _ExtractorState extends State<Nevera> {
                             child: Text(on_off,
                               style: MyTextStyle.estiloBold(15, colorText),),
                           )
-                      ),
-                      MyPositioned(
-                        left: 335,
-                        bottom: 1, top: 1,
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: nevera_indic_img(200.0),
-                        ),
-                      ),
-                      MyPositioned(
-                        left: 335,
-                        top:35,
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: circularList(75.0,55.0),
-                        ),
                       ),
                       MyPositioned.fill(
                           right: 180, bottom: 5,

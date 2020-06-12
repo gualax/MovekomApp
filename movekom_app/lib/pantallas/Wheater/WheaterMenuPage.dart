@@ -1,4 +1,6 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:movekomapp/Utils/AllowMultipleGestureRecongnizer.dart';
 import 'package:movekomapp/pantallas/Wheater/WheaterCalefactionView.dart';
 import 'package:movekomapp/pantallas/Wheater/WheaterHistoryView.dart';
 
@@ -8,9 +10,10 @@ class ClimaPage extends StatefulWidget {
   _ClimaPageState createState() => _ClimaPageState();
 }
 
-class _ClimaPageState extends State<ClimaPage>  with SingleTickerProviderStateMixin  {
-  int _currentIndex=0;
+class _ClimaPageState extends State<ClimaPage>  with SingleTickerProviderStateMixin {
+  int _currentIndex = 0;
   TabController _tabController;
+
 
   List<Widget> _children = [
     WheaterCalefactionView(),
@@ -27,46 +30,46 @@ class _ClimaPageState extends State<ClimaPage>  with SingleTickerProviderStateMi
   @override
   void dispose() {
     // TODO: implement dispose
-    super.dispose();
     _tabController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return
       Scaffold(
-          backgroundColor: Colors.black,
-          body:  Container(
-            // color: Colors.blueGrey,
-              margin: EdgeInsets.only(top: 10),
-              child: Column(
-                children: <Widget>[
-                  Expanded(
-                    flex: 7,
-                    child: Container(
-                      //       color: Colors.yellowAccent,
-                      child: new TabBarView(
-                          controller: _tabController,
-                          children: _children),
-                    ),
+        backgroundColor: Colors.black,
+        body: Container(
+          // color: Colors.blueGrey,
+            margin: EdgeInsets.only(top: 10),
+            child: Column(
+              children: <Widget>[
+                Expanded(
+                  flex: 7,
+                  child:
+                    //  child: show(_currentIndex),
+                  TabBarView(
+                    children: _children,
+                    controller: _tabController,
                   ),
-                  Expanded(
-                    child: Container(
-                      //  color: Colors.blueGrey,
-                      child: buttonTabTextMenu(),
-                    ),
-                  )
-                ],
-              )
-          ),
+                ),
+                Expanded(
+                  child: Container(
+                    //  color: Colors.blueGrey,
+                    child: buttonTabTextMenu(),
+                  ),
+                )
+              ],
+            )
+        ),
       );
   }
 
 
-
-  Widget show(int index, context) {
+  Widget show(int index) {
     return _children[index];
   }
+
 
 
   Widget buttonTabTextMenu() {
@@ -100,4 +103,6 @@ class _ClimaPageState extends State<ClimaPage>  with SingleTickerProviderStateMi
       print("index is : " + index.toString());
     });
   }
+
 }
+

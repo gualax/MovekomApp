@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
+import 'package:movekomapp/controladores/alarmas/alarma.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
@@ -28,7 +29,7 @@ class _AlarmMenuPageState extends State<AlarmMenuPage> {
             mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                  alarma(),
+                  Alarma(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -111,67 +112,7 @@ class _AlarmMenuPageState extends State<AlarmMenuPage> {
     );
   }
 
-  Widget alarma(){
-    return MyContainer(
-      margin: EdgeInsets.all(SC.all(7)),
-      height: 278,
-      width: 278,
-      color: MyColors.baseColor,
-      child: Stack(
-        children: <Widget>[
-          MyPositioned.fill(
-            top:5,left: 5,
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: Text("ALARMA",
-                style: MyTextStyle.estilo(18, MyColors.text)),
-            ),
-          ),
-          MyPositioned.fill(
-            top:10,right: 10,
-            child: Align(
-              alignment: Alignment.topRight,
-              child: circuloConSombra(17, MyColors.principal),
-            ),
-          ),
-          MyPositioned.fill(
-            top:50,right: 20,
-            child: Align(
-              alignment: Alignment.topRight,
-              child: iconSvgD("assets/icons/shield.svg", MyColors.principal, 125),
-            ),
-          ),
-          MyPositioned.fill(
-            top:40,left: 20,
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: iconSvgD("assets/icons/parking.svg", MyColors.principal, 120),
-            ),
-          ),
-          MyPositioned.fill(
-            bottom:5, right: 160,
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child:IconButton(
-                icon: Icon(Icons.power_settings_new),
-                iconSize: SC.all(30),
-                color: MyColors.principal,
-                onPressed: () {},
-              ),
-            ),
-          ),
-          MyPositioned.fill(
-            bottom:17,left: 20,
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: Text("Pulsar para encender",
-                  style: MyTextStyle.estilo(15, MyColors.text)),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+
 
 }
 

@@ -1,6 +1,8 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/FloatingMenu.dart';
+import 'package:movekomapp/blocs/alarma_blocs/alarma_bloc.dart';
 import 'package:movekomapp/blocs/climatizacion/aire_acondicionado_bloc.dart';
 import 'package:movekomapp/blocs/climatizacion/extractor_bloc.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/alternador_bloc.dart';
@@ -59,17 +61,19 @@ void main(){
     ),
   );
 
+
+runApp(
+  DevicePreview(
+      child: MyApp(weatherRepository: weatherRepository)
+  )
+);
+
+
 /*
   runApp(
-      DevicePreview(
-          child: MyApp(weatherRepository: weatherRepository)
-      )
-  );
+    MyApp(weatherRepository: weatherRepository));
 
  */
-
-  runApp(
-    MyApp(weatherRepository: weatherRepository));
 }
 
 class MyApp extends StatelessWidget {
@@ -132,13 +136,14 @@ class MyApp extends StatelessWidget {
         BlocProvider<WeatherBloc>(create:(context)=> WeatherBloc(weatherRepository: weatherRepository,)),
         BlocProvider<AireAcondicionadoBloc>(create:(context)=> AireAcondicionadoBloc()),
         BlocProvider<NeveraBloc>(create:(context)=> NeveraBloc()),
+        BlocProvider<AlarmaBloc>(create:(context)=> AlarmaBloc()),
 
         BlocProvider<TabBloc>(create:(context)=> TabBloc()),
 
       ],
       child: MaterialApp(
         initialRoute: '/',
-        //  builder: DevicePreview.appBuilder,
+          builder: DevicePreview.appBuilder,
           routes: {
          // '/': (context) => HomePage(indexToShow:0),   //HomePage(indexToShow:0),
           '/menus': (context) => FloatingMenu(),

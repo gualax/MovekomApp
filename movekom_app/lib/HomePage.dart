@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage>{
     return
       BlocBuilder<TabBloc,TabState>(
           builder: ( context, state) {
-           // _currentIndex = state.index;
+            _currentIndex = state.index;
             return Scaffold(
                 resizeToAvoidBottomPadding: false,
                 appBar: PreferredSize(
@@ -173,7 +173,7 @@ class _HomePageState extends State<HomePage>{
   void onTabTapped(int index) {
     print("HomePage -> onTabTapped");
     setState(() {
-    //  tabBloc.add(UpdateTab(index));
+      tabBloc.add(UpdateTab(index));
       _currentIndex = index;
       setBarTitle(titles[_currentIndex], subtitles[_currentIndex]);
       print("index is : " + index.toString());

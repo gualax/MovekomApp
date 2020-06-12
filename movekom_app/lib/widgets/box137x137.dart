@@ -244,7 +244,7 @@ Widget box137x137_Temperatura(context,title, valueHum, valueTemp){
                     text: TextSpan(
                         children: [
                           TextSpan(
-                              style: MyTextStyle.estiloBold(18, MyColors.text),
+                              style: MyTextStyle.estiloBold(22, MyColors.text),
                               text: valueTemp
                           ),
                         ]
