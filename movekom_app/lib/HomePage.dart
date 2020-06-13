@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
+import 'package:movekomapp/bluetooth/test_bt.dart';
 import 'package:movekomapp/pantallas/Alarm/AlarmMenuPage.dart';
 import 'package:movekomapp/pantallas/Configuration/ConfigMenuPage.dart';
 import 'package:movekomapp/pantallas/ManualesPage/ManualesMenuPage.dart';
@@ -49,6 +50,7 @@ class _HomePageState extends State<HomePage>{
     ToolsMenuPage(),
     WarningMenuPage(),
     ConfigMenuPage(),
+    TestBtPage(),
   ];
 
   @override
@@ -152,7 +154,11 @@ class _HomePageState extends State<HomePage>{
                         activeIcon: activeIcon("assets/icons/config2.svg"),
                         title: new Text(""),
                       ),
-
+                      new BottomNavigationBarItem(
+                        icon: iconSvg("assets/icons/bluetooth_icon.svg", false),
+                        activeIcon: activeIcon("assets/icons/bluetooth_icon.svg"),
+                        title: new Text(""),
+                      ),
                     ]),
                 body: showWithTransition(_currentIndex, context) // new
             );
@@ -234,6 +240,7 @@ class _HomePageState extends State<HomePage>{
     "ACCESORIOS",
     "AVISOS",
     "AJUSTES",
+    "TEST",
   ];
 
   List<String> subtitles = [
@@ -249,6 +256,7 @@ class _HomePageState extends State<HomePage>{
     "    EQUIPOS ACCESORIOS DEL VEHICULO",
     "    REGISTRO DE AVERIAS Y FALLOS",
     "    AJUSTES DEL SISTEMA"
+    "    TEST",
   ];
 
 

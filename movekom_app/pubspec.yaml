@@ -49,6 +49,8 @@ dependencies:
   path_provider: ^1.6.8
   geolocator: ^5.1.3
   device_preview: 0.1.9-beta
+  scoped_model: ^1.0.1
+
 
 
 
