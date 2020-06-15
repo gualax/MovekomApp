@@ -24,14 +24,14 @@ class BombaAgua extends StatelessWidget {
     final bomabaAguaBloc = BlocProvider.of<BombaAguaBloc>(context);
 
     if(widgetType == 1){
-      return WaterBomb_chica(bomabaAguaBloc);
+      return WaterBomb_principal(bomabaAguaBloc);
     }else {
-      return WaterBomb_grande(bomabaAguaBloc);
+      return WaterBomb_water(bomabaAguaBloc);
     }
   }
 
 
-  Widget WaterBomb_grande(bomabaAguaBloc) {
+  Widget WaterBomb_water(bomabaAguaBloc) {
     Color colorIcon, colorTxt, colorButton;
     String txtState;
     return
@@ -66,23 +66,23 @@ class BombaAgua extends StatelessWidget {
                   ),
                   child: Stack(
                       children: [
-                        Positioned.fill(/// circulito
+                        MyPositioned.fill(/// circulito
                             top: 10, right: 10,
                             child: Align(
                               alignment: Alignment.topRight,
-                              child: circuloConSombra(20.0, colorIcon),
+                              child: circuloConSombra(18.0, colorIcon),
                             )
                         ),
-                        Positioned.fill(/// Icono
-                          bottom: 10,
+                        MyPositioned.fill(/// Icono
+                          bottom: 5,
                           child: Align(
                             alignment: Alignment.center,
                             child: iconSvgD(
-                                "assets/images/water_1.svg", colorIcon, 95),
+                                "assets/images/water_1.svg", colorIcon, 90),
                           ),
                         ),
                         // Valvulas (Todas)
-                        Positioned.fill(/// Titulo
+                        MyPositioned.fill(/// Titulo
                           top: 7,
                           left:10 ,
                           child: Align(
@@ -99,7 +99,7 @@ class BombaAgua extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Positioned.fill(
+                        MyPositioned.fill(
                           /// OFF / ON
                           left: 10,
                           bottom: 4,
@@ -117,7 +117,7 @@ class BombaAgua extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Positioned.fill(
+                        MyPositioned.fill(
                           ///amp
                           right: 10,
                           bottom: 4,
@@ -134,21 +134,11 @@ class BombaAgua extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Positioned.fill(
-                            bottom: 2,
+                        MyPositioned.fill(
+                            bottom: 15,
                             child: Align(
                               alignment: Alignment.bottomCenter,
-                              child: IconButton(
-                                icon: Icon(Icons.power_settings_new),
-                                iconSize: 30,
-                                color: colorButton,
-                                onPressed: () {
-                                  if (state.isEnabled) {
-                                    bomabaAguaBloc.add(Disable());
-                                  } else {
-                                    bomabaAguaBloc.add(Enable());
-                                  }
-                                },),
+                              child: iconSvgD("assets/icons/on_off.svg", colorButton, 25)
                             )
                         ),
                       ])
@@ -159,7 +149,7 @@ class BombaAgua extends StatelessWidget {
   }
 
 
-  Widget WaterBomb_chica(bomabaAguaBloc) {
+  Widget WaterBomb_principal(bomabaAguaBloc) {
     Color colorIcon, colorTxt, colorButton;
     String txtState;
     return

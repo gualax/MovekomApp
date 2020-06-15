@@ -123,13 +123,13 @@ class AguasSucias extends StatelessWidget {
                         ),
                       ),
                       // Valvulas (Todas)
-                      Positioned.fill(/// Titulo
-                        top: SizeConfig.v * 1,
+                      MyPositioned.fill(/// Titulo
+                        top: 5,
                         child: Align(
                           alignment: Alignment.topCenter,
                           child:Text(title,
                                         style: MyTextStyle.estiloBold(
-                                            SizeConfig.v * 2.2, MyColors.text),
+                                            20, MyColors.text),
                           ),
                         ),
                       ),
@@ -139,7 +139,7 @@ class AguasSucias extends StatelessWidget {
                           alignment: Alignment.center,
                           child:Text(state.valueAmp.toString() + "%",
                                         style: MyTextStyle.estiloBold(
-                                            SizeConfig.v * 5, MyColors.text),
+                                            40, MyColors.text),
                           ),
                         ),
                       ),

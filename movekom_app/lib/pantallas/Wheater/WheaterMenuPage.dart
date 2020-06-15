@@ -1,6 +1,5 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:movekomapp/Utils/AllowMultipleGestureRecongnizer.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/pantallas/Wheater/WheaterCalefactionView.dart';
 import 'package:movekomapp/pantallas/Wheater/WheaterHistoryView.dart';
 
@@ -40,8 +39,8 @@ class _ClimaPageState extends State<ClimaPage>  with SingleTickerProviderStateMi
       Scaffold(
         backgroundColor: Colors.black,
         body: Container(
-          // color: Colors.blueGrey,
-            margin: EdgeInsets.only(top: 10),
+         //  color: Colors.blueGrey,
+       //     margin: EdgeInsets.only(top: 10),
             child: Column(
               children: <Widget>[
                 Expanded(
@@ -55,7 +54,7 @@ class _ClimaPageState extends State<ClimaPage>  with SingleTickerProviderStateMi
                 ),
                 Expanded(
                   child: Container(
-                    //  color: Colors.blueGrey,
+             //         color: Colors.pink,
                     child: buttonTabTextMenu(),
                   ),
                 )
@@ -77,7 +76,7 @@ class _ClimaPageState extends State<ClimaPage>  with SingleTickerProviderStateMi
       length: 2,
       child: Container(
         alignment: Alignment.center,
-        margin: EdgeInsets.only(right: 200, left: 200),
+        margin: EdgeInsets.only(right: SC.right(200), left: SC.left(200)),
         //color: Colors.yellowAccent,
         child: TabBar(
           onTap: (index) {

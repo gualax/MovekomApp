@@ -10,6 +10,7 @@ import 'package:movekomapp/Utils/SizeConfig.dart';
 import 'package:movekomapp/blocs/boiler_bloc.dart';
 import 'package:movekomapp/controladores/agua/Boiler.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
+import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
@@ -39,7 +40,7 @@ class _WaterBoilerViewState extends State<WaterBoilerView> {
       ),
       child: Stack(
         children: <Widget>[
-          Positioned.fill(
+          MyPositioned.fill(
               top: 20,
               left: 35,
               child: Align(
@@ -48,7 +49,7 @@ class _WaterBoilerViewState extends State<WaterBoilerView> {
                   "BOILER", style: MyTextStyle.estiloBold(30, Colors.white),),
               )
           ),
-          Positioned.fill(
+          MyPositioned.fill(
               left: 20,top:70,
               child: Align(
                 alignment: Alignment.centerLeft,
@@ -56,14 +57,14 @@ class _WaterBoilerViewState extends State<WaterBoilerView> {
                     "assets/icons/fire.svg", Colors.lightGreenAccent, 120),
               )
           ),
-          Positioned.fill(
+          MyPositioned.fill(
               left: 10,top: 30,
               child: Align(
                 alignment: Alignment.topLeft,
                 child: circuloConSombra(15.0, Colors.lightGreenAccent),
               )
           ),
-          Positioned.fill(
+          MyPositioned.fill(
               left: 90,
               bottom: 70,
               child: Align(
@@ -72,7 +73,7 @@ class _WaterBoilerViewState extends State<WaterBoilerView> {
                     "assets/icons/gota_agua.svg", Colors.lightGreenAccent, 60),
               )
           ),
-          Positioned.fill(
+          MyPositioned.fill(
               right: 260, top:50,
               child: Align(
                 alignment: Alignment.center,
@@ -80,7 +81,7 @@ class _WaterBoilerViewState extends State<WaterBoilerView> {
                   style: MyTextStyle.estiloBold(100, Colors.white),),
               )
           ),
-          Positioned.fill(
+          MyPositioned.fill(
               right: 280,
               bottom: 80,
               child: Align(
@@ -89,7 +90,7 @@ class _WaterBoilerViewState extends State<WaterBoilerView> {
                   style: MyTextStyle.estilo(17, Colors.white),),
               )
           ),
-          Positioned.fill(
+          MyPositioned.fill(
             right: 20,
               child: Align(
                 alignment: Alignment.centerRight,

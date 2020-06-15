@@ -35,7 +35,6 @@ class _WeatherListWidgetState extends State<WeatherListWidget> {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     _weatherBloc = BlocProvider.of<WeatherBloc>(context);
     return cabeceraYlista();
   }
@@ -43,6 +42,8 @@ class _WeatherListWidgetState extends State<WeatherListWidget> {
 
   Widget cabeceraYlista(){
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment:CrossAxisAlignment.center ,
       children: <Widget>[
         cabeceraClimas(),
         RowOfWheaterWidgets(),
@@ -64,10 +65,9 @@ class _WeatherListWidgetState extends State<WeatherListWidget> {
         final weatherList = state.weatherList;
         print("weatherList");
         print(weatherList);
-    return Container(
-      height: SC.hei(140),
-      child: Row(
+    return  Row(
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         /// ver por que solo muestra el utlimo llamado, ver forma desde el el parsing de convertir esto en un array =)
         children: <Widget>[
           weatherBoxi(weatherList[0]),
@@ -77,12 +77,9 @@ class _WeatherListWidgetState extends State<WeatherListWidget> {
           weatherBoxi(weatherList[4]),
           weatherBoxi(weatherList[5]),
         ],
-      ),
     );
     } else {
-      return Text(
-        'Something went wrong!',
-        style: TextStyle(color: Colors.red),);
+      return errorWheaterBoxes();
     }
     }
     );
@@ -91,9 +88,9 @@ class _WeatherListWidgetState extends State<WeatherListWidget> {
 
   Widget weatherBoxi(Weather weather){
     return MyContainer(
+      margin: EdgeInsets.only(left:SC.left(2), right: SC.right(2)),
       width: 170,
-      height: 125,
-      margin: EdgeInsets.only(left:SC.left(1), right: SC.right(1)),
+      height: 105,
       decoration: new BoxDecoration(
         color: MyColors.baseColor,
       ),
@@ -143,11 +140,9 @@ class _WeatherListWidgetState extends State<WeatherListWidget> {
 
 Widget loadingWheaterBoxes(){
 
-  return Container(
-    height: SC.hei(140),
-    child: Row(
+  return  Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      /// ver por que solo muestra el utlimo llamado, ver forma desde el el parsing de convertir esto en un array =)
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         weatherBoxiLoading(),
         weatherBoxiLoading(),
@@ -156,14 +151,13 @@ Widget loadingWheaterBoxes(){
         weatherBoxiLoading(),
         weatherBoxiLoading(),
       ],
-    ),
   );
 }
 
   Widget weatherBoxiLoading(){
     return MyContainer(
       width: 170,
-      height: 125,
+      height: 105,
       margin: EdgeInsets.only(left:SC.left(1), right: SC.right(1)),
       decoration: new BoxDecoration(
         color: MyColors.baseColor,
@@ -215,6 +209,81 @@ Widget loadingWheaterBoxes(){
     );
   }
 
+
+  Widget errorWheaterBoxes(){
+    return  Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      /// ver por que solo muestra el utlimo llamado, ver forma desde el el parsing de convertir esto en un array =)
+      children: <Widget>[
+        weatherBoxiError(),
+        weatherBoxiError(),
+        weatherBoxiError(),
+        weatherBoxiError(),
+        weatherBoxiError(),
+        weatherBoxiError(),
+      ],
+    );
+  }
+
+
+  Widget weatherBoxiError(){
+    return MyContainer(
+      width: 170,
+      height: 105,
+      margin: EdgeInsets.only(left:SC.left(1), right: SC.right(1)),
+      decoration: new BoxDecoration(
+        color: MyColors.baseColor,
+      ),
+      child: Stack(
+        children: <Widget>[
+          MyPositioned.fill( /// DAY
+              top: 7,
+              left: 10,
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Text( "--"
+                  , style: MyTextStyle.estiloBold(18, Colors.white),),
+              )
+          ),
+          MyPositioned.fill( /// DAY
+              left: 20, right: 20,
+              child: Align(
+                alignment: Alignment.center,
+                child: Text("Problema de conexion con el servicio de clima",
+                  style: MyTextStyle.estilo(14, MyColors.text),textAlign: TextAlign.center,) , /// icon weather
+              )
+          ),
+          MyPositioned.fill(/// ICON
+            child: Align(
+              alignment: Alignment.center,
+              child:  Text("--",
+                style: MyTextStyle.estilo(15, Colors.white),), /// icon weather
+            ),
+          ),
+          MyPositioned.fill(/// tMIN
+            bottom: 5,
+            left: 5,
+            child: Align(
+              alignment: Alignment.bottomLeft,
+              child: Text(
+                "Min: " + "--", style: MyTextStyle.estilo(15, Colors.white),),
+            ),
+          ),
+          MyPositioned.fill( /// tMax
+            bottom: 5,
+            right: 5,
+            child: Align(
+              alignment: Alignment.bottomRight,
+              child: Text(
+                "Max: " + "--", style: MyTextStyle.estilo(15, Colors.white),),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   void dispose() {
     //  _weatherBloc.close();
@@ -222,10 +291,10 @@ Widget loadingWheaterBoxes(){
   }
 
   Widget cabeceraClimas(){
-    return Container(
-      margin: EdgeInsets.only(top:5),
+    return MyContainer(
+      margin: EdgeInsets.all(SC.all(5)),
       height: 30,
-      width: SizeConfig.x(80.5),
+      width: 1040,
       decoration: new BoxDecoration(
           color: MyColors.baseColor
       ),

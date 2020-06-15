@@ -30,10 +30,11 @@ class _WaterLevelsViewState extends State<WaterLevelsView> {
                 Expanded(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
+                   crossAxisAlignment: CrossAxisAlignment.center,
                    // color: Colors.orange,
                     children: <Widget>[
                      aguas(),
-                      boilerColumn(),
+                     boilerColumn(),
                     ],
                   ),
                 ),
@@ -168,10 +169,8 @@ class _WaterLevelsViewState extends State<WaterLevelsView> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          //AguasNegras(2),
           invisible(),
           BombaAgua(2),
-      //    AguasNegras(3),
         ],
       ),
     );
@@ -184,6 +183,7 @@ class _WaterLevelsViewState extends State<WaterLevelsView> {
     height: 210,
     );
   }
+
   Widget temporizador(){
     return MyContainer(
         margin: EdgeInsets.all(SC.all(5)),

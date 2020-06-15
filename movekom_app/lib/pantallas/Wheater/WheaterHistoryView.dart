@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sparkline/flutter_sparkline.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
-import 'package:movekomapp/Utils/SizeConfig.dart';
 import 'package:movekomapp/pantallas/Wheater/weather_list.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
@@ -17,7 +16,6 @@ class WheaterHistoryView extends StatefulWidget {
 class _WheaterHistoryViewState extends State<WheaterHistoryView> {
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return contenido();
   }
 
@@ -26,8 +24,9 @@ class _WheaterHistoryViewState extends State<WheaterHistoryView> {
   Widget contenido(){
     return Container(
  //     color:Colors.blue,
-      alignment: Alignment.center,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           WeatherListWidget("Buenos Aires"),
           electricityDatos(),
@@ -43,7 +42,7 @@ class _WheaterHistoryViewState extends State<WheaterHistoryView> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           daysAndHours(),
-          voltaje_totalizador(),
+          temps(),
           graficos(),
         ],
       ),
@@ -54,6 +53,7 @@ class _WheaterHistoryViewState extends State<WheaterHistoryView> {
   Widget daysAndHours(){
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         days("24 HORAS"),
         days("7 DIAS"),
@@ -65,9 +65,9 @@ class _WheaterHistoryViewState extends State<WheaterHistoryView> {
 
   Widget days(title){
     return MyContainer(
-      margin: EdgeInsets.all(SC.all(7)),
+      margin: EdgeInsets.all(SC.all(3)),
       width: 160,
-      height: 65,
+      height: 63,
       decoration: BoxDecoration(
           color: MyColors.baseColor
       ),
@@ -81,6 +81,7 @@ class _WheaterHistoryViewState extends State<WheaterHistoryView> {
   Widget graficos(){
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         graphic(),
         graphic(),
@@ -88,9 +89,10 @@ class _WheaterHistoryViewState extends State<WheaterHistoryView> {
     );
   }
 
-  Widget voltaje_totalizador(){
+  Widget temps(){
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         temp_interior(),
         temp_ext(),
@@ -100,9 +102,9 @@ class _WheaterHistoryViewState extends State<WheaterHistoryView> {
 
   Widget temp_interior(){
     return MyContainer(
-      margin: EdgeInsets.all(SC.all(7)),
+      margin: EdgeInsets.all(SC.all(5)),
       width: 160,
-      height: 146,
+      height: 130,
       decoration: BoxDecoration(
           color: MyColors.baseColor
       ),
@@ -155,9 +157,9 @@ class _WheaterHistoryViewState extends State<WheaterHistoryView> {
 
   Widget temp_ext(){
     return MyContainer(
-      margin: EdgeInsets.all(SC.all(7)),
+      margin: EdgeInsets.all(SC.all(5)),
       width: 160,
-      height: 146,
+      height: 130,
       decoration: BoxDecoration(
           color: MyColors.baseColor
       ),
@@ -209,104 +211,26 @@ class _WheaterHistoryViewState extends State<WheaterHistoryView> {
   }
 
   //////////////////////////////////////////////////////////////
-  Widget RowOfTempAndGraphics(){
-    return Container(
-      margin: EdgeInsets.only(top:7),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          tempBox(14.5,22.5),
-          tempBox(14.5,22.5),
-          graphic(),
-        ],
-      ),
-    );
-  }
-
-
-
-  Widget tempBox(tMin,tMax){
-    return MyContainer(
-      margin: EdgeInsets.all(10),
-        width: 170,
-        height: 135,
-        decoration: new BoxDecoration(
-            color: MyColors.baseColor
-        ),
-        child: Stack(
-          children: <Widget>[
-            Positioned.fill(
-              top:10,
-                left: 10,
-                right: 10,
-                child: Align(
-                  alignment: Alignment.topCenter,
-                  child:  Text("TEMPERATURA MAXIMAS Y MINIMAS",
-                  style: MyTextStyle.estilo(20, Colors.white),
-                  ),
-                )
-            ),
-            Positioned.fill(
-              left: 10,
-                top:65,
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child:  Text("Minimas",
-                    style: MyTextStyle.estilo(10, Colors.white),),
-                )
-            ),
-            Positioned.fill(
-              right: 10,
-                top:65,
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child:  Text("Maximas",
-                    style: MyTextStyle.estilo(10, Colors.white),),
-                )
-            ),
-            Positioned.fill(
-                left: 10,
-                bottom: 10,
-                child: Align(
-                  alignment: Alignment.bottomLeft,
-                  child:  Text(tMin.toString() + "ºC",
-                    style: MyTextStyle.estilo(10, Colors.white),),
-                )
-            ),
-            Positioned.fill(
-                right: 10,
-                bottom: 10,
-                child: Align(
-                  alignment: Alignment.bottomRight,
-                  child:  Text(tMax.toString() + "ºC",
-                    style: MyTextStyle.estilo(10, Colors.white),),
-                )
-            )
-          ],
-        ),
-    );
-  }
-
 
   Widget graphic(){
     var data = [0.0, 1.0, 1.5, 1.8, 0.9, 0.6, 0.2, 0.3, 0.4, 0.8, 1.0];
-    return Container(
-        margin: EdgeInsets.only(left: 10),
-        width: 699,
-        height: 150,
+    return MyContainer(
+        margin: EdgeInsets.only(left: SC.left(10),top: SC.top(5),bottom: SC.bot(5)),
+        width: 690,
+        height: 130,
         decoration: new BoxDecoration(
             color: MyColors.baseColor
         ),
         child: Center(
-          child: Container(
+          child: MyContainer(
             width: 690,
-            height: 150,
+            height: 130,
             child: Sparkline(
               data:data,
-              lineWidth: 2.0,
+              lineWidth: SC.all(2.0),
               lineColor: Colors.white,
               pointsMode: PointsMode.all,
-              pointSize: 8.0,
+              pointSize: SC.all(8.0),
               pointColor: Colors.lightGreenAccent,
               fillMode: FillMode.below,
               fillGradient: new LinearGradient(
