@@ -38,12 +38,12 @@ class _ExtractorState extends State<Extractor> {
             colorIcon = MyColors.principal;
             colorImg = MyColors.principal;
             colorText = MyColors.text;
-            on_off = "Presionar para apagar";
+            on_off = "Pulse para apagar";
           } else{
             colorIcon = MyColors.text;
             colorImg = MyColors.inactive;
             colorText = MyColors.inactive;
-            on_off = "Presionar para encender";
+            on_off = "Pulse para encender";
           }
           return
               MyContainer(
@@ -111,24 +111,29 @@ class _ExtractorState extends State<Extractor> {
                     child: Align(
                       alignment: Alignment.center,
                         child: circularListExtractor(SC.all(75.0),SC.all(53)),
-
+                    ),
+                  ),
+                  MyPositioned(
+                    bottom: 5, right: 10,
+                    child: Align(
+                      alignment: Alignment.bottomRight,
+                      child:Text("15ºC",
+                        style: MyTextStyle.estiloBold(16, MyColors.text),),
+                    ),
+                  ),
+                  MyPositioned(
+                    top: 5, right: 10,
+                    child: Align(
+                      alignment: Alignment.topRight,
+                      child:Text("35ºC",
+                        style: MyTextStyle.estiloBold(16, MyColors.text),),
                     ),
                   ),
                   MyPositioned.fill(
-                      right: 200, top: 120,
+                      right: 160, bottom: 17,
                       child: Align(
                         alignment: Alignment.bottomCenter,
-                        child: IconButton(
-                          icon: Icon(Icons.power_settings_new), iconSize: SC.all(25),
-                          color: colorIcon,
-                          onPressed: () {
-                            print("state" + state.isEnabled.toString());
-                            if(state.isEnabled){
-                              bloc.add(DisableExtractor());
-                            }else{
-                              bloc.add(EnableExtractor());
-                            }
-                          },),
+                        child: iconSvgD("assets/icons/on_off.svg", colorIcon, 20),
                       )
                   ),
                   Align(

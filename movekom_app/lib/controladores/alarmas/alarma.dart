@@ -82,15 +82,10 @@ class Alarma extends StatelessWidget {
                       ),
                     ),
                     MyPositioned.fill(
-                      bottom: 5, right: 160,
+                      bottom: 17, right: 160,
                       child: Align(
                         alignment: Alignment.bottomCenter,
-                        child: IconButton(
-                          icon: Icon(Icons.power_settings_new),
-                          iconSize: SC.all(30),
-                          color: colorPower,
-                          onPressed: () {},
-                        ),
+                        child: iconSvgD("assets/icons/on_off.svg", colorPower, 25)
                       ),
                     ),
                     MyPositioned.fill(

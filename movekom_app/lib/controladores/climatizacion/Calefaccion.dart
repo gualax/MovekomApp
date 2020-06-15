@@ -12,6 +12,7 @@ import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/flecha_indicador.dart';
+import 'dart:math';
 
 class Calefaccion extends StatefulWidget {
   int widgetType;
@@ -56,17 +57,17 @@ class _CalefaccionState extends State<Calefaccion> {
               text_on_off = "Pulse para encender";
             }
             return  MyContainer(
-                margin: EdgeInsets.all(SC.all(12)),
+                margin: EdgeInsets.only(top: SC.top(6),bottom: SC.bot(6),left: SC.left(10),right: SC.right(10)),
                 width: 380,
-                height: 400,
+                height: 410,
                 decoration: new BoxDecoration(
                     color: MyColors.baseColor
                 ),
                 child: Stack(
                   children: <Widget>[
                     MyPositioned.fill(
-                        left: 50,
-                        top: 15,
+                        left: 40,
+                        top: 10,
                         child: Align(
                           alignment: Alignment.topLeft,
                           child: Text(title,
@@ -108,43 +109,31 @@ class _CalefaccionState extends State<Calefaccion> {
                         )
                     ),
                     MyPositioned.fill(
-                        right: 230, top:300,
+                        right: 210, bottom:33,
                         child: Align(
-                       //   alignment: Alignment.bottomCenter,
-                          child: IconButton(
-                            icon: Icon(Icons.power_settings_new), iconSize: SC.all(30),
-                            color: colorButton,
-                            onPressed: () {
-                              if(state.isEnabled){
-                                calefaccionBloc.add(DisableCalefaccion());
-                              }else{
-                                calefaccionBloc.add(EnableCalefaccion());
-                              }
-                            },),
+                          alignment: Alignment.bottomCenter,
+                          child: iconSvgD("assets/icons/on_off.svg", colorIcon, 25),
                         )
                     ),
                     MyPositioned.fill(
-                      top: 22,
-                      left: 20,
+                      top: 15,
+                      left: 10,
                       child: Align(
                         alignment: Alignment.topLeft,
-                        child: circuloConSombra(15.0, colorIcon),
+                        child: circuloConSombra(20.0, colorIcon),
                       ),
                     ),
                     MyPositioned(
-                      left: 270,
-                      bottom: 14,
+                      left: 260, bottom: 20, //270 //13
                       child: Align(
                         alignment: Alignment.center,
-                         child: calefa_indic_img(SC.all(360)),
+                         child: calefa_indic_img(360.0),
                       ),
                     ),
                     MyPositioned(
-                      left: 270,
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: flechita_indicacion(SC.all(200),SC.all(160)),
-                      ),
+                      left: 275, //270
+                      top: 5,
+                       child: flechita_indicacion(SC.all(185),SC.all(160)), //200 //160
                     ),
                     MyPositioned(
                       bottom: 10, right: 10,
@@ -205,35 +194,39 @@ class _CalefaccionState extends State<Calefaccion> {
               colorIndic = MyColors.inactive;
             }
             return
-              MyContainer(
-                child: Transform.rotate(
-                  angle: 135,
-                  child: CircleList(
-                    dragAngleRange: DragAngleRange(-0.02, 0.02),
-                    onDragUpdate: (PolarCoord updatedCord) {
-                      _lastAngle = updatedCord.getAngle();
-                      _radAngle = updatedCord.angle;
-                      if (_lastAngle > 57) {
-                        _lastAngle = 57;
-                      } else if (_lastAngle < -55) {
-                        _lastAngle = -55;
-                      }
-                      if (_radAngle > 1) {
-                        _radAngle = 1;
-                      } else if (_radAngle < -1) {
-                        _radAngle = -1;
-                      }
-                      // _valueTemp = (_lastAngle / 6.5);
-                      calefaccionBloc.add(UpdateCalefaccion(_lastAngle,_radAngle));
-                    },
-                    rotateMode: rotateMode,
-                    initialAngle:_radAngle,
-                    outerRadius: outerRadius,
-                    innerRadius: innerRadius,
-                    origin: Offset(0, 0),
-                    children: [
-                      flechaIndicador(_radAngle,60.0),
-                    ],
+              Container(
+               // color: Colors.pink,
+             //   padding: EdgeInsets.only(left: 70),
+                child: MyContainer(
+                  child: Transform.rotate(
+                      angle: pi,//135
+                    child: CircleList(
+                      dragAngleRange: DragAngleRange(-0.02, 0.02),   //-0.02 , 0.02
+                      onDragUpdate: (PolarCoord updatedCord) {
+                        _lastAngle = updatedCord.getAngle();
+                        _radAngle = updatedCord.angle;
+                        if (_lastAngle > 50) {
+                          _lastAngle = 50;
+                        } else if (_lastAngle < -45) {
+                          _lastAngle = -45;
+                        }
+                        if (_radAngle > 1) {
+                          _radAngle = 1;
+                        } else if (_radAngle < -1) {
+                          _radAngle = -1;
+                        }
+                        calefaccionBloc.add(UpdateCalefaccion(_lastAngle,_radAngle));
+                      },
+                    //  outerCircleColor: Colors.blueGrey[200],
+                      rotateMode: rotateMode,
+                      initialAngle:_radAngle,
+                      outerRadius: outerRadius,
+                      innerRadius: innerRadius,
+                      origin: Offset(0, 0),
+                      children: [
+                        flechaIndicador(_radAngle,60.0),
+                      ],
+                    ),
                   ),
                 ),
               );

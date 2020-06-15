@@ -13,6 +13,7 @@ import 'package:movekomapp/main.dart';
 import 'package:movekomapp/pantallas/Electricity/ElectricityMenuPage.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
+import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
 class BateriaMotorAux1 extends StatelessWidget {
@@ -59,9 +60,9 @@ class BateriaMotorAux1 extends StatelessWidget {
                 }
               },
               child: MyContainer(
-                  margin: EdgeInsets.all(5),
+                  margin: EdgeInsets.all(SC.all(5)),
                   width: 200,
-                  height: 210,
+                  height: 204,
                   decoration: new BoxDecoration(
                       color: MyColors.baseColor
                   ),
@@ -75,23 +76,12 @@ class BateriaMotorAux1 extends StatelessWidget {
                             child: circleIndicatorBatery_big(state.valueBat, color,SC.all(56),SC.all(100)),
                           ),
                         ),
-                        MyPositioned.fill(
-
-                          /// titulo
+                        MyPositioned.fill(/// titulo
                           top: 4,
                           left: 10,
                           child: Align(
                             alignment: Alignment.topLeft,
-                            child: RichText(
-                                text: TextSpan(
-                                    children: [
-                                      TextSpan(
-                                          style: MyTextStyle.estiloBold(
-                                              20, colorText),
-                                          text: title),
-                                    ]
-                                )
-                            ),
+                            child: Text(title, style: MyTextStyle.estiloBold(20, colorText),),
                           ),
                         ),
                         MyPositioned.fill(
@@ -122,8 +112,8 @@ class BateriaMotorAux1 extends StatelessWidget {
                               ),
                             )
                         ),
+                     /*
                         MyPositioned.fill(
-
                           ///  /// valueAmp
                             bottom: 20,
                             left: 30,
@@ -141,20 +131,11 @@ class BateriaMotorAux1 extends StatelessWidget {
                             bottom: 5,
                             child: Align(
                               alignment: Alignment.bottomLeft,
-                              child: IconButton(
-                                icon: Icon(Icons.power_settings_new),
-                                iconSize: SC.all(30),
-                                color: iconColor,
-                                onPressed: () {
-                                  if (state.isEnabled) {
-                                    bateriaAux1Bloc.add(DisableBatery());
-                                  } else {
-                                    bateriaAux1Bloc.add(EnableBatery());
-                                  }
-                                },
-                              ),
+                              child: iconSvgD("assets/icons/on_off.svg", iconColor, 17),
                             )
                         )
+
+                      */
                       ])
               ),
             );

@@ -61,7 +61,7 @@ Widget circleIndicator(value, color){
 Widget circleIndicatorBateria(value, color,dim,valueVolt){
   return CircularPercentIndicator(
     radius: dim,
-    lineWidth: 10,
+    lineWidth: SC.all(10),
     percent: (value)/100,
     center: Stack(
       children: <Widget>[
@@ -91,7 +91,7 @@ Widget circleIndicatorBateria(value, color,dim,valueVolt){
 Widget circleIndicatorBateriaAux(value, color,dim,valueVolt){
   return CircularPercentIndicator(
     radius: dim,
-    lineWidth: 15,
+    lineWidth: SC.all(15),
     percent: (value)/100,
     center: Stack(
       children: <Widget>[
@@ -134,7 +134,7 @@ Widget circleIndicator_big(value, color){
 Widget indicadorCircularLleno(value, color,radius){
   return CircularPercentIndicator(
     radius: radius,
-    lineWidth: 12,
+    lineWidth: SC.all(12),
     percent: (value)/100,
     center: new Text((value).toString() +"%",
       style: MyTextStyle.estiloBold(25, Colors.white),),

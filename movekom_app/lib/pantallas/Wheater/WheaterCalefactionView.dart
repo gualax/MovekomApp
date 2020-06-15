@@ -4,7 +4,6 @@ import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/controladores/climatizacion/Calefaccion.dart';
 import 'package:movekomapp/controladores/climatizacion/Extractor.dart';
-import 'package:movekomapp/controladores/climatizacion/aire_acondicionado.dart';
 import 'package:movekomapp/pantallas/Wheater/weather_box.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
@@ -112,7 +111,7 @@ class _WheaterCalefactionViewState extends State<WheaterCalefactionView> {
     return MyContainer(
       margin: EdgeInsets.all(SC.all(5)),
       width: 185,
-      height: 68,
+      height: 67,
       decoration: new BoxDecoration(
         color: MyColors.baseColor,
       ),

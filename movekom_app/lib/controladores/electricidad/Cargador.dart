@@ -23,9 +23,9 @@ class Cargador220 extends StatelessWidget {
       BlocBuilder<Cargador220Bloc,Cargador220State>(
           builder: ( context, state) {
           return MyContainer(
-            margin: EdgeInsets.all(5),
+            margin: EdgeInsets.all(SC.all(5)),
             width: 200,
-            height: 210,
+            height: 204,
             decoration: new BoxDecoration(
                 color: MyColors.baseColor
             ),

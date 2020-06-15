@@ -18,7 +18,7 @@ class AmperimetroGeneral extends StatelessWidget {
     return MyContainer(
       margin: EdgeInsets.all(SC.all(5)),
       width: 410,
-      height: 210,
+      height: 204,
       decoration: new BoxDecoration(
           color: MyColors.baseColor
       ),

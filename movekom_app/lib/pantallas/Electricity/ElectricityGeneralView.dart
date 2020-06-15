@@ -27,29 +27,15 @@ class _ElectricityGeneralViewState extends State<ElectricityGeneralView> {
   @override
   Widget build(BuildContext context) {
   //  final bateriaMotorBloc = BlocProvider.of<BateriaMotorBloc>(context);
-
-
     return  Container(
-        alignment: Alignment.center,
-      child: Row(
-        children: <Widget>[
-            Expanded(
-              child: MyContainer(
-               // margin: EdgeInsets.only(left: SC.le),
-             //   color: Colors.lightGreen,
-                alignment: Alignment.center,
-             //  color: Colors.orange,
-                child: baterias_cargadores(),
-              ),
-            ),
-      ],
-      ),
+           child: baterias_cargadores(),
       );
   }
 
   Widget baterias_cargadores(){
     return  Column(
       mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Row1(),
         Row2(),
@@ -61,6 +47,7 @@ class _ElectricityGeneralViewState extends State<ElectricityGeneralView> {
     return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           BateriaMotor(2),
           BateriaMotorAux1(2),
@@ -74,6 +61,7 @@ class _ElectricityGeneralViewState extends State<ElectricityGeneralView> {
     return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Alternador(),
           Cargador220(),

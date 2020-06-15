@@ -4,6 +4,8 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/widgets/MyTextStyle.dart';
+import 'package:convert/convert.dart';
 
 class ChatPage extends StatefulWidget {
   final BluetoothDevice server;
@@ -93,7 +95,7 @@ class _ChatPage extends State<ChatPage> {
                 (text) {
                   return text == '/shrug' ? '¯\\_(ツ)_/¯' : text;
                 }(_message.text.trim()),
-                style: TextStyle(color: Colors.white)),
+                style: MyTextStyle.estiloBold(25, Colors.black)),
             padding: EdgeInsets.all(12.0),
             margin: EdgeInsets.only(bottom: 8.0, left: 8.0, right: 8.0),
             width: 222.0,
@@ -131,7 +133,7 @@ class _ChatPage extends State<ChatPage> {
                   child: Container(
                     margin: const EdgeInsets.only(left: 16.0),
                     child: TextField(
-                      style: const TextStyle(fontSize: 15.0),
+                      style:  MyTextStyle.estiloBold(30,MyColors.text),
                       controller: textEditingController,
                       decoration: InputDecoration.collapsed(
                         hintText: isConnecting
@@ -148,7 +150,7 @@ class _ChatPage extends State<ChatPage> {
                 Container(
                   margin: const EdgeInsets.all(8.0),
                   child: IconButton(
-                      icon: const Icon(Icons.send),
+                      icon: const Icon(Icons.send, color:Colors.lightGreenAccent),
                       onPressed: isConnected
                           ? () => _sendMessage(textEditingController.text)
                           : null),
@@ -162,6 +164,8 @@ class _ChatPage extends State<ChatPage> {
   }
 
   void _onDataReceived(Uint8List data) {
+    print("_onDataReceived");
+    print(hex.encode(data)); /// esta linea se muestra lo que necesito y ademas al final 0d0a que es salto de linea y fin de linea
     // Allocate buffer for parsed data
     int backspacesCounter = 0;
     data.forEach((byte) {
@@ -170,6 +174,7 @@ class _ChatPage extends State<ChatPage> {
       }
     });
     Uint8List buffer = Uint8List(data.length - backspacesCounter);
+    print(hex.encode(buffer));
     int bufferIndex = buffer.length;
 
     // Apply backspace control character
@@ -213,10 +218,22 @@ class _ChatPage extends State<ChatPage> {
   void _sendMessage(String text) async {
     text = text.trim();
     textEditingController.clear();
+    var  boiler = 0x50;
+    var status  = 0x50;
+    var temp = 0x33;
+    List <int> elems =[
+      boiler,
+      status,
+      temp,
+    ];
 
+    var messageHex = Uint8List.fromList(elems);
+    print(hex.encode(messageHex));
     if (text.length > 0) {
       try {
-        connection.output.add(utf8.encode(text + "\r\n"));
+    //    connection.output.add(utf8.encode(text + "\r\n")); // for texts
+        connection.output.add(messageHex);
+
         await connection.output.allSent;
 
         setState(() {
@@ -235,4 +252,5 @@ class _ChatPage extends State<ChatPage> {
       }
     }
   }
-}
+
+ }

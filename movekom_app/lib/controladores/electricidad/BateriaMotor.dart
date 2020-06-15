@@ -9,6 +9,7 @@ import 'package:movekomapp/Utils/SizeConfig.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/bateria_motor_bloc.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
+import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
 
@@ -19,7 +20,6 @@ class BateriaMotor extends StatelessWidget {
   BateriaMotor(this.widgetType);
   @override
   Widget build(BuildContext context) {
-    SizeConf().init(context);
     final bateriaMotorBloc = BlocProvider.of<BateriaMotorBloc>(context);
     if (widgetType == 1) {
       return bateria_motor_principal(bateriaMotorBloc);
@@ -57,15 +57,13 @@ class BateriaMotor extends StatelessWidget {
                 },
                 child: MyContainer(
                     margin: EdgeInsets.all(SC.all(5)),
-                    width: 200,
-                    height: 210,
+                    width: 200, height: 204,
                     decoration: new BoxDecoration(
                         color: MyColors.baseColor
                     ),
                     child: Stack(
                         children: [
-                          MyPositioned.fill(
-                            /// valor bateria
+                          MyPositioned.fill(/// valor bateria
                             right: 20,
                             child: Align(
                               alignment: Alignment.centerRight,
@@ -73,21 +71,10 @@ class BateriaMotor extends StatelessWidget {
                             ),
                           ),
                           MyPositioned.fill(
-                            /// titulo
-                            top: 4,
-                            left: 10,
+                            top: 4, left: 10,
                             child: Align(
                               alignment: Alignment.topLeft,
-                              child: RichText(
-                                  text: TextSpan(
-                                      children: [
-                                        TextSpan(
-                                            style: MyTextStyle.estiloBold(
-                                                17, colorText),
-                                            text: title),
-                                      ]
-                                  )
-                              ),
+                              child:Text(title, style: MyTextStyle.estiloBold(20, colorText),),
                             ),
                           ),
                           MyPositioned.fill(
@@ -103,9 +90,7 @@ class BateriaMotor extends StatelessWidget {
                               ),
                             ),
                           ),
-                          MyPositioned.fill(
-
-                            ///  /// valueAmp
+                          MyPositioned.fill(/// valueAmp
                               top: 30,
                               left: 7,
                               child: Align(
@@ -117,9 +102,8 @@ class BateriaMotor extends StatelessWidget {
                                 ),
                               )
                           ),
-                          MyPositioned.fill(
-
-                            ///  /// valueAmp
+                     /*
+                          MyPositioned.fill(/// valueAmp
                               bottom: 20,
                               left: 30,
                               child: Align(
@@ -136,20 +120,11 @@ class BateriaMotor extends StatelessWidget {
                               bottom: 5,
                               child: Align(
                                 alignment: Alignment.bottomCenter,
-                                child: IconButton(
-                                  icon: Icon(Icons.power_settings_new),
-                                  iconSize: SC.all(30),
-                                  color: iconColor,
-                                  onPressed: () {
-                                    if (state.isEnabled) {
-                                      bateriaMotorBloc.add(DisableBatery());
-                                    } else {
-                                      bateriaMotorBloc.add(EnableBatery());
-                                    }
-                                  },
-                                ),
+                                child:  iconSvgD("assets/icons/on_off.svg",iconColor , 15),
                               )
                           )
+
+                      */
                         ])
                 ),
               );

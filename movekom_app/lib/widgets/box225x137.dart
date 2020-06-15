@@ -218,8 +218,7 @@ Widget box225x140_1icon(title, double valueAmp,
 
 
 Widget box225x140_add_device(){
-  return ClipRect(
-    child: MyContainer(
+  return  MyContainer(
       width: 225,
       height: 140,
         margin: EdgeInsets.all(SC.all(10)),
@@ -235,20 +234,19 @@ Widget box225x140_add_device(){
                 MyPositioned.fill(
                     child: Align(
                       alignment: Alignment.center,
-                        child: Icon(Icons.add,size: 65,color: Colors.white,)
+                        child: Icon(Icons.add,size: 60,color: Colors.white,)
                     )
                 ),
                 MyPositioned.fill(
                     child: Align(
                         alignment: Alignment.bottomCenter,
                         child: Text("AÑADIR DISPOSITIVO",
-                          style: MyTextStyle.estilo(20, Colors.white),)
+                          style: MyTextStyle.estilo(16, Colors.white),)
                     )
                 ),
               ],
             ),
       ),
-    ),
     ),
   );
 }

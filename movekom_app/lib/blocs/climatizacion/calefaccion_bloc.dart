@@ -97,10 +97,24 @@ class CalefaccionBloc extends Bloc <CalefaccionEvent, CalefaccionState> {
     }else if (event is UpdateCalefaccion){
       yield CalefaccionState(
         isEnabled: true, // (_lastAngle / 6.5)
-        valueTemp: 25 + (event.valueAngle / 5.5).round(),
+        valueTemp: getTemp(event.valueAngle),
         valueAngle: event.valueAngle,
         radAngle: event.radAngle,
       );
     }
   }
+
+  getTemp(valueAngle){
+    int value =  25 + (valueAngle / 4.5).round();
+    if( value > 35 ){
+      return 35;
+    }else if(value < 15){
+      return 15;
+    }else{
+      return value;
+    }
+
+  }
+
+
 }

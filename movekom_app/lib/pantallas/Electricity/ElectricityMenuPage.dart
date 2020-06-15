@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movekomapp/HomePage.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/main.dart';
 import 'package:movekomapp/pantallas/Electricity/ElectricityGraphicsView.dart';
 import 'package:movekomapp/pantallas/Electricity/ElectricitySettingsView.dart';
@@ -40,8 +41,6 @@ class _ElectricityPageState extends State<ElectricityPage> with SingleTickerProv
       resizeToAvoidBottomPadding: false,
       backgroundColor: Colors.black,
         body: MyContainer(
-         // color: Colors.blueGrey,
-          margin: EdgeInsets.only(top: 25),
           child: Column(
           children: <Widget>[
               Expanded(
@@ -56,7 +55,7 @@ class _ElectricityPageState extends State<ElectricityPage> with SingleTickerProv
               ),
             Expanded(
               child: MyContainer(
-              //  color: Colors.blueGrey,
+          //      color: Colors.blueGrey,
                 child: buttonTabTextMenu(),
               ),
             )
@@ -76,7 +75,7 @@ class _ElectricityPageState extends State<ElectricityPage> with SingleTickerProv
       length: 3,
       child: MyContainer(
         alignment: Alignment.center,
-        margin: EdgeInsets.only(right: 100, left: 100),
+        margin: EdgeInsets.only(right: SC.right(100), left: SC.left(100)),
         //color: Colors.yellowAccent,
         child: TabBar(
           onTap: (index) {

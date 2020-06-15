@@ -61,19 +61,19 @@ void main(){
     ),
   );
 
-
+/*
 runApp(
   DevicePreview(
       child: MyApp(weatherRepository: weatherRepository)
   )
 );
+*/
 
 
-/*
   runApp(
     MyApp(weatherRepository: weatherRepository));
 
- */
+
 }
 
 class MyApp extends StatelessWidget {
@@ -143,7 +143,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         initialRoute: '/',
-          builder: DevicePreview.appBuilder,
+        //  builder: DevicePreview.appBuilder,
           routes: {
          // '/': (context) => HomePage(indexToShow:0),   //HomePage(indexToShow:0),
           '/menus': (context) => FloatingMenu(),

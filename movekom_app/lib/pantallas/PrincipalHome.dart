@@ -40,7 +40,6 @@ class _PrincipalHomeState extends State<PrincipalHome> {
   BuildContext mContext;
   @override
   Widget build(BuildContext context) {
-    SizeConf().init(context);
     print("build");
     mContext = context;
     return
@@ -61,7 +60,7 @@ class _PrincipalHomeState extends State<PrincipalHome> {
 Widget horizontalList(){
     return Container(
       alignment: Alignment.center,
-      height: SC.hei(180),
+      height: SC.hei(150),
       margin: EdgeInsets.only(left: SC.left(40),top: SC.top(20)),
       child: ListView(
         scrollDirection: Axis.horizontal,
