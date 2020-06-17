@@ -1,21 +1,30 @@
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movekomapp/HomePage.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
+import 'package:movekomapp/Utils/tab_changer.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/bateria_aux_1_bloc.dart';
+import 'package:movekomapp/blocs/tab_bloc.dart';
+import 'package:movekomapp/main.dart';
+import 'package:movekomapp/pantallas/Electricity/ElectricityMenuPage.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
+import 'package:movekomapp/responsive_ui/mi_positioned.dart';
+import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
 class BateriaMotorAux1 extends StatelessWidget {
   int widgetType;
-  final String title = "Bateria Aux 1";
-
+  final String title = "BATERIA AUXILIAR";
   BateriaMotorAux1(this.widgetType);
   @override
   Widget build(BuildContext context) {
     final bateriaAux1Bloc = BlocProvider.of<BateriaAux1Bloc>(context);
     if (widgetType == 1) {
-      return box137x137_Bateria(bateriaAux1Bloc);
+      return bateria_aux_principal(bateriaAux1Bloc);
     } else {
       return box200x215_bateria(bateriaAux1Bloc);
     }
@@ -32,114 +41,105 @@ class BateriaMotorAux1 extends StatelessWidget {
             print(state.isEnabled);
             print(state.valueBat);
             if (state.isEnabled) {
-              color = Colors.lightGreen;
-              colorText = Colors.white;
+              color = MyColors.principal;
+              colorText = MyColors.text;
               iconColor = color;
-              on_off_Text = "Pulsar para apagar bateria";
+              on_off_Text = "Desconectar";
             } else {
-              color = Colors.grey;
-              colorText = Colors.grey;
-              iconColor = Colors.white;
-              on_off_Text = "Pulsar para encender bateria";
+              color = MyColors.inactive;
+              colorText = MyColors.inactive;
+              iconColor = MyColors.text;
+              on_off_Text = "Conectar";
             }
-            return Container(
-                margin: EdgeInsets.all(5),
-                width: 200,
-                height: 214,
-                decoration: new BoxDecoration(
-                    color: MyColors.ContainerColor
-                ),
-                child: Stack(
-                    children: [
-                      Positioned.fill(
-                        /// valor bateria
-                        right: 20,
-                        child: Align(
-                          alignment: Alignment.centerRight,
-                          child: circleIndicatorBatery_big(state.valueBat, color,56.0),
-                        ),
-                      ),
-                      Positioned.fill(
-
-                        /// titulo
-                        top: 4,
-                        left: 10,
-                        child: Align(
-                          alignment: Alignment.topLeft,
-                          child: RichText(
-                              text: TextSpan(
-                                  children: [
-                                    TextSpan(
-                                        style: MyTextStyle.estiloBold(
-                                            20, colorText),
-                                        text: title),
-                                  ]
-                              )
+            return GestureDetector(
+              onTap: (){
+                /*
+                if (state.isEnabled) {
+                  bateriaAux1Bloc.add(DisableBatery());
+                } else {
+                  bateriaAux1Bloc.add(EnableBatery());
+                }
+                 */
+              },
+              child: MyContainer(
+                  margin: EdgeInsets.all(SC.all(5)),
+                  width: 200,
+                  height: 204,
+                  decoration: new BoxDecoration(
+                      color: MyColors.baseColor
+                  ),
+                  child: Stack(
+                      children: [
+                        MyPositioned.fill(
+                          /// valor bateria
+                          right: 20,
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: circleIndicatorBatery_big(state.valueBat, color,SC.all(56),SC.all(100)),
                           ),
                         ),
-                      ),
-                      Positioned.fill(
-
-                        /// valueVolt
-                        left: 7,
-                        bottom: 30,
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                              state.valueVolt.toString() + "V",
-                              style: MyTextStyle.estiloBold(16, colorText),
-                              textAlign: TextAlign.center
+                        MyPositioned.fill(/// titulo
+                          top: 4,
+                          left: 10,
+                          child: Align(
+                            alignment: Alignment.topLeft,
+                            child: Text(title, style: MyTextStyle.estiloBold(20, colorText),),
                           ),
                         ),
-                      ),
-                      Positioned.fill(
+                        MyPositioned.fill(
 
-                        ///  /// valueAmp
-                          top: 30,
+                          /// valueVolt
                           left: 7,
+                          bottom: 30,
                           child: Align(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                                state.valueAmp.toString() + "A",
+                                state.valueVolt.toString() + "V",
                                 style: MyTextStyle.estiloBold(16, colorText),
                                 textAlign: TextAlign.center
                             ),
-                          )
-                      ),
-                      Positioned.fill(
+                          ),
+                        ),
+                        MyPositioned.fill(
 
-                        ///  /// valueAmp
-                          bottom: 20,
-                          left: 30,
-                          child: Align(
-                            alignment: Alignment.bottomCenter,
-                            child: Text(
-                                on_off_Text,
-                                style: MyTextStyle.estiloBold(12, colorText),
-                                textAlign: TextAlign.center
-                            ),
-                          )
-                      ),
-                      Positioned.fill(
-                          right: 170,
-                          bottom: 5,
-                          child: Align(
-                            alignment: Alignment.bottomCenter,
-                            child: IconButton(
-                              icon: Icon(Icons.power_settings_new),
-                              iconSize: 30,
-                              color: iconColor,
-                              onPressed: () {
-                                if (state.isEnabled) {
-                                  bateriaAux1Bloc.add(DisableBatery());
-                                } else {
-                                  bateriaAux1Bloc.add(EnableBatery());
-                                }
-                              },
-                            ),
-                          )
-                      )
-                    ])
+                          ///  /// valueAmp
+                            top: 30,
+                            left: 7,
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                  state.valueAmp.toString() + "A",
+                                  style: MyTextStyle.estiloBold(16, colorText),
+                                  textAlign: TextAlign.center
+                              ),
+                            )
+                        ),
+                     /*
+                        MyPositioned.fill(
+                          ///  /// valueAmp
+                            bottom: 20,
+                            left: 30,
+                            child: Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Text(
+                                  on_off_Text,
+                                  style: MyTextStyle.estiloBold(12, colorText),
+                                  textAlign: TextAlign.center
+                              ),
+                            )
+                        ),
+                        MyPositioned.fill(
+                            right: 170,
+                            bottom: 5,
+                            child: Align(
+                              alignment: Alignment.bottomLeft,
+                              child: iconSvgD("assets/icons/on_off.svg", iconColor, 17),
+                            )
+                        )
+
+                      */
+                      ])
+              ),
             );
           }
       );
@@ -149,73 +149,68 @@ class BateriaMotorAux1 extends StatelessWidget {
 
 
 
-  Widget box137x137_Bateria(bateriaAux1Bloc){
+  Widget bateria_aux_principal(bateriaAux1Bloc){
+    Color colorIcon, colorText;
+
     return
       BlocBuilder<BateriaAux1Bloc,BateriaAux1State>(
           builder: ( context, state) {
-          Color color;
           if(state.isEnabled){
-            color = Colors.lightGreen;
+            colorIcon = MyColors.principal;
+            colorText = MyColors.text;
           }else{
-            color = Colors.grey;
+            colorText = MyColors.inactive;
+            colorIcon = MyColors.inactive;
           }
-          return Container(
-              margin: EdgeInsets.all(7),
-              width: 137,
-              height: 137,
-              decoration: new BoxDecoration(
-                  color: MyColors.ContainerColor
-              ),
-              child: Stack(
-                  children: [
-                    Positioned.fill(
+          return GestureDetector(
+            onTap: (){
 
-                      /// valor bateria
-                      left: 5,
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: circleIndicatorBatery_small(state.valueBat, color, 42.0),
-                      ),
-                    ),
-                    Positioned.fill(
-                      /// titulo
-                      top: 4,
-                      child: Align(
-                        alignment: Alignment.topCenter,
-                        child: RichText(
-                            text: TextSpan(
-                                children: [
-                                  TextSpan(
-                                      style: MyTextStyle.estiloBold(15, color),
-                                      text: title),
-                                ]
-                            )
+             TabChanger tabChanger =  TabChanger(context);
+             tabChanger.changeTab(2);
+              // no es la mejor solucion
+            //  Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(indexPage: 2,)));
+/*
+              Navigator.pushAndRemoveUntil(
+                context,
+                CupertinoPageRoute(builder: (context) => HomePage(indexPage: 2,)),
+                    (Route<dynamic> route) => false,
+              );
+*/
+              },
+            child: MyContainer(
+                margin: EdgeInsets.only(bottom: SC.bot(15)),
+                width: 288, height:200, //200 //288
+                decoration: new BoxDecoration(
+                  color: MyColors.baseColor,
+                ),
+                child: Stack(
+                    children: [
+                      MyPositioned.fill(
+                        /// valor bateria
+                        left: 5,top:20,
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: circleIndicatorBatery_small(state.valueBat, colorIcon, SC.all(80),SC.all(150), state.valueVolt.toStringAsFixed(1)),
                         ),
                       ),
-                    ),
-                    PositionedDirectional(
-
-                      /// valueVolt
-                      bottom: 4,
-                      start: 10,
-                      child: Text(
-                          state.valueVolt.toString(),
-                          style: MyTextStyle.estilo(15, color),
-                          textAlign: TextAlign.center
+                      MyPositioned.fill(
+                        /// titulo
+                        top: 4, left: 10,
+                        child: Align(
+                          alignment: Alignment.topLeft,
+                          child: RichText(
+                              text: TextSpan(
+                                  children: [
+                                    TextSpan(
+                                        style: MyTextStyle.estiloBold(15, colorText),
+                                        text: title),
+                                  ]
+                              )
+                          ),
+                        ),
                       ),
-                    ),
-                    PositionedDirectional(
-
-                      ///  /// valueAmp
-                        bottom: 4,
-                        end: 10,
-                        child: Text(
-                            state.valueAmp.toString(),
-                            style: MyTextStyle.estilo(15, color),
-                            textAlign: TextAlign.center
-                        )
-                    )
-                  ])
+                   ])
+            ),
           );
         }
       );
@@ -224,29 +219,32 @@ class BateriaMotorAux1 extends StatelessWidget {
 
 
 
-  Widget circleIndicatorBatery_big(value,color,radius){
+  Widget circleIndicatorBatery_big(value,color,radius,innerRadius){
     return Container (
       child: Stack(
         alignment: Alignment.center,
         children: <Widget>[
           circulito(radius,color),
-          circleIndicator_big(value, color)
+          indicadorCircularLleno(value, color,innerRadius)
         ],
       ),
     );
   }
 
 
-  Widget circleIndicatorBatery_small(value,color,radius){
+  Widget circleIndicatorBatery_small(value,color,radius,innerRadius,valueVolt){
     return Container (
       child: Stack(
         alignment: Alignment.center,
         children: <Widget>[
           circulito(radius,color),
-          circleIndicator(value, color)
+          circleIndicatorBateriaAux(value, color,innerRadius,valueVolt)
         ],
       ),
     );
   }
+
+
+
 
 } /// FIN DE CLASE

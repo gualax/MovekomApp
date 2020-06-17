@@ -49,7 +49,6 @@ class BateriaMotorAux2 extends StatelessWidget {
                 child: Stack(
                     children: [
                       Positioned.fill(
-
                         /// valor bateria
                         right: 20,
                         child: Align(

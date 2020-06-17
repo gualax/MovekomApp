@@ -1,9 +1,13 @@
 import 'package:circle_list/circle_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/blocs/boiler_bloc.dart';
 import 'package:movekomapp/controladores/agua/AnimatedBoiler.dart';
 import 'package:movekomapp/controladores/agua/ItemBoiler.dart';
+import 'dart:math' as math;
+
+import 'package:movekomapp/responsive_ui/mi_container.dart';
 
 
 class Boiler extends StatefulWidget {
@@ -30,24 +34,40 @@ bool isFisrtRender = true;
           builder: ( context, state) {
             boilerBloc = BlocProvider.of<BoilerBloc>(context);
             print("valueCord boiler: " + state.valueCord.toString());
-            return Container(
-              child: CircleList(
-                centerWidget: animatedBoiler,
-                rotateMode: RotateMode.stopRotate,
-                outerRadius: 220,
-                innerRadius: 120,
-                origin: Offset(0, 0),
-                children:  _radialListItems(),
+            return MyContainer(
+            //  color: Colors.amber,
+              height: 400,
+              width: 400,
+              child:
+              Center(
+                child: Transform.rotate(
+                  angle: 0.5 * math.pi,
+                child: CircleList(
+               //  outerCircleColor: Colors.cyanAccent,
+               //   innerCircleColor: Colors.white70,
+                  centerWidget: animatedBoiler,
+                  rotateMode: RotateMode.stopRotate,
+                  outerRadius: SC.all(150),
+                  innerRadius: SC.all(115),
+                  origin: Offset(0, 0),
+                  children: _radialListItems(),
             ),
+            ),
+              ),
             );
           }
       );
   }
 
 
+
+
 List<Widget> _radialListItems() {
   return radialNumbers.items.map((RadialListItemViewModel viewModel) {
-    final listItem = ItemBoiler(
+    final listItem =
+        Transform.rotate(
+        angle: 1.5 * math.pi,
+        child: ItemBoiler(
       firstTime: getInitial(),
       listItem: viewModel,
       index: viewModel.number,
@@ -59,7 +79,8 @@ List<Widget> _radialListItems() {
           currentSelectedIndex = viewModel.number;
         });
       },
-    );
+    )
+        );
     return listItem;
   }).toList();
 }

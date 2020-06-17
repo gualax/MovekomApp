@@ -5,10 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/blocs/climatizacion/calefaccion_bloc.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
+import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/flecha_indicador.dart';
+import 'dart:math';
 
 class Calefaccion extends StatefulWidget {
   int widgetType;
@@ -21,9 +25,11 @@ class Calefaccion extends StatefulWidget {
 class _CalefaccionState extends State<Calefaccion> {
   final String title = "CALEFACCION";
   bool isFisrtRender = true;
+  CalefaccionBloc calefaccionBloc;
   @override
   Widget build(BuildContext context) {
-    final calefaccionBloc = BlocProvider.of<CalefaccionBloc>(context);
+    SC().init(context);
+     calefaccionBloc = BlocProvider.of<CalefaccionBloc>(context);
     if (widget.widgetType == 1) {
       return _calefaccionWidget();
     } else {
@@ -40,127 +46,129 @@ class _CalefaccionState extends State<Calefaccion> {
       BlocBuilder<CalefaccionBloc,CalefaccionState>(
           builder: ( context, state) {
             if(state.isEnabled){
-              colorText = Colors.white;
-              colorButton = Colors.lightGreenAccent;
-              colorIcon = Colors.lightGreenAccent;
+              colorText = MyColors.text;
+              colorButton = MyColors.principal;
+              colorIcon = MyColors.principal;
               text_on_off = "Pulse para apagar";
             }else{
-              colorText = Colors.grey;
-              colorButton = Colors.white;
-              colorIcon = Colors.grey;
+              colorText = MyColors.inactive;
+              colorButton = MyColors.text;
+              colorIcon = MyColors.inactive;
               text_on_off = "Pulse para encender";
             }
-            return Container(
-              margin: EdgeInsets.all(20),
-              width: 462,
-              height: 388,
-              decoration: new BoxDecoration(
-                  color: MyColors.ContainerColor
-              ),
-              child: Stack(
-                children: <Widget>[
-                  Positioned.fill(
-                      left: 50,
-                      top: 10,
+            return  MyContainer(
+                margin: EdgeInsets.only(top: SC.top(6),bottom: SC.bot(6),left: SC.left(10),right: SC.right(10)),
+                width: 380,
+                height: 410,
+                decoration: new BoxDecoration(
+                    color: MyColors.baseColor
+                ),
+                child: Stack(
+                  children: <Widget>[
+                    MyPositioned.fill(
+                        left: 40,
+                        top: 10,
+                        child: Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(title,
+                            style: MyTextStyle.estiloBold(25, colorText),),
+                        )
+                    ),
+                    MyPositioned.fill(
+                      bottom: 120,
+                        right: 40,
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Text("Temperature ºC",
+                            style: MyTextStyle.estiloBold(18, colorText),),
+                        )
+                    ),
+                    MyPositioned.fill(
+                        left: 20,
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Text(state.valueTemp.toString(),
+                            style: MyTextStyle.estiloBold(100, colorText),),
+                        )
+                    ),
+                    MyPositioned.fill(
+                        left: 20,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: iconSvgD(
+                              "assets/icons/fire.svg", colorIcon, 130),
+                        )
+                    ),
+                    MyPositioned.fill(
+                        left: 5,
+                        bottom: 30,
+                        child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Text(text_on_off,
+                            style: MyTextStyle.estiloBold(20, colorText),),
+                        )
+                    ),
+                    MyPositioned.fill(
+                        right: 210, bottom:33,
+                        child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: iconSvgD("assets/icons/on_off.svg", colorIcon, 25),
+                        )
+                    ),
+                    MyPositioned.fill(
+                      top: 15,
+                      left: 10,
                       child: Align(
                         alignment: Alignment.topLeft,
-                        child: Text(title,
-                          style: MyTextStyle.estiloBold(35, colorText),),
-                      )
-                  ),
-                  Positioned.fill(
-                    bottom: 120,
-                      right: 40,
+                        child: circuloConSombra(20.0, colorIcon),
+                      ),
+                    ),
+                    MyPositioned(
+                      left: 260, bottom: 20, //270 //13
                       child: Align(
                         alignment: Alignment.center,
-                        child: Text("Temperature ºC",
-                          style: MyTextStyle.estiloBold(20, colorText),),
-                      )
-                  ),
-                  Positioned.fill(
-                      left: 20,
+                         child: calefa_indic_img(360.0),
+                      ),
+                    ),
+                    MyPositioned(
+                      left: 275, //270
+                      top: 25,
+                       child: flechita_indicacion(SC.all(185),SC.all(160)), //200 //160
+                    ),
+                    MyPositioned(
+                      bottom: 10, right: 10,
                       child: Align(
-                        alignment: Alignment.center,
-                        child: Text(state.valueTemp.toString(),
-                          style: MyTextStyle.estiloBold(100, colorText),),
-                      )
-                  ),
-                  Positioned.fill(
-                      left: 30,
+                        alignment: Alignment.bottomRight,
+                        child:Text("15ºC",
+                          style: MyTextStyle.estiloBold(20, MyColors.text),),
+                      ),
+                    ),
+                    MyPositioned(
+                      top: 10, right: 10,
                       child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: iconSvgD(
-                            "assets/icons/fire.svg", colorIcon, 130),
-                      )
-                  ),
-                  Positioned.fill(
-                      left: 30,
-                      bottom: 22,
-                      child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Text(text_on_off,
-                          style: MyTextStyle.estiloBold(20, colorText),),
-                      )
-                  ),
-                  Positioned.fill(
-                      right: 170,
-                      bottom: 10,
-                      child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: IconButton(
-                          icon: Icon(Icons.power_settings_new), iconSize: 30,
-                          color: colorButton,
-                          onPressed: () {
+                        alignment: Alignment.topRight,
+                        child:Text("35ºC",
+                          style: MyTextStyle.estiloBold(20, MyColors.text),),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: MyContainer(
+                        width: 265,
+                        height: 400,
+                        child: GestureDetector(
+                          onTap: (){
                             if(state.isEnabled){
                               calefaccionBloc.add(DisableCalefaccion());
                             }else{
                               calefaccionBloc.add(EnableCalefaccion());
                             }
-                          },),
-                      )
-                  ),
-                  Positioned.fill(
-                    top: 20,
-                    left: 20,
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: circuloConSombra(20.0, colorIcon),
+                          },
+                        ),
+                      ),
                     ),
-                  ),
-                  Positioned(
-                    left: 320,
-                    bottom: 14,
-                    child: Align(
-                      alignment: Alignment.center,
-                   //   child: iconSvgNc("assets/icons/circulo_boiler.svg",390 ),
-                        child: calefa_indic_img(360.0),
-                    ),
-                  ),
-                  Positioned(
-                    left: 320,
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: circularList(calefaccionBloc),
-                    ),
-                  ),
-                  Positioned(
-                    bottom: 10, right: 10,
-                    child: Align(
-                      alignment: Alignment.bottomRight,
-                      child:Text("15ºC",
-                        style: MyTextStyle.estiloBold(20, Colors.white),),
-                    ),
-                  ),
-                  Positioned(
-                    top: 10, right: 10,
-                    child: Align(
-                      alignment: Alignment.topRight,
-                      child:Text("35ºC",
-                        style: MyTextStyle.estiloBold(20, Colors.white),),
-                    ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
             );
           }
       );
@@ -169,7 +177,7 @@ class _CalefaccionState extends State<Calefaccion> {
 
 
 // (-pi, 0.0)
-  Widget circularList(calefaccionBloc) {
+  Widget flechita_indicacion(outerRadius,innerRadius) {
     double  _lastAngle, _radAngle;
     return
       BlocBuilder<CalefaccionBloc,CalefaccionState>(
@@ -183,38 +191,42 @@ class _CalefaccionState extends State<Calefaccion> {
               colorIndic = Colors.lightGreenAccent;
             }else{
               rotateMode = RotateMode.stopRotate;
-              colorIndic = Colors.grey;
+              colorIndic = MyColors.inactive;
             }
             return
               Container(
-                child: Transform.rotate(
-                  angle: 135,
-                  child: CircleList(
-                    dragAngleRange: DragAngleRange(-0.02, 0.02),
-                    onDragUpdate: (PolarCoord updatedCord) {
-                      _lastAngle = updatedCord.getAngle();
-                      _radAngle = updatedCord.angle;
-                      if (_lastAngle > 57) {
-                        _lastAngle = 57;
-                      } else if (_lastAngle < -55) {
-                        _lastAngle = -55;
-                      }
-                      if (_radAngle > 1) {
-                        _radAngle = 1;
-                      } else if (_radAngle < -1) {
-                        _radAngle = -1;
-                      }
-                      // _valueTemp = (_lastAngle / 6.5);
-                      calefaccionBloc.add(UpdateCalefaccion(_lastAngle,_radAngle));
-                    },
-                    rotateMode: rotateMode,
-                    initialAngle:_radAngle,
-                    outerRadius: 192,
-                    innerRadius: 150,
-                    origin: Offset(0, 0),
-                    children: [
-                      flechaIndicador(_radAngle,55.0),
-                    ],
+               // color: Colors.pink,
+             //   padding: EdgeInsets.only(left: 70),
+                child: MyContainer(
+                  child: Transform.rotate(
+                      angle: pi,//135
+                    child: CircleList(
+                      dragAngleRange: DragAngleRange(-0.02, 0.02),   //-0.02 , 0.02
+                      onDragUpdate: (PolarCoord updatedCord) {
+                        _lastAngle = updatedCord.getAngle();
+                        _radAngle = updatedCord.angle;
+                        if (_lastAngle > 50) {
+                          _lastAngle = 50;
+                        } else if (_lastAngle < -45) {
+                          _lastAngle = -45;
+                        }
+                        if (_radAngle > 1) {
+                          _radAngle = 1;
+                        } else if (_radAngle < -1) {
+                          _radAngle = -1;
+                        }
+                        calefaccionBloc.add(UpdateCalefaccion(_lastAngle,_radAngle));
+                      },
+                    //  outerCircleColor: Colors.blueGrey[200],
+                      rotateMode: rotateMode,
+                      initialAngle:_radAngle,
+                      outerRadius: outerRadius,
+                      innerRadius: innerRadius,
+                      origin: Offset(0, 0),
+                      children: [
+                        flechaIndicador(_radAngle,60.0),
+                      ],
+                    ),
                   ),
                 ),
               );
@@ -237,7 +249,7 @@ class _CalefaccionState extends State<Calefaccion> {
   }
 
   Widget calefa_indic_img(dim){
-    return Container(
+    return MyContainer(
             height: dim,
             width: dim,
             //margin: EdgeInsets.all(dim),
@@ -259,24 +271,24 @@ class _CalefaccionState extends State<Calefaccion> {
       builder: ( context, state) {
        if(state.isEnabled){
           color = Colors.lightGreenAccent;
-          colorText = Colors.white;
+          colorText = MyColors.text;
           on_off = "ON";
         } else {
-          color = Colors.grey;
-          colorText = Colors.grey;
+          color = MyColors.inactive;
+          colorText = MyColors.inactive;
           on_off = "OFF";
        }
     return  ClipRect(
-      child: Container(
-          margin: EdgeInsets.all(7),
+      child: MyContainer(
+          margin: EdgeInsets.all(SC.all(7)),
           width: 225,
           height: 140,
           decoration: BoxDecoration(
-              color:  MyColors.ContainerColor
+              color:  MyColors.baseColor
           ),
           child: Stack(children: [
             // Valvulas (Todas)
-            Positioned.fill(  ///titulo
+            MyPositioned.fill(  ///titulo
               top: 4,
               left: 8,
               child:   Align(
@@ -287,14 +299,14 @@ class _CalefaccionState extends State<Calefaccion> {
                 ),
               ),
             ),
-            Positioned.fill(/// circulito
+            MyPositioned.fill(/// circulito
                 top: 10, right: 10,
                 child: Align(
                   alignment: Alignment.topRight,
                   child: circuloConSombra(17.0, color),
                 )
             ),
-            Positioned.fill(    ///textAbajoIzq
+            MyPositioned.fill(    ///textAbajoIzq
               left: 8,
               bottom: 6,
               child: Align(
@@ -305,7 +317,7 @@ class _CalefaccionState extends State<Calefaccion> {
                 ),
               ),
             ),
-            Positioned.fill(  ///textAbajoDer
+            MyPositioned.fill(  ///textAbajoDer
               right: 8,
               bottom: 6,
               child:  Align(
@@ -316,14 +328,14 @@ class _CalefaccionState extends State<Calefaccion> {
                 ),
               ),
             ),
-            Positioned.fill(  ///icon
+            MyPositioned.fill(  ///icon
               left: 25,
               child:  Align(
                 alignment: Alignment.centerLeft,
                 child: iconSvgD("assets/icons/fire.svg", color, 75),
               ),
             ),
-            Positioned.fill(  ///textValue
+            MyPositioned.fill(  ///textValue
               right: 20,
               child:  Align(
                 alignment: Alignment.centerRight,

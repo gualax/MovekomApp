@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
 import 'package:movekomapp/app.localizations.dart';
 import 'package:movekomapp/blocs/iluminacion_blocs/upligth_bloc.dart';
@@ -17,6 +18,8 @@ import 'package:movekomapp/controladores/iluminacion/LuzGeneral.dart';
 import 'package:movekomapp/controladores/iluminacion/ModoLuz1.dart';
 import 'package:movekomapp/controladores/iluminacion/ModoLuz2.dart';
 import 'package:movekomapp/controladores/iluminacion/Upligth.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
+import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
@@ -35,19 +38,86 @@ class _LightsMenuPageState extends State<LightsMenuPage> {
       body: Container(
         // color: Colors.blueGrey,
        //   margin: EdgeInsets.only(top: 25),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
+              generalAndSaveColumn(),
                 columRowIlu(),
-                rowTime(),
+                modesColumn(),
                 ]),
               ),
     );
   }
 
+  Widget modesColumn(){
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        ModoLuz1(2),
+        ModoLuz2(2),
+      ],
+    );
+  }
+
+
+  Widget generalAndSaveColumn(){
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        LuzGeneral(2),
+        consumoActual(),
+        rowTimeSave(),
+      ],
+    );
+  }
+
+
+  Widget consumoActual(){
+    return MyContainer(
+      margin: EdgeInsets.all(SC.all(5)),
+      height: 99,
+      width: 209,
+      color: MyColors.baseColor,
+      child: Stack(
+        children: <Widget>[
+          MyPositioned.fill(
+            top: 5,
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: Text("CONSUMO ACTUAL ILUMINACION",
+                  style:MyTextStyle.estilo(14, MyColors.text),
+                  textAlign: TextAlign.center,),
+              )
+          ),
+          MyPositioned.fill(
+            top: 25,
+              child: Align(
+                alignment: Alignment.center,
+                child: Text("12",
+                  style:MyTextStyle.estiloBold(26, MyColors.text),
+                  textAlign: TextAlign.center,),
+              )
+          ),
+          MyPositioned.fill(
+            top:35,left: 45,
+              child: Align(
+                alignment: Alignment.center,
+                child: Text("A",
+                  style:MyTextStyle.estiloBold(16, MyColors.text),
+                  textAlign: TextAlign.center,),
+              )
+          ),
+        ],
+      ),
+    );
+  }
+
+
   Widget columRowIlu(){
     return Container(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             rowLigths1(),
             rowLigths2(),
@@ -57,12 +127,11 @@ class _LightsMenuPageState extends State<LightsMenuPage> {
   }
 
 
-  Widget rowTime(){
+  Widget rowTimeSave(){
     return Container(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            BarraDeConsumos(),
             ModoLuz1(1),
             ModoLuz2(1),
           ],
@@ -75,11 +144,9 @@ class _LightsMenuPageState extends State<LightsMenuPage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          LucesSalon(),
           LucesCocina(),
           LucesBano(),
           LigthsBedroom(),
-          ModoLuz2(2),
         ],
       ),
     );
@@ -90,11 +157,9 @@ class _LightsMenuPageState extends State<LightsMenuPage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          LucesSalon(),
           LucesExterior(2),
-          LuzGeneral(2),
           Upligth(2),
-          Downligth(2),
-          ModoLuz1(2),
         ],
       ),
     );

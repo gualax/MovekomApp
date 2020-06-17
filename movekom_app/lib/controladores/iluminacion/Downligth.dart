@@ -2,8 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
 import 'package:movekomapp/blocs/iluminacion_blocs/dowligth_bloc.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
+import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/slider_theme.dart';
@@ -35,7 +38,7 @@ class Downligth extends StatelessWidget {
             width: SizeConfig.h * 17,
             height: SizeConfig.v * 19,
             decoration: new BoxDecoration(
-                color: Color(0xff2d3033)
+                color: MyColors.baseColor
             ),
             child: Stack(
               children: [
@@ -43,14 +46,14 @@ class Downligth extends StatelessWidget {
                   right: SizeConfig.h * 3.5, bottom: SizeConfig.v * 1,
                   child: Align(
                     alignment: Alignment.centerRight,
-                    child: iconSvgD("assets/icons/tira_led.svg", Colors.lightGreenAccent.withAlpha(state.valueDimer.round() + 20), 75),
+                    child: iconSvgD("assets/icons/tira_led.svg", MyColors.principal.withAlpha(state.valueDimer.round() + 20), 75),
                   ),
                 ),
                 Positioned.fill(
                   left: SizeConfig.h * 3.5, bottom: SizeConfig.v * 1,
                   child: Align(
                     alignment: Alignment.centerLeft,
-                    child: iconSvgD("assets/icons/lampara.svg",  Colors.lightGreenAccent.withAlpha(state.valueDimer.round() + 20), 45),
+                    child: iconSvgD("assets/icons/lampara.svg",  MyColors.principal.withAlpha(state.valueDimer.round() + 20), 45),
                   ),
                 ),
                 Positioned.fill(
@@ -81,7 +84,7 @@ class Downligth extends StatelessWidget {
                       text: TextSpan(
                           children: [
                             TextSpan(
-                                style: MyTextStyle.estiloBold(SizeConfig.v * 2.6, Colors.white),
+                                style: MyTextStyle.estiloBold(SizeConfig.v * 2.6, MyColors.text),
                                 text: title),
                           ]
                       )
@@ -117,27 +120,27 @@ class Downligth extends StatelessWidget {
                   downlightBloc.add(Enable());
                 }
               },
-              child: Container(
-                margin: EdgeInsets.all(5),
+              child: MyContainer(
+                margin: EdgeInsets.all(SC.all(5)),
                 width: 66,
                 height: 137,
                 decoration: new BoxDecoration(
-                  color: MyColors.ContainerColor,
+                  color: MyColors.baseColor,
                 ),
                 child: Stack(
                   children: <Widget>[
-                    Positioned.fill(
+                    MyPositioned.fill(
                         top: 5,
                         child: Align(
                           alignment: Alignment.topCenter,
                           child: Text("DOWN", style: MyTextStyle.estiloBold(15, color),),
                         )
-                    ),Positioned.fill(
+                    ),MyPositioned.fill(
                         child: Align(
                           alignment: Alignment.center,
                           child: iconSvgD("assets/icons/tira_led.svg", color, 45),
                         )
-                    ),Positioned.fill(
+                    ),MyPositioned.fill(
                         bottom: 8,
                         child: Align(
                           alignment: Alignment.bottomCenter,

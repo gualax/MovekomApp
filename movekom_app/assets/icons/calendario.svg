@@ -1,10 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="35" height="31.826" viewBox="0 0 35 31.826">
-  <g id="Grupo_804" data-name="Grupo 804" transform="translate(-2049.133 -8217.1)">
-    <rect id="Rectángulo_1301" data-name="Rectángulo 1301" width="34" height="30.826" transform="translate(2049.633 8217.6)" stroke-width="1" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-    <line id="Línea_7" data-name="Línea 7" x2="33.789" transform="translate(2049.738 8222.412)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-    <g id="Grupo_803" data-name="Grupo 803" transform="translate(2051.939 8224.972)">
-      <path id="Trazado_730" data-name="Trazado 730" d="M2077.648,8295.085h-5.485V8289.6h5.485Zm8.036-5.485H2080.2v5.485h5.485Zm8.037,0h-5.485v5.485h5.485Zm-16.073,7.643h-5.485v5.484h5.485Zm8.036,0H2080.2v5.484h5.485Zm8.037,0h-5.485v5.484h5.485Zm-16.073,7.643h-5.485v5.484h5.485Zm8.036,0H2080.2v5.484h5.485Zm8.037,0h-5.485v5.484h5.485Z" transform="translate(-2072.163 -8289.6)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-      <path id="Trazado_731" data-name="Trazado 731" d="M2311.48,8289.6H2306v5.485h5.485Zm0,7.643H2306v5.484h5.485Zm0,7.643H2306v5.484h5.485Z" transform="translate(-2282.053 -8289.6)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-    </g>
-  </g>
-</svg>
+<svg height="31.826" viewBox="0 0 35 31.826" width="35" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"><path d="m.5.5h34v30.826h-34z"/><path d="m.605 5.312h33.789"/><path d="m2077.648 8295.085h-5.485v-5.485h5.485zm8.036-5.485h-5.484v5.485h5.485zm8.037 0h-5.485v5.485h5.485zm-16.073 7.643h-5.485v5.484h5.485zm8.036 0h-5.484v5.484h5.485zm8.037 0h-5.485v5.484h5.485zm-16.073 7.643h-5.485v5.484h5.485zm8.036 0h-5.484v5.484h5.485zm8.037 0h-5.485v5.484h5.485z" transform="translate(-2069.357 -8281.728)"/><path d="m2311.48 8289.6h-5.48v5.485h5.485zm0 7.643h-5.48v5.484h5.485zm0 7.643h-5.48v5.484h5.485z" transform="translate(-2279.247 -8281.728)"/></g></svg>

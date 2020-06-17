@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/pantallas/Wheater/WheaterCalefactionView.dart';
-import 'package:movekomapp/pantallas/Wheater/WheaterDataView.dart';
+import 'package:movekomapp/pantallas/Wheater/WheaterHistoryView.dart';
 
 
 class ClimaPage extends StatefulWidget {
@@ -8,47 +9,66 @@ class ClimaPage extends StatefulWidget {
   _ClimaPageState createState() => _ClimaPageState();
 }
 
-class _ClimaPageState extends State<ClimaPage> {
-  int _currentIndex=0;
+class _ClimaPageState extends State<ClimaPage>  with SingleTickerProviderStateMixin {
+  int _currentIndex = 0;
+  TabController _tabController;
+
+
+  List<Widget> _children = [
+    WheaterCalefactionView(),
+    WheaterHistoryView(),
+  ];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _tabController = new TabController(vsync: this, length: _children.length);
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return
       Scaffold(
-          backgroundColor: Colors.black,
-          body:  Container(
-            // color: Colors.blueGrey,
-              margin: EdgeInsets.only(top: 10),
-              child: Column(
-                children: <Widget>[
-                  Expanded(
-                    flex: 7,
-                    child: Container(
-                      //       color: Colors.yellowAccent,
-                      child: show(_currentIndex, context),
-                    ),
+        backgroundColor: Colors.black,
+        body: Container(
+         //  color: Colors.blueGrey,
+       //     margin: EdgeInsets.only(top: 10),
+            child: Column(
+              children: <Widget>[
+                Expanded(
+                  flex: 7,
+                  child:
+                    //  child: show(_currentIndex),
+                  TabBarView(
+                    children: _children,
+                    controller: _tabController,
                   ),
-                  Expanded(
-                    child: Container(
-                      //  color: Colors.blueGrey,
-                      child: buttonTabTextMenu(),
-                    ),
-                  )
-                ],
-              )
-          ),
+                ),
+                Expanded(
+                  child: Container(
+             //         color: Colors.pink,
+                    child: buttonTabTextMenu(),
+                  ),
+                )
+              ],
+            )
+        ),
       );
   }
 
 
-
-  Widget show(int index, context) {
-    List<Widget> _children = [
-      WheaterCalefactionView(),
-      WheaterDataView(),
-    ];
+  Widget show(int index) {
     return _children[index];
   }
+
 
 
   Widget buttonTabTextMenu() {
@@ -56,18 +76,19 @@ class _ClimaPageState extends State<ClimaPage> {
       length: 2,
       child: Container(
         alignment: Alignment.center,
-        margin: EdgeInsets.only(right: 200, left: 200),
+        margin: EdgeInsets.only(right: SC.right(200), left: SC.left(200)),
         //color: Colors.yellowAccent,
         child: TabBar(
           onTap: (index) {
             changePage(index);
           },
+          controller: _tabController,
           indicatorColor: Colors.lightGreenAccent,
           unselectedLabelColor: Colors.white,
           labelColor: Colors.lightGreenAccent,
           tabs: [
             Tab(text: "GENERAL"),
-            Tab(text: "DATOS"),
+            Tab(text: "HISTORIAL"),
           ],
         ),
       ),
@@ -81,4 +102,6 @@ class _ClimaPageState extends State<ClimaPage> {
       print("index is : " + index.toString());
     });
   }
+
 }
+

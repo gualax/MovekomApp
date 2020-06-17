@@ -46,6 +46,13 @@ class SizeConf {
     return (v * num)/10;
   }
 
+   static double wid(num){
+    return (h * (0.78) * num)/10 ;
+  }
+  static double hei(num){
+    return (v *(1.34) * num)/10 ;
+  }
+
   static double all(num){
     return (p * num)/10;
   }

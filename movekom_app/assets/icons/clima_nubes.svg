@@ -1,7 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="81.897" height="45.07" viewBox="0 0 81.897 45.07">
-    <g id="prefix__Capa_2" data-name="Capa 2" transform="translate(-1.46 -1.43)">
-        <g id="prefix__Capa_2-2" data-name="Capa 2" transform="translate(2.46 2.478)">
-            <path id="prefix__Trazado_950" d="M21.635 45.38l-10.407-.034a8.768 8.768 0 1 1 0-17.536h.255A14.628 14.628 0 0 1 25.209 16.1m11.061 4.365a14.582 14.582 0 0 0-10.446-4.384h-.614a21.56 21.56 0 0 1 7.878-9.863m3.177 14.241a14.711 14.711 0 0 1 2.06 2.641h1.638a11.135 11.135 0 1 1 0 22.269H21.635c.691.117 41.19 0 41.19 0l3.189.126a16.342 16.342 0 1 0 0-32.684h-2.406a21.507 21.507 0 0 0-30.521-6.577m45.024 22.828A10.806 10.806 0 0 0 67.3 18.256" data-name="Trazado 950" transform="translate(-2.46 -2.478)" style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px"/>
-        </g>
-    </g>
-</svg>
+<svg height="45.07" viewBox="0 0 81.897 45.07" width="81.897" xmlns="http://www.w3.org/2000/svg"><path d="m21.635 45.38-10.407-.034a8.768 8.768 0 1 1 0-17.536h.255a14.628 14.628 0 0 1 13.726-11.71m11.061 4.365a14.582 14.582 0 0 0 -10.446-4.384h-.614a21.56 21.56 0 0 1 7.878-9.863m3.177 14.241a14.711 14.711 0 0 1 2.06 2.641h1.638a11.135 11.135 0 1 1 0 22.269h-18.328c.691.117 41.19 0 41.19 0l3.189.126a16.342 16.342 0 1 0 0-32.684h-2.406a21.507 21.507 0 0 0 -30.521-6.577m45.024 22.828a10.806 10.806 0 0 0 -10.811-10.806" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" transform="translate(-1.46 -1.43)"/></svg>

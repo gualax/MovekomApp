@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
+import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
@@ -16,7 +19,7 @@ ModoLuz1(this.widgetType);
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    title1 = "Guardar modo de luz 1";
+    title1 = "Guardar modo 1";
     title2 = "Modo 1";
     if(widgetType == 1){
       return save_modo_luz_1();
@@ -27,29 +30,29 @@ ModoLuz1(this.widgetType);
   }
 
   Widget save_modo_luz_1(){
-    return Container(
-      margin: EdgeInsets.all(SizeConfig.all(1)),
-      width: SizeConfig.x(7.5),
-      height: SizeConfig.y(20),
+    return MyContainer(
+      margin: EdgeInsets.all(SC.all(5)),
+      width: 98,
+      height: 103,
       decoration: new BoxDecoration(
-          color: MyColors.ContainerColor
+          color: MyColors.baseColor
       ),
       child: Stack(
         children: <Widget>[
-          Positioned.fill(
-              top: SizeConfig.y(6),
+          MyPositioned.fill(
+            bottom: 8,
               child: Align(
-                alignment: Alignment.center,
-                child: iconSvgNc("assets/icons/save_disk.svg",  SizeConfig.all(5)),
+                alignment: Alignment.bottomCenter,
+                child: iconSvgNc("assets/icons/save_green.svg", 45),
               )
           ),
-          Positioned.fill(
-              top: SizeConfig.y(0.5), left: SizeConfig.x(0.5), right:  SizeConfig.x(0.5),
+          MyPositioned.fill(
+              top:5,
               child: Align(
                 alignment: Alignment.topCenter,
                 child: Text(title1,
                   textAlign: TextAlign.center,
-                  style: MyTextStyle.estiloBold(SizeConfig.y(2.2), Colors.white), ),
+                  style: MyTextStyle.estiloBold(15, Colors.white), ),
               )
           ),
         ],
@@ -61,44 +64,28 @@ ModoLuz1(this.widgetType);
 
 
   Widget modo_luz_1(){
-          return Container(
-            margin: EdgeInsets.all(SizeConfig.h * 0.5),
-            width: SizeConfig.h * 17,
-            height: SizeConfig.v * 19,
-            decoration: new BoxDecoration(
-                color: Color(0xff2d3033)
+    return MyContainer(
+      margin: EdgeInsets.all(SC.all(5)),
+      width: 160,
+      height: 175,
+      decoration: new BoxDecoration(
+          color: MyColors.baseColor
+      ),
+      child: Stack(
+        children: [
+          MyPositioned.fill(
+            child: Align(
+              alignment: Alignment.center,
+              child: iconSvgD("assets/icons/letter_m.svg", Colors.grey, 70),
             ),
-            child: Stack(
-              children: [
-                Positioned.fill(
-                  right: SizeConfig.h * 3.5, bottom: SizeConfig.v * 0.5,
-                  child: Align(
-                    alignment: Alignment.centerRight,
-                    child: iconSvgD("assets/icons/letter_m.svg", Colors.grey, 70),
-                  ),
-                ),
-                Positioned.fill(
-                  left: SizeConfig.h * 3.5, bottom: SizeConfig.v * 0.5,
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: iconSvgD("assets/icons/lampara.svg",  Colors.grey, 50),
-                  ),
-                ),
-                PositionedDirectional(
-                  top: SizeConfig.v * 0.5,
-                  start: SizeConfig.h * 1,
-                  child: RichText(
-                      text: TextSpan(
-                          children: [
-                            TextSpan(
-                                style: MyTextStyle.estiloBold(SizeConfig.v * 2.6, Colors.white),
-                                text: title2),
-                          ]
-                      )
-                  ),
-                ),
-              ],
-            ),
-          );
+          ),
+          MyPositioned.fill(
+              top: 10, left: 10,
+              child: Text(title2,
+                  style:MyTextStyle.estiloBold(20, MyColors.text))
+          ),
+        ],
+      ),
+    );
   }
 }

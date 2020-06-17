@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:movekomapp/Utils/DrawCircle.dart';
+import 'package:movekomapp/Utils/Circulos.dart';
+import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/controladores/agua/AguasLimpias.dart';
-import 'package:movekomapp/controladores/agua/AguasNegras.dart';
 import 'package:movekomapp/controladores/agua/AguasSucias.dart';
 import 'package:movekomapp/controladores/agua/BombaAgua.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
+import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
+import 'package:movekomapp/widgets/temporizador_popup.dart';
+
+import 'WaterBoilerView.dart';
 
 
 class WaterLevelsView extends StatefulWidget {
@@ -17,39 +23,122 @@ class WaterLevelsView extends StatefulWidget {
 class _WaterLevelsViewState extends State<WaterLevelsView> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    SC().init(context);
+    return MyContainer(
             child: Row(
               children: <Widget>[
                 Expanded(
-                  flex: 2,
-                  child: Container(
-                    alignment: Alignment.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                   crossAxisAlignment: CrossAxisAlignment.center,
                    // color: Colors.orange,
-                    child: aguas(),
+                    children: <Widget>[
+                     aguas(),
+                     boilerColumn(),
+                    ],
                   ),
                 ),
-                Expanded(
-                  child: Container(
-                    alignment: Alignment.center,
-               //     color: Colors.blue,
-                   child: BombaAgua(2),
-                  ),
-                )
               ],
             ),
     );
   }
 
+  Widget boilerColumn(){
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        WaterBoilerView(),
+        row(),
+      ],
+    );
+  }
+//720
+  Widget row(){
+    return Row(
+      children: <Widget>[
+        temporizador(),
+        resistencia1(),
+        resistencia2(),
+      ],
+    );
+  }
 
-  Widget aguas(){
-    return Container(
-    //  color: Colors.purpleAccent,
-      margin: EdgeInsets.only(left: 150),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+  Widget resistencia1(){
+    return MyContainer(
+      margin: EdgeInsets.all(SC.all(5)),
+      width: 175,
+        height: 90,
+        decoration: new BoxDecoration(
+            color: MyColors.baseColor
+        ),
+      child: Stack(
         children: <Widget>[
-          RowOfWaterTanks(),
-          RowOfWaterValves(),
+          MyPositioned.fill(
+            top:10,
+              child: Align(
+                alignment: Alignment.center,
+                child: iconSvgD("assets/icons/enchufe_boiler.svg", MyColors.principal, 50),
+              )
+          ),
+          MyPositioned.fill(
+            top: 5,
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: Text("Resistencia electrica 1",
+                  style: MyTextStyle.estilo(12, MyColors.text) ,),
+              )
+          ),
+          MyPositioned.fill(
+              top: 5,right: 5,
+              child: Align(
+                alignment: Alignment.topRight,
+                child: circuloConSombra(10, MyColors.principal),
+              )
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget resistencia2(){
+    return MyContainer(
+      margin: EdgeInsets.all(SC.all(5)),
+      width: 175,
+      height: 90,
+      decoration: new BoxDecoration(
+          color: MyColors.baseColor
+      ),
+      child: Stack(
+        children: <Widget>[
+          MyPositioned.fill(
+              left: 30, top: 10,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: iconSvgD("assets/icons/enchufe_boiler.svg", MyColors.principal, 50),
+              )
+          ),
+          MyPositioned.fill(
+            right: 30,  top: 10,
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: iconSvgD("assets/icons/enchufe_boiler.svg", MyColors.principal, 50),
+              )
+          ),
+          MyPositioned.fill(
+              top: 5,
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: Text("Resistencia electrica 1",
+                  style: MyTextStyle.estilo(12, MyColors.text) ,),
+              )
+          ),
+          MyPositioned.fill(
+              top: 5,right: 5,
+              child: Align(
+                alignment: Alignment.topRight,
+                child: circuloConSombra(10, MyColors.principal),
+              )
+          ),
         ],
       ),
     );
@@ -57,48 +146,101 @@ class _WaterLevelsViewState extends State<WaterLevelsView> {
 
 
 
+  Widget aguas(){
+    return MyContainer(
+    //  color: Colors.purpleAccent,
+      margin: EdgeInsets.only(right: SC.right(20)),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          RowOfWaterTanks1(),
+          RowOfWaterTanks2(),
+        ],
+      ),
+    );
+  }
 
-  Widget RowOfWaterTanks(){
+
+
+  Widget RowOfWaterTanks2(){
     return Container(
- //     color: Colors.red,
+ //     color: Colors.blue,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          invisible(),
+          BombaAgua(2),
+        ],
+      ),
+    );
+  }
+
+  Widget invisible(){
+  return MyContainer(
+    margin: EdgeInsets.all(SC.all(7)),
+    width: 200,
+    height: 210,
+    );
+  }
+
+  Widget temporizador(){
+    return MyContainer(
+        margin: EdgeInsets.all(SC.all(5)),
+        width: 350,
+        height: 90,
+        decoration: new BoxDecoration(
+            color: MyColors.baseColor
+        ),
+      child: Stack(
+        children: <Widget>[
+         MyPositioned.fill(
+           bottom: 20,
+          child: Align(
+            alignment: Alignment.center,
+            child: IconButton(
+              icon: Icon(Icons.access_time),
+              iconSize: SC.all(40),
+              color: MyColors.text,
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) => TemporizadorPopup(),
+                );
+              },
+            ),
+          )
+      ),
+          MyPositioned.fill(
+              bottom: 10,
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Text("Establecer temporizador",
+                  style: MyTextStyle.estilo(16, MyColors.text) ,),
+              )
+          ),
+      ],
+    ),
+    );
+  }
+
+
+  Widget RowOfWaterTanks1(){
+    return Container(
+      //     color: Colors.blue,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           AguasLimpias(2),
           AguasSucias(2),
-          AguasNegras(2),
-        ],
-      ),
-    );
-  }
-
-  Widget RowOfWaterValves(){
-    return Container(
- //     color: Colors.blue,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          AguasLimpias(3),
-          AguasSucias(3),
-          AguasNegras(3),
+          //    AguasNegras(3),
         ],
       ),
     );
   }
 
 
-
-
-
-
-  Widget circulito2(size, color){
-    //this is base circle
-    return Container(
-      child: CustomPaint(painter: DrawCircle(size,color,PaintingStyle.stroke,3.0) ),
-    );
-  }
-
-Widget WaterValve(title){
+  Widget WaterValve(title){
   return
   Container(
   margin: EdgeInsets.all(10),
@@ -135,3 +277,4 @@ Widget WaterValve(title){
   );
 }
 }
+

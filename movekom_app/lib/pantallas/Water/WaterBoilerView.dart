@@ -5,9 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
 import 'package:movekomapp/blocs/boiler_bloc.dart';
 import 'package:movekomapp/controladores/agua/Boiler.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
+import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
@@ -20,22 +23,24 @@ class _WaterBoilerViewState extends State<WaterBoilerView> {
 
   @override
   Widget build(BuildContext context) {
+
     SizeConfig().init(context);
    final boilerBloc = BlocProvider.of<BoilerBloc>(context);
     return boilerBox(boilerBloc);
   }
 
   Widget boilerBox(boilerBloc) {
-    return Container(
+    return MyContainer(
+      margin: EdgeInsets.all(SC.all(5)),
       alignment: Alignment.center,
-      width: 900,
-      height: 474,
+      width: 720,
+      height: 335,
       decoration: new BoxDecoration(
-          color: MyColors.ContainerColor
+          color: MyColors.baseColor
       ),
       child: Stack(
         children: <Widget>[
-          Positioned.fill(
+          MyPositioned.fill(
               top: 20,
               left: 35,
               child: Align(
@@ -44,82 +49,59 @@ class _WaterBoilerViewState extends State<WaterBoilerView> {
                   "BOILER", style: MyTextStyle.estiloBold(30, Colors.white),),
               )
           ),
-          Positioned.fill(
-              left: 50,
+          MyPositioned.fill(
+              left: 20,top:70,
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: iconSvgD(
-                    "assets/icons/fire.svg", Colors.lightGreenAccent, 200),
+                    "assets/icons/fire.svg", Colors.lightGreenAccent, 120),
               )
           ),
-          Positioned.fill(
-              left: 100, bottom: 50,
-              child: Align(
-                alignment: Alignment.bottomLeft,
-                child: IconButton(
-                  icon: Icon(Icons.access_time,color: Colors.white), iconSize: 50),
-              )
-          ),
-          Positioned.fill(
+          MyPositioned.fill(
               left: 10,top: 30,
               child: Align(
                 alignment: Alignment.topLeft,
                 child: circuloConSombra(15.0, Colors.lightGreenAccent),
               )
           ),
-          Positioned.fill(
-              left: 160,
-              bottom: 200,
+          MyPositioned.fill(
+              left: 90,
+              bottom: 70,
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: iconSvgD(
-                    "assets/icons/gota_agua.svg", Colors.lightGreenAccent, 100),
+                    "assets/icons/gota_agua.svg", Colors.lightGreenAccent, 60),
               )
           ),
-          Positioned.fill(
-              right: 160,
-              bottom: 100,
+          MyPositioned.fill(
+              right: 260, top:50,
               child: Align(
                 alignment: Alignment.center,
                 child: Text("21",
-                  style: MyTextStyle.estiloBold(150, Colors.white),),
+                  style: MyTextStyle.estiloBold(100, Colors.white),),
               )
           ),
-          Positioned.fill(
-              right: 220,
-              bottom: 260,
+          MyPositioned.fill(
+              right: 280,
+              bottom: 80,
               child: Align(
                 alignment: Alignment.center,
                 child: Text("Temperatura,",
-                  style: MyTextStyle.estilo(25, Colors.white),),
+                  style: MyTextStyle.estilo(17, Colors.white),),
               )
           ),
-          Positioned.fill(
-            left: 410,
+          MyPositioned.fill(
+            left: 300, bottom: 5,
               child: Align(
-                alignment: Alignment.centerRight,
-             //   child: AnimatedBoiler(),
-              )
-          ),
-          Positioned.fill(
-              right: 20,
-              child: Align(
-                alignment: Alignment.centerRight,
+                alignment: Alignment.center,
                 child: Boiler(),
-                //child: newCirlceList(100.0),
               )
           ),
         ],
-
       ),
     );
   }
-
-  /*
-  *             child: Boiler(
-                  radialList: radialNumbers,
-                ),
-  * */
+  
 
 }
 

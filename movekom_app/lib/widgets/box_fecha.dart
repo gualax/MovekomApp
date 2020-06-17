@@ -2,6 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
+import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
@@ -41,24 +44,24 @@ class _FechaWidgetState extends State<FechaWidget> {
 
   Widget box137x137_Fecha_Hora(){
     return
-      Container(
-          margin: EdgeInsets.all(7),
+      MyContainer(
+          margin: EdgeInsets.all(SC.all(7)),
           width: 137,
           height: 137,
           decoration: new BoxDecoration(
-              color: MyColors.ContainerColor
+              color: MyColors.baseColor
           ), child: Stack(
           children: [
-            Positioned.fill( /// Icono
+            MyPositioned.fill( /// Icono
               left: 14,
               bottom: 14,
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: iconSvgD("assets/icons/calendario.svg", Colors.white,30),
+                child: iconSvgD("assets/icons/calendario.svg", MyColors.text,30),
               ),
             ),
             // Valvulas (Todas)
-            Positioned.fill(   /// Titulo
+            MyPositioned.fill(   /// Titulo
               top:4,
               child:   Align(
                 alignment: Alignment.topCenter,
@@ -66,7 +69,7 @@ class _FechaWidgetState extends State<FechaWidget> {
                     text: TextSpan(
                         children: [
                           TextSpan(
-                              style: MyTextStyle.estiloBold(15, Colors.white),
+                              style: MyTextStyle.estiloBold(15, MyColors.text),
                               text: "FECHA / HORA"
                           ),
                         ]
@@ -74,7 +77,7 @@ class _FechaWidgetState extends State<FechaWidget> {
                 ),
               ),
             ),
-            Positioned.fill(   /// DIA
+            MyPositioned.fill(   /// DIA
               right: 14,
               bottom: 14,
               child:   Align(
@@ -83,7 +86,7 @@ class _FechaWidgetState extends State<FechaWidget> {
                     text: TextSpan(
                         children: [
                           TextSpan(
-                            style: MyTextStyle.estilo(13, Colors.white),
+                            style: MyTextStyle.estilo(13, MyColors.text),
                             text: dateTime.day.toString() + " " + diaStr(dateTime.weekday),
                           ),
                         ]
@@ -91,7 +94,7 @@ class _FechaWidgetState extends State<FechaWidget> {
                 ),
               ),
             ),
-            Positioned.fill(   /// HORA
+            MyPositioned.fill(   /// HORA
               bottom: 10,
               child: Align(
                 alignment: Alignment.bottomCenter,
@@ -99,7 +102,7 @@ class _FechaWidgetState extends State<FechaWidget> {
                     text: TextSpan(
                         children: [
                           TextSpan(
-                            style: MyTextStyle.estilo(40, Colors.white),
+                            style: MyTextStyle.estilo(40, MyColors.text),
                             text: dateTime.hour.toString() + ":" + dateTime.minute.toString(),
                           ),
                         ]

@@ -1,7 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="58.963" height="58.965" viewBox="0 0 58.963 58.965">
-    <g id="prefix__Capa_2" data-name="Capa 2" transform="translate(-1.5 -1.5)">
-        <g id="prefix__Capa_2-2" data-name="Capa 2" transform="translate(2.5 2.5)">
-            <path id="prefix__Trazado_952" d="M48.408 31.072a17.34 17.34 0 1 1-17.34-17.34 17.34 17.34 0 0 1 17.34 17.34zM31.072 2.5v8.327m-20.16-.046l5.881 5.89M2.5 30.9h8.327m-.046 20.16l5.888-5.89M30.9 59.465v-8.327m20.16.046L45.169 45.3m14.294-14.23h-8.327m.046-20.16L45.3 16.794" data-name="Trazado 952" transform="translate(-2.5 -2.5)" style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px"/>
-        </g>
-    </g>
-</svg>
+<svg height="58.965" viewBox="0 0 58.963 58.965" width="58.963" xmlns="http://www.w3.org/2000/svg"><path d="m48.408 31.072a17.34 17.34 0 1 1 -17.34-17.34 17.34 17.34 0 0 1 17.34 17.34zm-17.336-28.572v8.327m-20.16-.046 5.881 5.89m-14.293 14.229h8.327m-.046 20.16 5.888-5.89m14.231 14.295v-8.327m20.16.046-5.891-5.884m14.294-14.23h-8.327m.046-20.16-5.882 5.884" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" transform="translate(-1.5 -1.5)"/></svg>

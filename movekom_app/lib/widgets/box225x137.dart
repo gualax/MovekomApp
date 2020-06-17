@@ -4,6 +4,9 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
+import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
@@ -13,7 +16,7 @@ Widget box225x140(title, textAbajoIzq, textAbajoDer, textArribaDer){
       width: 225,
       height: 140,
       decoration: BoxDecoration(
-          color: MyColors.ContainerColor
+          color: MyColors.baseColor
       ),
       child: Stack(children: [
         // Valvulas (Todas)
@@ -72,16 +75,16 @@ Widget box225x140_1icon_text(title, double valueAmp,
    on_off = "OFF";
   }
   return  ClipRect(
-    child: Container(
-        margin: EdgeInsets.all(7),
+    child: MyContainer(
+        margin: EdgeInsets.all(SC.all(7)),
         width: 225,
         height: 140,
         decoration: BoxDecoration(
-            color:  MyColors.ContainerColor
+            color:  MyColors.baseColor
         ),
         child: Stack(children: [
           // Valvulas (Todas)
-          Positioned.fill(  ///titulo
+          MyPositioned.fill(  ///titulo
             top: 4,
              left: 8,
              child:   Align(
@@ -92,14 +95,14 @@ Widget box225x140_1icon_text(title, double valueAmp,
             ),
             ),
           ),
-          Positioned.fill(/// circulito
+          MyPositioned.fill(/// circulito
               top: 10, right: 10,
               child: Align(
                 alignment: Alignment.topRight,
                 child: circuloConSombra(17.0, color),
               )
           ),
-          Positioned.fill(    ///textAbajoIzq
+          MyPositioned.fill(    ///textAbajoIzq
             left: 8,
             bottom: 6,
             child: Align(
@@ -110,7 +113,7 @@ Widget box225x140_1icon_text(title, double valueAmp,
               ),
             ),
           ),
-          Positioned.fill(  ///textAbajoDer
+          MyPositioned.fill(  ///textAbajoDer
             right: 8,
             bottom: 6,
             child:  Align(
@@ -121,14 +124,14 @@ Widget box225x140_1icon_text(title, double valueAmp,
               ),
             ),
           ),
-          Positioned.fill(  ///icon
+          MyPositioned.fill(  ///icon
             left: 25,
             child:  Align(
               alignment: Alignment.centerLeft,
               child: iconSvgD(iconRoute, color, 75),
             ),
           ),
-          Positioned.fill(  ///textValue
+          MyPositioned.fill(  ///textValue
             right: 30,
             child:  Align(
               alignment: Alignment.centerRight,
@@ -160,12 +163,12 @@ Widget box225x140_1icon(title, double valueAmp,
   }
   
   return  ClipRect(
-    child: Container(
-        margin: EdgeInsets.all(7),
+    child: MyContainer(
+        margin: EdgeInsets.all(SC.all(7)),
         width: 225,
         height: 140,
         decoration: BoxDecoration(
-            color:  MyColors.ContainerColor
+            color:  MyColors.baseColor
         ),
         child: Stack(children: [
           // Valvulas (Todas)
@@ -215,37 +218,35 @@ Widget box225x140_1icon(title, double valueAmp,
 
 
 Widget box225x140_add_device(){
-  return ClipRect(
-    child: Container(
+  return  MyContainer(
       width: 225,
       height: 140,
-        margin: EdgeInsets.all(10),
+        margin: EdgeInsets.all(SC.all(10)),
         child: DottedBorder(
       dashPattern: [8, 4],
       strokeWidth: 2,
       color: Colors.white,
-      child: Container(
+      child: MyContainer(
             width: 225,
             height: 140,
             child: Stack(
               children: <Widget>[
-                Positioned.fill(
+                MyPositioned.fill(
                     child: Align(
                       alignment: Alignment.center,
-                        child: Icon(Icons.add,size: 65,color: Colors.white,)
+                        child: Icon(Icons.add,size: 60,color: Colors.white,)
                     )
                 ),
-                Positioned.fill(
+                MyPositioned.fill(
                     child: Align(
                         alignment: Alignment.bottomCenter,
                         child: Text("AÑADIR DISPOSITIVO",
-                          style: MyTextStyle.estilo(20, Colors.white),)
+                          style: MyTextStyle.estilo(16, Colors.white),)
                     )
                 ),
               ],
             ),
       ),
-    ),
     ),
   );
 }

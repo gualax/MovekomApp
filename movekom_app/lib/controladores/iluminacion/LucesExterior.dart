@@ -2,8 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
 import 'package:movekomapp/blocs/iluminacion_blocs/luces_parque_bloc.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
+import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/slider_theme.dart';
@@ -30,35 +33,35 @@ class LucesExterior extends StatelessWidget {
       BlocBuilder<LucesParqueBloc,LucesParqueState>(
           builder: ( context, state) {
              lucesCocinaBloc = BlocProvider.of<LucesParqueBloc>(context);
-            return Container(
-            margin: EdgeInsets.all(SizeConfig.h * 0.5),
-            width: SizeConfig.h * 17,
-            height: SizeConfig.v * 19,
+            return MyContainer(
+            margin: EdgeInsets.all(SC.all(5)),
+            width: 240,
+            height: 175,
             decoration: new BoxDecoration(
-                color: MyColors.ContainerColor
+                color: MyColors.baseColor
             ),
             child: Stack(
               children: [
-                Positioned.fill(
-                  right: SizeConfig.h * 3, bottom: SizeConfig.v * 2,
+                MyPositioned.fill(
+                  right: 30, bottom: 30,
                   child: Align(
                     alignment: Alignment.centerRight,
-                    child: iconSvgD("assets/icons/park.svg", Colors.lightGreenAccent.withAlpha(state.valueDimer.round() + 20), 65),
+                    child: iconSvgD("assets/icons/park.svg", MyColors.principal.withAlpha(state.valueDimer.round() + 20), 85),
                   ),
                 ),
-                Positioned.fill(
-                  left: SizeConfig.h * 3, bottom: SizeConfig.v * 1,
+                MyPositioned.fill(
+                  left: 30, bottom: 10,
                   child: Align(
                     alignment: Alignment.centerLeft,
-                    child: iconSvgD("assets/icons/lampara.svg",  Colors.lightGreenAccent.withAlpha(state.valueDimer.round() + 20), 40),
+                    child: iconSvgD("assets/icons/lampara.svg",  MyColors.principal.withAlpha(state.valueDimer.round() + 20), 55),
                   ),
                 ),
-                Positioned.fill(
-                  bottom:  SizeConfig.v * 0.7,
+                MyPositioned.fill(
+                  bottom:  10,
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(
-                      height:  SizeConfig.v * 3.2,
+                      height:  SC.hei(20),
                       child: SliderTheme(
                         data: sliderCustomTheme(context),
                         child: Slider(
@@ -74,17 +77,11 @@ class LucesExterior extends StatelessWidget {
                     ),
                   ),
                 ),
-                PositionedDirectional(
-                  top: SizeConfig.v * 0.5,
-                  start: SizeConfig.h * 1,
-                  child: RichText(
-                      text: TextSpan(
-                          children: [
-                            TextSpan(
-                                style: MyTextStyle.estiloBold(SizeConfig.v * 2.6, Colors.white),
-                                text: title),
-                          ]
-                      )
+                MyPositioned.fill(
+                  top:5 ,left: 5,
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(title,style: MyTextStyle.estiloBold(19, MyColors.text),),
                   ),
                 ),
               ],
@@ -104,7 +101,7 @@ class LucesExterior extends StatelessWidget {
       builder: ( context, state) {
       lucesCocinaBloc = BlocProvider.of<LucesParqueBloc>(context);
       if(state.isEnabled ){
-        color = Colors.lightGreen;
+        color = MyColors.principal;
         text = "ON";
       }else {
         color = Colors.grey;
@@ -118,27 +115,27 @@ class LucesExterior extends StatelessWidget {
               lucesCocinaBloc.add(Enable());
             }
         },
-        child: Container(
-           margin: EdgeInsets.all(5),
+        child: MyContainer(
+           margin: EdgeInsets.all(SC.all(5)),
           width: 66,
           height: 137,
           decoration: new BoxDecoration(
-            color: MyColors.ContainerColor,
+            color: MyColors.baseColor,
           ),
           child: Stack(
             children: <Widget>[
-              Positioned.fill(
+              MyPositioned.fill(
                   top: 5,
                   child: Align(
                     alignment: Alignment.topCenter,
                     child: iconSvgD("assets/icons/luz.svg", color, 35),
                   )
-              ),Positioned.fill(
+              ),MyPositioned.fill(
                   child: Align(
                     alignment: Alignment.center,
                     child: iconSvgD("assets/icons/exterior.svg", color, 35),
                   )
-              ),Positioned.fill(
+              ),MyPositioned.fill(
                   bottom: 8,
                   child: Align(
                     alignment: Alignment.bottomCenter,

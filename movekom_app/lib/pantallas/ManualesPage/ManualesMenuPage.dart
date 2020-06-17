@@ -73,7 +73,7 @@ class _ManualesMenuPageState extends State<ManualesMenuPage> {
        return Container(
          padding: EdgeInsets.all(20),
           decoration: new BoxDecoration(
-              color: MyColors.ContainerColor,
+              color: MyColors.baseColor,
           ),
          child: GridView.count(
              crossAxisCount: 7,

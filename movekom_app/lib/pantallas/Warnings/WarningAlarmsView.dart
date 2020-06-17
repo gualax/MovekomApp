@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
+import 'package:movekomapp/controladores/averias/averias.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
+import 'package:movekomapp/responsive_ui/mi_positioned.dart';
+import 'package:movekomapp/widgets/IconSvg.dart';
+import 'package:movekomapp/widgets/MyTextStyle.dart';
 
 class WarningAlarmsView extends StatefulWidget {
   @override
@@ -12,8 +17,6 @@ class _WarningAlarmsViewState extends State<WarningAlarmsView> {
   Widget build(BuildContext context) {
     return alertas();
   }
-
-
 
 
   Widget alertas(){
@@ -33,13 +36,13 @@ class _WarningAlarmsViewState extends State<WarningAlarmsView> {
   }
 
   Widget alertRow(){
-    return Container(
-      margin: EdgeInsets.all(10),
+    return MyContainer(
+      margin: EdgeInsets.all(SC.all(10)),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          alertBox(),
+          Averia(),
           criticBox(),
           deleteBox(),
         ],
@@ -48,30 +51,71 @@ class _WarningAlarmsViewState extends State<WarningAlarmsView> {
   }
 
   Widget alertBox(){
-    return Container(
+    return MyContainer(
       height: 100,
       width: 900,
       decoration: new BoxDecoration(
-          color: MyColors.ContainerColor,
+          color: MyColors.baseColor,
       ),
     );
   }
 
   Widget deleteBox(){
-    return Container(
+    return MyContainer(
       height: 100, width: 100,
       decoration: new BoxDecoration(
-        color: MyColors.ContainerColor,
+        color: MyColors.baseColor,
+      ),
+      child: Stack(
+        children: <Widget>[
+          MyPositioned.fill(
+            top: 10,
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: Text("BORRA",
+                  style:MyTextStyle.estiloBold(18, MyColors.text)),
+              ),
+          ),
+          MyPositioned.fill(
+            top: 25,
+            child: Align(
+              alignment: Alignment.center,
+              child: iconSvgD("assets/icons/eraser.svg", MyColors.text,40),
+            ),
+          ),
+        ],
       ),
     );
   }
 
   Widget criticBox(){
-    return Container(
+    return MyContainer(
       height: 100, width: 100,
       decoration: new BoxDecoration(
-        color: MyColors.ContainerColor,
+        color: MyColors.baseColor,
       ),
+      child: Stack(
+        children: <Widget>[
+          MyPositioned.fill(
+            top: 10,
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: Text("CRITIC",
+                  style:MyTextStyle.estiloBold(18, MyColors.text)),
+            ),
+          ),
+          MyPositioned.fill(
+            top: 25,
+            child: Align(
+              alignment: Alignment.center,
+              child:  Text("SI",
+                  style:MyTextStyle.estiloBold(18, MyColors.text)
+            ),
+          ),
+          ),
+        ],
+      ),
+
     );
   }
 

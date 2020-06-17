@@ -1,6 +1,9 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/FloatingMenu.dart';
+import 'package:movekomapp/blocs/alarma_blocs/alarma_bloc.dart';
+import 'package:movekomapp/blocs/climatizacion/aire_acondicionado_bloc.dart';
 import 'package:movekomapp/blocs/climatizacion/extractor_bloc.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/alternador_bloc.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/bateria_aux_1_bloc.dart';
@@ -9,6 +12,7 @@ import 'package:movekomapp/blocs/climatizacion/calefaccion_bloc.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/cargador_220.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/cargador_baterias_bloc.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/consumos_bloc.dart';
+import 'package:movekomapp/blocs/electricidad_blocs/nevera_bloc.dart';
 import 'package:movekomapp/blocs/iluminacion_blocs/dowligth_bloc.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/inversor_bloc.dart';
 import 'package:movekomapp/blocs/iluminacion_blocs/luces_parque_bloc.dart';
@@ -23,13 +27,14 @@ import 'package:movekomapp/blocs/modos_blocs/modo_eco_bloc.dart';
 import 'package:movekomapp/blocs/modos_blocs/modo_emergencia_bloc.dart';
 import 'package:movekomapp/blocs/modos_blocs/modo_highway_to_hell_bloc.dart';
 import 'package:movekomapp/blocs/modos_blocs/modo_limpieza_bloc.dart';
+import 'package:movekomapp/blocs/modos_blocs/modo_panel_solar_bloc.dart';
 import 'package:movekomapp/blocs/modos_blocs/modo_parking_bloc.dart';
+import 'package:movekomapp/blocs/tab_bloc.dart';
 import 'package:movekomapp/bluetooth/bluetooth_bloc.dart';
 import 'package:movekomapp/pantallas/PrincipalHome.dart';
 import 'package:movekomapp/pantallas/Wheater/whater_api_client.dart';
 import 'package:movekomapp/pantallas/Wheater/wheater_bloc.dart';
 import 'package:movekomapp/pantallas/Wheater/wheather_repository.dart';
-import 'package:movekomapp/pantallas/Wheater/wheather_widget.dart';
 import 'HomePage.dart';
 import 'app.localizations.dart';
 import 'package:movekomapp/blocs/agua_blocs/aguas_negras_bloc.dart';
@@ -56,7 +61,19 @@ void main(){
     ),
   );
 
-  runApp(MyApp(weatherRepository: weatherRepository));
+/*
+runApp(
+  DevicePreview(
+      child: MyApp(weatherRepository: weatherRepository)
+  )
+);
+*/
+
+
+  runApp(
+    MyApp(weatherRepository: weatherRepository));
+
+
 }
 
 class MyApp extends StatelessWidget {
@@ -64,6 +81,8 @@ class MyApp extends StatelessWidget {
   MyApp({Key key, @required this.weatherRepository})
       : assert(weatherRepository != null),
         super(key: key);
+
+  static final myTabbedPageKey =  new GlobalKey();
 
   // This widget is the root of your application.
   @override
@@ -109,15 +128,24 @@ class MyApp extends StatelessWidget {
         BlocProvider<ModoAntiHeladasBasicoBloc>(create:(context)=> ModoAntiHeladasBasicoBloc()),
         BlocProvider<ModoAntiHeladasAutoBloc>(create:(context)=> ModoAntiHeladasAutoBloc()),
         BlocProvider<ExtractorBloc>(create:(context)=> ExtractorBloc()),
+        BlocProvider<ModoPanelSolarBloc>(create:(context)=> ModoPanelSolarBloc()),
 
         BlocProvider<BluetoothControllerBloc>(create:(context)=> BluetoothControllerBloc()),
+
+
         BlocProvider<WeatherBloc>(create:(context)=> WeatherBloc(weatherRepository: weatherRepository,)),
+        BlocProvider<AireAcondicionadoBloc>(create:(context)=> AireAcondicionadoBloc()),
+        BlocProvider<NeveraBloc>(create:(context)=> NeveraBloc()),
+        BlocProvider<AlarmaBloc>(create:(context)=> AlarmaBloc()),
+
+        BlocProvider<TabBloc>(create:(context)=> TabBloc()),
 
       ],
       child: MaterialApp(
         initialRoute: '/',
-        routes: {
-          '/': (context) => HomePage(indexToShow:0),   //HomePage(indexToShow:0),
+        //  builder: DevicePreview.appBuilder,
+          routes: {
+         // '/': (context) => HomePage(indexToShow:0),   //HomePage(indexToShow:0),
           '/menus': (context) => FloatingMenu(),
           '/principal': (context) => PrincipalHome(),
         },
@@ -145,8 +173,8 @@ class MyApp extends StatelessWidget {
             }
           }
           return supportedLocales.first;
-        }
-      //  home: HomePage(title: 'Flutter Demo Home Page'),
+        },
+       home: new HomePage(key:myTabbedPageKey,indexPage: 0),
       ),
     );
   }

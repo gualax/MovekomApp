@@ -53,7 +53,7 @@ class _TemporizadorPopupState extends State<TemporizadorPopup> {
         height: 50,
         width: 100,
         child: MaterialButton(
-         color: MyColors.ContainerColor ,
+         color: MyColors.baseColor ,
          onPressed: (){
            Navigator.of(context).pop();
            print("button Pressed");
@@ -71,7 +71,7 @@ class _TemporizadorPopupState extends State<TemporizadorPopup> {
       height: 70,
       width: 150,
       decoration: new BoxDecoration(
-          color: MyColors.ContainerColor,
+          color: MyColors.baseColor,
       ),
       child: Stack(
         children: <Widget>[
@@ -156,7 +156,7 @@ class _TemporizadorPopupState extends State<TemporizadorPopup> {
     height: 70,
     width: 150,
     decoration: new BoxDecoration(
-    color: MyColors.ContainerColor,
+    color: MyColors.baseColor,
     ),
       child: Stack(
         children: <Widget>[
@@ -257,7 +257,7 @@ class _TemporizadorPopupState extends State<TemporizadorPopup> {
           data: ThemeData(
             primaryColor: Colors.lightGreen,
             accentColor: Colors.green,
-            dialogBackgroundColor: MyColors.ContainerColor,
+            dialogBackgroundColor: MyColors.baseColor,
             textTheme: TextTheme(
               body1: MyTextStyle.estiloBold(12, Colors.white),
               caption: TextStyle(color: Colors.white),
@@ -285,7 +285,7 @@ class _TemporizadorPopupState extends State<TemporizadorPopup> {
               data: ThemeData(
                 primaryColor: Colors.lightGreen,
                 accentColor: Colors.green,
-                dialogBackgroundColor: MyColors.ContainerColor,
+                dialogBackgroundColor: MyColors.baseColor,
                 textTheme: TextTheme(
                   body1: MyTextStyle.estiloBold(12, Colors.white),
                   caption: TextStyle(color: Colors.white),

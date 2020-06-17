@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/blocs/boiler_bloc.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
+import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
@@ -32,6 +35,7 @@ class ItemBoiler extends StatefulWidget {
 class _ItemBoilerState extends State<ItemBoiler> {
   BoilerBloc boilerBloc;
   bool _selected;
+  String title  = "BOILER";
   @override
   Widget build(BuildContext context) {
     return iconBuble();
@@ -47,39 +51,21 @@ class _ItemBoilerState extends State<ItemBoiler> {
       }else{
         _selected = false;
       }
-      if(widget.listItem.number == 0 || widget.listItem.number == 4 ){
+      if(widget.listItem.valueTemp == 0 ){
         textoIcon = "";
       }else{
         textoIcon = widget.listItem.valueTemp.toString();
       }
     return GestureDetector(
       onTap: widget.onSelect,
-      child: Container(
-        width: 100,
-        height: 100,
+      child: MyContainer(
+        width: 110,
+        height: 110,
         alignment: Alignment.center,
         child: Stack(
           children: <Widget>[
-            Positioned.fill(
-              child:Align(
-                  alignment: Alignment.center,
-                  child: iconSvgD(widget.listItem.iconRoute, _selected ? Colors.lightGreenAccent : Colors.white, 40)
-              ),
-            ),
-            Positioned.fill(
-                child: Align(
-                  alignment: Alignment.topCenter,
-                  child: Text(widget.listItem.number.toString(),style: MyTextStyle.estiloBold(10, Colors.white),),
-                )
-            ),
-            Positioned.fill(
-              top: 40,
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Text(textoIcon,style: MyTextStyle.estiloBold(25, Colors.white),
-                  textAlign: TextAlign.center),
-                )
-            ),
+            iconAligned(widget.listItem.number,widget.listItem.iconRoute,_selected),
+            textAligned(widget.listItem.number),
           ],
         ),
       ),
@@ -104,31 +90,31 @@ class _ItemBoilerState extends State<ItemBoiler> {
             }else{
               textoIcon = widget.listItem.valueTemp.toString();
             }
-            return GestureDetector(
-              onTap: widget.onSelect,
-              child: Container(
-      width: 100,
-      height: 100,
-      alignment: Alignment.center,
-      child: Stack(
+        return GestureDetector(
+         onTap: widget.onSelect,
+         child: MyContainer(
+          width: 100,
+          height: 100,
+        alignment: Alignment.center,
+        child: Stack(
         children: <Widget>[
-          Positioned.fill(
+          MyPositioned.fill(
             child:Align(
                 alignment: Alignment.center,
-                child: iconSvgD(widget.listItem.iconRoute, _selected ? Colors.lightGreenAccent : Colors.white, 40)
+                child: iconSvgD(widget.listItem.iconRoute, _selected ? MyColors.principal : MyColors.text, 40)
             ),
           ),
-          Positioned.fill(
+          MyPositioned.fill(
               child: Align(
                 alignment: Alignment.topCenter,
-                child: Text(widget.listItem.number.toString(),style: MyTextStyle.estiloBold(10, Colors.white),),
+                child: Text(widget.listItem.number.toString(),style: MyTextStyle.estiloBold(10, MyColors.text),),
               )
           ),
-          Positioned.fill(
+          MyPositioned.fill(
               top: 40,
               child: Align(
                 alignment: Alignment.bottomCenter,
-                child: Text(textoIcon,style: MyTextStyle.estiloBold(25, Colors.white),
+                child: Text(textoIcon,style: MyTextStyle.estiloBold(25, MyColors.text),
                     textAlign: TextAlign.center),
               )
           ),
@@ -139,6 +125,132 @@ class _ItemBoilerState extends State<ItemBoiler> {
   }
   );
   }
+}
+
+
+
+Widget iconAligned(int number, iconRoute, selected){
+  switch(number){
+    case 0:
+      return
+        MyPositioned.fill(
+          bottom: 20,
+          child:Align(
+              alignment: Alignment.center,
+              child: iconSvgD(iconRoute, selected ? MyColors.principal : MyColors.text, 30)
+          ),
+        );
+      break;
+    case 1:
+      return
+        MyPositioned.fill(
+          child:Align(
+              alignment: Alignment.center,
+              child: iconSvgD(iconRoute, selected ? MyColors.principal : MyColors.text, 35)
+          ),
+        );
+      break;
+    case 2:
+      return
+        MyPositioned.fill(
+          right: 45,
+        child:Align(
+            alignment: Alignment.center,
+            child: iconSvgD(iconRoute, selected ? MyColors.principal : MyColors.text, 35)
+        ),
+      );
+      break;
+    case 3:
+      return
+        MyPositioned.fill(
+          top: 25,
+        child:Align(
+            alignment: Alignment.center,
+            child: iconSvgD(iconRoute, selected ? MyColors.principal : MyColors.text, 30)
+        ),
+      );
+      break;
+    case 4:
+      return
+        MyPositioned.fill(
+          left: 45,
+        child:Align(
+            alignment: Alignment.center,
+            child: iconSvgD(iconRoute, selected ? MyColors.principal : MyColors.text, 35)
+        ),
+      );
+      break;
+    case 5:
+    return
+      MyPositioned.fill(
+        child:Align(
+            alignment: Alignment.center,
+            child: iconSvgD(iconRoute, selected ? MyColors.principal : MyColors.text, 35)
+        ),
+      );
+      break;
+  }
+}
+
+
+Widget textAligned(int number){
+  switch(number){
+    case 0:
+      return
+        MyPositioned.fill(
+          top: 28,
+          child: Align(
+          alignment: Alignment.center,
+          child: Text("ELECTRICO",style: MyTextStyle.estiloBold(15, MyColors.text),
+              textAlign: TextAlign.center),
+        ));
+      break;
+    case 1:
+      return
+        MyPositioned.fill(
+           child: Align(
+            alignment: Alignment.bottomCenter,
+            child: Text("FROST CONTROL",style: MyTextStyle.estiloBold(15, MyColors.text),
+                textAlign: TextAlign.center),
+          ));
+      break;
+    case 2:
+      return
+        MyPositioned.fill(
+          right: 15,
+          child: Align(
+          alignment: Alignment.centerRight,
+          child: Text("40º",style: MyTextStyle.estiloBold(25, MyColors.text),
+              textAlign: TextAlign.center),
+      ),
+        );
+      break;
+    case 3:
+      return Align(
+        child: Text(""),
+      );
+      break;
+    case 4:
+      return MyPositioned.fill(
+        left: 20,
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: Text("70º",style: MyTextStyle.estiloBold(25, MyColors.text),
+              textAlign: TextAlign.center),
+        ),
+      );
+      break;
+    case 5:
+      return
+        MyPositioned.fill(
+          bottom: 10,
+         child:Align(
+         alignment: Alignment.bottomCenter,
+         child: Text("DRENAJE",style: MyTextStyle.estiloBold(15, MyColors.text),
+            textAlign: TextAlign.center),
+      ));
+      break;
+  }
 
 }
 
@@ -146,6 +258,7 @@ class _ItemBoilerState extends State<ItemBoiler> {
 
 class widgetBoiler extends StatelessWidget {
   RadialListItemViewModel itemBoiler;
+  String title = "BOILER";
   @override
   Widget build(BuildContext context) {
     return widget_boiler();
@@ -166,69 +279,69 @@ class widgetBoiler extends StatelessWidget {
        }
       });
       return  ClipRect(
-      child: Container(
-          margin: EdgeInsets.all(7),
+      child: MyContainer(
+          margin: EdgeInsets.all(SC.all(7)),
           width: 225,
           height: 140,
           decoration: BoxDecoration(
-              color: MyColors.ContainerColor
+              color: MyColors.baseColor
           ),
           child: Stack(children: [
             // Valvulas (Todas)
-            Positioned.fill(  ///titulo
+            MyPositioned.fill(  ///titulo
               top: 4,
               left: 8,
               child:   Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  "Boiler",
-                  style: MyTextStyle.estiloBold(18, Colors.white),
+                  title,
+                  style: MyTextStyle.estiloBold(18, MyColors.text),
                 ),
               ),
             ),
-            Positioned.fill(/// circulito
+            MyPositioned.fill(/// circulito
                 top: 10, right: 10,
                 child: Align(
                   alignment: Alignment.topRight,
-                  child: circuloConSombra(17.0, Colors.lightGreenAccent),
+                  child: circuloConSombra(17.0, MyColors.principal),
                 )
             ),
-            Positioned.fill(    ///textAbajoIzq
+            MyPositioned.fill(    ///textAbajoIzq
               left: 8,
               bottom: 6,
               child: Align(
                 alignment: Alignment.bottomLeft,
                 child: Text(
                   "ON",
-                  style: MyTextStyle.estilo(18, Colors.lightGreenAccent),
+                  style: MyTextStyle.estilo(18, MyColors.principal),
                 ),
               ),
             ),
-            Positioned.fill(  ///textAbajoDer
+            MyPositioned.fill(  ///textAbajoDer
               right: 8,
               bottom: 6,
               child:  Align(
                 alignment: Alignment.bottomRight,
                 child: Text(
                   "Consumo " + "2.65" + "A",
-                  style: MyTextStyle.estilo(18, Colors.white),
+                  style: MyTextStyle.estilo(18, MyColors.text),
                 ),
               ),
             ),
-            Positioned.fill(  ///icon
+            MyPositioned.fill(  ///icon
               left: 25,
               child:  Align(
                 alignment: Alignment.centerLeft,
-                child: iconSvgD(itemBoiler.iconRoute, Colors.lightGreenAccent, 50),
+                child: iconSvgD(itemBoiler.iconRoute, MyColors.principal, 30),
               ),
             ),
-            Positioned.fill(  ///textValue
+            MyPositioned.fill(  ///textValue
               right: 30,
               child:  Align(
                 alignment: Alignment.centerRight,
                 child: Text(
                   itemBoiler.valueTemp.toString(),
-                  style: MyTextStyle.estiloBold(45, Colors.white),
+                  style: MyTextStyle.estiloBold(45, MyColors.text),
                 ),
               ),
             )
@@ -274,51 +387,39 @@ class RadialListItemViewModel{
 final RadialListViewModel radialNumbers = new RadialListViewModel(
     items: [
       new RadialListItemViewModel(
-        number: 6,  //6
-        iconRoute:"assets/icons/icon_boiler_6.svg",
+        number: 0,  //6
+        iconRoute:"assets/icons/enchufe_boiler.svg",
         selected: false,
         valueTemp:70,
       ),
       new RadialListItemViewModel(
-        number: 7,  //7
-        iconRoute:"assets/icons/icon_boiler_5.svg",
-        selected: false,
-        valueTemp:70,
-      ),
-      new RadialListItemViewModel(
-        number: 0, //0
+        number: 1,  //7
         iconRoute:"assets/icons/icon_boiler_4.svg",
+        selected: false,
+        valueTemp:70,
+      ),
+      new RadialListItemViewModel(
+        number: 2, //0
+        iconRoute:"assets/icons/fire_boiler.svg",
         selected: false,
         valueTemp: 0,
       ),new RadialListItemViewModel(
-        number: 1, //1
-        iconRoute:"assets/icons/icon_boiler_3.svg",
+        number: 3, //1
+        iconRoute:"assets/icons/off.svg",
         selected: true,
-        valueTemp:70
+        valueTemp:0
       ),
       new RadialListItemViewModel(
-        number: 2,   //2
-        iconRoute:"assets/icons/icon_boiler_2.svg",
+        number: 4,   //2
+        iconRoute:"assets/icons/fire_boiler.svg",
         selected: false,
         valueTemp:40,
       ),
       new RadialListItemViewModel(
-        number: 3,  // 3
-        iconRoute:"assets/icons/icon_boiler_1.svg",
+        number: 5,  // 3
+        iconRoute:"assets/icons/valvula.svg",
         selected: false,
         valueTemp: 40,
       ),
-      new RadialListItemViewModel(
-        number: 4,  //4
-        iconRoute:"assets/icons/off.svg",
-        selected: false,
-        valueTemp:0,
-      ),
-      new RadialListItemViewModel(
-        number: 5, //5
-        iconRoute:"assets/icons/icon_boiler_7.svg",
-        selected: false,
-        valueTemp:70,
-      )
     ]
 );

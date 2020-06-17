@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:movekomapp/Utils/DrawCircle.dart';
+import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/controladores/climatizacion/Calefaccion.dart';
 import 'package:movekomapp/controladores/climatizacion/Extractor.dart';
+import 'package:movekomapp/pantallas/Wheater/weather_box.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
+import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
@@ -14,6 +19,7 @@ class WheaterCalefactionView extends StatefulWidget {
 class _WheaterCalefactionViewState extends State<WheaterCalefactionView> {
   @override
   Widget build(BuildContext context) {
+    SC().init(context);
     return contenido();
   }
 
@@ -21,14 +27,15 @@ class _WheaterCalefactionViewState extends State<WheaterCalefactionView> {
 
   Widget contenido() {
     return Container(
-        margin: EdgeInsets.only(top: 50),
+     //   margin: EdgeInsets.only(top: SC.all(10)),
         // color: Colors.green,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Calefaccion(2),
-           container(),
+            container(),
+           // AireAcondicionado(2),
           ],
         ),
     );
@@ -38,26 +45,22 @@ class _WheaterCalefactionViewState extends State<WheaterCalefactionView> {
 
 
   Widget container() {
-    return Container(
-      margin: EdgeInsets.all(20),
-      width: 462,
-      height: 388,
+    return MyContainer(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
+          WeatherBox("Madrid",0),
+          Extractor(),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Column(
-                children: <Widget>[
-                  box165x67(),
-                  box165x67(),
-                ],
-              ),
-              box247x144(),
+              box165x67("INTERIOR","25.5"),
+              box165x67("EXTERIOR","25.5"),
+            // box247x144(),
             ],
           ),
-          Extractor(),
-          bar(),
         ],
       ),
 
@@ -104,36 +107,82 @@ class _WheaterCalefactionViewState extends State<WheaterCalefactionView> {
     );
   }
 
-  Widget box165x67() {
-    return Container(
-      margin: EdgeInsets.only(right: 5, bottom: 5, top: 2),
-      width: 165,
+  Widget box165x67(title, value) {
+    return MyContainer(
+      margin: EdgeInsets.all(SC.all(5)),
+      width: 185,
       height: 67,
       decoration: new BoxDecoration(
-          color: Color(0xff2d3033)
+        color: MyColors.baseColor,
+      ),
+      child: Stack(
+        children: <Widget>[
+          MyPositioned.fill(
+            top:10,
+              child:  Align(
+                alignment: Alignment.center,
+                child: Text("25.5ºC",
+                    style: MyTextStyle.estiloBold(30, Colors.white)),
+              ),
+          ),
+          MyPositioned.fill(
+            left: 10,top: 5,
+            child:  Align(
+              alignment: Alignment.topLeft,
+              child: Text(title,
+                  style: MyTextStyle.estilo(16, Colors.white)),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget manuales() {
+    return MyContainer(
+      margin: EdgeInsets.all(SC.all(5)),
+      width: 185,
+      height: 68,
+      decoration: new BoxDecoration(
+        color: MyColors.baseColor,
       ),
       child: Align(
         alignment: Alignment.center,
-        child: Text("25.5ºC",
+        child: Text("Manuales",
             style: MyTextStyle.estiloBold(30, Colors.white)),
       ),
     );
   }
 
+  Widget ayuda() {
+    return MyContainer(
+      margin: EdgeInsets.all(SC.all(5)),
+      width: 185,
+      height: 68,
+      decoration: new BoxDecoration(
+        color: MyColors.baseColor,
+      ),
+      child: Align(
+        alignment: Alignment.center,
+        child: Text("Ayuda",
+            style: MyTextStyle.estiloBold(30, Colors.white)),
+      ),
+    );
+  }
 
-  Widget bar() {
-    return Container(
-        margin: EdgeInsets.only(top: 8),
-        width: 420,
+  Widget bar_historico_temp() {
+    return MyContainer(
+        margin: EdgeInsets.all(SC.all(7)),
+        width: 380,
         height: 41,
         decoration: new BoxDecoration(
-            color: Color(0xff2d3033)
+            color: MyColors.baseColor
         ),
         child: Stack(
           children: <Widget>[
             Align(
               alignment: Alignment.centerLeft,
-              child: Text("Mas datos",
+              child: Text("Historico de temperatura",
                 style: MyTextStyle.estiloBold(20, Colors.grey),),
             ),
             Align(
