@@ -203,7 +203,7 @@ class MyPositioned extends ParentDataWidget<StackParentData> {
     }
 
     if (parentData.right != right) {
-      print("MyPostioned : " + right.toString());
+    //  print("MyPostioned : " + right.toString());
       parentData.right = SC.right(right);
       needsLayout = true;
     }

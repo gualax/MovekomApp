@@ -48,7 +48,7 @@ class _WeatherBoxState extends State<WeatherBox> {
     BlocBuilder<WeatherBloc,WeatherState>(
       builder: (context, state) {
     if (state is WeatherEmpty) {
-    return Center(child: Text('Please Select a Location'));
+    return Center(child:wheaterBoxLoading());
     }else if (state is WeatherLoading) {
     return Center(child: wheaterBoxLoading());
     } else if (state is WeatherLoaded) {
@@ -152,7 +152,7 @@ Widget wheaterBoxLoading(){
             MyPositioned.fill(/// ICON
               child: Align(
                 alignment: Alignment.center,
-                child: CircularProgressIndicator() , /// icon weather
+               // child: CircularProgressIndicator() , /// icon weather
               ),
             ),
             MyPositioned.fill(/// ICON
@@ -282,10 +282,13 @@ Widget wheaterBoxError(){
     try {
       List<Placemark> p = await geolocator.placemarkFromCoordinates(
           position.latitude, position.longitude);
+      print(position.latitude);
+      print(position.longitude);
       Placemark place = p[0];
+      print(Placemark);
       setState(() {
         _currentAddress = place.administrativeArea;
-        _weatherBloc.add(FetchWeather(city: "Madrid",indexDay: widget.indexDay));
+        _weatherBloc.add(FetchWeatherLatLong(lat: position.latitude,long: position.longitude,indexDay: widget.indexDay));
       });
     } catch (e) {
       print(e);

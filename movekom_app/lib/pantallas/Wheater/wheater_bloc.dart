@@ -21,6 +21,27 @@ class FetchWeather extends WeatherEvent {
   List<Object> get props => [city,indexDay];
 }
 
+class FetchWeatherListLatLong extends WeatherEvent {
+  final double lat;
+  final double long;
+
+  FetchWeatherListLatLong({@required this.lat,this.long}) : assert(lat != null);
+
+  @override
+  List<Object> get props => [lat,long];
+}
+
+class FetchWeatherLatLong extends WeatherEvent {
+  final double lat;
+  final double long;
+  final int indexDay;
+
+  FetchWeatherLatLong({@required this.lat,@required this.long,@required this.indexDay}) : assert(lat != null);
+
+  @override
+  List<Object> get props => [lat,long,indexDay];
+}
+
 class RefreshWeather extends WeatherEvent {
   final String city;
   final int indexDay;
@@ -99,6 +120,10 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
       yield* _mapFetchWeatherToState(event);
     } else if (event is RefreshWeather) {
       yield* _mapRefreshWeatherToState(event);
+    }else if (event is FetchWeatherLatLong){
+      yield* _mapFetchWeatherLatLongToState(event);
+    }else if(event is FetchWeatherListLatLong){
+      yield* _mapFetchWeatherListLatLongToState(event);
     }
   }
 
@@ -141,4 +166,27 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
       yield WeatherError();
     }
   }
+
+
+
+  Stream<WeatherState> _mapFetchWeatherLatLongToState(FetchWeatherLatLong event) async* {
+    yield WeatherLoading();
+    try {
+      final Weather weather = await weatherRepository.getWeatherLatLong(event.lat,event.long, event.indexDay);
+      yield WeatherLoaded(weather: weather);
+    } catch (_) {
+      yield WeatherError();
+    }
+  }
+
+  Stream<WeatherState> _mapFetchWeatherListLatLongToState(FetchWeatherListLatLong event) async* {
+    yield WeatherLoading();
+    try {
+      final List<Weather> weatherList = await weatherRepository.getWeatherListLatLong(event.lat,event.long);
+      yield WeatherLoadedList(weatherList: weatherList);
+    } catch (_) {
+      yield WeatherError();
+    }
+  }
+
 }

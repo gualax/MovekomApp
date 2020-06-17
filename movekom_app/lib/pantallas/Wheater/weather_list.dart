@@ -58,7 +58,7 @@ class _WeatherListWidgetState extends State<WeatherListWidget> {
     builder: (context, state) {
       print(state);
     if (state is WeatherEmpty) {
-        return Center(child: Text('Please Select a Location'));
+        return Center(child: loadingWheaterBoxes());
         }else if (state is WeatherLoading) {
         return Center(child: loadingWheaterBoxes());
         } else if (state is WeatherLoadedList) {
@@ -176,7 +176,7 @@ Widget loadingWheaterBoxes(){
           MyPositioned.fill( /// DAY
               child: Align(
                 alignment: Alignment.center,
-                child: CircularProgressIndicator(),
+             //   child: CircularProgressIndicator(),
               )
           ),
           MyPositioned.fill(/// ICON
@@ -250,7 +250,7 @@ Widget loadingWheaterBoxes(){
               left: 20, right: 20,
               child: Align(
                 alignment: Alignment.center,
-                child: Text("Problema de conexion con el servicio de clima",
+                child: Text("Problema de conexion",
                   style: MyTextStyle.estilo(14, MyColors.text),textAlign: TextAlign.center,) , /// icon weather
               )
           ),
@@ -325,12 +325,17 @@ Widget loadingWheaterBoxes(){
           position.latitude, position.longitude);
       Placemark place = p[0];
       print(place.locality);
-      print(place.toString());
+      print(place);
       print(place.toJson());
       setState(() {
-        _currentLocality = "Madrid";
-        _currentCountry = "España";
-        _weatherBloc.add(FetchWeatherList(city: "Madrid"));
+        if(place.administrativeArea != null) {
+          _currentLocality = place.administrativeArea;
+        } else if (place.locality != null ) {
+          _currentLocality = place.locality;
+        }else {
+          _currentLocality = place.country;
+        }
+        _weatherBloc.add(FetchWeatherListLatLong(lat:position.latitude,long: position.longitude ));
       });
     } catch (e) {
       print(e);

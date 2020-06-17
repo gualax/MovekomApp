@@ -22,6 +22,18 @@ class WeatherApiClient {
     return (locationJson.first)['woeid'];
   }
 
+  Future<int> getLocationIdLatLong(double lat, double long) async {
+    final locationUrl = '$baseUrl/api/location/search/?lattlong=$lat,$long';
+    final locationResponse = await this.httpClient.get(locationUrl);
+    if (locationResponse.statusCode != 200) {
+      throw Exception('error getting locationId for city');
+    }
+
+    final locationJson = jsonDecode(locationResponse.body) as List;
+    print(locationJson);
+    return (locationJson.first)['woeid'];
+  }
+
   Future<Weather> fetchWeather(int locationId, int indexDay) async {
     final weatherUrl = '$baseUrl/api/location/$locationId';
     final weatherResponse = await this.httpClient.get(weatherUrl);
