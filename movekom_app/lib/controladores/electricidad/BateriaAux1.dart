@@ -53,11 +53,13 @@ class BateriaMotorAux1 extends StatelessWidget {
             }
             return GestureDetector(
               onTap: (){
+                /*
                 if (state.isEnabled) {
                   bateriaAux1Bloc.add(DisableBatery());
                 } else {
                   bateriaAux1Bloc.add(EnableBatery());
                 }
+                 */
               },
               child: MyContainer(
                   margin: EdgeInsets.all(SC.all(5)),

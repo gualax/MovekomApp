@@ -1,6 +1,7 @@
 import 'package:circle_list/circle_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/blocs/boiler_bloc.dart';
 import 'package:movekomapp/controladores/agua/AnimatedBoiler.dart';
 import 'package:movekomapp/controladores/agua/ItemBoiler.dart';
@@ -34,7 +35,7 @@ bool isFisrtRender = true;
             boilerBloc = BlocProvider.of<BoilerBloc>(context);
             print("valueCord boiler: " + state.valueCord.toString());
             return MyContainer(
-              //color: Colors.amber,
+            //  color: Colors.amber,
               height: 400,
               width: 400,
               child:
@@ -42,12 +43,12 @@ bool isFisrtRender = true;
                 child: Transform.rotate(
                   angle: 0.5 * math.pi,
                 child: CircleList(
-               //   outerCircleColor: Colors.cyanAccent,
-                //  innerCircleColor: Colors.white70,
+               //  outerCircleColor: Colors.cyanAccent,
+               //   innerCircleColor: Colors.white70,
                   centerWidget: animatedBoiler,
                   rotateMode: RotateMode.stopRotate,
-                  outerRadius: 155,
-                  innerRadius: 115,
+                  outerRadius: SC.all(150),
+                  innerRadius: SC.all(115),
                   origin: Offset(0, 0),
                   children: _radialListItems(),
             ),

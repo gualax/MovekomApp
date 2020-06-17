@@ -91,9 +91,9 @@ class _WaterBoilerViewState extends State<WaterBoilerView> {
               )
           ),
           MyPositioned.fill(
-            right: 20,
+            left: 300, bottom: 5,
               child: Align(
-                alignment: Alignment.centerRight,
+                alignment: Alignment.center,
                 child: Boiler(),
               )
           ),

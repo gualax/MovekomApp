@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/cargador_baterias_bloc.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
@@ -11,7 +12,7 @@ import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/indicador_rojo.dart';
 
 class CargadorBaterias extends StatelessWidget {
-  final String title = "Cargador de bateria";
+  final String title = "CARGADOR DE BATERIA";
   @override
   Widget build(BuildContext context) {
     final cargadorBateriaBloc = BlocProvider.of<CargadorBateriaBloc>(context);
@@ -39,6 +40,7 @@ class CargadorBaterias extends StatelessWidget {
           }
           return GestureDetector(
             onTap: (){
+
               if(state.isEnabled){
                 cargadorBateriaBloc.add(DisableCargador());
               }else{
@@ -46,6 +48,7 @@ class CargadorBaterias extends StatelessWidget {
               }
             },
             child: MyContainer(
+              margin: EdgeInsets.all(SC.all(5)),
               width: 420, height: 220,
               decoration: new BoxDecoration(
                 color: MyColors.baseColor,
@@ -57,7 +60,7 @@ class CargadorBaterias extends StatelessWidget {
                       child: Align(
                         alignment: Alignment.topLeft,
                         child: Text(title,
-                          style: MyTextStyle.estiloBold(20, colorTex),),
+                          style: MyTextStyle.estiloBold(25, colorTex),),
                       )
                   ),
                   MyPositioned.fill(
@@ -88,7 +91,7 @@ class CargadorBaterias extends StatelessWidget {
                   ),
                   MyPositioned.fill(
                     ///  /// valueAmp
-                      bottom: 20,
+                      bottom: 15,
                       child: Align(
                         alignment: Alignment.bottomCenter,
                         child: Text(
@@ -99,19 +102,10 @@ class CargadorBaterias extends StatelessWidget {
                       )
                   ),
                   MyPositioned.fill(
-                      right: 180, bottom: 5,
+                      left: 110, bottom: 13,
                       child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: IconButton(
-                          icon: Icon(Icons.power_settings_new), iconSize: 30,
-                          color: iconColor,
-                          onPressed: () {
-                            if(state.isEnabled){
-                              cargadorBateriaBloc.add(DisableCargador());
-                            }else{
-                              cargadorBateriaBloc.add(EnableCargador());
-                            }
-                          },),
+                        alignment: Alignment.bottomLeft,
+                        child: iconSvgD("assets/icons/on_off.svg", iconColor, 30),
                       )
                   ),
                   MyPositioned.fill(

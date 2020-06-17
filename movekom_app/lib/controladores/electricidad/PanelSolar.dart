@@ -13,7 +13,7 @@ import 'package:movekomapp/widgets/amperimetro.dart';
 class PanelSolar extends StatelessWidget {
   PanelSolar(this.widget);
   final int widget;
-  final String title = "Panel solar";
+  final String title = "PANEL SOLAR";
   PanelSolarBloc panelSolarBloc;
   @override
   Widget build(BuildContext context) {
@@ -131,7 +131,7 @@ class PanelSolar extends StatelessWidget {
                         child: Align(
                           alignment: Alignment.topLeft,
                           child: Text(title,
-                            style: MyTextStyle.estiloBold(28, colorTex),),
+                            style: MyTextStyle.estiloBold(25, colorTex),),
                         )
                     ),
                     MyPositioned.fill(
@@ -150,7 +150,7 @@ class PanelSolar extends StatelessWidget {
                         )
                     ),
                     MyPositioned.fill(/// on_off_Text
-                        bottom: 20,
+                        bottom: 15,
                         child: Align(
                           alignment: Alignment.bottomCenter,
                           child: Text(
@@ -172,19 +172,10 @@ class PanelSolar extends StatelessWidget {
                         )
                     ),
                     MyPositioned.fill(
-                        right: 180, bottom: 5,
+                        left: 110, bottom: 13,
                         child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: IconButton(
-                            icon: Icon(Icons.power_settings_new), iconSize: 30,
-                            color: iconColor,
-                            onPressed: () {
-                              if(state.isEnabled){
-                                panelSolarBloc.add(DisablePanelSolar());
-                              }else{
-                                panelSolarBloc.add(EnablePanelSolar());
-                              }
-                            },),
+                          alignment: Alignment.bottomLeft,
+                          child: iconSvgD("assets/icons/on_off.svg", iconColor, 30),
                         )
                     ),
                     MyPositioned.fill(/// circulito

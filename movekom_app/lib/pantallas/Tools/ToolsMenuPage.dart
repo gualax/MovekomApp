@@ -28,27 +28,24 @@ class _ToolsMenuPageState extends State<ToolsMenuPage> {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return Scaffold(
       backgroundColor: Colors.black,
       body: MyContainer(
-        padding: EdgeInsets.only(right: 125,left: 125),
-        margin: EdgeInsets.all(30),
         alignment: Alignment.center,
-        child: ListView(
-          scrollDirection: Axis.horizontal,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            rows1(),
-            rows2(),
+            column1(),
+            column2(),
           ],
-        ),
+        )
       ),
     );
   }
 
-Widget rows1(){
+Widget column1(){
     return MyContainer(
-      margin: EdgeInsets.all(10),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -61,9 +58,8 @@ Widget rows1(){
 }
 
 
-  Widget rows2(){
+  Widget column2(){
     return MyContainer(
-      margin: EdgeInsets.all(10),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,

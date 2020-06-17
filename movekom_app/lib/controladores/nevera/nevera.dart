@@ -64,6 +64,7 @@ class _ExtractorState extends State<Nevera> {
                 }
               },
               child: MyContainer(
+                margin: EdgeInsets.all(SC.all(5)),
                 width: 420, height: 220,
                 decoration: new BoxDecoration(
                   color: MyColors.baseColor,
@@ -103,20 +104,10 @@ class _ExtractorState extends State<Nevera> {
                           )
                       ),
                       MyPositioned.fill(
-                          right: 180, bottom: 5,
+                          left: 110, bottom: 13,
                           child: Align(
-                            alignment: Alignment.bottomCenter,
-                            child: IconButton(
-                              icon: Icon(Icons.power_settings_new), iconSize: 30,
-                              color: colorIcon,
-                              onPressed: () {
-                                print("state" + state.isEnabled.toString());
-                                if(state.isEnabled){
-                                  bloc.add(DisableNevera());
-                                }else{
-                                  bloc.add(EnableNevera());
-                                }
-                              },),
+                            alignment: Alignment.bottomLeft,
+                            child: iconSvgD("assets/icons/on_off.svg", colorIcon, 30),
                           )
                       ),
                     ],

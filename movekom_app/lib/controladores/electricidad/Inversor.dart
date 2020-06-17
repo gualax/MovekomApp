@@ -56,6 +56,7 @@ Widget inversor_big(){
           }
         },
         child: MyContainer(
+          margin: EdgeInsets.all(SC.all(5)),
           width: 420, height: 220,
           decoration: new BoxDecoration(
             color: MyColors.baseColor,
@@ -63,11 +64,12 @@ Widget inversor_big(){
           child: Stack(
             children: <Widget>[
               MyPositioned.fill(
-                  left: 10, top: 10,
+                  left: 35,
+                  top: 10,
                   child: Align(
                     alignment: Alignment.topLeft,
                     child: Text(title,
-                      style: MyTextStyle.estiloBold(28, colorTex),),
+                      style: MyTextStyle.estiloBold(25, colorTex),),
                   )
               ),
               MyPositioned.fill(
@@ -108,19 +110,10 @@ Widget inversor_big(){
                   )
               ),
               MyPositioned.fill(
-                  right: 180, bottom: 5,
+                  left: 110, bottom: 13,
                   child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: IconButton(
-                      icon: Icon(Icons.power_settings_new), iconSize: 30,
-                      color: iconColor,
-                      onPressed: () {
-                      if(state.isEnabled){
-                        inversorBloc.add(DisableInversor());
-                      }else{
-                        inversorBloc.add(EnableInversor());
-                      }
-                    },),
+                    alignment: Alignment.bottomLeft,
+                    child: iconSvgD("assets/icons/on_off.svg", iconColor, 30),
                   )
               ),
               MyPositioned.fill(/// circulito

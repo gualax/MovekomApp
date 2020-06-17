@@ -41,10 +41,10 @@ final int widgetType;
       child: Stack(
         children: <Widget>[
           MyPositioned.fill(
-              bottom: 5,
+              bottom: 8,
               child: Align(
                 alignment: Alignment.bottomCenter,
-                child: iconSvgNc("assets/icons/save_green.svg",  SizeConfig.all(5)),
+                child: iconSvgNc("assets/icons/save_green.svg",  45),
               )
           ),
           MyPositioned.fill(

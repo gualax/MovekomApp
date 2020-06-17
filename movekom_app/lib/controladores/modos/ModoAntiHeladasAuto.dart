@@ -24,6 +24,7 @@ class ModoAntiHeladasAuto extends StatelessWidget {
 
   Widget modo_antiheladas_automatico() {
     Color colorIcon,colorIndic;
+    String on_off_text;
     return
       BlocBuilder<ModoAntiHeladasAutoBloc,ModoAntiHeladasAutoState>(
           builder: ( context, state) {
@@ -31,11 +32,13 @@ class ModoAntiHeladasAuto extends StatelessWidget {
             if(state.isEnabled){
               colorIcon = MyColors.principal;
               colorIndic = MyColors.principal;
+              on_off_text = "Pulsar para apagar";
             }else{
               colorIcon = Colors.white;
               colorIndic = Colors.grey;
-            }
+              on_off_text = "Pulsar para encender";
 
+            }
             return GestureDetector(
               onTap: (){
                 if(state.isEnabled){
@@ -45,9 +48,9 @@ class ModoAntiHeladasAuto extends StatelessWidget {
                 }
               },
               child: MyContainer(
-                margin: EdgeInsets.only(top: SC.top(10), left: SC.left(15), right: SC.right(15)),
+                margin: EdgeInsets.only(top: SC.top(5), bottom: SC.bot(5), left: SC.left(15), right: SC.right(15)),
                 width: 210,
-                height: 250,
+                height: 235,
                 decoration: new BoxDecoration(
                     color: MyColors.baseColor
                 ),
@@ -80,32 +83,21 @@ class ModoAntiHeladasAuto extends StatelessWidget {
                         child: Align(
                           alignment: Alignment.center,
                           child: Text("A",
-                            style: MyTextStyle.estiloBold(15, MyColors.text),),
+                            style: MyTextStyle.estiloBold(15, colorIndic),),
                         )
                     ),
                     MyPositioned.fill(
-                        left: 10,
+                        left: 30, bottom: 13,
                         child: Align(
                           alignment: Alignment.bottomLeft,
-                          child: IconButton(
-                            icon: Icon(Icons.power_settings_new),
-                            iconSize: SC.all(30),
-                            color: colorIcon,
-                            onPressed: () {
-                              if(state.isEnabled){
-                                modoEcoBloc.add(Disable());
-                              }else{
-                                modoEcoBloc.add(Enable());
-                              }
-                            },
-                          ),
+                          child: iconSvgD("assets/icons/on_off.svg", colorIcon, 20),
                         )
                     ),
                     MyPositioned.fill(
                         bottom: 15, left: 15,
                         child: Align(
                           alignment: Alignment.bottomCenter,
-                          child: Text("Presiona para encender",
+                          child: Text(on_off_text,
                             style: MyTextStyle.estilo(12, Colors.white),),
                         )
                     ),

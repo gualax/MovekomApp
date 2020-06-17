@@ -10,7 +10,7 @@ import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/indicador_rojo.dart';
 
 class Consumos extends StatelessWidget {
-  final String title = "Consumo instantaneo";
+  final String title = "CONSUMO SISTEMA";
 
   @override
   Widget build(BuildContext context) {
@@ -31,81 +31,81 @@ class Consumos extends StatelessWidget {
             textIcon = "Encender todo";
             colorIcon = MyColors.text;
           }
-          return MyContainer(
-            margin: EdgeInsets.all(SC.all(5)),
-            width: 200,
-            height: 204,
-            decoration: new BoxDecoration(
-                color: MyColors.baseColor
-            ),
-            child: Stack(
-              children: <Widget>[
-                MyPositioned.fill(
-                  bottom: 25,
-                  right: 15,
-                  child: Align(
-                    alignment: Alignment.bottomRight,
-                    child: iconSvgD(
-                        "assets/icons/electricidad.svg", colorIcon, 35),
+          return GestureDetector(
+            onTap: (){
+              if(state.isEnabled){
+                consumosBloc.add(DisableInversor());
+              }else{
+                consumosBloc.add(EnableInversor());
+              }
+            },
+            child: MyContainer(
+              margin: EdgeInsets.all(SC.all(5)),
+              width: 200,
+              height: 204,
+              decoration: new BoxDecoration(
+                  color: MyColors.baseColor
+              ),
+              child: Stack(
+                children: <Widget>[
+                  MyPositioned.fill(
+                    bottom: 25,
+                    right: 15,
+                    child: Align(
+                      alignment: Alignment.bottomRight,
+                      child: iconSvgD(
+                          "assets/icons/electricidad.svg", colorIcon, 35),
+                    ),
                   ),
-                ),
-                MyPositioned.fill(
-                  top: 10,
-                  left: 10,
-                  child: Align(
-                    alignment: Alignment.topLeft,
-                    child: Text(title,
-                        style: MyTextStyle.estiloBold(15, MyColors.text)),
+                  MyPositioned.fill(
+                    top: 10,
+                    left: 10,
+                    child: Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(title,
+                          style: MyTextStyle.estiloBold(15, MyColors.text)),
+                    ),
                   ),
-                ),
-                MyPositioned.fill(
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                        state.valueAmp.toString(),
-                        style: MyTextStyle.estiloBold(40, MyColors.text)),
-                  ),
-                ),
-                MyPositioned.fill(
-                  top: 55,
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                        "Ah", style: MyTextStyle.estiloBold(25, MyColors.text)),
-                  ),
-                ),
-                MyPositioned.fill(
-                    bottom: 30,
+                  MyPositioned.fill(
                     child: Align(
                       alignment: Alignment.center,
-                      child: inidicadorRojoImg(state.valueAmp,SC.all(10)),
-                    )
-                ),
-                MyPositioned.fill(
-                    right: 5, top: 15,
+                      child: Text(
+                          state.valueAmp.toString(),
+                          style: MyTextStyle.estiloBold(40, MyColors.text)),
+                    ),
+                  ),
+                  MyPositioned.fill(
+                    top: 55,
                     child: Align(
-                      alignment: Alignment.bottomLeft,
-                      child: IconButton(
-                        icon: Icon(Icons.power_settings_new), iconSize: SC.all(30),
-                        color:colorIcon,
-                        onPressed: () {
-                          if(state.isEnabled){
-                            consumosBloc.add(DisableInversor());
-                          }else{
-                            consumosBloc.add(EnableInversor());
-                          }
-                        },),
-                    )
-                ),
-                MyPositioned.fill(
-                    bottom: 20, left: 15,
-                    child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Text(textIcon,
-                      style: MyTextStyle.estilo(13, MyColors.text),),
-                    )
-                ),
-              ],
+                      alignment: Alignment.center,
+                      child: Text(
+                          "Ah", style: MyTextStyle.estiloBold(25, MyColors.text)),
+                    ),
+                  ),
+                  MyPositioned.fill(
+                      bottom: 30,
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: inidicadorRojoImg(state.valueAmp,SC.all(10)),
+                      )
+                  ),
+                  MyPositioned.fill(
+                      right: 100, bottom: 17,
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: iconSvgD("assets/icons/on_off.svg", colorIcon, 20),
+                      )
+                  ),
+                  MyPositioned.fill(
+                      bottom: 20, left: 15,
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text(textIcon,
+                        style: MyTextStyle.estilo(13, MyColors.text),),
+                      )
+                  ),
+                ],
+              ),
             ),
           );
         }

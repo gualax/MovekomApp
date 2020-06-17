@@ -25,7 +25,6 @@ class _ModesMenuPageState extends State<ModesMenuPage> {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return Scaffold(
       body: Container(
         alignment: Alignment.center,

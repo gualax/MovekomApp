@@ -23,6 +23,7 @@ class ModoDescanso extends StatelessWidget {
 
   Widget modo_descanso() {
     Color colorIcon,colorIndic;
+    String on_off_text;
     return
       BlocBuilder<ModoDescansoBloc,ModoDescansoState>(
           builder: ( context, state) {
@@ -30,9 +31,12 @@ class ModoDescanso extends StatelessWidget {
             if(state.isEnabled){
               colorIcon = MyColors.principal;
               colorIndic = MyColors.principal;
+              on_off_text = "Pulsar para apagar";
             }else{
-              colorIcon = MyColors.text;
-              colorIndic = MyColors.inactive;
+              colorIcon = Colors.white;
+              colorIndic = Colors.grey;
+              on_off_text = "Pulsar para encender";
+
             }
 
             return GestureDetector(
@@ -44,9 +48,9 @@ class ModoDescanso extends StatelessWidget {
                 }
               },
               child: MyContainer(
-                margin: EdgeInsets.only(top: SC.top(10), left: SC.left(15), right: SC.right(15)),
+                margin: EdgeInsets.only(top: SC.top(5), bottom: SC.bot(5), left: SC.left(15), right: SC.right(15)),
                 width: 210,
-                height: 250,
+                height: 235,
                 decoration: new BoxDecoration(
                     color: MyColors.baseColor
                 ),
@@ -75,28 +79,17 @@ class ModoDescanso extends StatelessWidget {
                         )
                     ),
                     MyPositioned.fill(
-                        left: 10,
+                        left: 30, bottom: 13,
                         child: Align(
                           alignment: Alignment.bottomLeft,
-                          child: IconButton(
-                            icon: Icon(Icons.power_settings_new),
-                            iconSize: SC.all(30),
-                            color: colorIcon,
-                            onPressed: () {
-                              if(state.isEnabled){
-                                modoEcoBloc.add(Disable());
-                              }else{
-                                modoEcoBloc.add(Enable());
-                              }
-                            },
-                          ),
+                          child: iconSvgD("assets/icons/on_off.svg", colorIcon, 20),
                         )
                     ),
                     MyPositioned.fill(
                         bottom: 15, left: 15,
                         child: Align(
                           alignment: Alignment.bottomCenter,
-                          child: Text("Presiona para encender",
+                          child: Text(on_off_text,
                             style: MyTextStyle.estilo(12, MyColors.text),),
                         )
                     ),

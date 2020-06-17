@@ -68,7 +68,6 @@ Widget horizontalList(){
           widgetBoiler(),
           Calefaccion(1),
           Inversor(1),
-          box225x140_1icon("VALVULAS",2.65 , "assets/icons/valvula.svg",false),
        //   box225x140_1icon("VALVULAS",2.65 , "assets/icons/valvula.svg",false),
           box225x140_add_device(),
         ],

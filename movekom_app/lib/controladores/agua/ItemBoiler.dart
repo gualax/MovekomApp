@@ -198,7 +198,7 @@ Widget textAligned(int number){
     case 0:
       return
         MyPositioned.fill(
-          top: 30,
+          top: 28,
           child: Align(
           alignment: Alignment.center,
           child: Text("ELECTRICO",style: MyTextStyle.estiloBold(15, MyColors.text),

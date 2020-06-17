@@ -132,7 +132,7 @@ class _CalefaccionState extends State<Calefaccion> {
                     ),
                     MyPositioned(
                       left: 275, //270
-                      top: 5,
+                      top: 25,
                        child: flechita_indicacion(SC.all(185),SC.all(160)), //200 //160
                     ),
                     MyPositioned(

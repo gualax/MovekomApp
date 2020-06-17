@@ -3,7 +3,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/blocs/boiler_bloc.dart';
+import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'dart:math' as math;
 
@@ -47,7 +49,6 @@ with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     final boilerBloc = BlocProvider.of<BoilerBloc>(context);
  // print(_angleValue);
   return BlocBuilder(
@@ -56,10 +57,11 @@ with SingleTickerProviderStateMixin {
      // print("valueCord:" + state.valueCord.toString());
     //  print("amgle:" + (state.valueCord * math.pi).toString());
       return Container(
+      //  color: Colors.amber,
         child: Transform.rotate(
           angle: -0.5 * math.pi,
           child: Container(
-            padding: EdgeInsets.all(10),
+            padding: EdgeInsets.all(SC.all(10)),
             child: Transform.rotate(
               angle: state.valueCord/3 * math.pi,  //el valor del num / la mitad d los elementos si son 6 enotnces divido *3
               child: circuloBoiler(),
@@ -80,21 +82,22 @@ with SingleTickerProviderStateMixin {
 
   Widget circuloBoiler(){
   return Container(
+  //  color: Colors.pink,
       child: Stack(
         children: <Widget>[
-          Positioned.fill(
+          MyPositioned.fill(
               child: Align(
                 alignment: Alignment.center,
                 child: iconSvgNc("assets/icons/circulo_boiler.svg", 300),
               )
           ),
-          Positioned.fill(
+          MyPositioned.fill(
               child: Align(
                 alignment: Alignment.center,
-                child:exported(155.0),
+                child:exported(SC.all(155)),
               )
           ),
-          Positioned.fill(
+          MyPositioned.fill(
               top: 170,
               child: Align(
                 alignment: Alignment.topCenter,
@@ -113,15 +116,15 @@ with SingleTickerProviderStateMixin {
 
   Widget indicador(){
     return Container(
-      height: 45,
-        width: 15,
+      height: SC.hei(45),
+        width: SC.wid(15),
         decoration: new BoxDecoration(
           color: Color(0xff000000),
           borderRadius: BorderRadius.all(Radius.circular(18)),
           boxShadow: [BoxShadow(
               color: Color(0xff94e538),
               offset: Offset(0,0),
-              blurRadius: 15,
+              blurRadius: SC.all(15),
               spreadRadius: 0
           ) ],
         ),
@@ -139,7 +142,7 @@ with SingleTickerProviderStateMixin {
         boxShadow: [BoxShadow(
             color: Color(0xff94e538),
             offset: Offset(0, 0),
-            blurRadius: 10,
+            blurRadius: SC.all(10),
             spreadRadius: 0
         )
         ],

@@ -41,32 +41,32 @@ class LuzGeneral extends StatelessWidget {
             ),
             child: Stack(
               children: [
-                Positioned.fill(
-                  right: SizeConfig.h * 3.5, bottom: SizeConfig.v * 0.5,
+                MyPositioned.fill(
+                  right: 20, bottom: 20,
                   child: Align(
                     alignment: Alignment.centerRight,
-                    child: iconSvgD("assets/icons/todas_luces.svg", Colors.lightGreenAccent.withAlpha(state.valueDimer.round() + 20), 65),
+                    child: iconSvgD("assets/icons/todas_luces.svg", Colors.lightGreenAccent.withAlpha(state.valueDimer.round() + 20), 75),
                   ),
                 ),
-                Positioned.fill(
-                  left: SizeConfig.h * 3.5, bottom: SizeConfig.v * 0.5,
+                MyPositioned.fill(
+                  left: 20, bottom: 10,
                   child: Align(
                     alignment: Alignment.centerLeft,
-                    child: iconSvgD("assets/icons/lampara.svg",  Colors.lightGreenAccent.withAlpha(state.valueDimer.round() + 20), 40),
+                    child: iconSvgD("assets/icons/lampara.svg",  Colors.lightGreenAccent.withAlpha(state.valueDimer.round() + 20), 55),
                   ),
                 ),
-                Positioned.fill(
-                  bottom:  SizeConfig.v * 0.7,
+                MyPositioned.fill(
+                  bottom:  10,
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(
-                      height:  SizeConfig.v * 3.2,
+                      height:  SC.hei(20),
                       child: SliderTheme(
                         data: sliderCustomTheme(context),
                         child: Slider(
                           value: state.valueDimer,
                           onChanged: (newValue) {
-                            //   print(newValue);
+                            print(newValue);
                             luzGeneralBloc.add(Update(newValue));
                           },
                           min: 0,
@@ -76,17 +76,11 @@ class LuzGeneral extends StatelessWidget {
                     ),
                   ),
                 ),
-                PositionedDirectional(
-                  top: SizeConfig.v * 0.5,
-                  start: SizeConfig.h * 1,
-                  child: RichText(
-                      text: TextSpan(
-                          children: [
-                            TextSpan(
-                                style: MyTextStyle.estiloBold(SizeConfig.v * 2.6, Colors.white),
-                                text: title),
-                          ]
-                      )
+                MyPositioned.fill(
+                  top:5 ,left: 5,
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(title,style: MyTextStyle.estiloBold(19, MyColors.text),),
                   ),
                 ),
               ],
