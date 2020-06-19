@@ -17,21 +17,25 @@ class BombaAgua extends StatelessWidget {
   int widgetType;
   String title;
   BombaAgua(this.widgetType);
+  BombaAguaBloc bomabaAguaBloc;
+
   @override
   Widget build(BuildContext context) {
     SC().init(context);
     title = "BOMBA DE AGUA";
-    final bomabaAguaBloc = BlocProvider.of<BombaAguaBloc>(context);
+     bomabaAguaBloc = BlocProvider.of<BombaAguaBloc>(context);
 
     if(widgetType == 1){
-      return WaterBomb_principal(bomabaAguaBloc);
+      return WaterBomb_principal();
+    }else if(widgetType == 2) {
+      return WaterBomb_water();
     }else {
-      return WaterBomb_water(bomabaAguaBloc);
+      return WaterBomb_widget();
     }
   }
 
 
-  Widget WaterBomb_water(bomabaAguaBloc) {
+  Widget WaterBomb_water() {
     Color colorIcon, colorTxt, colorButton;
     String txtState;
     return
@@ -149,7 +153,7 @@ class BombaAgua extends StatelessWidget {
   }
 
 
-  Widget WaterBomb_principal(bomabaAguaBloc) {
+  Widget WaterBomb_principal() {
     Color colorIcon, colorTxt, colorButton;
     String txtState;
     return
@@ -175,7 +179,7 @@ class BombaAgua extends StatelessWidget {
                 }
               },
               child: MyContainer(
-                  margin: EdgeInsets.all(7),
+                  margin: EdgeInsets.all(SC.all(7)),
                   width: 130,
                   height: 130,
                   decoration: new BoxDecoration(
@@ -233,4 +237,63 @@ class BombaAgua extends StatelessWidget {
           }
       );
   }
+
+
+  Widget WaterBomb_widget() {
+    Color colorIcon, colorTxt, colorButton;
+    String txtState;
+    return
+      BlocBuilder<BombaAguaBloc,BombaAguaState>(
+          builder: ( context, state) {
+            return GestureDetector(
+              onTap: (){
+                if (state.isEnabled) {
+                  bomabaAguaBloc.add(Disable());
+                } else {
+                  bomabaAguaBloc.add(Enable());
+                }
+              },
+              child: MyContainer(
+                  margin: EdgeInsets.all(7),
+                  width: 103,
+                  height: 140,
+                  decoration: new BoxDecoration(
+                      color: MyColors.baseColor
+                  ),
+                  child: Stack(
+                      children: [
+                        MyPositioned.fill(/// circulito
+                            top: 5, right: 5,
+                            child: Align(
+                              alignment: Alignment.topRight,
+                              child: circuloConSombra(12.0, MyColors.text),
+                            )
+                        ),
+                        MyPositioned.fill(/// Icono
+                          top: 25,
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: iconSvgD(
+                                "assets/images/water_1.svg", MyColors.text, 60),
+                          ),
+                        ),
+                        // Valvulas (Todas)
+                        MyPositioned.fill(/// Titulo
+                          top: 5,
+                          left:10, right:17,
+                          child: Align(
+                            alignment: Alignment.topLeft,
+                            child: Text(title,
+                              style: MyTextStyle.estiloBold(14,  MyColors.text),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ),
+                      ])
+              ),
+            );
+          }
+      );
+  }
+
 }

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_full_pdf_viewer/full_pdf_viewer_scaffold.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -62,7 +63,7 @@ class _ManualesMenuPageState extends State<ManualesMenuPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-       margin: EdgeInsets.all(20),
+       margin: EdgeInsets.all(SC.all(20)),
         alignment: Alignment.center,
         child: box(),
       ),
@@ -71,7 +72,7 @@ class _ManualesMenuPageState extends State<ManualesMenuPage> {
 
   Widget box(){
        return Container(
-         padding: EdgeInsets.all(20),
+         padding: EdgeInsets.all(SC.all(20)),
           decoration: new BoxDecoration(
               color: MyColors.baseColor,
           ),

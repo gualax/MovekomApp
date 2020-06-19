@@ -18,6 +18,7 @@ class Calefaccion extends StatefulWidget {
   int widgetType;
 
   Calefaccion(this.widgetType);
+
   @override
   _CalefaccionState createState() => _CalefaccionState();
 }

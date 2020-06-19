@@ -31,8 +31,10 @@ class _ExtractorState extends State<Nevera> {
 
     if (widget.widgetType == 1) {
       return nevera_principal();
-    } else {
+    } else if (widget.widgetType == 2) {
       return nevera_big();
+    }else {
+        return nevera_widget();
     }
   }
 
@@ -104,7 +106,7 @@ class _ExtractorState extends State<Nevera> {
                           )
                       ),
                       MyPositioned.fill(
-                          left: 110, bottom: 13,
+                          left: 100, bottom: 13,
                           child: Align(
                             alignment: Alignment.bottomLeft,
                             child: iconSvgD("assets/icons/on_off.svg", colorIcon, 30),
@@ -258,4 +260,47 @@ class _ExtractorState extends State<Nevera> {
       );
   }
 
+
+
+  Widget nevera_widget() {
+    return
+      BlocBuilder<NeveraBloc, NeveraState>(
+          builder: (context, state) {
+            bloc = BlocProvider.of<NeveraBloc>(context);
+            return   MyContainer(
+                margin: EdgeInsets.all(SC.all(7)),
+                width: 103,
+                height: 140,
+                decoration: new BoxDecoration(
+                    color: MyColors.baseColor
+                ), child: Stack(
+              children: <Widget>[
+                MyPositioned.fill(
+                    top:5,
+                    child: Align(
+                      alignment: Alignment.topCenter,
+                      child: Text("NEVERA",
+                          style:MyTextStyle.estiloBold(15, MyColors.text)),
+                    )
+                ),
+                MyPositioned.fill(
+                    top:5,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: iconSvgD("assets/icons/nevera.svg", MyColors.principal, 70),
+                    )
+                ),
+                MyPositioned.fill(
+                    top:5, right: 5,
+                    child: Align(
+                      alignment: Alignment.topRight,
+                      child: circuloConSombra(10, MyColors.principal),
+                    )
+                ),
+              ],
+            )
+            );
+          }
+      );
+  }
   }

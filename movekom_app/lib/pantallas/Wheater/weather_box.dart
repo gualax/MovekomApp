@@ -11,12 +11,13 @@ import 'package:movekomapp/pantallas/Wheater/wheater_bloc.dart';
 import 'package:movekomapp/pantallas/Wheater/wheather_conditions.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
+import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
 class WeatherBox extends StatefulWidget {
-  String locationCity;
   int indexDay;
-  WeatherBox(this.locationCity,this.indexDay);
+  int widgetType;
+  WeatherBox(this.indexDay,this.widgetType);
   @override
   State<WeatherBox> createState() => _WeatherBoxState();
 }
@@ -33,89 +34,37 @@ class _WeatherBoxState extends State<WeatherBox> {
     // TODO: implement initState
     super.initState();
     getCurrentLocation();
+    print(" *** initState ***");
   }
 
 
   @override
   Widget build(BuildContext context) {
+    print(" *** build ***");
     _weatherBloc = BlocProvider.of<WeatherBloc>(context);
-    return WheaterWidget();
+
+    if (widget.widgetType == 1) {
+      return _wheater();
+    } else {
+      return wheater_widget();
+    }
+
   }
 
 
-  Widget WheaterWidget(){
+  Widget _wheater(){
   return
     BlocBuilder<WeatherBloc,WeatherState>(
       builder: (context, state) {
     if (state is WeatherEmpty) {
-    return Center(child:wheaterBoxLoading());
+       return wheaterBoxLoading();
     }else if (state is WeatherLoading) {
-    return Center(child: wheaterBoxLoading());
+       return wheaterBoxLoading();
     } else if (state is WeatherLoaded) {
       final weather = state.weather;
-      return MyContainer(
-        width: 380,
-        height: 135,
-        margin: EdgeInsets.all(SC.all(5)),
-        decoration: new BoxDecoration(
-          color: MyColors.baseColor,
-        ),
-        child: Stack(
-          children: <Widget>[
-            MyPositioned.fill( /// DAY
-                top: 9, left: 10,
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                   "El tiempo hoy" , style: MyTextStyle.estilo(20, Colors.white),),
-                )
-            ),
-            MyPositioned.fill(/// ICON
-              left: 150,
-              child: Align(
-                alignment: Alignment.center,
-                child:  WeatherConditions(condition: weather.condition), /// icon weather
-              ),
-            ),
-            MyPositioned.fill(/// TEMP
-              right: 150,
-              child: Align(
-                alignment: Alignment.center,
-                child:  Text(
-                  weather.temp.toStringAsFixed(1) + "º", style: MyTextStyle.estiloBold(40, Colors.white),), /// icon weather
-              ),
-            ),
-            MyPositioned.fill(/// tMIN
-              bottom: 10,
-              left: 20,
-              child: Align(
-                alignment: Alignment.bottomLeft,
-                child: Text(
-                  "Min: " + weather.minTemp.toStringAsFixed(1), style: MyTextStyle.estilo(13, Colors.white),),
-              ),
-            ),
-            MyPositioned.fill(/// location
-              top: 90,
-              child: Align(
-                alignment: Alignment.center,
-                child: Text(
-                  weather.location, style: MyTextStyle.estilo(20, Colors.white),),
-              ),
-            ),
-            MyPositioned.fill( /// tMax
-              bottom: 10,
-              right: 20,
-              child: Align(
-                alignment: Alignment.bottomRight,
-                child: Text(
-                  "Max: " + weather.maxTemp.toStringAsFixed(1), style: MyTextStyle.estilo(13, Colors.white),),
-              ),
-            ),
-          ],
-        ),
-      );
+       return wheaterBoxLoaded(weather);
     } else {
-      return Center(child: wheaterBoxError());
+      return wheaterBoxError();
        }
       }
     );
@@ -123,8 +72,72 @@ class _WeatherBoxState extends State<WeatherBox> {
 
   @override
   void dispose() {
-  //  _weatherBloc.close();
+   // _weatherBloc.close();
     super.dispose();
+  }
+
+Widget wheaterBoxLoaded(weather){
+    return MyContainer(
+      width: 380,
+      height: 135,
+      margin: EdgeInsets.all(SC.all(5)),
+      decoration: new BoxDecoration(
+        color: MyColors.baseColor,
+      ),
+      child: Stack(
+        children: <Widget>[
+          MyPositioned.fill( /// DAY
+              top: 9, left: 10,
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  "El tiempo hoy" , style: MyTextStyle.estilo(20, Colors.white),),
+              )
+          ),
+          MyPositioned.fill(/// ICON
+            left: 150,
+            child: Align(
+              alignment: Alignment.center,
+              child:  WeatherConditions(condition: weather.condition), /// icon weather
+            ),
+          ),
+          MyPositioned.fill(/// TEMP
+            right: 150,
+            child: Align(
+              alignment: Alignment.center,
+              child:  Text(
+                weather.temp.toStringAsFixed(1) + "º", style: MyTextStyle.estiloBold(40, Colors.white),), /// icon weather
+            ),
+          ),
+          MyPositioned.fill(/// tMIN
+            bottom: 10,
+            left: 20,
+            child: Align(
+              alignment: Alignment.bottomLeft,
+              child: Text(
+                "Min: " + weather.minTemp.toStringAsFixed(1), style: MyTextStyle.estilo(13, Colors.white),),
+            ),
+          ),
+          MyPositioned.fill(/// location
+            top: 90,
+            child: Align(
+              alignment: Alignment.center,
+              child: Text(
+                weather.location, style: MyTextStyle.estilo(20, Colors.white),),
+            ),
+          ),
+          MyPositioned.fill( /// tMax
+            bottom: 10,
+            right: 20,
+            child: Align(
+              alignment: Alignment.bottomRight,
+              child: Text(
+                "Max: " + weather.maxTemp.toStringAsFixed(1), style: MyTextStyle.estilo(13, Colors.white),),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
 Widget wheaterBoxLoading(){
@@ -229,7 +242,7 @@ Widget wheaterBoxError(){
               left: 20, right: 20,
               child: Align(
                 alignment: Alignment.center,
-                child: Text("Problema de conexion con el servicio de clima",
+                child: Text("--",
                 style: MyTextStyle.estilo(16, MyColors.text),textAlign: TextAlign.center,) , /// icon weather
               ),
             ),
@@ -271,8 +284,11 @@ Widget wheaterBoxError(){
     geolocator
         .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
         .then((Position position) {
-      print(position);
-      getAddressFromLatLng(position);
+         print(position);
+      if(_currentPosition != position){
+        _currentPosition = position;
+        getAddressFromLatLng(position);
+      }
     }).catchError((e) {
       print(e);
     });
@@ -293,6 +309,38 @@ Widget wheaterBoxError(){
     } catch (e) {
       print(e);
     }
+  }
+
+
+
+  Widget wheater_widget(){
+    return MyContainer(
+      width: 225,
+      height: 140,
+      margin: EdgeInsets.all(SC.all(5)),
+      decoration: new BoxDecoration(
+        color: MyColors.baseColor,
+      ),
+      child: Stack(
+        children: <Widget>[
+          MyPositioned.fill( /// DAY
+              top: 9, left: 10,
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  "El tiempo hoy" , style: MyTextStyle.estilo(18, Colors.white),),
+              )
+          ),
+          MyPositioned.fill(/// ICON
+            child: Align(
+              alignment: Alignment.center,
+              child:  iconSvgD("assets/icons/clima_sol.svg", Colors.white,45.0), /// icon weather
+            ),
+          ),
+
+        ],
+      ),
+    );
   }
 
 

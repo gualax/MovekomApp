@@ -1,5 +1,6 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/FloatingMenu.dart';
 import 'package:movekomapp/blocs/alarma_blocs/alarma_bloc.dart';
@@ -68,10 +69,15 @@ runApp(
   )
 );
 */
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeRight])
+      .then((_) {
+    runApp(
+        MyApp(weatherRepository: weatherRepository));
+  });
 
-
-  runApp(
-    MyApp(weatherRepository: weatherRepository));
+//  runApp(
+//    MyApp(weatherRepository: weatherRepository));
 
 
 }

@@ -22,7 +22,7 @@ class Inversor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if(widgetType == 1){
-      return inversor_wodget();
+      return inversor_widget();
     }else{
      return inversor_big();
     }
@@ -110,7 +110,7 @@ Widget inversor_big(){
                   )
               ),
               MyPositioned.fill(
-                  left: 110, bottom: 13,
+                  left: 100, bottom: 13,
                   child: Align(
                     alignment: Alignment.bottomLeft,
                     child: iconSvgD("assets/icons/on_off.svg", iconColor, 30),
@@ -133,7 +133,7 @@ Widget inversor_big(){
 }
 
 
-  Widget inversor_wodget(){
+  Widget inversor_widget(){
     Color color;
     Color colorText;
     String on_off;

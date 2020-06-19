@@ -50,7 +50,7 @@ class _WheaterCalefactionViewState extends State<WheaterCalefactionView> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          WeatherBox("Madrid",0),
+          WeatherBox(0,1),
           Extractor(),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

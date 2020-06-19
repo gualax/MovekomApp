@@ -64,35 +64,12 @@ Widget column1(){
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          CargadorBaterias(),
+          CargadorBaterias(1),
           PanelSolar(2),
         ],
       ),
     );
   }
 
-  Widget emptyBox(){
-    return MyContainer(
-        width: 420, height: 220,
-    );
-  }
-
-  Widget box(){
-    return Container(
-      padding: EdgeInsets.all(50),
-      margin: EdgeInsets.only(left: 80,right: 80,top:50,bottom: 50),
-      child: GridView.count(
-        childAspectRatio: 2.7,
-        crossAxisCount: 2,
-        mainAxisSpacing: 15,
-        crossAxisSpacing: 15,
-        children:[
-          Inversor(2),
-          CargadorBaterias(),
-          Nevera(2),
-        ]
-      ),
-    );
-  }
 
 }

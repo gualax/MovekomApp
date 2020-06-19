@@ -6,6 +6,7 @@ import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/Utils/SizeConf.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
+import 'package:movekomapp/Utils/tab_changer.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/bateria_motor_bloc.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
@@ -152,38 +153,44 @@ class BateriaMotor extends StatelessWidget {
                 colorText = MyColors.inactive;
 
               }
-              return MyContainer(
-                  margin: EdgeInsets.all(SC.all(7)),
-                  width: 137, //137
-                  height:137,
-                  decoration: new BoxDecoration(
-                      color: MyColors.baseColor
-                  ),
-                  child: Stack(
-                      children: [
-                        MyPositioned.fill( /// icono bateria
-                          top: 10,
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: circleIndicatorBatery_small(state.valueBat, color, SizeConf.all(45),SizeConf.all(85)),
-                          ),
-                        ),
-                        MyPositioned.fill(/// titulo
-                          top:4, left:5,
-                          child: Align(
-                            alignment: Alignment.topLeft,
-                            child: RichText(
-                                text: TextSpan(
-                                    children: [
-                                      TextSpan(
-                                          style: MyTextStyle.estiloBold(15, colorText),
-                                          text: title),
-                                    ]
-                                )
+              return GestureDetector(
+                onTap: (){
+                  TabChanger tabChanger =  TabChanger(context);
+                  tabChanger.changeTab(2);
+                },
+                child: MyContainer(
+                    margin: EdgeInsets.all(SC.all(7)),
+                    width: 137, //137
+                    height:137,
+                    decoration: new BoxDecoration(
+                        color: MyColors.baseColor
+                    ),
+                    child: Stack(
+                        children: [
+                          MyPositioned.fill( /// icono bateria
+                            top: 10,
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: circleIndicatorBatery_small(state.valueBat, color, SizeConf.all(45),SizeConf.all(85)),
                             ),
                           ),
-                        ),
-                      ])
+                          MyPositioned.fill(/// titulo
+                            top:4, left:5,
+                            child: Align(
+                              alignment: Alignment.topLeft,
+                              child: RichText(
+                                  text: TextSpan(
+                                      children: [
+                                        TextSpan(
+                                            style: MyTextStyle.estiloBold(15, colorText),
+                                            text: title),
+                                      ]
+                                  )
+                              ),
+                            ),
+                          ),
+                        ])
+                ),
               );
             }
         );

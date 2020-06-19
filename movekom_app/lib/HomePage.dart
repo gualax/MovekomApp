@@ -173,7 +173,7 @@ class _HomePageState extends State<HomePage>{
 
   Widget showWithTransition(int index, context){
     print("showWithTransition///");
-    return MyStatefulWidget(widgetToAnim: pageList[index]);
+    return TransitionAnimation(widgetToAnim: pageList[index]);
   }
 
   void onTabTapped(int index) {

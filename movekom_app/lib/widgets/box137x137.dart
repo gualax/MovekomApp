@@ -223,7 +223,7 @@ Widget box137x137_Temperatura(context,title, valueHum, valueTemp){
     MyContainer(
         margin: EdgeInsets.all(SC.all(5)),
         width: 137,
-        height: 62,
+        height: 59.5,
         decoration: new BoxDecoration(
             color: MyColors.baseColor
         ), child: Stack(

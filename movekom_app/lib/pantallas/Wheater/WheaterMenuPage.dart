@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movekomapp/Utils/SC.dart';
-import 'package:movekomapp/pantallas/Wheater/WheaterCalefactionView.dart';
+import 'package:movekomapp/pantallas/Wheater/WheaterGeneralView.dart';
 import 'package:movekomapp/pantallas/Wheater/WheaterHistoryView.dart';
 
 

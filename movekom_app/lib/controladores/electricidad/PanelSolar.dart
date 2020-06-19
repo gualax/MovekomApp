@@ -172,7 +172,7 @@ class PanelSolar extends StatelessWidget {
                         )
                     ),
                     MyPositioned.fill(
-                        left: 110, bottom: 13,
+                        left: 100, bottom: 13,
                         child: Align(
                           alignment: Alignment.bottomLeft,
                           child: iconSvgD("assets/icons/on_off.svg", iconColor, 30),

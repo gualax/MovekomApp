@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class MyStatefulWidget extends StatefulWidget {
-  MyStatefulWidget({Key key,this.widgetToAnim}) : super(key: key);
+class TransitionAnimation extends StatefulWidget {
+  TransitionAnimation({Key key,this.widgetToAnim}) : super(key: key);
   Widget widgetToAnim;
   @override
-  _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
+  _TransitionAnimationState createState() => _TransitionAnimationState();
 }
 
-class _MyStatefulWidgetState extends State<MyStatefulWidget>
+class _TransitionAnimationState extends State<TransitionAnimation>
     with TickerProviderStateMixin {
   AnimationController _controller;
   Animation<Offset> _offsetAnimation;

@@ -4,7 +4,6 @@ import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
-import 'package:movekomapp/Utils/SizeConfig.dart';
 import 'package:movekomapp/pantallas/Wheater/whather_data_model.dart';
 import 'package:movekomapp/pantallas/Wheater/wheater_bloc.dart';
 import 'package:movekomapp/pantallas/Wheater/wheather_conditions.dart';
@@ -250,7 +249,7 @@ Widget loadingWheaterBoxes(){
               left: 20, right: 20,
               child: Align(
                 alignment: Alignment.center,
-                child: Text("Problema de conexion",
+                child: Text("--",
                   style: MyTextStyle.estilo(14, MyColors.text),textAlign: TextAlign.center,) , /// icon weather
               )
           ),

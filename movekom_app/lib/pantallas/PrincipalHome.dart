@@ -1,5 +1,6 @@
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
@@ -21,10 +22,14 @@ import 'package:movekomapp/controladores/iluminacion/LuzGeneral.dart';
 import 'package:movekomapp/controladores/iluminacion/Upligth.dart';
 import 'package:movekomapp/controladores/nevera/nevera.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
+import 'package:movekomapp/responsive_ui/mi_positioned.dart';
+import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/box137x137.dart';
 import 'package:movekomapp/widgets/box137x64.dart';
 import 'package:movekomapp/widgets/box225x137.dart';
 import 'package:movekomapp/widgets/box_fecha.dart';
+
+import '../WidgetsMenu.dart';
 
 
 class PrincipalHome extends StatefulWidget {
@@ -68,8 +73,8 @@ Widget horizontalList(){
           widgetBoiler(),
           Calefaccion(1),
           Inversor(1),
-       //   box225x140_1icon("VALVULAS",2.65 , "assets/icons/valvula.svg",false),
-          box225x140_add_device(),
+          //box225x140_1icon("VALVULAS",2.65 , "assets/icons/valvula.svg",false),
+          add_device(),
         ],
       ),
     );
@@ -229,6 +234,48 @@ Widget horizontalList(){
     );
   }
 
+  Widget add_device(){
+    return  GestureDetector(
+      onTap: () {
+        print("TAP");
+        showDialog(
+          context: context,
+          builder: (BuildContext context) => WidgetsMenu(),
+        );
+      },
+      child: MyContainer(
+        width: 225,
+        height: 140,
+        margin: EdgeInsets.all(SC.all(10)),
+        child: DottedBorder(
+          dashPattern: [8, 4],
+          strokeWidth: 2,
+          color: Colors.white,
+          child: MyContainer(
+            width: 225,
+            height: 140,
+            child: Stack(
+              children: <Widget>[
+                MyPositioned.fill(
+                    child: Align(
+                        alignment: Alignment.center,
+                        child: Icon(Icons.add,size: 60,color: Colors.white,)
+                    )
+                ),
+                MyPositioned.fill(
+                    child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text("AÑADIR DISPOSITIVO",
+                          style: MyTextStyle.estilo(16, Colors.white),)
+                    )
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 
 
 

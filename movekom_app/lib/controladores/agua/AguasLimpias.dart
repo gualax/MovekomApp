@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
+import 'package:movekomapp/Utils/tab_changer.dart';
 import 'package:movekomapp/blocs/agua_blocs/aguas_limpias_bloc.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
@@ -55,42 +56,48 @@ class AguasLimpias extends StatelessWidget {
       return
         BlocBuilder<AguasLimpiasBloc,AguasLimpiasState>(
             builder: ( context, state) {
-            return MyContainer(
-                margin: EdgeInsets.all(SC.all(7)),
-                width: 220,
-                height: 282,
-                decoration: new BoxDecoration(
-                    color: MyColors.baseColor
-                ),
-                child: Stack(
-                    children: [
-                      MyPositioned.fill(/// Circulo
-                        top: 27, bottom: 14,
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: agua_limpia_Img(state.valueAmp),
-                        ),
-                      ),
-                      // Valvulas (Todas)
-                      MyPositioned.fill(/// Titulo
-                        top: 5,
-                        child: Align(
-                          alignment: Alignment.topCenter,
-                          child: Text(title,
-                            style: MyTextStyle.estiloBold(
-                                18, MyColors.text),
-                          ),),),
-                      MyPositioned.fill(/// value
-                        top: 15,
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: Text( state.valueAmp.toString() + "%",
-                            style: MyTextStyle.estiloBold(
-                                45, MyColors.text),
+            return GestureDetector(
+              onTap: (){
+                TabChanger tabChanger =  TabChanger(context);
+                tabChanger.changeTab(4);
+              },
+              child: MyContainer(
+                  margin: EdgeInsets.all(SC.all(7)),
+                  width: 220,
+                  height: 282,
+                  decoration: new BoxDecoration(
+                      color: MyColors.baseColor
+                  ),
+                  child: Stack(
+                      children: [
+                        MyPositioned.fill(/// Circulo
+                          top: 27, bottom: 14,
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: agua_limpia_Img(state.valueAmp),
                           ),
                         ),
-                      ),
-                    ])
+                        // Valvulas (Todas)
+                        MyPositioned.fill(/// Titulo
+                          top: 5,
+                          child: Align(
+                            alignment: Alignment.topCenter,
+                            child: Text(title,
+                              style: MyTextStyle.estiloBold(
+                                  18, MyColors.text),
+                            ),),),
+                        MyPositioned.fill(/// value
+                          top: 15,
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Text( state.valueAmp.toString() + "%",
+                              style: MyTextStyle.estiloBold(
+                                  45, MyColors.text),
+                            ),
+                          ),
+                        ),
+                      ])
+              ),
             );
           }
         );
