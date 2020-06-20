@@ -2,6 +2,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:movekomapp/MapeoIDs/IdComponents.dart';
+import 'package:movekomapp/bluetooth/BluetoothRepository.dart';
 
 abstract class BombaAguaEvent extends Equatable {
   BombaAguaEvent([List props = const []]) : super(props);
@@ -54,7 +56,7 @@ class BombaAguaState extends Equatable {
 /// FIN  declaracion de STATE
 
 class BombaAguaBloc extends Bloc <BombaAguaEvent, BombaAguaState> {
-
+   var ID = IdComponent.BOMBA_AGUA;
   @override
   // TODO: implement initialState
   BombaAguaState get initialState => BombaAguaState.initial();
@@ -62,12 +64,33 @@ class BombaAguaBloc extends Bloc <BombaAguaEvent, BombaAguaState> {
   @override
   Stream<BombaAguaState> mapEventToState(BombaAguaEvent event) async* {
     if (event is Enable) {
-      yield BombaAguaState.initial();
+      yield* _setInitValuesAndSendBT(event);
+    //  yield* _setInitValuesAndSendBT(event);
+
     } else if (event is Disable) {
-      yield BombaAguaState(
+      yield BombaAguaState (
         valueAmp: 0.0,
         isEnabled: false,
       );
     }
+  }
+
+
+  Stream<BombaAguaState> _setInitValuesAndSendBT(BombaAguaEvent event) async* {
+   print("_setInitValuesAndSendBT");
+   List<int> elems = new List<int>();
+   elems.add(0x02);
+   elems.add(0x00);
+   elems.add(0x02);
+   elems.add(ID);
+   elems.add(0x00);
+   elems.add(0x33);
+   elems.add(0x33);
+   try {
+      BluetoothRepository.sendData(elems);
+      yield BombaAguaState.initial();
+    } catch(e) {
+     print(e);
+   }
   }
 }

@@ -9,11 +9,13 @@ import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
+import 'package:movekomapp/bluetooth/BluetoothClient.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
+import 'SelectBondedDevicePage.dart';
 import 'bluetooth_bloc.dart';
 
 class BluetoothController extends StatefulWidget {
@@ -67,6 +69,7 @@ class _BluetoothControllerState extends State<BluetoothController> {
 
   Widget _bluetooth() {
     Color colorImg, colorText;
+    bool isConnected = false;
     return
       BlocBuilder<BluetoothControllerBloc,BluetoothControllerState> (
         builder: ( context, state) {
@@ -78,7 +81,7 @@ class _BluetoothControllerState extends State<BluetoothController> {
           colorText = MyColors.inactive;
         }
        return GestureDetector(
-         onTap: (){
+         onTap: () {
            print("onPressed");
            print(_bluetoothState.isEnabled);
            if (_bluetoothState.isEnabled) {
@@ -115,28 +118,13 @@ class _BluetoothControllerState extends State<BluetoothController> {
                 )
             ),
             MyPositioned.fill(
-                bottom: 5,
+                bottom: 10,
                 child: Align(
                   alignment: Alignment.bottomCenter,
-                  child: IconButton(
-                    icon: Icon(Icons.power_settings_new), iconSize: 30,
-                    color: colorImg,
-                    onPressed: () {
-                      print("onPressed");
-                      print(_bluetoothState.isEnabled);
-                      if (_bluetoothState.isEnabled) {
-                        _bluetoothControllerBloc.add(Disable());
-                        FlutterBluetoothSerial.instance.requestDisable();
-                      }
-                      else {
-                        _bluetoothControllerBloc.add(Enable());
-                        FlutterBluetoothSerial.instance.requestEnable();
-                      }
-                    },
-                  ),
+                  child: iconSvgD("assets/icons/on_off.svg",colorImg , 30),
                 )
             ),
-            Positioned.fill(
+            MyPositioned.fill(
                 right: 100,  bottom: 40,
                 child: Align(
                   alignment: Alignment.center,
@@ -144,7 +132,7 @@ class _BluetoothControllerState extends State<BluetoothController> {
                     style: MyTextStyle.estilo(14, colorText),),
                 )
             ),
-            Positioned.fill(
+            MyPositioned.fill(
                 left: 50, bottom: 40,
                 child: Align(
                   alignment: Alignment.center,
@@ -152,7 +140,7 @@ class _BluetoothControllerState extends State<BluetoothController> {
                     style: MyTextStyle.estilo(14, colorText),),
                 )
             ),
-            Positioned.fill(
+            MyPositioned.fill(
                 left: 190,  bottom: 40,
                 child: Align(
                   alignment: Alignment.center,
@@ -160,11 +148,53 @@ class _BluetoothControllerState extends State<BluetoothController> {
                     style: MyTextStyle.estilo(14, colorText),),
                 )
             ),
-            Positioned.fill(
+            MyPositioned.fill(
                 right: 15, top: 10,
                 child: Align(
                   alignment: Alignment.topRight,
                   child: circuloConSombra(15.0, colorImg),
+                )
+            ),
+            MyPositioned.fill(
+                right: 15, bottom: 10,
+                child: Align (
+                  alignment: Alignment.bottomRight,
+                  child: GestureDetector(
+                    onTap: () async {
+                      final BluetoothDevice selectedDevice =
+                      await Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return SelectBondedDevicePage(checkAvailability: false);
+                          },
+                        ),
+                      );
+
+                      if (selectedDevice != null) {
+                        print('Connect -> selected ' + selectedDevice.address);
+                        //startChat(context, selectedDevice);
+                        _bluetoothControllerBloc.add(SetDevice(selectedDevice));
+                        BluetoothClient bluClient = new   BluetoothClient();
+                        setState(() {
+                          isConnected =   bluClient.initialize(selectedDevice);
+                        });
+                      } else {
+                        print('Connect -> no device selected');
+                      }
+
+                    },
+                    child: MyContainer(
+                      height: 50,
+                      width: 100,
+                      decoration: new BoxDecoration(
+                          color: Colors.white12
+                      ),
+                        child: Center(
+                            child: Text(isConnected ? "Connected" : "Connect",
+                                style: MyTextStyle.estiloBold(14, Colors.white))
+                        ),
+                    )
+                  ),
                 )
             ),
           ],
@@ -174,4 +204,8 @@ class _BluetoothControllerState extends State<BluetoothController> {
      }
     );
   }
+
+
+
+
 }

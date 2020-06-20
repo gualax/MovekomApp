@@ -2,19 +2,43 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
 abstract class BluetoothControllerEvent extends Equatable {
   BluetoothControllerEvent([List props = const []]) : super(props);
 }
 
 class Enable extends BluetoothControllerEvent {  /// Habilita la bateria
+  int ada;
+
+
   @override
-  String toString() => 'EnableBatery';
+  String toString() => 'Enable';
 }
 
 class Disable extends BluetoothControllerEvent { /// Deshabilita la bateria
   @override
-  String toString() => 'DisableBatery';
+  String toString() => 'Disable';
+}
+
+
+class SetDevice extends BluetoothControllerEvent { /// Deshabilita la bateria
+
+  final BluetoothDevice device;
+
+  SetDevice(this.device) : assert(device != null);
+
+  @override
+  String toString() => 'Update  {valueCord: $device}}' ;
+}
+
+class SendData extends BluetoothControllerEvent { /// Deshabilita la bateria
+  String data;
+
+  SendData({@required this.data}) : assert(data != null);
+
+  @override
+  List<Object> get props => [data];
 }
 
 class Start extends BluetoothControllerEvent { /// Deshabilita la bateria
@@ -59,8 +83,6 @@ class BluetoothControllerState extends Equatable {
 /// FIN  declaracion de STATE
 
 class BluetoothControllerBloc extends Bloc <BluetoothControllerEvent, BluetoothControllerState> {
-
-
 
   @override
   // TODO: implement initialState

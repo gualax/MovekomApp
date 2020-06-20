@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/bluetooth/bluetooth_bloc.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
 import './BluetoothDeviceListItem.dart';
@@ -33,7 +35,7 @@ class _DeviceWithAvailability extends BluetoothDevice {
 
 class _SelectBondedDevicePage extends State<SelectBondedDevicePage> {
   List<_DeviceWithAvailability> devices = List<_DeviceWithAvailability>();
-
+  BluetoothControllerBloc bluetoothControllerBloc;
   // Availability
   StreamSubscription<BluetoothDiscoveryResult> _discoveryStreamSubscription;
   bool _isDiscovering;
@@ -103,12 +105,12 @@ class _SelectBondedDevicePage extends State<SelectBondedDevicePage> {
   void dispose() {
     // Avoid memory leak (`setState` after dispose) and cancel discovery
     _discoveryStreamSubscription?.cancel();
-
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    bluetoothControllerBloc =  BlocProvider.of<BluetoothControllerBloc>(context);
     List<BluetoothDeviceListItem> list = devices   /// Mapea los devices recibidos por el bluetooth BluetoothDeviceListItem (que es la parte visual)
         .map((_device) => BluetoothDeviceListItem(
               device: _device.device,

@@ -72,8 +72,9 @@ runApp(
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeRight])
       .then((_) {
-    runApp(
-        MyApp(weatherRepository: weatherRepository));
+  runApp(
+    MyApp(weatherRepository: weatherRepository));
+
   });
 
 //  runApp(
@@ -149,7 +150,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         initialRoute: '/',
-        //  builder: DevicePreview.appBuilder,
+       //   builder: DevicePreview.appBuilder,
           routes: {
          // '/': (context) => HomePage(indexToShow:0),   //HomePage(indexToShow:0),
           '/menus': (context) => FloatingMenu(),
