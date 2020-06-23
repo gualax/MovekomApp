@@ -12,6 +12,8 @@ import 'package:movekomapp/controladores/agua/AguasSucias.dart';
 import 'package:movekomapp/controladores/agua/BombaAgua.dart';
 import 'package:movekomapp/controladores/agua/ItemBoiler.dart';
 import 'package:movekomapp/controladores/climatizacion/Calefaccion.dart';
+import 'package:movekomapp/controladores/climatizacion/temperature_ext.dart';
+import 'package:movekomapp/controladores/climatizacion/temperature_int.dart';
 import 'package:movekomapp/controladores/electricidad/BateriaAux1.dart';
 import 'package:movekomapp/controladores/electricidad/BateriaMotor.dart';
 import 'package:movekomapp/controladores/electricidad/Inversor.dart';
@@ -104,8 +106,8 @@ Widget horizontalList(){
     Column(  /// Elementos uno arriba del otro
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        box137x137_Temperatura(mContext,"TEMP. INTERIOR","30%","21.5C"),
-        box137x137_Temperatura(mContext,"TEMP. INTERIOR","30%","21.5C"),
+        TemperatureInt(1),
+        TemperatureExt(1),
         FechaWidget(),
       ],
     ),

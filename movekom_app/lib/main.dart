@@ -1,4 +1,5 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -54,6 +55,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:http/http.dart' as http;
 
 void main(){
+  debugPrintGestureArenaDiagnostics = true;
   BlocSupervisor.delegate = SimpleBlocDelegate();
 
   final WeatherRepository weatherRepository = WeatherRepository(
@@ -70,10 +72,10 @@ runApp(
 );
 */
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeRight])
+  SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeRight,DeviceOrientation.landscapeLeft])
       .then((_) {
   runApp(
-    MyApp(weatherRepository: weatherRepository));
+    DevicePreview(child: MyApp(weatherRepository: weatherRepository)));
 
   });
 
@@ -149,8 +151,9 @@ class MyApp extends StatelessWidget {
 
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         initialRoute: '/',
-       //   builder: DevicePreview.appBuilder,
+          builder: DevicePreview.appBuilder,
           routes: {
          // '/': (context) => HomePage(indexToShow:0),   //HomePage(indexToShow:0),
           '/menus': (context) => FloatingMenu(),
@@ -191,6 +194,6 @@ class SimpleBlocDelegate extends BlocDelegate {
 
   @override
   void onTransition(Bloc bloc, Transition transition) {
-      print(transition);
+   //   print(transition);
   }
 }

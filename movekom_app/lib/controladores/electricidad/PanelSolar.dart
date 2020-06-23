@@ -45,7 +45,7 @@ class PanelSolar extends StatelessWidget {
                   bottom: 20,
                   child: Align(
                     alignment: Alignment.topRight,
-                    child: amperimetroImg(state.valueAmp, SC.all(30)),
+                    child: amperimetroImg(50, SC.all(30)),
                   ),
                 ),
                 MyPositioned.fill(
@@ -62,7 +62,7 @@ class PanelSolar extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.center,
                     child: Text(
-                        state.valueAmp.toString(),
+                        50.toString(),
                         style: MyTextStyle.estiloBold(55, MyColors.text)),
                   ),
                 ),
@@ -80,8 +80,7 @@ class PanelSolar extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.bottomLeft,
                     child: iconSvgD(
-                        "assets/icons/solar_panel_1.svg", MyColors.principal,
-                        30),
+                        "assets/icons/solar_panel_1.svg", MyColors.principal, 30),
                   ),
                 ),
               ],
@@ -120,6 +119,7 @@ class PanelSolar extends StatelessWidget {
                 }
               },
               child: MyContainer(
+                margin: EdgeInsets.all(SC.all(5)),
                 width: 420, height: 220,
                 decoration: new BoxDecoration(
                   color: MyColors.baseColor,

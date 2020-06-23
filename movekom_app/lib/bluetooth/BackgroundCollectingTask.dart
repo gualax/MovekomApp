@@ -39,7 +39,10 @@ class BackgroundCollectingTask extends Model {
   bool inProgress;
 
   BackgroundCollectingTask._fromConnection(this._connection) {
+    print("BackgroundCollectingTask");
     _connection.input.listen((data) {
+      print(data);
+
       _buffer += data;
 
       while (true) {
@@ -47,15 +50,15 @@ class BackgroundCollectingTask extends Model {
         int index = _buffer.indexOf('t'.codeUnitAt(0));
         if (index >= 0 && _buffer.length - index >= 7) {
           final DataSample sample = DataSample(
-              temperature1: (_buffer[index + 1] + _buffer[index + 2] / 100),
-              temperature2: (_buffer[index + 3] + _buffer[index + 4] / 100),
-              waterpHlevel: (_buffer[index + 5] + _buffer[index + 6] / 100),
+        //      temperature1: (_buffer[index + 1] + _buffer[index + 2] / 100),
+        //      temperature2: (_buffer[index + 3] + _buffer[index + 4] / 100),
+        //      waterpHlevel: (_buffer[index + 5] + _buffer[index + 6] / 100),
               timestamp: DateTime.now());
           _buffer.removeRange(0, index + 7);
 
           samples.add(sample);
           notifyListeners(); // Note: It shouldn't be invoked very often - in this example data comes at every second, but if there would be more data, it should update (including repaint of graphs) in some fixed interval instead of after every sample.
-          //print("${sample.timestamp.toString()} -> ${sample.temperature1} / ${sample.temperature2}");
+          print("${sample.timestamp.toString()} -> ${sample.temperature1} / ${sample.temperature2}");
         }
         // Otherwise break
         else {

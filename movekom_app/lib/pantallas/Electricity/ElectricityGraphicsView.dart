@@ -103,6 +103,7 @@ class _ElectricityGraphicsViewState extends State<ElectricityGraphicsView> {
             ),
           ),
           MyPositioned.fill(
+            bottom: 20,
             child: Align(
               alignment: Alignment.center,
               child: Text("MAXIMA",
@@ -110,11 +111,11 @@ class _ElectricityGraphicsViewState extends State<ElectricityGraphicsView> {
             ),
           ),
           MyPositioned.fill(
-            top:25,
+            top:15,
             child: Align(
               alignment: Alignment.center,
               child: Text("14.8 V",
-                style: MyTextStyle.estilo(12, MyColors.text),),
+                style: MyTextStyle.estilo(14, MyColors.text),),
             ),
           ),
           MyPositioned.fill(
@@ -130,7 +131,7 @@ class _ElectricityGraphicsViewState extends State<ElectricityGraphicsView> {
             child: Align(
               alignment: Alignment.bottomCenter,
               child: Text("11.3 V",
-                style: MyTextStyle.estilo(12, MyColors.text),),
+                style: MyTextStyle.estilo(14, MyColors.text),),
             ),
           ),
         ],
@@ -158,6 +159,7 @@ class _ElectricityGraphicsViewState extends State<ElectricityGraphicsView> {
             ),
           ),
           MyPositioned.fill(
+            bottom: 20,
             child: Align(
               alignment: Alignment.center,
               child: Text("MAXIMA",
@@ -165,11 +167,11 @@ class _ElectricityGraphicsViewState extends State<ElectricityGraphicsView> {
             ),
           ),
           MyPositioned.fill(
-            top:25,
+            top:15,
             child: Align(
               alignment: Alignment.center,
               child: Text("+50 A",
-                style: MyTextStyle.estilo(12, MyColors.text),),
+                style: MyTextStyle.estilo(14, MyColors.text),),
             ),
           ),
           MyPositioned.fill(
@@ -185,7 +187,7 @@ class _ElectricityGraphicsViewState extends State<ElectricityGraphicsView> {
             child: Align(
               alignment: Alignment.bottomCenter,
               child: Text("-36 A",
-                style: MyTextStyle.estilo(12, MyColors.text),),
+                style: MyTextStyle.estilo(14, MyColors.text),),
             ),
           ),
         ],

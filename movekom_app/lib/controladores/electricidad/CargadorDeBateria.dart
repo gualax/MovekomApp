@@ -84,7 +84,7 @@ class CargadorBaterias extends StatelessWidget {
                       left: 20,
                       child: Align(
                         alignment: Alignment.centerLeft,
-                        child: iconSvgD("assets/icons/enchufe_cargador_acc.svg", iconColor, 60),
+                        child: iconSvgD("assets/icons/enchufe_cargador_acc.svg", circleColor, 60),
                       )
                   ),
                   MyPositioned.fill(/// consumo

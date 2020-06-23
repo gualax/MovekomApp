@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
+import 'package:movekomapp/Utils/mi_circle_slider.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
@@ -163,7 +164,6 @@ class _TestBtPageState extends State<TestBtPage> {
                  } else {
                    print('Connect -> no device selected');
                  }
-
                },
              ),
            ),
@@ -178,6 +178,8 @@ class _TestBtPageState extends State<TestBtPage> {
       child: MyContainer(
       margin: EdgeInsets.all(SC.all(10)),
       color: MyColors.baseColor,
+        child: MyCircleSlider(),
+
       ),
     );
   }

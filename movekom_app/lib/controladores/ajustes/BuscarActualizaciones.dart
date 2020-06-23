@@ -71,13 +71,11 @@ class BuscarActualizaciones extends StatelessWidget {
               )
           ),
           MyPositioned.fill(
-              left: 5,bottom:5,
-              child: Align(
+            left:15,bottom:20,
+            child: Align(
                 alignment: Alignment.bottomLeft,
-                child: IconButton(
-                    icon: Icon(Icons.power_settings_new), iconSize: 30,
-                    color: MyColors.text),
-              )
+                child:iconSvgD("assets/icons/on_off.svg", MyColors.inactive, 20)
+            ),
           ),
         ],
       ),

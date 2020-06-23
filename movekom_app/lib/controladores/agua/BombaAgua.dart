@@ -19,6 +19,7 @@ class BombaAgua extends StatelessWidget {
   BombaAgua(this.widgetType);
   BombaAguaBloc bomabaAguaBloc;
 
+
   @override
   Widget build(BuildContext context) {
     SC().init(context);
@@ -56,9 +57,9 @@ class BombaAgua extends StatelessWidget {
             return GestureDetector(
               onTap: (){
                 if (state.isEnabled) {
-                  bomabaAguaBloc.add(Disable());
+                  bomabaAguaBloc.add(DisableBomba());
                 } else {
-                  bomabaAguaBloc.add(Enable());
+                  bomabaAguaBloc.add(EnableBomba());
                 }
               },
               child: MyContainer(
@@ -74,7 +75,7 @@ class BombaAgua extends StatelessWidget {
                             top: 10, right: 10,
                             child: Align(
                               alignment: Alignment.topRight,
-                              child: circuloConSombra(18.0, colorIcon),
+                              child: circuloConSombra(15.0, colorIcon),
                             )
                         ),
                         MyPositioned.fill(/// Icono
@@ -158,7 +159,7 @@ class BombaAgua extends StatelessWidget {
     String txtState;
     return
       BlocBuilder<BombaAguaBloc,BombaAguaState>(
-          builder: ( context, state) {
+          builder: (context, state) {
             if (state.isEnabled) {
               txtState = "ON";
               colorIcon = MyColors.principal;
@@ -173,9 +174,9 @@ class BombaAgua extends StatelessWidget {
             return GestureDetector(
               onTap: (){
                 if (state.isEnabled) {
-                  bomabaAguaBloc.add(Disable());
+                  bomabaAguaBloc.add(DisableBomba());
                 } else {
-                  bomabaAguaBloc.add(Enable());
+                  bomabaAguaBloc.add(EnableBomba());
                 }
               },
               child: MyContainer(
@@ -195,7 +196,7 @@ class BombaAgua extends StatelessWidget {
                             )
                         ),
                         MyPositioned.fill(/// Icono
-                          top: 25,
+                          top: 30,
                           child: Align(
                             alignment: Alignment.center,
                             child: iconSvgD(
@@ -205,7 +206,7 @@ class BombaAgua extends StatelessWidget {
                         // Valvulas (Todas)
                         MyPositioned.fill(/// Titulo
                           top: 7,
-                          left:10, right:10,
+                          left:12, right:12,
                           child: Align(
                             alignment: Alignment.topLeft,
                             child: Text(title,
@@ -248,9 +249,9 @@ class BombaAgua extends StatelessWidget {
             return GestureDetector(
               onTap: (){
                 if (state.isEnabled) {
-                  bomabaAguaBloc.add(Disable());
+                  bomabaAguaBloc.add(DisableBomba());
                 } else {
-                  bomabaAguaBloc.add(Enable());
+                  bomabaAguaBloc.add(EnableBomba());
                 }
               },
               child: MyContainer(

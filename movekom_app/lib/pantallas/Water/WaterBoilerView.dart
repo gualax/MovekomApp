@@ -14,6 +14,7 @@ import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
+
 class WaterBoilerView extends StatefulWidget {
   @override
   _WaterBoilerViewState createState() => _WaterBoilerViewState();
@@ -34,11 +35,12 @@ class _WaterBoilerViewState extends State<WaterBoilerView> {
       margin: EdgeInsets.all(SC.all(5)),
       alignment: Alignment.center,
       width: 720,
-      height: 335,
+      height: 335,//335
       decoration: new BoxDecoration(
           color: MyColors.baseColor
       ),
-      child: Stack(
+      child: MyContainer(
+        child: Stack(
         children: <Widget>[
           MyPositioned.fill(
               top: 20,
@@ -58,7 +60,7 @@ class _WaterBoilerViewState extends State<WaterBoilerView> {
               )
           ),
           MyPositioned.fill(
-              left: 10,top: 30,
+              left: 10,top: 25,
               child: Align(
                 alignment: Alignment.topLeft,
                 child: circuloConSombra(15.0, Colors.lightGreenAccent),
@@ -90,14 +92,15 @@ class _WaterBoilerViewState extends State<WaterBoilerView> {
                   style: MyTextStyle.estilo(17, Colors.white),),
               )
           ),
-          MyPositioned.fill(
-            left: 300, bottom: 5,
-              child: Align(
-                alignment: Alignment.center,
-                child: Boiler(),
-              )
-          ),
+             MyPositioned.fill(
+                    left: 350, bottom: 5,//300 //5
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Boiler(),
+                      )
+                  ),
         ],
+      ),
       ),
     );
   }

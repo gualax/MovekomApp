@@ -9,14 +9,18 @@ abstract class BombaAguaEvent extends Equatable {
   BombaAguaEvent([List props = const []]) : super(props);
 }
 
-class Enable extends BombaAguaEvent {  /// Habilita la bateria
+class EnableBomba extends BombaAguaEvent {  /// Habilita la bateria
+  bool isEnabled = true;
+
   @override
-  String toString() => 'EnableBatery';
+  List<Object> get props => [isEnabled];
 }
 
-class Disable extends BombaAguaEvent { /// Deshabilita la bateria
+class DisableBomba extends BombaAguaEvent { /// Deshabilita la bateria
+  bool isEnabled = false;
+
   @override
-  String toString() => 'DisableBatery';
+  List<Object> get props => [isEnabled];
 }
 /// Fin declaracion de eventos
 
@@ -39,6 +43,13 @@ class BombaAguaState extends Equatable {
     );
   }
 
+  factory BombaAguaState.disabled() {
+    return BombaAguaState(
+      isEnabled: false,
+      valueAmp: 0.0,
+    );
+  }
+
   BombaAguaState copyWith({
     bool isEnabled,
     double valueAmp,
@@ -49,9 +60,7 @@ class BombaAguaState extends Equatable {
     );
   }
   @override
-  String toString() {
-    return 'StopwatchState { isEnabled: $isEnabled, isInitial: $valueAmp }';
-  }
+  List<Object> get props => [isEnabled,valueAmp];
 }
 /// FIN  declaracion de STATE
 
@@ -63,34 +72,54 @@ class BombaAguaBloc extends Bloc <BombaAguaEvent, BombaAguaState> {
 
   @override
   Stream<BombaAguaState> mapEventToState(BombaAguaEvent event) async* {
-    if (event is Enable) {
-      yield* _setInitValuesAndSendBT(event);
+    if (event is EnableBomba) {
+      yield* _setValuesAndSendBT(true);
     //  yield* _setInitValuesAndSendBT(event);
-
-    } else if (event is Disable) {
-      yield BombaAguaState (
-        valueAmp: 0.0,
-        isEnabled: false,
-      );
+    } else if (event is DisableBomba) {
+      yield* _setValuesAndSendBT(false);
     }
   }
 
 
-  Stream<BombaAguaState> _setInitValuesAndSendBT(BombaAguaEvent event) async* {
+  Stream<BombaAguaState> _setValuesAndSendBT(bool status) async* {
    print("_setInitValuesAndSendBT");
    List<int> elems = new List<int>();
-   elems.add(0x02);
-   elems.add(0x00);
-   elems.add(0x02);
-   elems.add(ID);
-   elems.add(0x00);
-   elems.add(0x33);
-   elems.add(0x33);
+   elems = generateData(status);
    try {
       BluetoothRepository.sendData(elems);
-      yield BombaAguaState.initial();
-    } catch(e) {
+      if (status)
+        yield BombaAguaState.initial();
+      else
+        yield BombaAguaState.disabled();
+   } catch(e) {
      print(e);
    }
   }
+
+
+   List<int> generateData(status) {
+     var value;
+     if (status){
+       value = 0x01;
+     }else {
+       value = 0x00;
+     }
+     List<int> elems = new List<int>();
+     elems.add(IdComponent.HEADER); // header
+     elems.add(0x00);  //
+     elems.add(0x00); // cantidad de bytes a continuacion con CRC incluido
+     elems.add(ID);
+     elems.add(value);
+     elems.add(IdComponent.CRC1); // header
+     elems.add(IdComponent.CRC2); // headere
+     print(elems.length);
+     elems[2] = 0x00 + (elems.length - 3);
+     return elems;
+   }
+
+
 }
+
+
+
+//0x03 0x50 0xff recibio bien

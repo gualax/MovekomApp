@@ -9,6 +9,8 @@ import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
+import 'package:movekomapp/blocs/agua_blocs/bomba_agua_bloc.dart';
+import 'package:movekomapp/blocs/electricidad_blocs/nevera_bloc.dart';
 import 'package:movekomapp/bluetooth/BluetoothClient.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
@@ -28,7 +30,10 @@ class _BluetoothControllerState extends State<BluetoothController> {
   BuildContext mContext;
   BluetoothState _bluetoothState = BluetoothState.UNKNOWN;
   BluetoothControllerBloc  _bluetoothControllerBloc;
-
+  bool isConnected = false;
+  BluetoothConnection bluetoothConnection;
+  BombaAguaBloc bombaAguaBloc;
+  BuildContext _context;
   @override
   void initState() {
     // TODO: implement initState
@@ -62,6 +67,7 @@ class _BluetoothControllerState extends State<BluetoothController> {
 
   @override
   Widget build(BuildContext context) {
+    _context = context;
     _bluetoothControllerBloc = BlocProvider.of<BluetoothControllerBloc>(context);
     _bluetoothControllerBloc.add(Start(_bluetoothState.isEnabled));
     return _bluetooth();
@@ -69,7 +75,6 @@ class _BluetoothControllerState extends State<BluetoothController> {
 
   Widget _bluetooth() {
     Color colorImg, colorText;
-    bool isConnected = false;
     return
       BlocBuilder<BluetoothControllerBloc,BluetoothControllerState> (
         builder: ( context, state) {
@@ -80,15 +85,19 @@ class _BluetoothControllerState extends State<BluetoothController> {
           colorImg = MyColors.inactive;
           colorText = MyColors.inactive;
         }
-       return GestureDetector(
+        bombaAguaBloc = BlocProvider.of<BombaAguaBloc>(context);
+
+        return GestureDetector(
          onTap: () {
            print("onPressed");
            print(_bluetoothState.isEnabled);
            if (_bluetoothState.isEnabled) {
+             bombaAguaBloc.add(DisableBomba());
              _bluetoothControllerBloc.add(Disable());
              FlutterBluetoothSerial.instance.requestDisable();
            }
            else {
+             bombaAguaBloc.add(DisableBomba());
              _bluetoothControllerBloc.add(Enable());
              FlutterBluetoothSerial.instance.requestEnable();
            }
@@ -161,27 +170,32 @@ class _BluetoothControllerState extends State<BluetoothController> {
                   alignment: Alignment.bottomRight,
                   child: GestureDetector(
                     onTap: () async {
-                      final BluetoothDevice selectedDevice =
-                      await Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return SelectBondedDevicePage(checkAvailability: false);
-                          },
-                        ),
-                      );
+                      if(state.isEnabled) {
+                        final BluetoothDevice selectedDevice =
+                        await Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return SelectBondedDevicePage(
+                                  checkAvailability: false);
+                            },
+                          ),
+                        );
 
-                      if (selectedDevice != null) {
-                        print('Connect -> selected ' + selectedDevice.address);
-                        //startChat(context, selectedDevice);
-                        _bluetoothControllerBloc.add(SetDevice(selectedDevice));
-                        BluetoothClient bluClient = new   BluetoothClient();
-                        setState(() {
-                          isConnected =   bluClient.initialize(selectedDevice);
-                        });
-                      } else {
-                        print('Connect -> no device selected');
+                        if (selectedDevice != null) {
+                          print(
+                              'Connect -> selected ' + selectedDevice.address);
+                          _bluetoothControllerBloc.add(
+                              SetDevice(selectedDevice));
+                          if (selectedDevice != null) {
+                            await stablishConnection(selectedDevice);
+                            setState(() {
+                              /* Update for `_collectingTask.inProgress` */
+                            });
+                          }
+                        } else {
+                          print('Connect -> no device selected');
+                        }
                       }
-
                     },
                     child: MyContainer(
                       height: 50,
@@ -190,8 +204,12 @@ class _BluetoothControllerState extends State<BluetoothController> {
                           color: Colors.white12
                       ),
                         child: Center(
-                            child: Text(isConnected ? "Connected" : "Connect",
-                                style: MyTextStyle.estiloBold(14, Colors.white))
+                            child: ((bluetoothConnection != null && bluetoothConnection.isConnected) ?
+                            Text("Connected",
+                                style: MyTextStyle.estiloBold(14, Colors.lightGreenAccent))
+                                :
+                            Text("Connect",
+                                style: MyTextStyle.estiloBold(14, colorText))),
                         ),
                     )
                   ),
@@ -206,6 +224,16 @@ class _BluetoothControllerState extends State<BluetoothController> {
   }
 
 
-
+Future<void> stablishConnection(BluetoothDevice selectedDevice) async {
+  BluetoothClient bluClient = new BluetoothClient(_context);
+//  isConnected = await bluClient.initialize(selectedDevice);
+ // setState(() {
+  //});
+  try {
+    bluetoothConnection = await  bluClient.connect(selectedDevice);
+  } catch (ex) {
+    print(ex);
+  }
+  }
 
 }

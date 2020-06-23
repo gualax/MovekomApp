@@ -85,8 +85,10 @@ class NeveraBloc extends Bloc <NeveraEvent, NeveraState> {
   @override
   Stream<NeveraState> mapEventToState(NeveraEvent event) async* {
     if (event is EnableNevera) {
+      print("EnableNevera");
       yield NeveraState.initial();
     } else if (event is DisableNevera) {
+      print("DisableNevera");
       yield NeveraState(
         valueExt: 0,
         valueAngle: 0.0,

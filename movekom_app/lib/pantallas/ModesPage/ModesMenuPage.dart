@@ -2,13 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
-import 'package:movekomapp/Utils/SizeConfig.dart';
-import 'package:movekomapp/controladores/modos/ModoAhorroEnergia.dart';
 import 'package:movekomapp/controladores/modos/ModoAntiHeladasAuto.dart';
-import 'package:movekomapp/controladores/modos/ModoAntiHeladasBasico.dart';
 import 'package:movekomapp/controladores/modos/ModoDescanso.dart';
-import 'package:movekomapp/controladores/modos/ModoEco.dart';
-import 'package:movekomapp/controladores/modos/ModoEmergencia.dart';
 import 'package:movekomapp/controladores/modos/ModoHighwayToHell.dart';
 import 'package:movekomapp/controladores/modos/ModoLimpiezaTuberias.dart';
 import 'package:movekomapp/controladores/modos/ModoPanelSolar.dart';

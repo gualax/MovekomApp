@@ -35,6 +35,7 @@ bool isFisrtRender = true;
             boilerBloc = BlocProvider.of<BoilerBloc>(context);
             print("valueCord boiler: " + state.valueCord.toString());
             return MyContainer(
+
             //  color: Colors.amber,
               height: 400,
               width: 400,
@@ -43,11 +44,11 @@ bool isFisrtRender = true;
                 child: Transform.rotate(
                   angle: 0.5 * math.pi,
                 child: CircleList(
-               //  outerCircleColor: Colors.cyanAccent,
+                 //outerCircleColor: Colors.cyanAccent,
                //   innerCircleColor: Colors.white70,
                   centerWidget: animatedBoiler,
                   rotateMode: RotateMode.stopRotate,
-                  outerRadius: SC.all(150),
+                  outerRadius: SC.all(160),//150
                   innerRadius: SC.all(115),
                   origin: Offset(0, 0),
                   children: _radialListItems(),

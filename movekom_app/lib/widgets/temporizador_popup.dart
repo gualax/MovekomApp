@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
+import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
@@ -18,9 +21,17 @@ class _TemporizadorPopupState extends State<TemporizadorPopup> {
 
   void datePicker(){
          DatePicker.showDatePicker(context,
+             theme: DatePickerTheme(
+               headerColor: Colors.lightGreen,
+               backgroundColor: MyColors.baseColor,
+               itemStyle: MyTextStyle.estiloBold(20, MyColors.text),
+               cancelStyle: MyTextStyle.estiloBold(20,Colors.black),
+               doneStyle: MyTextStyle.estiloBold(20,MyColors.text),
+             ),
              showTitleActions: true,
              minTime: DateTime(2018, 3, 5),
-             maxTime: DateTime(2019, 6, 7), onChanged: (date) {
+             maxTime: DateTime(2019, 6, 7),
+             onChanged: (date) {
                print('change $date');
              }, onConfirm: (date) {
                print('confirm $date');
@@ -50,8 +61,8 @@ class _TemporizadorPopupState extends State<TemporizadorPopup> {
 
   Widget _buttonSave(){
     return Container(
-        height: 50,
-        width: 100,
+        height: 70,
+        width: 120,
         child: MaterialButton(
          color: MyColors.baseColor ,
          onPressed: (){
@@ -67,9 +78,9 @@ class _TemporizadorPopupState extends State<TemporizadorPopup> {
 
   Widget _horaInicio(){
     return Container(
-      margin: EdgeInsets.all(10),
-      height: 70,
-      width: 150,
+      margin: EdgeInsets.all(SC.all(10)),
+      height: 140,
+      width: 180,
       decoration: new BoxDecoration(
           color: MyColors.baseColor,
       ),
@@ -80,58 +91,58 @@ class _TemporizadorPopupState extends State<TemporizadorPopup> {
               child: Align(
                 alignment: Alignment.topLeft,
                 child: Text("Hora inicio",
-                style: MyTextStyle.estiloBold(10, Colors.white),),
+                style: MyTextStyle.estiloBold(20, Colors.white),),
               )
           ),
-          Positioned.fill(
+          MyPositioned.fill(
             right: 40, top: 10,
               child: Align(
                 alignment: Alignment.center,
                 child: Container(
-                  height: 30, width: 30,
+                  height: 60, width: 60,
                   child: TextField(
                     readOnly: true,
                     onTap: (){
                       showTimeNative();
                     },
                     maxLength: 2,
-                    style: MyTextStyle.estiloBold(20, Colors.white),
+                    style: MyTextStyle.estiloBold(30, Colors.white),
                     decoration: InputDecoration(
                         //sborder: InputBorder,
                       counterText: '',
                       counterStyle: TextStyle(fontSize: 0),
                         hintText: '11',
-                        hintStyle: MyTextStyle.estiloBold(20, Colors.white),
+                        hintStyle: MyTextStyle.estiloBold(30, Colors.white),
                   ),
                   ),
                 ),
               ),
               ),
-          Positioned.fill(
+          MyPositioned.fill(
             left: 10,
             child: Align(
               alignment: Alignment.center,
               child: Container(
                 height: 30, width: 30,
-                child: Text(":",style: MyTextStyle.estiloBold(20, Colors.white),)
+                child: Text(":",style: MyTextStyle.estiloBold(30, Colors.white),)
               ),
             ),
           ),
-          Positioned.fill(
+          MyPositioned.fill(
             left: 25, top:10,
             child: Align(
               alignment: Alignment.center,
               child: Container(
-                height: 30, width: 30,
+                height: 60, width: 60,
                 child: TextField(
                   maxLength: 2,
-                  style: MyTextStyle.estiloBold(20, Colors.white),
+                  style: MyTextStyle.estiloBold(30, Colors.white),
                   decoration: InputDecoration(
                     //sborder: InputBorder,
                     counterText: '',
                     counterStyle: TextStyle(fontSize: 0),
-                    hintText: '11',
-                    hintStyle: MyTextStyle.estiloBold(20, Colors.white),
+                    hintText: '   11',
+                    hintStyle: MyTextStyle.estiloBold(30, Colors.white),
                   ),
                 ),
               ),
@@ -151,34 +162,34 @@ class _TemporizadorPopupState extends State<TemporizadorPopup> {
   }
 
   Widget _fechaFin(){
-    return Container(
-        margin: EdgeInsets.all(10),
-    height: 70,
-    width: 150,
+    return MyContainer(
+    margin: EdgeInsets.all(SC.all(10)),
+    height: 140,
+    width: 180,
     decoration: new BoxDecoration(
     color: MyColors.baseColor,
     ),
       child: Stack(
         children: <Widget>[
-          Positioned.fill(
+          MyPositioned.fill(
             top: 5, left: 5,
             child: Align(
               alignment: Alignment.topLeft,
               child: Text("Fecha fin",
-                  style: MyTextStyle.estiloBold(13, Colors.white),
+                  style: MyTextStyle.estiloBold(20, Colors.white),
                 ),
             ),
           ),
-          Positioned.fill(
+          MyPositioned.fill(
             top: 12, left: 10,
             child: Align(
               alignment: Alignment.centerLeft,
               child: Container(
-                height: 30, width: 95,
+                height: 55, width: 110,
                 child:TextField(
                   style: MyTextStyle.estiloBold(13, Colors.white),
                   onTap: (){
-                    showDateNative();
+                    datePicker();
                   },
                   readOnly: true,
                   focusNode: FocusNode(),
@@ -190,7 +201,7 @@ class _TemporizadorPopupState extends State<TemporizadorPopup> {
                     counterText: '',
                     counterStyle: TextStyle(fontSize: 0),
                     hintText: '11/12/1992',
-                    hintStyle: MyTextStyle.estiloBold(13, Colors.white),
+                    hintStyle: MyTextStyle.estiloBold(15, Colors.white),
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.greenAccent, width: 1.0),
                     ),
@@ -202,13 +213,13 @@ class _TemporizadorPopupState extends State<TemporizadorPopup> {
               ),
             ),
           ),
-          Positioned.fill(
-              top: 7,
+          MyPositioned.fill(
+            top: 7, right: 5,
             child: Align(
               alignment: Alignment.centerRight,
               child: IconButton(
                 icon: Icon(Icons.calendar_today),
-                iconSize: 30,
+                iconSize: 40,
                 color: Colors.lightGreenAccent,
                 onPressed: () {
                   datePicker();

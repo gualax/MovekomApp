@@ -1,11 +1,13 @@
 
 
 import 'package:circle_list/circle_list.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
+import 'package:movekomapp/Utils/mi_circle_slider.dart';
 import 'package:movekomapp/blocs/climatizacion/calefaccion_bloc.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
@@ -27,6 +29,7 @@ class _CalefaccionState extends State<Calefaccion> {
   final String title = "CALEFACCION";
   bool isFisrtRender = true;
   CalefaccionBloc calefaccionBloc;
+
   @override
   Widget build(BuildContext context) {
     SC().init(context);
@@ -98,7 +101,7 @@ class _CalefaccionState extends State<Calefaccion> {
                           alignment: Alignment.centerLeft,
                           child: iconSvgD(
                               "assets/icons/fire.svg", colorIcon, 130),
-                        )
+                        ),
                     ),
                     MyPositioned.fill(
                         left: 5,
@@ -133,8 +136,9 @@ class _CalefaccionState extends State<Calefaccion> {
                     ),
                     MyPositioned(
                       left: 275, //270
-                      top: 25,
+                      top: 15,
                        child: flechita_indicacion(SC.all(185),SC.all(160)), //200 //160
+                  //    child: MyCircleSlider(),
                     ),
                     MyPositioned(
                       bottom: 10, right: 10,
@@ -157,6 +161,7 @@ class _CalefaccionState extends State<Calefaccion> {
                       child: MyContainer(
                         width: 265,
                         height: 400,
+                       // color: Colors.green,
                         child: GestureDetector(
                           onTap: (){
                             if(state.isEnabled){
@@ -195,42 +200,38 @@ class _CalefaccionState extends State<Calefaccion> {
               colorIndic = MyColors.inactive;
             }
             return
-              Container(
-               // color: Colors.pink,
-             //   padding: EdgeInsets.only(left: 70),
-                child: MyContainer(
-                  child: Transform.rotate(
-                      angle: pi,//135
-                    child: CircleList(
-                      dragAngleRange: DragAngleRange(-0.02, 0.02),   //-0.02 , 0.02
-                      onDragUpdate: (PolarCoord updatedCord) {
-                        _lastAngle = updatedCord.getAngle();
-                        _radAngle = updatedCord.angle;
-                        if (_lastAngle > 50) {
-                          _lastAngle = 50;
-                        } else if (_lastAngle < -45) {
-                          _lastAngle = -45;
-                        }
-                        if (_radAngle > 1) {
-                          _radAngle = 1;
-                        } else if (_radAngle < -1) {
-                          _radAngle = -1;
-                        }
-                        calefaccionBloc.add(UpdateCalefaccion(_lastAngle,_radAngle));
-                      },
-                    //  outerCircleColor: Colors.blueGrey[200],
-                      rotateMode: rotateMode,
-                      initialAngle:_radAngle,
-                      outerRadius: outerRadius,
-                      innerRadius: innerRadius,
-                      origin: Offset(0, 0),
-                      children: [
-                        flechaIndicador(_radAngle,60.0),
-                      ],
+                 MyContainer(
+                    child: Transform.rotate(
+                        angle: pi,//135
+                      child: CircleList(
+                        dragAngleRange: DragAngleRange(-0.02, 0.02),   //-0.02 , 0.02
+                        onDragUpdate: (PolarCoord updatedCord) {
+                          _lastAngle = updatedCord.getAngle();
+                          _radAngle = updatedCord.angle;
+                          if (_lastAngle > 50) {
+                            _lastAngle = 50;
+                          } else if (_lastAngle < -45) {
+                            _lastAngle = -45;
+                          }
+                          if (_radAngle > 1) {
+                            _radAngle = 1;
+                          } else if (_radAngle < -1) {
+                            _radAngle = -1;
+                          }
+                          calefaccionBloc.add(UpdateCalefaccion(_lastAngle,_radAngle));
+                        },
+                      //  outerCircleColor: Colors.blueGrey[200],
+                        rotateMode: rotateMode,
+                        initialAngle:_radAngle,
+                        outerRadius: outerRadius,
+                        innerRadius: innerRadius,
+                        origin: Offset(0, 0),
+                        children: [
+                          flechaIndicador(_radAngle,65.0),
+                        ],
+                      ),
                     ),
-                  ),
-                ),
-              );
+               );
           }
       );
   }

@@ -39,8 +39,8 @@ class _ElectricityReleViewState extends State<ElectricityReleView> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           releRow(),
-          releRow(),
-          releRow(),
+          releRow2(),
+          releRow3(),
         ],
       ),
     );
@@ -52,16 +52,50 @@ Widget releRow(){
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           rele("LUZ 1"),
-          rele("LUZ 1"),
-          rele("LUZ 1"),
-          rele("LUZ 1"),
-          rele("LUZ 1"),
-          rele("LUZ 1"),
-          rele("LUZ 1"),
+          rele("LUZ 2"),
+          rele("LUZ 3"),
+          rele("LUZ 4"),
+          rele("LUZ 5"),
+          rele("LUZ 6"),
+          rele("AUXILIAR 1"),
         ],
       ),
     );
 }
+
+  Widget releRow2(){
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          rele("INVERSOR"),
+          rele("CARGADOR"),
+          rele("PLACA SOLAR"),
+          rele("BAT. MOTOR"),
+          rele("BAT. AUXILIAR"),
+          rele("CONSUMIBLES"),
+          rele("AUXILIAR 2"),
+        ],
+      ),
+    );
+  }
+
+  Widget releRow3(){
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          rele("CALEFACCION"),
+          rele("BOILER"),
+          rele("NEVERA"),
+          rele("BOMBA AGUA"),
+          rele("VALV. DRENAJE"),
+          rele("AUXILIAR 3"),
+          rele("AUXILIAR 4"),
+        ],
+      ),
+    );
+  }
 
 
 Widget rele(title){

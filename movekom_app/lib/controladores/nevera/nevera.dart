@@ -23,9 +23,27 @@ class Nevera extends StatefulWidget {
   _ExtractorState createState() => _ExtractorState();
 }
 
+
+
+
+
 class _ExtractorState extends State<Nevera> {
   String title = "NEVERA";
   NeveraBloc bloc;
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+
+  @override
+  void didUpdateWidget(Nevera oldWidget) {
+    super.didUpdateWidget(oldWidget);
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -208,54 +226,63 @@ class _ExtractorState extends State<Nevera> {
           on_off = "OFF";
           colorIcon = MyColors.inactive;
         }
-        return   MyContainer(
-        margin: EdgeInsets.all(SC.all(7)),
-        width: 137,
-        height: 137,
-        decoration: new BoxDecoration(
-        color: MyColors.baseColor
-        ), child: Stack(
-          children: <Widget>[
-            MyPositioned.fill(
-              top:5,
-                child: Align(
-                  alignment: Alignment.topCenter,
-                  child: Text("NEVERA",
-                    style:MyTextStyle.estiloBold(15, MyColors.text)),
-                )
-            ),
-            MyPositioned.fill(
+        return   GestureDetector(
+          onTap: (){
+            bloc.add(DisableNevera());
+            if(state.isEnabled){
+            }else {
+              bloc.add(EnableNevera());
+            }
+            },
+          child: MyContainer(
+          margin: EdgeInsets.all(SC.all(7)),
+          width: 137,
+          height: 137,
+          decoration: new BoxDecoration(
+          color: MyColors.baseColor
+          ), child: Stack(
+            children: <Widget>[
+              MyPositioned.fill(
                 top:5,
-                child: Align(
-                  alignment: Alignment.center,
-                  child: iconSvgD("assets/icons/nevera.svg", MyColors.principal, 70),
-                )
-            ),
-            MyPositioned.fill(
-                top:10, right: 10,
-                child: Align(
-                  alignment: Alignment.topRight,
-                  child: circuloConSombra(10, MyColors.principal),
-                )
-            ),
-            MyPositioned.fill(
-                top:10, right: 10,
-                child: Align(
-              alignment: Alignment.topRight,
-              child: circuloConSombra(10, MyColors.principal),
-            )
-            ),
-            MyPositioned.fill(
-                bottom:5, left: 5,
-                child: Align(
-                  alignment: Alignment.bottomLeft,
-                  child: Text(on_off,
-                      style:MyTextStyle.estiloBold(15, colorIcon)),
-                )
-            ),
-          ],
+                  child: Align(
+                    alignment: Alignment.topCenter,
+                    child: Text("NEVERA",
+                      style:MyTextStyle.estiloBold(15, MyColors.text)),
+                  )
+              ),
+              MyPositioned.fill(
+                  top:5,
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: iconSvgD("assets/icons/nevera.svg",colorIcon, 70),
+                  )
+              ),
+              MyPositioned.fill(
+                  top:10, right: 10,
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: circuloConSombra(10, MyColors.principal),
+                  )
+              ),
+              MyPositioned.fill(
+                  top:10, right: 10,
+                  child: Align(
+                alignment: Alignment.topRight,
+                child: circuloConSombra(10,colorIcon),
+              )
+              ),
+              MyPositioned.fill(
+                  bottom:5, left: 5,
+                  child: Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Text(on_off,
+                        style:MyTextStyle.estiloBold(15, colorIcon)),
+                  )
+              ),
+            ],
       )
-      );
+      ),
+        );
         }
       );
   }

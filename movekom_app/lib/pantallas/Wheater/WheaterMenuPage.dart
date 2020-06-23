@@ -46,11 +46,14 @@ class _ClimaPageState extends State<ClimaPage>  with SingleTickerProviderStateMi
                 Expanded(
                   flex: 7,
                   child:
-                    //  child: show(_currentIndex),
+                   show(_currentIndex),
+                 /*
                   TabBarView(
+                 //   physics: NeverScrollableScrollPhysics(), /// Ver si esto ayuda
                     children: _children,
                     controller: _tabController,
                   ),
+                  */
                 ),
                 Expanded(
                   child: Container(
@@ -69,8 +72,6 @@ class _ClimaPageState extends State<ClimaPage>  with SingleTickerProviderStateMi
     return _children[index];
   }
 
-
-
   Widget buttonTabTextMenu() {
     return DefaultTabController(
       length: 2,
@@ -79,10 +80,11 @@ class _ClimaPageState extends State<ClimaPage>  with SingleTickerProviderStateMi
         margin: EdgeInsets.only(right: SC.right(200), left: SC.left(200)),
         //color: Colors.yellowAccent,
         child: TabBar(
+          isScrollable: false,
           onTap: (index) {
             changePage(index);
           },
-          controller: _tabController,
+    //      controller: _tabController,
           indicatorColor: Colors.lightGreenAccent,
           unselectedLabelColor: Colors.white,
           labelColor: Colors.lightGreenAccent,
