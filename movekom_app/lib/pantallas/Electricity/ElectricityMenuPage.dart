@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movekomapp/HomePage.dart';
 import 'package:movekomapp/Utils/SC.dart';
-import 'package:movekomapp/main.dart';
 import 'package:movekomapp/pantallas/Electricity/ElectricityGraphicsView.dart';
 import 'package:movekomapp/pantallas/Electricity/ElectricitySettingsView.dart';
-import 'package:movekomapp/pantallas/Reles/ElectricityReleView.dart';
 import 'package:movekomapp/pantallas/Electricity/ElectricityGeneralView.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 

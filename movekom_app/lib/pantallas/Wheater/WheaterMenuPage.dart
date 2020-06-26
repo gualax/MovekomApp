@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movekomapp/Utils/SC.dart';
+import 'package:movekomapp/Utils/animation_slide_effect.dart';
+import 'package:movekomapp/Utils/dart_anim.dart';
 import 'package:movekomapp/pantallas/Wheater/WheaterGeneralView.dart';
 import 'package:movekomapp/pantallas/Wheater/WheaterHistoryView.dart';
 
@@ -12,7 +14,6 @@ class ClimaPage extends StatefulWidget {
 class _ClimaPageState extends State<ClimaPage>  with SingleTickerProviderStateMixin {
   int _currentIndex = 0;
   TabController _tabController;
-
 
   List<Widget> _children = [
     WheaterCalefactionView(),
@@ -45,8 +46,8 @@ class _ClimaPageState extends State<ClimaPage>  with SingleTickerProviderStateMi
               children: <Widget>[
                 Expanded(
                   flex: 7,
-                  child:
-                   show(_currentIndex),
+                  
+                  child: show(_currentIndex),
                  /*
                   TabBarView(
                  //   physics: NeverScrollableScrollPhysics(), /// Ver si esto ayuda
@@ -71,6 +72,11 @@ class _ClimaPageState extends State<ClimaPage>  with SingleTickerProviderStateMi
   Widget show(int index) {
     return _children[index];
   }
+  Widget showWithTransition(int index, context){
+    print("showWithTransition///");
+    return TransitionAnimationSlide(widgetToAnim: _children[index],index: index);
+  }
+
 
   Widget buttonTabTextMenu() {
     return DefaultTabController(

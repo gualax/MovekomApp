@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
@@ -19,8 +20,8 @@ final int widgetType;
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    title1 = "Guardar modo 2";
-    title2 = "Modo 2";
+    title1 = "GUARDAR MODO 2";
+    title2 = "MODO 2";
 
     if(widgetType  == 1){
       return save_modo_luz_2();
@@ -34,16 +35,16 @@ final int widgetType;
     return MyContainer(
       margin: EdgeInsets.all(SC.all(5)),
       width: 98,
-      height: 103,
+      height: 175,
       decoration: new BoxDecoration(
           color: MyColors.baseColor
       ),
       child: Stack(
         children: <Widget>[
           MyPositioned.fill(
-              bottom: 8,
+              top: 40,
               child: Align(
-                alignment: Alignment.bottomCenter,
+                alignment: Alignment.center,
                 child: iconSvgNc("assets/icons/save_green.svg",  45),
               )
           ),
@@ -53,7 +54,7 @@ final int widgetType;
                 alignment: Alignment.topCenter,
                 child: Text(title1,
                   textAlign: TextAlign.center,
-                  style: MyTextStyle.estiloBold(15, Colors.white), ),
+                  style: MyTextStyle.estilo(15, Colors.white), ),
               )
           ),
         ],
@@ -63,6 +64,8 @@ final int widgetType;
 
 
   Widget modo_luz_2(){
+    Color colorIcon;
+    colorIcon = MyColors.principal;
     return MyContainer(
       margin: EdgeInsets.all(SC.all(5)),
       width: 160,
@@ -73,15 +76,23 @@ final int widgetType;
       child: Stack(
         children: [
           MyPositioned.fill(
+            top: 20,
             child: Align(
               alignment: Alignment.center,
-              child: iconSvgD("assets/icons/letter_m.svg", Colors.grey, 70),
+              child: iconSvgD("assets/icons/letter_m.svg", colorIcon, 90),
             ),
           ),
           MyPositioned.fill(
             top: 10, left: 10,
             child: Text(title2,
-              style:MyTextStyle.estiloBold(20, MyColors.text))
+              style:MyTextStyle.estilo(18, MyColors.text))
+          ),
+          MyPositioned.fill(
+            right: 10, top: 10,
+            child: Align(
+              alignment: Alignment.topRight,
+              child: circuloConSombra(15, colorIcon),
+            ),
           ),
         ],
       ),

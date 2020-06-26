@@ -3,6 +3,7 @@ import 'package:movekomapp/Utils/SC.dart';
 
 class MyTextStyle {
 
+static final double TITLE_DIM = 18;
 
   static TextStyle estilo(double dim,color){
     return TextStyle(

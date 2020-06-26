@@ -236,8 +236,8 @@ class _ExtractorState extends State<Nevera> {
             },
           child: MyContainer(
           margin: EdgeInsets.all(SC.all(7)),
-          width: 137,
-          height: 137,
+          width: 134,
+          height: 134,
           decoration: new BoxDecoration(
           color: MyColors.baseColor
           ), child: Stack(

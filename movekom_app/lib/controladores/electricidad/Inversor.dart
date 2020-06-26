@@ -24,12 +24,12 @@ class Inversor extends StatelessWidget {
     if(widgetType == 1){
       return inversor_widget();
     }else{
-     return inversor_big();
+     return inversor_accesorios();
     }
 
   }
 
-Widget inversor_big(){
+Widget inversor_accesorios(){
   Color iconColor,colorTex, circleColor;
   String on_off_Text;
   return
@@ -76,7 +76,7 @@ Widget inversor_big(){
                 left: 90,
                   child: Align(
                     alignment: Alignment.center,
-                    child: Text(state.valueAmp.toString(),
+                    child: Text(state.valueAmp != 0 ? state.valueAmp.toString() : "--",
                       style: MyTextStyle.estiloBold(80, colorTex),),
                   )
               ),

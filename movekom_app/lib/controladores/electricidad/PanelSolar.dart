@@ -52,9 +52,9 @@ class PanelSolar extends StatelessWidget {
                   top: 10,
                   left: 10,
                   child: Align(
-                    alignment: Alignment.topLeft,
+                    alignment: Alignment.topCenter,
                     child: Text(title,
-                        style: MyTextStyle.estiloBold(20, MyColors.text)),
+                        style: MyTextStyle.estiloBold(MyTextStyle.TITLE_DIM, MyColors.text)),
                   ),
                 ),
                 MyPositioned.fill(
@@ -62,7 +62,7 @@ class PanelSolar extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.center,
                     child: Text(
-                        50.toString(),
+                        "4.4",
                         style: MyTextStyle.estiloBold(55, MyColors.text)),
                   ),
                 ),
@@ -71,7 +71,7 @@ class PanelSolar extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.center,
                     child: Text(
-                        "Ah", style: MyTextStyle.estiloBold(30, MyColors.text)),
+                        "A", style: MyTextStyle.estiloBold(30, MyColors.text)),
                   ),
                 ),
                 MyPositioned.fill(
@@ -138,7 +138,7 @@ class PanelSolar extends StatelessWidget {
                         left: 90,
                         child: Align(
                           alignment: Alignment.center,
-                          child: Text(state.valueAmp.toString(),
+                          child: Text(state.valueAmp != 0 ? state.valueAmp.toString() : "--",
                             style: MyTextStyle.estiloBold(80, colorTex),),
                         )
                     ),

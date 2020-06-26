@@ -57,16 +57,10 @@ Widget  iconSvg(assetName,color) {
 }
 
 Widget box137x64_carga(title,valueAh,state){
-  Color color;
-  if(state){
-    color = Colors.lightGreen;
-  }else{
-    color = Colors.grey;
-  }
   return MyContainer(
       margin: EdgeInsets.all(SC.all(4)),
-      width: 90,
-      height: 66,
+      width: 100,
+      height: 89,
       decoration: new BoxDecoration(
           color: MyColors.baseColor
       ), child: Stack(children: [
@@ -74,31 +68,18 @@ Widget box137x64_carga(title,valueAh,state){
       top: 4,
       child: Align(
         alignment: Alignment.topCenter,
-        child: RichText(
-            text: TextSpan(
-                children: [
-                  TextSpan(
-                      style:MyTextStyle.estiloBold(11, color),
-                      text: title
-                  ),
-                ]
-            )
+        child:Text(
+          title,
+            style:MyTextStyle.estiloBold(16, MyColors.text),
         ),
       ),
     ),
-    MyPositioned.fill( /// valueAh
+    MyPositioned.fill(
       top:10,
       child: Align(
         alignment: Alignment.center,
-        child: RichText(
-            text: TextSpan(
-                children: [
-                  TextSpan(
-                      style:MyTextStyle.estiloBold(20, color),
-                      text: valueAh
-                  ),
-                ]
-            )
+        child: Text(valueAh,
+            style:MyTextStyle.estiloBold(20, MyColors.principal),
         ),
       ),
     ),

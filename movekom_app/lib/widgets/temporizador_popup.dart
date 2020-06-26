@@ -3,6 +3,7 @@ import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
+import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
@@ -48,6 +49,7 @@ class _TemporizadorPopupState extends State<TemporizadorPopup> {
           scrollDirection: Axis.vertical,
           child: Column(
             mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               _fechasRow(),
@@ -60,7 +62,7 @@ class _TemporizadorPopupState extends State<TemporizadorPopup> {
   }
 
   Widget _buttonSave(){
-    return Container(
+    return MyContainer(
         height: 70,
         width: 120,
         child: MaterialButton(
@@ -77,16 +79,16 @@ class _TemporizadorPopupState extends State<TemporizadorPopup> {
 
 
   Widget _horaInicio(){
-    return Container(
+    return MyContainer(
       margin: EdgeInsets.all(SC.all(10)),
       height: 140,
-      width: 180,
+      width: 200,
       decoration: new BoxDecoration(
           color: MyColors.baseColor,
       ),
       child: Stack(
         children: <Widget>[
-          Positioned.fill(
+          MyPositioned.fill(
             top:5, left: 5,
               child: Align(
                 alignment: Alignment.topLeft,
@@ -98,7 +100,7 @@ class _TemporizadorPopupState extends State<TemporizadorPopup> {
             right: 40, top: 10,
               child: Align(
                 alignment: Alignment.center,
-                child: Container(
+                child: MyContainer(
                   height: 60, width: 60,
                   child: TextField(
                     readOnly: true,
@@ -122,7 +124,7 @@ class _TemporizadorPopupState extends State<TemporizadorPopup> {
             left: 10,
             child: Align(
               alignment: Alignment.center,
-              child: Container(
+              child: MyContainer(
                 height: 30, width: 30,
                 child: Text(":",style: MyTextStyle.estiloBold(30, Colors.white),)
               ),
@@ -132,7 +134,7 @@ class _TemporizadorPopupState extends State<TemporizadorPopup> {
             left: 25, top:10,
             child: Align(
               alignment: Alignment.center,
-              child: Container(
+              child: MyContainer(
                 height: 60, width: 60,
                 child: TextField(
                   maxLength: 2,
@@ -165,7 +167,7 @@ class _TemporizadorPopupState extends State<TemporizadorPopup> {
     return MyContainer(
     margin: EdgeInsets.all(SC.all(10)),
     height: 140,
-    width: 180,
+    width: 200,
     decoration: new BoxDecoration(
     color: MyColors.baseColor,
     ),
@@ -184,8 +186,8 @@ class _TemporizadorPopupState extends State<TemporizadorPopup> {
             top: 12, left: 10,
             child: Align(
               alignment: Alignment.centerLeft,
-              child: Container(
-                height: 55, width: 110,
+              child: MyContainer(
+                height: 55, width: 140,
                 child:TextField(
                   style: MyTextStyle.estiloBold(13, Colors.white),
                   onTap: (){
@@ -201,7 +203,7 @@ class _TemporizadorPopupState extends State<TemporizadorPopup> {
                     counterText: '',
                     counterStyle: TextStyle(fontSize: 0),
                     hintText: '11/12/1992',
-                    hintStyle: MyTextStyle.estiloBold(15, Colors.white),
+                    hintStyle: MyTextStyle.estiloBold(17, Colors.white),
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.greenAccent, width: 1.0),
                     ),
@@ -214,16 +216,10 @@ class _TemporizadorPopupState extends State<TemporizadorPopup> {
             ),
           ),
           MyPositioned.fill(
-            top: 7, right: 5,
+            top: 7, right: 10,
             child: Align(
               alignment: Alignment.centerRight,
-              child: IconButton(
-                icon: Icon(Icons.calendar_today),
-                iconSize: 40,
-                color: Colors.lightGreenAccent,
-                onPressed: () {
-                  datePicker();
-                },),
+              child: iconSvgD("assets/icons/calendar.svg", MyColors.principal, 40),
               ),
             ),
         ],
@@ -238,6 +234,8 @@ class _TemporizadorPopupState extends State<TemporizadorPopup> {
  Widget _fechasRow(){
    return Container(
      child: Row(
+       mainAxisAlignment: MainAxisAlignment.center,
+       crossAxisAlignment: CrossAxisAlignment.center,
        children: <Widget>[
          _fechaFin(),
          _fechaFin()
@@ -249,6 +247,8 @@ class _TemporizadorPopupState extends State<TemporizadorPopup> {
   Widget _horasRow(){
     return Container(
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           _horaInicio(),
           _horaInicio(),

@@ -81,12 +81,32 @@ class _ExtractorState extends State<Extractor> {
                       )
                   ),
                   MyPositioned.fill(
-                      left: 30,
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: Text(state.valueExt.toString(),
-                          style: MyTextStyle.estiloBold(70, colorText),),
-                      )
+                    left: 30,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: MyContainer(
+                     //   color: Colors.blue,
+                        height: 70,
+                        width: 180,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                           Align(
+                              alignment: Alignment.center,
+                              child: Text(state.valueExt.toString(),
+                                style: MyTextStyle.estiloBold(70, colorText),),
+                            ),
+                            Align(
+                              alignment: Alignment.bottomLeft,
+                              child: Text("ºC",
+                                style: MyTextStyle.estiloBold(40, colorText),),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+
                   ),
                   MyPositioned.fill(
                       left: 20,
@@ -199,8 +219,8 @@ class _ExtractorState extends State<Extractor> {
                       // _valueTemp = (_lastAngle / 6.5);
                       bloc.add(UpdateExtractor(_lastAngle,_radAngle));
                     },
-                  //  innerCircleColor: Colors.amber,
-                  //  outerCircleColor: Colors.cyan,
+                 //   innerCircleColor: Colors.amber,
+                   // outerCircleColor: Colors.cyan,
                     rotateMode: rotateMode,
                     initialAngle:_radAngle,
                     outerRadius: outerRadius,
@@ -225,7 +245,7 @@ class _ExtractorState extends State<Extractor> {
         //margin: EdgeInsets.all(dim),
         decoration: new BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/circulo_boiler_img.png"),
+            image: AssetImage("assets/images/extractor10.png"),
             fit: BoxFit.contain,
           ),
         )

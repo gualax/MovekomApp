@@ -44,9 +44,18 @@ class _LightsMenuPageState extends State<LightsMenuPage> {
             children: <Widget>[
               generalAndSaveColumn(),
                 columRowIlu(),
-                modesColumn(),
+                rowModes(),
                 ]),
               ),
+    );
+  }
+
+  Widget rowModes(){
+    return Row(
+      children: <Widget>[
+        modesColumn(),
+        columnModeSave(),
+      ],
     );
   }
 
@@ -67,7 +76,7 @@ class _LightsMenuPageState extends State<LightsMenuPage> {
       children: <Widget>[
         LuzGeneral(2),
         consumoActual(),
-        rowTimeSave(),
+        //rowTimeSave(),
       ],
     );
   }
@@ -76,13 +85,13 @@ class _LightsMenuPageState extends State<LightsMenuPage> {
   Widget consumoActual(){
     return MyContainer(
       margin: EdgeInsets.all(SC.all(5)),
-      height: 99,
-      width: 209,
+      height: 200,
+      width: 125,
       color: MyColors.baseColor,
       child: Stack(
         children: <Widget>[
           MyPositioned.fill(
-            top: 5,
+            top: 15,
               child: Align(
                 alignment: Alignment.topCenter,
                 child: Text("CONSUMO ACTUAL ILUMINACION",
@@ -95,12 +104,12 @@ class _LightsMenuPageState extends State<LightsMenuPage> {
               child: Align(
                 alignment: Alignment.center,
                 child: Text("12",
-                  style:MyTextStyle.estiloBold(26, MyColors.text),
+                  style:MyTextStyle.estiloBold(45, MyColors.text),
                   textAlign: TextAlign.center,),
               )
           ),
           MyPositioned.fill(
-            top:35,left: 45,
+            top:45,left: 70,
               child: Align(
                 alignment: Alignment.center,
                 child: Text("A",
@@ -127,9 +136,9 @@ class _LightsMenuPageState extends State<LightsMenuPage> {
   }
 
 
-  Widget rowTimeSave(){
+  Widget columnModeSave(){
     return Container(
-        child: Row(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             ModoLuz1(1),

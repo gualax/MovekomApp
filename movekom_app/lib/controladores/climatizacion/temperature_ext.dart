@@ -16,7 +16,7 @@ class TemperatureExt extends StatefulWidget {
 }
 
 class _TemperatureExtState extends State<TemperatureExt> {
-  String title = "TEMP. EXTERIOR";
+  String title = "EXTERIOR";
   @override
   Widget build(BuildContext context) {
 
@@ -41,8 +41,16 @@ class _TemperatureExtState extends State<TemperatureExt> {
             top:10,
             child:  Align(
               alignment: Alignment.center,
-              child: Text("25.5ºC",
+              child: Text("25.5",
                   style: MyTextStyle.estiloBold(22, Colors.white)),
+            ),
+          ),
+          MyPositioned.fill(
+            top:8,left: 70,
+            child:  Align(
+              alignment: Alignment.center,
+              child: Text("ºC",
+                  style: MyTextStyle.estiloBold(15, Colors.white)),
             ),
           ),
           MyPositioned.fill(
@@ -50,7 +58,7 @@ class _TemperatureExtState extends State<TemperatureExt> {
             child:  Align(
               alignment: Alignment.topLeft,
               child: Text(title,
-                  style: MyTextStyle.estilo(14, Colors.white)),
+                  style: MyTextStyle.estiloBold(14, Colors.white)),
             ),
           )
         ],

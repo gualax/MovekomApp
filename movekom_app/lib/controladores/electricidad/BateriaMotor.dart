@@ -77,58 +77,54 @@ class BateriaMotor extends StatelessWidget {
                           MyPositioned.fill(
                             top: 4, left: 10,
                             child: Align(
-                              alignment: Alignment.topLeft,
-                              child:Text(title, style: MyTextStyle.estiloBold(20, colorText),),
+                              alignment: Alignment.topCenter,
+                              child:Text(title, style: MyTextStyle.estiloBold(MyTextStyle.TITLE_DIM, colorText),),
                             ),
                           ),
                           MyPositioned.fill(
+                            left: 15,
+                            bottom: 70,
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text("MAX",
+                                style: MyTextStyle.estilo(16, colorText),
+                              ),
+                            ),
+                          ),
+                          MyPositioned.fill(
+
                             /// valueVolt
                             left: 7,
                             bottom: 30,
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                  state.valueVolt.toString() + "V",
-                                  style: MyTextStyle.estiloBold(16, colorText),
-                                  textAlign: TextAlign.center
+                                state.valueVolt.toString() + "V",
+                                style: MyTextStyle.estilo(16, colorText),
                               ),
                             ),
                           ),
-                          MyPositioned.fill(/// valueAmp
-                              top: 30,
-                              left: 7,
+                          MyPositioned.fill(
+                              top: 50,
+                              left: 15,
                               child: Align(
                                 alignment: Alignment.centerLeft,
-                                child: Text(
-                                    state.valueAmp.toString() + "A",
-                                    style: MyTextStyle.estiloBold(16, colorText),
-                                    textAlign: TextAlign.center
-                                ),
-                              )
-                          ),
-                     /*
-                          MyPositioned.fill(/// valueAmp
-                              bottom: 20,
-                              left: 30,
-                              child: Align(
-                                alignment: Alignment.bottomCenter,
-                                child: Text(
-                                    on_off_Text,
-                                    style: MyTextStyle.estiloBold(12, colorText),
-                                    textAlign: TextAlign.center
+                                child: Text("MIN",
+                                  style: MyTextStyle.estilo(16, colorText),
                                 ),
                               )
                           ),
                           MyPositioned.fill(
-                              right: 170,
-                              bottom: 5,
+                              top: 90,
+                              left: 7,
                               child: Align(
-                                alignment: Alignment.bottomCenter,
-                                child:  iconSvgD("assets/icons/on_off.svg",iconColor , 15),
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  state.valueAmp.toString() + "V",
+                                  style: MyTextStyle.estilo(16, colorText),
+                                ),
                               )
-                          )
-
-                      */
+                          ),
                         ])
                 ),
               );
@@ -160,8 +156,8 @@ class BateriaMotor extends StatelessWidget {
                 },
                 child: MyContainer(
                     margin: EdgeInsets.all(SC.all(7)),
-                    width: 137, //137
-                    height:137,
+                    width: 212, //137
+                    height:282,
                     decoration: new BoxDecoration(
                         color: MyColors.baseColor
                     ),
@@ -171,22 +167,17 @@ class BateriaMotor extends StatelessWidget {
                             top: 10,
                             child: Align(
                               alignment: Alignment.center,
-                              child: circleIndicatorBatery_small(state.valueBat, color, SizeConf.all(45),SizeConf.all(85)),
+                              child: circleIndicatorBatery_small(state.valueBat, color, SC.all(80),SC.all(150), state.valueVolt.toStringAsFixed(1)),
                             ),
                           ),
                           MyPositioned.fill(/// titulo
                             top:4, left:5,
                             child: Align(
-                              alignment: Alignment.topLeft,
-                              child: RichText(
-                                  text: TextSpan(
-                                      children: [
-                                        TextSpan(
-                                            style: MyTextStyle.estiloBold(15, colorText),
-                                            text: title),
-                                      ]
-                                  )
-                              ),
+                              alignment: Alignment.topCenter,
+                              child: Text(
+                                  title,
+                                  style: MyTextStyle.estiloBold(MyTextStyle.TITLE_DIM, colorText),
+                            ),
                             ),
                           ),
                         ])
@@ -195,6 +186,8 @@ class BateriaMotor extends StatelessWidget {
             }
         );
     }
+
+
 
 
 
@@ -212,13 +205,13 @@ class BateriaMotor extends StatelessWidget {
     }
 
 
-    Widget circleIndicatorBatery_small(value,color,radius,innerRadius){
+    Widget circleIndicatorBatery_small(value,color,radius,innerRadius,valueVolt){
       return Container (
         child: Stack(
           alignment: Alignment.center,
           children: <Widget>[
             circulito(radius,color),
-            circleIndicatorBateria(value, color,innerRadius,"14.2")
+            circleIndicatorBateriaAux(value, color,innerRadius,valueVolt)
           ],
         ),
       );

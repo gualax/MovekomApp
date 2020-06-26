@@ -11,7 +11,7 @@ import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/amperimetro.dart';
 
 class Cargador220 extends StatelessWidget {
-  final String title = "Cargador 220 ";
+  final String title = "CARGADOR";
   @override
   Widget build(BuildContext context) {
     final cargador220Bloc = BlocProvider.of<Cargador220Bloc>(context);
@@ -44,9 +44,9 @@ class Cargador220 extends StatelessWidget {
                   top: 10,
                   left: 10,
                   child: Align(
-                    alignment: Alignment.topLeft,
+                    alignment: Alignment.topCenter,
                     child: Text(title,
-                        style: MyTextStyle.estiloBold(20, MyColors.text)),
+                        style: MyTextStyle.estiloBold(MyTextStyle.TITLE_DIM, MyColors.text)),
                   ),
                 ),
                 MyPositioned.fill(

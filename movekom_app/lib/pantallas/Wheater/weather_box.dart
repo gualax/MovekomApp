@@ -115,7 +115,7 @@ Widget wheaterBoxLoaded(weather){
             child: Align(
               alignment: Alignment.bottomLeft,
               child: Text(
-                "Min: " + weather.minTemp.toStringAsFixed(1), style: MyTextStyle.estilo(13, Colors.white),),
+                "MIN: " + weather.minTemp.toStringAsFixed(1), style: MyTextStyle.estilo(15, Colors.white),),
             ),
           ),
           MyPositioned.fill(/// location
@@ -132,7 +132,7 @@ Widget wheaterBoxLoaded(weather){
             child: Align(
               alignment: Alignment.bottomRight,
               child: Text(
-                "Max: " + weather.maxTemp.toStringAsFixed(1), style: MyTextStyle.estilo(13, Colors.white),),
+                "MAX: " + weather.maxTemp.toStringAsFixed(1), style: MyTextStyle.estilo(15, Colors.white),),
             ),
           ),
         ],

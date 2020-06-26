@@ -13,7 +13,7 @@ import 'package:movekomapp/widgets/slider_theme.dart';
 
 
 class LucesExterior extends StatelessWidget {
-  final String title = "Luz parque ";
+  final String title = "LUZ EXTERIOR";
   LucesParqueBloc lucesCocinaBloc;
   final int widgetType;
   LucesExterior(this.widgetType);
@@ -81,7 +81,7 @@ class LucesExterior extends StatelessWidget {
                   top:5 ,left: 5,
                   child: Align(
                     alignment: Alignment.topLeft,
-                    child: Text(title,style: MyTextStyle.estiloBold(19, MyColors.text),),
+                    child: Text(title,style: MyTextStyle.estilo(18, MyColors.text),),
                   ),
                 ),
               ],

@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/controladores/modos/ModoAntiHeladasAuto.dart';
+import 'package:movekomapp/controladores/modos/ModoCicloBaterias.dart';
 import 'package:movekomapp/controladores/modos/ModoDescanso.dart';
-import 'package:movekomapp/controladores/modos/ModoHighwayToHell.dart';
+import 'package:movekomapp/controladores/modos/ModoLimpiezaCalef.dart';
 import 'package:movekomapp/controladores/modos/ModoLimpiezaTuberias.dart';
 import 'package:movekomapp/controladores/modos/ModoPanelSolar.dart';
-import 'package:movekomapp/controladores/modos/ModoParking.dart';
+import 'package:movekomapp/controladores/modos/ModoLargaDist.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 
 class ModesMenuPage extends StatefulWidget {
@@ -66,10 +67,7 @@ class _ModesMenuPageState extends State<ModesMenuPage> {
           ModoPanelSolar(),
           ModoAntiHeladasAuto(),
           ModoDescanso(),
-     //     ModoEco(),
-      //    ModoEmergencia(),
-      //    box(),
-      //    box(),
+          ModoCicloBaterias(),
         ],
       ),
     );
@@ -83,10 +81,10 @@ class _ModesMenuPageState extends State<ModesMenuPage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           ModoLimpiezaTuberias(),
-          ModoHighwayToHell(),
-          ModoParking(),
+          ModoLimpiezaCalefaccion(),
+          ModoLargaDist(),
       //    ModoAntiHeladasBasico(),
-        //  box(),
+          box(),
         ],
       ),
     );
@@ -98,9 +96,7 @@ class _ModesMenuPageState extends State<ModesMenuPage> {
       margin: EdgeInsets.only(top:SC.top(10),left:SC.left(15),right: SC.right(15)),
       width: 210,
       height: 250,
-      decoration: new BoxDecoration(
-          color: MyColors.baseColor
-      ),
+
     );
   }
 

@@ -3,41 +3,41 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 
-abstract class ModoParkingEvent extends Equatable {
-  ModoParkingEvent([List props = const []]) : super(props);
+abstract class ModoLargaDistEvent extends Equatable {
+  ModoLargaDistEvent([List props = const []]) : super(props);
 }
 
-class Enable extends ModoParkingEvent {  /// Habilita la bateria
+class Enable extends ModoLargaDistEvent {  /// Habilita la bateria
   @override
   String toString() => 'EnableBatery';
 }
 
-class Disable extends ModoParkingEvent { /// Deshabilita la bateria
+class Disable extends ModoLargaDistEvent { /// Deshabilita la bateria
   @override
   String toString() => 'DisableBatery';
 }
 /// Fin declaracion de eventos
 
 
-class ModoParkingState extends Equatable {
+class ModoLargaDistState extends Equatable {
   final bool isEnabled;
 
-  ModoParkingState({
+  ModoLargaDistState({
     @required this.isEnabled,
   }) : super([isEnabled]);
 
   /// Valores iniciales
-  factory ModoParkingState.initial() {
-    return ModoParkingState(
+  factory ModoLargaDistState.initial() {
+    return ModoLargaDistState(
       isEnabled: false,
     );
   }
 
-  ModoParkingState copyWith({
+  ModoLargaDistState copyWith({
     bool isEnabled,
     int valueAmp,
   }) {
-    return ModoParkingState(
+    return ModoLargaDistState(
       isEnabled: isEnabled ?? this.isEnabled,
     );
   }
@@ -48,20 +48,20 @@ class ModoParkingState extends Equatable {
 }
 /// FIN  declaracion de STATE
 
-class ModoParkingBloc extends Bloc <ModoParkingEvent, ModoParkingState> {
+class ModoLargaDistBloc extends Bloc <ModoLargaDistEvent, ModoLargaDistState> {
 
   @override
   // TODO: implement initialState
-  ModoParkingState get initialState => ModoParkingState.initial();
+  ModoLargaDistState get initialState => ModoLargaDistState.initial();
 
   @override
-  Stream<ModoParkingState> mapEventToState(ModoParkingEvent event) async* {
+  Stream<ModoLargaDistState> mapEventToState(ModoLargaDistEvent event) async* {
     if (event is Enable) {
-      yield ModoParkingState(
+      yield ModoLargaDistState(
         isEnabled: true,
       );
     } else if (event is Disable) {
-      yield ModoParkingState.initial();
+      yield ModoLargaDistState.initial();
     }
   }
 }

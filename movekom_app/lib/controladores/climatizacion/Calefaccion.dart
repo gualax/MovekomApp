@@ -62,7 +62,7 @@ class _CalefaccionState extends State<Calefaccion> {
             }
             return  MyContainer(
                 margin: EdgeInsets.only(top: SC.top(6),bottom: SC.bot(6),left: SC.left(10),right: SC.right(10)),
-                width: 380,
+                width: 500,
                 height: 410,
                 decoration: new BoxDecoration(
                     color: MyColors.baseColor
@@ -88,7 +88,6 @@ class _CalefaccionState extends State<Calefaccion> {
                         )
                     ),
                     MyPositioned.fill(
-                        left: 20,
                         child: Align(
                           alignment: Alignment.center,
                           child: Text(state.valueTemp.toString(),
@@ -128,16 +127,16 @@ class _CalefaccionState extends State<Calefaccion> {
                       ),
                     ),
                     MyPositioned(
-                      left: 260, bottom: 20, //270 //13
+                      left: 365, bottom: 20, //270 //13
                       child: Align(
                         alignment: Alignment.center,
-                         child: calefa_indic_img(360.0),
+                         child: calefa_img(360.0),
                       ),
                     ),
                     MyPositioned(
-                      left: 275, //270
-                      top: 15,
-                       child: flechita_indicacion(SC.all(185),SC.all(160)), //200 //160
+                      left: 360, //270
+                      top: 25,
+                       child: flechita_indicacion(SC.all(180),SC.all(135)), //200 //160
                   //    child: MyCircleSlider(),
                     ),
                     MyPositioned(
@@ -161,7 +160,7 @@ class _CalefaccionState extends State<Calefaccion> {
                       child: MyContainer(
                         width: 265,
                         height: 400,
-                       // color: Colors.green,
+                    //    color: Colors.green,
                         child: GestureDetector(
                           onTap: (){
                             if(state.isEnabled){
@@ -221,13 +220,14 @@ class _CalefaccionState extends State<Calefaccion> {
                           calefaccionBloc.add(UpdateCalefaccion(_lastAngle,_radAngle));
                         },
                       //  outerCircleColor: Colors.blueGrey[200],
+                       // innerCircleColor: Colors.blue,
                         rotateMode: rotateMode,
                         initialAngle:_radAngle,
                         outerRadius: outerRadius,
                         innerRadius: innerRadius,
-                        origin: Offset(0, 0),
+                        origin: Offset(0,0),
                         children: [
-                          flechaIndicador(_radAngle,65.0),
+                          flechaIndicador(_radAngle,70.0),
                         ],
                       ),
                     ),
@@ -250,14 +250,14 @@ class _CalefaccionState extends State<Calefaccion> {
     }
   }
 
-  Widget calefa_indic_img(dim){
+  Widget calefa_img(dim){
     return MyContainer(
             height: dim,
             width: dim,
             //margin: EdgeInsets.all(dim),
             decoration: new BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/images/circulo_boiler_img.png"),
+                image: AssetImage("assets/images/calefaccion10.png"),
                 fit: BoxFit.contain,
               ),
             )

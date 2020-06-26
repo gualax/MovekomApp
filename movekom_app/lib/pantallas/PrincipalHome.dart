@@ -90,119 +90,23 @@ Widget horizontalList(){
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          leftSection(),
-          midleLeftSection(),
-          midleRigthSection(),
-          rightSection(),
+          BateriaMotor(1),
+          Totalizador(),
+          BateriaMotorAux1(1),
+          columns(),
+          AguasLimpias(1),
+          AguasSucias(1),
         ],
       ),
     );
   }
 
-  Widget midleLeftSection(){
-  return
-  MyContainer (
-    child:
-    Column(  /// Elementos uno arriba del otro
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        TemperatureInt(1),
-        TemperatureExt(1),
-        FechaWidget(),
-      ],
-    ),
-  );
-  }
-
-  Widget midleRigthSection(){
-    return
-      MyContainer (
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            BombaAgua(1),
-            Nevera(1),
-          ],
-        ),
-        );
-  }
-
-  Widget rightSection(){
-      return
-        MyContainer (
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              AguasLimpias(1),
-              AguasSucias(1),
-            ],
-          ),
-        );
-    }
 
 
-
-  Widget leftSection(){
-    return
-    MyContainer (
-      child:
-    Row(  /// Elementos uno arriba del otro
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        columaBateriaMotorYTotalizador(),
-        column2(),
-      ],
-    ),
-    );
-  }
-
-  Widget columaBateriaMotorYTotalizador(){
+  Widget columns(){
     return
       MyContainer(
         child: Column (
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            BateriaMotor(1),
-            Totalizador(),
-          ],
-        ),
-      );
-  }
-
-  Widget column2(){
-    return
-      MyContainer(
-        margin: EdgeInsets.all(SC.all(5)),
-        child: Column (
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            BateriaMotorAux1(1),
-            principalLeftRow2(),
-          ],
-        ),
-      );
-  }
-
-  Widget bateriaAuxiliar(){
-    return
-      MyContainer(
-        margin: EdgeInsets.only(bottom: SC.bot(15)),
-         width: 288, height:200, //200 //288
-         decoration: new BoxDecoration(
-            color: MyColors.baseColor,
-        ),
-    );
-  }
-
-
-
-
-
-  Widget principalLeftRow2(){
-    return
-      MyContainer(
-        child: Row (
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
@@ -214,27 +118,6 @@ Widget horizontalList(){
       );
   }
 
-  Widget verticalHalfBoxesIlumination(){
-    return MyContainer(
-      child: Row (
-        children: <Widget>[
-          LucesExterior(1),
-          LuzGeneral(1),
-        ],
-      ),
-    );
-  }
-
-  Widget verticalHalfBoxesLed(){
-    return MyContainer(
-      child: Row (
-        children: <Widget>[
-          Upligth(1),
-          Downligth(1),
-        ],
-      ),
-    );
-  }
 
   Widget add_device(){
     return  GestureDetector(

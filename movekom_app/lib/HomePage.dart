@@ -1,9 +1,9 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:movekomapp/Utils/SizeConfig.dart';
-import 'package:movekomapp/bluetooth/test_bt.dart';
+import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/pantallas/Alarm/AlarmMenuPage.dart';
 import 'package:movekomapp/pantallas/Configuration/ConfigMenuPage.dart';
 import 'package:movekomapp/pantallas/ManualesPage/ManualesMenuPage.dart';
@@ -15,9 +15,11 @@ import 'package:movekomapp/pantallas/ilumination/LigthsMenuPage.dart';
 import 'package:movekomapp/pantallas/Water/WaterMenuPage.dart';
 import 'package:movekomapp/pantallas/Wheater/WheaterMenuPage.dart';
 import 'package:movekomapp/pantallas/Electricity/ElectricityMenuPage.dart';
+import 'package:movekomapp/responsive_ui/mi_positioned.dart';
+import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
+import 'package:movekomapp/widgets/date.dart';
 import 'Utils/SC.dart';
-import 'Utils/SizeConf.dart';
 import 'Utils/dart_anim.dart';
 import 'blocs/tab_bloc.dart';
 import 'pantallas/PrincipalHome.dart';
@@ -36,6 +38,7 @@ class _HomePageState extends State<HomePage>{
   int _currentIndex;
   String barTitle = "HOME";
   String barSubTitle = " PANTALLA GENERAL";
+  int _lastIndex;
 
   List<Widget> pageList= [
     PrincipalHome(),
@@ -61,13 +64,9 @@ class _HomePageState extends State<HomePage>{
     setBarTitle(titles[_currentIndex], subtitles[_currentIndex]);
   }
 
-
   @override
   Widget build(BuildContext context) {
    tabBloc = BlocProvider.of<TabBloc>(context);
-
-    SizeConfig().init(context);
-    SizeConf().init(context);
     SC().init(context);
     return
       BlocBuilder<TabBloc,TabState>(
@@ -76,10 +75,12 @@ class _HomePageState extends State<HomePage>{
             return Scaffold(
                 resizeToAvoidBottomPadding: false,
                 appBar: PreferredSize(
-                  preferredSize: Size.fromHeight(SC.hei(55)),
-                  // here the desired height
+                  preferredSize: Size.fromHeight(SC.hei(70)),
                   child: CustomBar(),
                 ),
+                bottomSheet: Container(
+                    color: MyColors.baseColor,
+                    height: SC.hei(3)),
                 bottomNavigationBar: new BottomNavigationBar(
                     showSelectedLabels: false,
                     showUnselectedLabels: false,
@@ -173,17 +174,22 @@ class _HomePageState extends State<HomePage>{
 
   Widget showWithTransition(int index, context){
     print("showWithTransition///");
-    return TransitionAnimation(widgetToAnim: pageList[index]);
+      return TransitionAnimation(widgetToAnim: pageList[index]);
   }
 
   void onTabTapped(int index) {
     print("HomePage -> onTabTapped");
-    setState(() {
-      tabBloc.add(UpdateTab(index));
-      _currentIndex = index;
-      setBarTitle(titles[_currentIndex], subtitles[_currentIndex]);
-      print("index is : " + index.toString());
-    });
+    print("index :" + index.toString());
+    print("_currentIndex :" + _currentIndex.toString());
+    _lastIndex = _currentIndex;
+    if(index != _currentIndex) {
+      setState(() {
+        tabBloc.add(UpdateTab(index));
+        _currentIndex = index;
+        setBarTitle(titles[_currentIndex], subtitles[_currentIndex]);
+        print("index is : " + index.toString());
+      });
+    }
   }
 
   Widget iconSvg(assetName,isEnabled){
@@ -222,6 +228,23 @@ class _HomePageState extends State<HomePage>{
             )] ,
         ),
         child: iconSvgActive(iconRoute, Colors.lightGreenAccent),
+    );
+  }
+
+
+  /// ver para emular el gradient cuadrado
+  Widget activeConSombra(iconRoute){
+    return Container(
+      decoration: BoxDecoration(
+        boxShadow: [BoxShadow(
+          color:Colors.lightGreenAccent,
+          offset: Offset(0,0),
+          blurRadius: 35,
+          //  spreadRadius: 10
+        )] ,
+      ),
+      child: iconSvgD("assets/icons/sombra_rect.svg", Colors.lightGreenAccent,42),
+
     );
   }
 
@@ -271,33 +294,57 @@ class _HomePageState extends State<HomePage>{
 Widget CustomBar(){
   return AppBar(
     backgroundColor: Colors.black,
-    bottom: PreferredSize(child:
-    Container(
-      color: Colors.lightGreen,
+    bottom: PreferredSize(
+     child: Container(
+      color: MyColors.principal,
       height: SC.hei(3)),
         preferredSize: Size.fromHeight(SC.hei(20))),
-    title: Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          BarTitle(barTitle,barSubTitle),
-          Image.asset(
-            'assets/images/drawable-mdpi/fondo_negro_e_verde.png',
-            fit: BoxFit.contain,
-            height:SC.hei(50),
-          ),
-        ],
+    title: PreferredSize(
+      child: Container(
+        //color: Colors.blue,
+        child: Stack(
+          children: <Widget>[
+            MyPositioned.fill(
+              bottom: 30,
+              child: Align(
+                alignment: Alignment.center,
+                child: DateWidet(),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top:SC.top(10)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  BarTitle(barTitle,barSubTitle),
+                  Image.asset(
+                    'assets/images/drawable-mdpi/fondo_negro_e_verde.png',
+                    fit: BoxFit.contain,
+                    height:SC.hei(60),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
-    ),
+       // preferredSize: Size.fromHeight(SC.hei(200)),
+  )
   );
 }
+
+
+/*
+          Text(dateTime.hour.toString() + ":" + dateTime.minute.toString(),
+          style: MyTextStyle.estiloBold(20, MyColors.text),),
+ */
 
  Widget BarTitle(title, subtitle){
      return
        Container(
-         margin: EdgeInsets.only(left: SizeConfig.h * 2,top:SizeConfig.v * 3),
+         margin: EdgeInsets.only(left:SC.left(5),top:SC.top(5)),
          alignment: Alignment.topLeft,
-         height: SC.hei(65),
+         height: SC.hei(60),
          child: RichText(
              text: new TextSpan(
                  children: [
@@ -307,7 +354,7 @@ Widget CustomBar(){
                    ),
                    new TextSpan(
                        text:subtitle,
-                       style: MyTextStyle.estiloBold(25, Colors.grey),
+                       style: MyTextStyle.estiloBold(23, Colors.grey),
                    ),
                  ]
              )

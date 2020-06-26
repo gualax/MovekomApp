@@ -8,7 +8,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_full_pdf_viewer/full_pdf_viewer_scaffold.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
+import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
+import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:path_provider/path_provider.dart';
 
 
@@ -63,24 +65,38 @@ class _ManualesMenuPageState extends State<ManualesMenuPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-       margin: EdgeInsets.all(SC.all(20)),
+       margin: EdgeInsets.all(SC.all(40)),
         alignment: Alignment.center,
-        child: box(),
+        child: pdfBox(),
       ),
     );
   }
 
-  Widget box(){
+
+  Widget pdfBox(){
        return Container(
          padding: EdgeInsets.all(SC.all(20)),
           decoration: new BoxDecoration(
               color: MyColors.baseColor,
           ),
-         child: GridView.count(
-             crossAxisCount: 7,
-             children: List.generate(15, (index) {
-           return item();
-         }),
+         child: Column(
+           children: <Widget>[
+             MyContainer(
+               margin: EdgeInsets.only(bottom: SC.bot(15)),
+               child: Align(
+                 alignment: Alignment.centerLeft,
+                 child: Text("SELECCIONA EL DOCUMENTO QUE DESEAS LEER",
+                   style:MyTextStyle.estilo(20, MyColors.text) ,),
+               ),
+             ),
+             GridView.count(
+               shrinkWrap: true,
+               crossAxisCount: 7,
+               children: List.generate(10, (index) {
+                 return item();
+               }),
+             ),
+           ],
          ),
      );
   }
@@ -88,7 +104,7 @@ class _ManualesMenuPageState extends State<ManualesMenuPage> {
   Widget item(){
     return GestureDetector(
       onTap: (){
-        return Navigator.push(context,  MaterialPageRoute(builder: (context) => PDFScreen(pathPDF)));
+        return Navigator.push(context,  MaterialPageRoute(builder: (context) => PDFScreen(pathPDF,"movekom_manual")));
       },
       child:iconSvgD(
         "assets/icons/pdf_view.svg",
@@ -101,13 +117,15 @@ class _ManualesMenuPageState extends State<ManualesMenuPage> {
 
 class PDFScreen extends StatelessWidget {
   String pathPDF = "";
-  PDFScreen(this.pathPDF);
+  String name = "";
+
+  PDFScreen(this.pathPDF,this.name);
 
   @override
   Widget build(BuildContext context) {
     return PDFViewerScaffold(
         appBar: AppBar(
-          title: Text("Document"),
+          title: Text(name),
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.share),

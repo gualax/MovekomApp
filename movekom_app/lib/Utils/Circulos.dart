@@ -70,7 +70,7 @@ Widget circleIndicatorBateria(value, color,dim,valueVolt){
           child: Align(
             alignment: Alignment.center,
             child: Text(valueVolt ,
-                style: MyTextStyle.estiloBold(22, Colors.white,)),
+                style: MyTextStyle.estiloBold(40, Colors.white,)),
           ),),
         MyPositioned.fill(
           top: 30,

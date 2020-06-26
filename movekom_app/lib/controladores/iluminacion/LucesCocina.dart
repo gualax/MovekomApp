@@ -13,7 +13,7 @@ import 'package:movekomapp/widgets/slider_theme.dart';
 
 
 class LucesCocina extends StatelessWidget {
-  final String title = "Luz cocina ";
+  final String title = "LUZ COCINA";
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -73,7 +73,7 @@ class LucesCocina extends StatelessWidget {
                   top:5 ,left: 5,
                   child: Align(
                     alignment: Alignment.topLeft,
-                    child: Text(title,style: MyTextStyle.estiloBold(19, MyColors.text),),
+                    child: Text(title,style: MyTextStyle.estilo(18, MyColors.text),),
                   ),
                 ),
               ],

@@ -33,8 +33,6 @@ class BateriaMotorAux1 extends StatelessWidget {
   Widget box200x215_bateria(bateriaAux1Bloc) {
     Color color;
     Color colorText;
-    Color iconColor;
-    String on_off_Text;
     return
       BlocBuilder<BateriaAux1Bloc,BateriaAux1State>(
           builder: ( context, state) {
@@ -43,13 +41,9 @@ class BateriaMotorAux1 extends StatelessWidget {
             if (state.isEnabled) {
               color = MyColors.principal;
               colorText = MyColors.text;
-              iconColor = color;
-              on_off_Text = "Desconectar";
             } else {
               color = MyColors.inactive;
               colorText = MyColors.inactive;
-              iconColor = MyColors.text;
-              on_off_Text = "Conectar";
             }
             return GestureDetector(
               onTap: (){
@@ -82,8 +76,18 @@ class BateriaMotorAux1 extends StatelessWidget {
                           top: 4,
                           left: 10,
                           child: Align(
-                            alignment: Alignment.topLeft,
-                            child: Text(title, style: MyTextStyle.estiloBold(20, colorText),),
+                            alignment: Alignment.topCenter,
+                            child: Text(title, style: MyTextStyle.estiloBold(MyTextStyle.TITLE_DIM, colorText),),
+                          ),
+                        ),
+                        MyPositioned.fill(
+                          left: 15,
+                          bottom: 70,
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text("MAX",
+                              style: MyTextStyle.estilo(16, colorText),
+                            ),
                           ),
                         ),
                         MyPositioned.fill(
@@ -94,50 +98,32 @@ class BateriaMotorAux1 extends StatelessWidget {
                           child: Align(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                                state.valueVolt.toString() + "V",
-                                style: MyTextStyle.estiloBold(16, colorText),
-                                textAlign: TextAlign.center
+                              state.valueVolt.toString() + "V",
+                              style: MyTextStyle.estilo(16, colorText),
                             ),
                           ),
                         ),
                         MyPositioned.fill(
-
-                          ///  /// valueAmp
-                            top: 30,
+                            top: 50,
+                            left: 15,
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text("MIN",
+                                style: MyTextStyle.estilo(16, colorText),
+                              ),
+                            )
+                        ),
+                        MyPositioned.fill(
+                            top: 90,
                             left: 7,
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                  state.valueAmp.toString() + "A",
-                                  style: MyTextStyle.estiloBold(16, colorText),
-                                  textAlign: TextAlign.center
+                                state.valueAmp.toString() + "V",
+                                style: MyTextStyle.estilo(16, colorText),
                               ),
                             )
                         ),
-                     /*
-                        MyPositioned.fill(
-                          ///  /// valueAmp
-                            bottom: 20,
-                            left: 30,
-                            child: Align(
-                              alignment: Alignment.bottomCenter,
-                              child: Text(
-                                  on_off_Text,
-                                  style: MyTextStyle.estiloBold(12, colorText),
-                                  textAlign: TextAlign.center
-                              ),
-                            )
-                        ),
-                        MyPositioned.fill(
-                            right: 170,
-                            bottom: 5,
-                            child: Align(
-                              alignment: Alignment.bottomLeft,
-                              child: iconSvgD("assets/icons/on_off.svg", iconColor, 17),
-                            )
-                        )
-
-                      */
                       ])
               ),
             );
@@ -167,19 +153,10 @@ class BateriaMotorAux1 extends StatelessWidget {
 
              TabChanger tabChanger =  TabChanger(context);
              tabChanger.changeTab(2);
-              // no es la mejor solucion
-            //  Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(indexPage: 2,)));
-/*
-              Navigator.pushAndRemoveUntil(
-                context,
-                CupertinoPageRoute(builder: (context) => HomePage(indexPage: 2,)),
-                    (Route<dynamic> route) => false,
-              );
-*/
               },
             child: MyContainer(
-                margin: EdgeInsets.only(bottom: SC.bot(15)),
-                width: 288, height:200, //200 //288
+                margin: EdgeInsets.all(SC.all(5)),
+                width: 212, height:282, //200 //288
                 decoration: new BoxDecoration(
                   color: MyColors.baseColor,
                 ),
@@ -197,12 +174,12 @@ class BateriaMotorAux1 extends StatelessWidget {
                         /// titulo
                         top: 4, left: 10,
                         child: Align(
-                          alignment: Alignment.topLeft,
+                          alignment: Alignment.topCenter,
                           child: RichText(
                               text: TextSpan(
                                   children: [
                                     TextSpan(
-                                        style: MyTextStyle.estiloBold(15, colorText),
+                                        style: MyTextStyle.estiloBold(MyTextStyle.TITLE_DIM, colorText),
                                         text: title),
                                   ]
                               )

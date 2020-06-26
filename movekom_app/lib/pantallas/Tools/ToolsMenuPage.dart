@@ -12,9 +12,9 @@ import 'package:movekomapp/controladores/modos/ModoAntiHeladasBasico.dart';
 import 'package:movekomapp/controladores/modos/ModoDescanso.dart';
 import 'package:movekomapp/controladores/modos/ModoEco.dart';
 import 'package:movekomapp/controladores/modos/ModoEmergencia.dart';
-import 'package:movekomapp/controladores/modos/ModoHighwayToHell.dart';
+import 'package:movekomapp/controladores/modos/ModoLimpiezaCalef.dart';
 import 'package:movekomapp/controladores/modos/ModoLimpiezaTuberias.dart';
-import 'package:movekomapp/controladores/modos/ModoParking.dart';
+import 'package:movekomapp/controladores/modos/ModoLargaDist.dart';
 import 'package:movekomapp/controladores/nevera/nevera.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 

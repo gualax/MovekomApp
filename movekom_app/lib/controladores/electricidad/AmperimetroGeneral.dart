@@ -6,7 +6,7 @@ import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
 class AmperimetroGeneral extends StatelessWidget {
-  String title = "AMPERIMETRO GENERAL";
+  String title = "TOTALIZADOR";
   @override
   Widget build(BuildContext context) {
     return amperimetro_general();
@@ -25,20 +25,20 @@ class AmperimetroGeneral extends StatelessWidget {
       child: Stack(
         children: <Widget>[
           MyPositioned.fill(
-            top:80,
+            top:20,right: 65,
             child: Align(
-              alignment: Alignment.center,
+              alignment: Alignment.centerRight,
               child: Text(
-                  "Ah", style: MyTextStyle.estiloBold(28, MyColors.text)),
+                  "A", style: MyTextStyle.estiloBold(25, MyColors.text)),
             ),
           ),
           MyPositioned.fill(
             top:5,
             left: 10,
             child: Align(
-              alignment: Alignment.topLeft,
+              alignment: Alignment.topCenter,
               child: Text(
-                  title, style: MyTextStyle.estiloBold(20, MyColors.text)),
+                  title, style: MyTextStyle.estiloBold(MyTextStyle.TITLE_DIM, MyColors.text)),
             ),
           ),
           MyPositioned.fill(
@@ -49,12 +49,12 @@ class AmperimetroGeneral extends StatelessWidget {
             ),
           ),
           MyPositioned.fill(
-            right: 10,
+            left: 40,
             bottom: 10,
             child: Align(
               alignment: Alignment.center,
               child: Text(
-                  "40", style: MyTextStyle.estiloBold(80, MyColors.text)),
+                  "+54.4", style: MyTextStyle.estiloBold(70, MyColors.text)),
             ),
           ),
         ],

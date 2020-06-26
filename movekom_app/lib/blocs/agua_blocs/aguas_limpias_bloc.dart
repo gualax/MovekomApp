@@ -33,7 +33,7 @@ class AguasLimpiasState extends Equatable {
   factory AguasLimpiasState.initial() {
     return AguasLimpiasState(
       isEnabled: true,
-      valueAmp: 75,
+      valueAmp: 50,
     );
   }
 

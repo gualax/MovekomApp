@@ -11,6 +11,7 @@ import 'package:movekomapp/widgets/MyTextStyle.dart';
 
 class Alarma extends StatelessWidget {
   AlarmaBloc alarmaBloc;
+  String on_off_text = "Pulsar para encender";
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +22,12 @@ class Alarma extends StatelessWidget {
 
   Widget alarma() {
     Color colorIcon, colorText,colorPower;
+
     return
       BlocBuilder<AlarmaBloc, AlarmaState>(
           builder: (context, state) {
             if (state.isEnabled) {
+              on_off_text = "Pulsar para apagar";
               colorIcon = MyColors.principal;
               colorText = MyColors.text;
               colorPower = MyColors.principal;
@@ -32,7 +35,7 @@ class Alarma extends StatelessWidget {
               colorIcon = MyColors.inactive;
               colorText = MyColors.inactive;
               colorPower = MyColors.text;
-
+              on_off_text = "Pulsar para encender";
             }
             return GestureDetector(
               onTap: () {
@@ -45,7 +48,7 @@ class Alarma extends StatelessWidget {
               child: MyContainer(
                 margin: EdgeInsets.all(SC.all(7)),
                 height: 278,
-                width: 278,
+                width: 422,
                 color: MyColors.baseColor,
                 child: Stack(
                   children: <Widget>[
@@ -65,20 +68,20 @@ class Alarma extends StatelessWidget {
                       ),
                     ),
                     MyPositioned.fill(
-                      top: 50, right: 20,
+                      left: 120,bottom: 50,
                       child: Align(
-                        alignment: Alignment.topRight,
+                        alignment: Alignment.center,
                         child: iconSvgD(
-                            "assets/icons/shield.svg",colorIcon, 125),
+                            "assets/icons/shield.svg",colorIcon, 130),
                       ),
                     ),
                     MyPositioned.fill(
-                      top: 40, left: 20,
+                       right: 130, top: 20,
                       child: Align(
-                        alignment: Alignment.centerLeft,
+                        alignment: Alignment.center,
                         child: iconSvgD(
                             "assets/icons/parking.svg",colorIcon,
-                            120),
+                            130),
                       ),
                     ),
                     MyPositioned.fill(
@@ -92,7 +95,7 @@ class Alarma extends StatelessWidget {
                       bottom: 17, left: 20,
                       child: Align(
                         alignment: Alignment.bottomCenter,
-                        child: Text("Pulsar para encender",
+                        child: Text(on_off_text,
                             style: MyTextStyle.estilo(15, colorText)),
                       ),
                     ),

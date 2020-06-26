@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:movekomapp/pantallas/Alarm/AlarmMenuPage.dart';
+import 'package:movekomapp/pantallas/Alarm/AlarmGeneralView.dart';
 import 'package:movekomapp/pantallas/Configuration/ConfigMenuPage.dart';
 import 'package:movekomapp/pantallas/Electricity/ElectricityMenuPage.dart';
 import 'package:movekomapp/pantallas/ManualesPage/ManualesMenuPage.dart';
@@ -30,7 +30,7 @@ GlobalKey globalKey = new GlobalKey(debugLabel: 'btm_app_bar');
     ElectricityPage(),
     ElectricityReleView(),
     WaterMenuPage(),
-    AlarmMenuPage(),
+    AlarmGeneralView(),
     LightsMenuPage(),
     ModesMenuPage(),
     ManualesMenuPage(),

@@ -54,6 +54,8 @@ import 'blocs/iluminacion_blocs/luces_salon_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:http/http.dart' as http;
 
+import 'blocs/modos_blocs/modo_ciclo_baterias.dart';
+
 void main(){
   debugPrintGestureArenaDiagnostics = true;
   BlocSupervisor.delegate = SimpleBlocDelegate();
@@ -75,7 +77,7 @@ runApp(
   SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeRight,DeviceOrientation.landscapeLeft])
       .then((_) {
   runApp(
-    DevicePreview(child: MyApp(weatherRepository: weatherRepository)));
+     MyApp(weatherRepository: weatherRepository));
 
   });
 
@@ -127,15 +129,14 @@ class MyApp extends StatelessWidget {
         BlocProvider<BoilerBloc>(create:(context)=> BoilerBloc()),
         BlocProvider<ItemBoilerBloc>(create:(context)=> ItemBoilerBloc()),
 
-        BlocProvider<ModoEcoBloc>(create:(context)=> ModoEcoBloc()),
         BlocProvider<ModoAhorroBloc>(create:(context)=> ModoAhorroBloc()),
-        BlocProvider<ModoEmergenciaBloc>(create:(context)=> ModoEmergenciaBloc()),
         BlocProvider<ModoDescansoBloc>(create:(context)=> ModoDescansoBloc()),
         BlocProvider<ModoLimpiezaBloc>(create:(context)=> ModoLimpiezaBloc()),
-        BlocProvider<ModoHighwayToHellBloc>(create:(context)=> ModoHighwayToHellBloc()),
-        BlocProvider<ModoParkingBloc>(create:(context)=> ModoParkingBloc()),
-        BlocProvider<ModoAntiHeladasBasicoBloc>(create:(context)=> ModoAntiHeladasBasicoBloc()),
+        BlocProvider<ModoLimpiezaCalefBloc>(create:(context)=> ModoLimpiezaCalefBloc()),
+        BlocProvider<ModoLargaDistBloc>(create:(context)=> ModoLargaDistBloc()),
         BlocProvider<ModoAntiHeladasAutoBloc>(create:(context)=> ModoAntiHeladasAutoBloc()),
+        BlocProvider<ModoCicloBatBloc>(create:(context)=> ModoCicloBatBloc()),
+
         BlocProvider<ExtractorBloc>(create:(context)=> ExtractorBloc()),
         BlocProvider<ModoPanelSolarBloc>(create:(context)=> ModoPanelSolarBloc()),
 
@@ -153,7 +154,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
-          builder: DevicePreview.appBuilder,
+       //   builder: DevicePreview.appBuilder,
           routes: {
          // '/': (context) => HomePage(indexToShow:0),   //HomePage(indexToShow:0),
           '/menus': (context) => FloatingMenu(),

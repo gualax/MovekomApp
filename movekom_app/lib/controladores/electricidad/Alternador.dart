@@ -14,7 +14,7 @@ import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/amperimetro.dart';
 
 class Alternador extends StatelessWidget {
-  final String title = "Alternador ";
+  final String title = "ALTERNADOR ";
   @override
   Widget build(BuildContext context) {
     final alternadorBloc = BlocProvider.of<AlternadorBloc>(context);
@@ -48,9 +48,9 @@ class Alternador extends StatelessWidget {
                 top: 10,
                 left: 10,
                 child: Align(
-                  alignment: Alignment.topLeft,
+                  alignment: Alignment.topCenter,
                   child: Text(title,
-                      style: MyTextStyle.estiloBold(20, MyColors.text)),
+                      style: MyTextStyle.estiloBold(MyTextStyle.TITLE_DIM, MyColors.text)),
                 ),
               ),
               MyPositioned.fill(
@@ -67,7 +67,7 @@ class Alternador extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.center,
                   child: Text(
-                      "Ah", style: MyTextStyle.estiloBold(30, MyColors.text)),
+                      "A", style: MyTextStyle.estiloBold(30, MyColors.text)),
                 ),
               ),
               MyPositioned.fill(

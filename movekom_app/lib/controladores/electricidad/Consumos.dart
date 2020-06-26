@@ -25,10 +25,10 @@ class Consumos extends StatelessWidget {
       BlocBuilder<ConsumosBloc,ConsumosState>(
         builder: ( context, state) {
           if(state.isEnabled){
-            textIcon = "Apagar todo";
+            textIcon = "APAGAR TODO";
             colorIcon = MyColors.principal;
           }else{
-            textIcon = "Encender todo";
+            textIcon = "ENCENDER TODO";
             colorIcon = MyColors.text;
           }
           return GestureDetector(
@@ -61,9 +61,9 @@ class Consumos extends StatelessWidget {
                     top: 10,
                     left: 10,
                     child: Align(
-                      alignment: Alignment.topLeft,
+                      alignment: Alignment.topCenter,
                       child: Text(title,
-                          style: MyTextStyle.estiloBold(15, MyColors.text)),
+                          style: MyTextStyle.estiloBold(MyTextStyle.TITLE_DIM, MyColors.text)),
                     ),
                   ),
                   MyPositioned.fill(
@@ -79,7 +79,7 @@ class Consumos extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.center,
                       child: Text(
-                          "Ah", style: MyTextStyle.estiloBold(25, MyColors.text)),
+                          "A", style: MyTextStyle.estiloBold(25, MyColors.text)),
                     ),
                   ),
                   MyPositioned.fill(
@@ -90,7 +90,7 @@ class Consumos extends StatelessWidget {
                       )
                   ),
                   MyPositioned.fill(
-                      right: 100, bottom: 17,
+                      right: 140, bottom: 20,
                       child: Align(
                         alignment: Alignment.bottomCenter,
                         child: iconSvgD("assets/icons/on_off.svg", colorIcon, 20),
@@ -101,7 +101,7 @@ class Consumos extends StatelessWidget {
                       child: Align(
                         alignment: Alignment.bottomCenter,
                         child: Text(textIcon,
-                        style: MyTextStyle.estilo(13, MyColors.text),),
+                        style: MyTextStyle.estilo(15, MyColors.text),),
                       )
                   ),
                 ],

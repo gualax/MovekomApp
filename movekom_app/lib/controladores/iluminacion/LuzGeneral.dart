@@ -13,7 +13,7 @@ import 'package:movekomapp/widgets/slider_theme.dart';
 
 
 class LuzGeneral extends StatelessWidget {
-  final String title = "Luz general ";
+  final String title = "LUZ GENERAL ";
   final int widgetType;
   LuzGeneralBloc luzGeneralBloc;
   LuzGeneral(this.widgetType);
@@ -34,53 +34,26 @@ class LuzGeneral extends StatelessWidget {
             luzGeneralBloc = BlocProvider.of<LuzGeneralBloc>(context);
           return MyContainer(
             margin: EdgeInsets.all(SC.all(5)),
-            width: 209,
-            height: 140,
+            width: 125,
+            height: 150,
             decoration: new BoxDecoration(
                 color: MyColors.baseColor
             ),
             child: Stack(
               children: [
                 MyPositioned.fill(
-                  right: 20, bottom: 20,
+                   top: 20,
                   child: Align(
-                    alignment: Alignment.centerRight,
-                    child: iconSvgD("assets/icons/todas_luces.svg", Colors.lightGreenAccent.withAlpha(state.valueDimer.round() + 20), 75),
+                    alignment: Alignment.center,
+                    child: iconSvgD("assets/icons/lampara.svg",  Colors.grey, 55),
                   ),
                 ),
                 MyPositioned.fill(
-                  left: 20, bottom: 10,
+                  top:5 ,
                   child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: iconSvgD("assets/icons/lampara.svg",  Colors.lightGreenAccent.withAlpha(state.valueDimer.round() + 20), 55),
-                  ),
-                ),
-                MyPositioned.fill(
-                  bottom:  10,
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Container(
-                      height:  SC.hei(20),
-                      child: SliderTheme(
-                        data: sliderCustomTheme(context),
-                        child: Slider(
-                          value: state.valueDimer,
-                          onChanged: (newValue) {
-                            print(newValue);
-                            luzGeneralBloc.add(Update(newValue));
-                          },
-                          min: 0,
-                          max: 200,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                MyPositioned.fill(
-                  top:5 ,left: 5,
-                  child: Align(
-                    alignment: Alignment.topLeft,
-                    child: Text(title,style: MyTextStyle.estiloBold(19, MyColors.text),),
+                    alignment: Alignment.topCenter,
+                    child: Text(title,style: MyTextStyle.estilo(17, MyColors.text),
+                    textAlign: TextAlign.center,),
                   ),
                 ),
               ],
@@ -156,6 +129,7 @@ class LuzGeneral extends StatelessWidget {
           }
       );
   }
+
 
 
 } /// Fin clase

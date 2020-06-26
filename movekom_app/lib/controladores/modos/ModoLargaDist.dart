@@ -4,30 +4,29 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
-import 'package:movekomapp/Utils/SizeConfig.dart';
-import 'package:movekomapp/blocs/modos_blocs/modo_highway_to_hell_bloc.dart';
+import 'package:movekomapp/blocs/modos_blocs/modo_parking_bloc.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
-class ModoHighwayToHell extends StatelessWidget {
-  String title = "MODO LIMPIEZA CALEFACCION";
-  String description = "Realiza un ciclo completo de limpieza de calefactor. Duración 1 Hora.";
+class ModoLargaDist extends StatelessWidget {
+  String title = "MODO LARGA DISTANCIA";
+  String description = "Todos los sistemas son apagados y el agua drenada, el equipo entra en suspensión manteniendo solo la monitorización de señales criticas y alarma.";
 
   @override
   Widget build(BuildContext context) {
-    return modo_highway_to_hell();
+    return modo_larga_dist();
   }
 
 
-  Widget modo_highway_to_hell() {
+  Widget modo_larga_dist() {
     Color colorIcon,colorIndic;
     String on_off_text;
     return
-      BlocBuilder<ModoHighwayToHellBloc,ModoHighWayToHellState>(
+      BlocBuilder<ModoLargaDistBloc,ModoLargaDistState>(
           builder: ( context, state) {
-            final modoEcoBloc = BlocProvider.of<ModoHighwayToHellBloc>(context);
+            final modoEcoBloc = BlocProvider.of<ModoLargaDistBloc>(context);
             if(state.isEnabled){
               colorIcon = MyColors.principal;
               colorIndic = MyColors.principal;
@@ -60,7 +59,7 @@ class ModoHighwayToHell extends StatelessWidget {
                           alignment: Alignment.topLeft,
                           child: Text(
                             title, style: MyTextStyle.estilo(17, Colors.white),
-                          ),
+                          textAlign: TextAlign.center,),
                         )
                     ),
                     MyPositioned.fill(
@@ -74,7 +73,7 @@ class ModoHighwayToHell extends StatelessWidget {
                         bottom: 75,
                         child: Align(
                           alignment: Alignment.center,
-                          child: iconSvgD("assets/icons/modo_highway_hell.svg", colorIndic, 55),
+                          child: iconSvgD("assets/icons/modo_LargaDist.svg", colorIndic, 55),
                         )
                     ),
                     MyPositioned.fill(
@@ -93,12 +92,12 @@ class ModoHighwayToHell extends StatelessWidget {
                         )
                     ),
                     MyPositioned.fill(
-                        top: 75,
+                        top: 75, left: 10,right: 10,
                         child: Align(
                           alignment: Alignment.center,
                           child: Text(description,
                             textAlign: TextAlign.center,
-                            style: MyTextStyle.estilo(15, Colors.white),),
+                            style: MyTextStyle.estilo(12, Colors.white),),
                         )
                     ),
                   ],

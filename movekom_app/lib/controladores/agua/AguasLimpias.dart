@@ -62,8 +62,8 @@ class AguasLimpias extends StatelessWidget {
                 tabChanger.changeTab(4);
               },
               child: MyContainer(
-                  margin: EdgeInsets.all(SC.all(7)),
-                  width: 220,
+                  margin: EdgeInsets.all(SC.all(5)),
+                  width: 212,
                   height: 282,
                   decoration: new BoxDecoration(
                       color: MyColors.baseColor
@@ -84,7 +84,7 @@ class AguasLimpias extends StatelessWidget {
                             alignment: Alignment.topCenter,
                             child: Text(title,
                               style: MyTextStyle.estiloBold(
-                                  18, MyColors.text),
+                                  MyTextStyle.TITLE_DIM, MyColors.text),
                             ),),),
                         MyPositioned.fill(/// value
                           top: 15,

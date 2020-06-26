@@ -181,8 +181,8 @@ class BombaAgua extends StatelessWidget {
               },
               child: MyContainer(
                   margin: EdgeInsets.all(SC.all(7)),
-                  width: 130,
-                  height: 130,
+                  width: 134,
+                  height: 134,
                   decoration: new BoxDecoration(
                       color: MyColors.baseColor
                   ),
@@ -206,11 +206,11 @@ class BombaAgua extends StatelessWidget {
                         // Valvulas (Todas)
                         MyPositioned.fill(/// Titulo
                           top: 7,
-                          left:12, right:12,
+                          left:14, right:14,
                           child: Align(
                             alignment: Alignment.topLeft,
                             child: Text(title,
-                              style: MyTextStyle.estiloBold(14, colorTxt),
+                              style: MyTextStyle.estiloBold(MyTextStyle.TITLE_DIM, colorTxt),
                               textAlign: TextAlign.center,
                             ),
                           ),

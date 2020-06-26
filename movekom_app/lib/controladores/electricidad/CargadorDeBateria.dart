@@ -76,7 +76,7 @@ class CargadorBaterias extends StatelessWidget {
                     left: 90,
                       child: Align(
                         alignment: Alignment.center,
-                        child: Text(state.valueAmp.toString(),
+                        child: Text(state.valueAmp != 0 ? state.valueAmp.toString() : "--",
                           style: MyTextStyle.estiloBold(80, colorTex),),
                       )
                   ),
