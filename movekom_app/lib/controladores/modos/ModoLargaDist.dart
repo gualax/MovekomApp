@@ -73,7 +73,7 @@ class ModoLargaDist extends StatelessWidget {
                         bottom: 75,
                         child: Align(
                           alignment: Alignment.center,
-                          child: iconSvgD("assets/icons/modo_LargaDist.svg", colorIndic, 55),
+                          child: iconSvgD("assets/icons/modo_parking.svg", colorIndic, 55),
                         )
                     ),
                     MyPositioned.fill(

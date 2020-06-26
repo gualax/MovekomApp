@@ -20,8 +20,8 @@ class _ChangeDesconectionPinState extends State<ChangeDesconectionPin> {
   Widget change_desconection_key(){
     return MyContainer(
       margin: EdgeInsets.all(SC.all(7)),
-      height: 180,
-      width:265 ,
+      height: 240,
+      width:260 ,
       color: MyColors.baseColor,
       child: Stack(
         children: <Widget>[
@@ -32,7 +32,99 @@ class _ChangeDesconectionPinState extends State<ChangeDesconectionPin> {
                 child: Text(title,
                   style:MyTextStyle.estilo(15, MyColors.text),),
               )
-          )
+          ),
+          MyPositioned.fill(
+            left: 15,bottom: 40,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text("PIN ANTERIOR:",
+                  style:MyTextStyle.estilo(15, MyColors.text),),
+              )
+          ),
+          MyPositioned.fill(
+              bottom:40,right: 10,
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: MyContainer(
+                  height: 40, width: 120,
+                  child: TextField(
+                    style: MyTextStyle.estiloBold(17, Colors.white),
+                    focusNode: FocusNode(),
+                    textAlign: TextAlign.center,
+                    maxLength: 14,
+                    textAlignVertical: TextAlignVertical.bottom,
+                    decoration: new InputDecoration(
+                      counterText: '',
+                      counterStyle: TextStyle(fontSize: 0),
+                      hintText: '40',
+                      hintStyle: MyTextStyle.estiloBold(17, Colors.grey),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: MyColors.principal, width: SC.wid(2)),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white, width: SC.wid(2)),
+                      ),
+                    ),
+                  ) ,
+                ),
+              )
+          ),
+          MyPositioned.fill(
+              left: 20,top: 80,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text("PIN NUEVO:",
+                  style:MyTextStyle.estilo(15, MyColors.text),),
+              )
+          ),
+          MyPositioned.fill(
+              top:70,right: 10,
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: MyContainer(
+                  height: 40, width: 120,
+                  child: TextField(
+                    style: MyTextStyle.estiloBold(17, Colors.white),
+                    focusNode: FocusNode(),
+                    enableInteractiveSelection: false,
+                    textAlign: TextAlign.center,
+                    maxLength: 14,
+                    textAlignVertical: TextAlignVertical.bottom,
+                    decoration: new InputDecoration(
+                      counterText: '',
+                      counterStyle: TextStyle(fontSize: 0),
+                      hintText: '40',
+                      hintStyle: MyTextStyle.estiloBold(17, Colors.grey),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: MyColors.principal, width: SC.wid(2)),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white, width: SC.wid(2)),
+                      ),
+                    ),
+                  ) ,
+                ),
+              )
+          ),
+          MyPositioned.fill(
+              bottom: 5,
+              child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: FlatButton(
+                    onPressed: null,
+                    child: Text('Guardar', style: TextStyle(
+                        color: MyColors.text
+                    )
+                    ),
+                    textColor: MyColors.text,
+                    shape: RoundedRectangleBorder(side: BorderSide(
+                        color: MyColors.principal,
+                        width: SC.wid(2),
+                        style: BorderStyle.solid
+                    ), borderRadius: BorderRadius.circular(50)),
+                  )
+              )
+          ),
         ],
       ),
     );
