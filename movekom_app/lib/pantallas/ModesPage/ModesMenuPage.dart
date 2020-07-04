@@ -64,9 +64,9 @@ class _ModesMenuPageState extends State<ModesMenuPage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           //ModoAhorroEnergia(),
-          ModoPanelSolar(),
-          ModoAntiHeladasAuto(),
-          ModoDescanso(),
+          ModoPanelSolar(1),
+          ModoAntiHeladasAuto(1),
+          ModoDescanso(1),
           ModoCicloBaterias(),
         ],
       ),
@@ -80,9 +80,9 @@ class _ModesMenuPageState extends State<ModesMenuPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          ModoLimpiezaTuberias(),
-          ModoLimpiezaCalefaccion(),
-          ModoLargaDist(),
+          ModoLimpiezaTuberias(1),
+          ModoLimpiezaCalefaccion(1),
+          ModoLargaDist(1),
       //    ModoAntiHeladasBasico(),
           box(),
         ],
@@ -95,7 +95,7 @@ class _ModesMenuPageState extends State<ModesMenuPage> {
     return MyContainer(
       margin: EdgeInsets.only(top:SC.top(10),left:SC.left(15),right: SC.right(15)),
       width: 210,
-      height: 250,
+      height: 230,
 
     );
   }

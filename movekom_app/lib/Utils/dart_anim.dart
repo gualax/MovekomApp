@@ -38,7 +38,7 @@ class _TransitionAnimationState extends State<TransitionAnimation>
     );
 
     _offsetAnimation = Tween<Offset>(
-      begin: const Offset(0.0, 0.5), //0.0 1.1
+      begin: const Offset(0.0, 1), //0.0 1.1
       end: Offset.zero, //Offset.zero
     ).animate(_controller);
     _controller.forward();

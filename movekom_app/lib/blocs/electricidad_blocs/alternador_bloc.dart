@@ -33,7 +33,7 @@ class AlternadorState extends Equatable {
   factory AlternadorState.initial() {
     return AlternadorState(
       isEnabled: true,
-      valueAmp: 50,
+      valueAmp: 70,
     );
   }
 

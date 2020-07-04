@@ -22,7 +22,7 @@ class _LuzGenWWState extends State<LuzGenWW> {
   Widget luz_gen_ww(){
     String on_off = "OFF";
     return MyContainer(
-      margin: EdgeInsets.all(SC.all(5)),
+      margin: EdgeInsets.all(SC.all(7)),
       width: 66,
       height: 140,
       decoration: new BoxDecoration(

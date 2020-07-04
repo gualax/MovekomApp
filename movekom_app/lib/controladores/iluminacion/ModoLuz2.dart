@@ -25,8 +25,10 @@ final int widgetType;
 
     if(widgetType  == 1){
       return save_modo_luz_2();
-    }else{
+    }else if(widgetType == 2){
       return modo_luz_2();
+    } else {
+      return _modo_luz_2_ww();
     }
   }
 
@@ -93,6 +95,47 @@ final int widgetType;
               alignment: Alignment.topRight,
               child: circuloConSombra(15, colorIcon),
             ),
+          ),
+        ],
+      ),
+    );
+  }
+
+
+  Widget _modo_luz_2_ww(){
+    return MyContainer(
+      margin: EdgeInsets.all(SC.all(7)),
+      width: 225,
+      height: 140,
+      decoration: new BoxDecoration(
+          color: MyColors.baseColor
+      ),
+      child: Stack(
+        children: [
+          MyPositioned.fill(
+            top: 20, right: 30,
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: iconSvgD("assets/icons/letter_m.svg",MyColors.white, 70),
+            ),
+          ),
+          MyPositioned.fill(
+            top: 20, left: 30,
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: iconSvgD("assets/icons/lampara.svg",MyColors.white, 60),
+            ),
+          ),
+          MyPositioned.fill(
+              top: 10, left: 10,
+              child: Text(title2,
+                  style:MyTextStyle.estilo(18, MyColors.text))
+          ),
+          MyPositioned.fill(
+              right: 10, top: 10,
+              child: Align(
+                  alignment: Alignment.topRight,
+                  child: circuloConSombra(15, MyColors.white))
           ),
         ],
       ),

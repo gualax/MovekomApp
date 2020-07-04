@@ -12,6 +12,7 @@ import 'package:movekomapp/controladores/electricidad/CargadorDeBateria.dart';
 import 'package:movekomapp/controladores/electricidad/Consumos.dart';
 import 'package:movekomapp/controladores/electricidad/Inversor.dart';
 import 'package:movekomapp/controladores/electricidad/PanelSolar.dart';
+import 'package:movekomapp/controladores/electricidad/Totalizador.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
@@ -51,7 +52,7 @@ class _ElectricityGeneralViewState extends State<ElectricityGeneralView> {
         children: <Widget>[
           BateriaMotor(2),
           BateriaMotorAux1(2),
-          AmperimetroGeneral(),
+          Totalizador(2),
         ],
       ),
     );
@@ -64,7 +65,7 @@ class _ElectricityGeneralViewState extends State<ElectricityGeneralView> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Alternador(),
-          Cargador220(),
+          Cargador220(1),
           PanelSolar(1),
           Consumos(),
         ],

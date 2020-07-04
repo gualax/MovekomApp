@@ -296,7 +296,7 @@ class _ExtractorState extends State<Nevera> {
             bloc = BlocProvider.of<NeveraBloc>(context);
             return   MyContainer(
                 margin: EdgeInsets.all(SC.all(7)),
-                width: 103,
+                width: 105.5,
                 height: 140,
                 decoration: new BoxDecoration(
                     color: MyColors.baseColor
@@ -314,14 +314,14 @@ class _ExtractorState extends State<Nevera> {
                     top:5,
                     child: Align(
                       alignment: Alignment.center,
-                      child: iconSvgD("assets/icons/nevera.svg", MyColors.principal, 70),
+                      child: iconSvgD("assets/icons/nevera.svg", MyColors.white, 70),
                     )
                 ),
                 MyPositioned.fill(
                     top:5, right: 5,
                     child: Align(
                       alignment: Alignment.topRight,
-                      child: circuloConSombra(10, MyColors.principal),
+                      child: circuloConSombra(10, MyColors.white),
                     )
                 ),
               ],

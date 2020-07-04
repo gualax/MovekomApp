@@ -29,8 +29,8 @@ class _TemperatureIntState extends State<TemperatureInt> {
   Widget temp_int() {
     return MyContainer(
       margin: EdgeInsets.all(SC.all(5)),
-      width: 185,
-      height: 67,
+      width: 130,
+      height: 63,
       decoration: new BoxDecoration(
         color: MyColors.baseColor,
       ),

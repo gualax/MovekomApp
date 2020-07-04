@@ -47,7 +47,7 @@ class ModoCicloBaterias extends StatelessWidget {
               child: MyContainer(
                 margin: EdgeInsets.only(top: SC.top(5), bottom: SC.bot(5), left: SC.left(15), right: SC.right(15)),
                 width: 210,
-                height: 235,
+                height: 230,
                 decoration: new BoxDecoration(
                     color: MyColors.baseColor
                 ),

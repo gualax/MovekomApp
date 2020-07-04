@@ -48,8 +48,8 @@ class _ExtractorState extends State<Extractor> {
           return
               MyContainer(
               margin: EdgeInsets.all(SC.all(7)),
-              width: 380,
-              height: 174,
+              width: 450,
+              height: 220,
               decoration: new BoxDecoration(
                   color: MyColors.baseColor
               ),
@@ -118,7 +118,7 @@ class _ExtractorState extends State<Extractor> {
                       )
                   ),
                   MyPositioned(
-                    left: 320,
+                    left: 380,
                     bottom: 1, top: 1,
                     child: Align(
                       alignment: Alignment.center,
@@ -126,8 +126,8 @@ class _ExtractorState extends State<Extractor> {
                     ),
                   ),
                   MyPositioned(
-                   left: 320,
-                    top:13,
+                   left: 380,
+                    top:30,
                     child: Align(
                       alignment: Alignment.center,
                         child: circularListExtractor(SC.all(75.0),SC.all(53)),
@@ -219,8 +219,8 @@ class _ExtractorState extends State<Extractor> {
                       // _valueTemp = (_lastAngle / 6.5);
                       bloc.add(UpdateExtractor(_lastAngle,_radAngle));
                     },
-                 //   innerCircleColor: Colors.amber,
-                   // outerCircleColor: Colors.cyan,
+                  //  innerCircleColor: Colors.amber,
+                  //  outerCircleColor: Colors.cyan,
                     rotateMode: rotateMode,
                     initialAngle:_radAngle,
                     outerRadius: outerRadius,

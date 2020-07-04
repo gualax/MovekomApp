@@ -13,6 +13,7 @@ import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
+import 'package:movekomapp/widgets/barra_add_ww.dart';
 
 class WeatherBox extends StatefulWidget {
   int indexDay;
@@ -78,7 +79,7 @@ class _WeatherBoxState extends State<WeatherBox> {
 
 Widget wheaterBoxLoaded(weather){
     return MyContainer(
-      width: 380,
+      width: 310,
       height: 135,
       margin: EdgeInsets.all(SC.all(5)),
       decoration: new BoxDecoration(
@@ -123,7 +124,7 @@ Widget wheaterBoxLoaded(weather){
             child: Align(
               alignment: Alignment.center,
               child: Text(
-                weather.location, style: MyTextStyle.estilo(20, Colors.white),),
+                weather.location, style: MyTextStyle.estilo(16, Colors.white),),
             ),
           ),
           MyPositioned.fill( /// tMax
@@ -142,7 +143,7 @@ Widget wheaterBoxLoaded(weather){
 
 Widget wheaterBoxLoading(){
   return MyContainer(
-    width: 380,
+    width: 310,
     height: 135,
     margin: EdgeInsets.all(SC.all(5)),
       decoration: new BoxDecoration(
@@ -218,7 +219,7 @@ Widget wheaterBoxLoading(){
 
 Widget wheaterBoxError(){
     return MyContainer(
-      width: 380,
+      width: 310,
       height: 135,
       margin: EdgeInsets.all(SC.all(5)),
       decoration: new BoxDecoration(
@@ -317,7 +318,7 @@ Widget wheaterBoxError(){
     return MyContainer(
       width: 225,
       height: 140,
-      margin: EdgeInsets.all(SC.all(5)),
+      margin: EdgeInsets.all(SC.all(7)),
       decoration: new BoxDecoration(
         color: MyColors.baseColor,
       ),
@@ -337,7 +338,6 @@ Widget wheaterBoxError(){
               child:  iconSvgD("assets/icons/clima_sol.svg", Colors.white,45.0), /// icon weather
             ),
           ),
-
         ],
       ),
     );

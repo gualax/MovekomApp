@@ -107,21 +107,22 @@ class _ChangeDesconectionPinState extends State<ChangeDesconectionPin> {
               )
           ),
           MyPositioned.fill(
-              bottom: 5,
+              bottom: 10,
               child: Align(
                   alignment: Alignment.bottomCenter,
-                  child: FlatButton(
-                    onPressed: null,
-                    child: Text('Guardar', style: TextStyle(
-                        color: MyColors.text
-                    )
+                  child: MyContainer(
+                    width: 100,
+                    height: 45,
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                          color: MyColors.principal,
+                        ),
+                        borderRadius: BorderRadius.all(Radius.circular(SC.all(20)))
                     ),
-                    textColor: MyColors.text,
-                    shape: RoundedRectangleBorder(side: BorderSide(
-                        color: MyColors.principal,
-                        width: SC.wid(2),
-                        style: BorderStyle.solid
-                    ), borderRadius: BorderRadius.circular(50)),
+                    child: Center(
+                      child: Text("Guardar",
+                        style: MyTextStyle.estilo(17, MyColors.text),),
+                    ),
                   )
               )
           ),

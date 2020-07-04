@@ -14,11 +14,22 @@ import 'package:movekomapp/widgets/slider_theme.dart';
 
 class LucesBano extends StatelessWidget {
   final String title = "LUZ BAÑO";
+
+  int widgetType;
+  LucesBano(this.widgetType);
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     final lucesbanoBloc = BlocProvider.of<LucesBanoBloc>(context);
-    return bano_widget(lucesbanoBloc);
+
+    if(widgetType == 1){
+      return bano_widget(lucesbanoBloc);
+    } else {
+      return _luz_bano_ww(lucesbanoBloc);
+
+    }
+
   }
 
 
@@ -82,6 +93,69 @@ class LucesBano extends StatelessWidget {
           );
         }
     );
+  }
+
+
+  Widget _luz_bano_ww(lucesBanoBloc){
+    return
+      BlocBuilder<LucesBanoBloc,LucesBanoState>(
+          builder: ( context, state) {
+            return MyContainer(
+              margin: EdgeInsets.all(SC.all(7)),
+              width: 225,
+              height: 140,
+              decoration: new BoxDecoration(
+                  color: MyColors.baseColor
+              ),
+              child: Stack(
+                children: [
+                  MyPositioned.fill(
+                    right: 30,bottom: 20,
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: iconSvgD("assets/icons/bathroom.svg", MyColors.white, 85),
+                    ),
+                  ),
+                  MyPositioned.fill(
+                    left: 30,bottom: 10,
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: iconSvgD("assets/icons/lampara.svg",  MyColors.white, 55),
+                    ),
+                  ),
+                  MyPositioned.fill(
+                    bottom:  10,
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Container(
+                        height:  SC.hei(20),
+                        child: SliderTheme(
+                          data: sliderWWCustomTheme(context),
+                          child: Slider(
+                            value: state.valueDimer,
+                            onChanged: (newValue) {
+                          //    print(newValue);
+                           //   lucesBanoBloc.add(Update(newValue));
+                            },
+                            min: 0,
+                            max: 200,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  MyPositioned.fill(
+                    top:5 ,left: 5,
+                    child: Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(title,style: MyTextStyle.estilo(18, MyColors.text),),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }
+      );
   }
 
 } /// Fin clase

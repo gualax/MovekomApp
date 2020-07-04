@@ -7,10 +7,17 @@ import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
 class Totalizador extends StatelessWidget {
+  int widgetType;
+  Totalizador(this.widgetType);
+  String title = "AMP. TOTALIZADOR";
   @override
   Widget build(BuildContext context) {
     SC().init(context);
-    return totalizador_principal(context);
+    if(widgetType == 1){
+      return totalizador_principal(context);
+    }else {
+      return totalizador_electricidad();
+    }
   }
 
 
@@ -33,7 +40,7 @@ class Totalizador extends StatelessWidget {
                 top: 5,
                 child:  Align(
                   alignment: Alignment.topCenter,
-                  child: Text("AMP. TOTALIZADOR",
+                  child: Text(title,
                       style:MyTextStyle.estiloBold(MyTextStyle.TITLE_DIM, MyColors.text),
                       ),
                 ),
@@ -44,30 +51,7 @@ class Totalizador extends StatelessWidget {
                 left: 10, right: 10, bottom: 40,
                 child:  Align(
                   alignment: Alignment.center,
-                  child: Container(
-                      decoration: new BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage("assets/images/totalizador_img.png"),
-                          fit: BoxFit.contain,
-                        ),
-                      )
-                  ),
-                ),
-              ),
-              MyPositioned.fill(
-                left: 30, right: 10, top:10,
-                child:  Align(
-                  alignment: Alignment.center,
-                  child: MyContainer(
-                      height: 70,
-                      width: 70,
-                      decoration: new BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage("assets/images/aguja_tot_img.png"),
-                          fit: BoxFit.contain,
-                        ),
-                      )
-                  ),
+                  child:totalizadorImg(-40) ,
                 ),
               ),
               MyPositioned.fill(
@@ -104,5 +88,90 @@ class Totalizador extends StatelessWidget {
       );
   }
 
+
+
+
+  Widget totalizador_electricidad(){
+    return MyContainer(
+      margin: EdgeInsets.all(SC.all(5)),
+      width: 410,
+      height: 198,
+      decoration: new BoxDecoration(
+          color: MyColors.baseColor
+      ),
+      child: Stack(
+        children: <Widget>[
+          MyPositioned.fill(
+            top:5,
+            left: 10,
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: Text(
+                  title, style: MyTextStyle.estiloBold(MyTextStyle.TITLE_DIM, MyColors.text)),
+            ),
+          ),
+          MyPositioned.fill(
+            right: 20,
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: MyContainer(
+                height: 180,
+                width: 180,
+                  child: totalizadorImg(50)),
+            ),
+          ),
+          MyPositioned.fill(
+            left: 20,
+            bottom: 70,
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                  "Cargando", style: MyTextStyle.estilo(17, MyColors.text)),
+            ),
+          ),
+          MyPositioned.fill(
+            left: 30, top: 20,
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                  "29.9", style: MyTextStyle.estiloBold(70, MyColors.text)),
+            ),
+          ),
+          MyPositioned.fill(
+            left: 90, bottom: 20,
+            child: Align(
+              alignment: Alignment.bottomLeft,
+              child: Text(
+                  "A", style: MyTextStyle.estiloBold(35, MyColors.text)),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+
+  Widget totalizadorImg(int valueAh){
+    int index;
+    String numberStr;
+    switch(valueAh){
+      case 0:
+        index = 0;
+        break;
+      default:
+        index = valueAh ;
+        break;
+    }
+    numberStr = index.truncate().toString();
+    print(numberStr);
+    return Container(
+        decoration: new BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/totalizador/totalizador_$numberStr.png"),
+            fit: BoxFit.contain,
+          ),
+        )
+    );
+  }
 
 }

@@ -58,7 +58,7 @@ class BateriaMotorAux1 extends StatelessWidget {
               child: MyContainer(
                   margin: EdgeInsets.all(SC.all(5)),
                   width: 200,
-                  height: 204,
+                  height: 198,
                   decoration: new BoxDecoration(
                       color: MyColors.baseColor
                   ),

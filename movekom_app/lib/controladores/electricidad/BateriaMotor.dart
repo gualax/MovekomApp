@@ -24,8 +24,10 @@ class BateriaMotor extends StatelessWidget {
     final bateriaMotorBloc = BlocProvider.of<BateriaMotorBloc>(context);
     if (widgetType == 1) {
       return bateria_motor_principal(bateriaMotorBloc);
-    } else {
+    } else if (widgetType == 2) {
       return bateria_motor(bateriaMotorBloc);
+    } else {
+      return motor_box(25.5.toString(),context);
     }
   }
   
@@ -61,7 +63,8 @@ class BateriaMotor extends StatelessWidget {
                 },
                 child: MyContainer(
                     margin: EdgeInsets.all(SC.all(5)),
-                    width: 200, height: 204,
+                    width: 200,
+                    height: 198,
                     decoration: new BoxDecoration(
                         color: MyColors.baseColor
                     ),
@@ -191,7 +194,6 @@ class BateriaMotor extends StatelessWidget {
 
 
 
-
     Widget circleIndicatorBatery_big(value,color,radius,innerRadius){
       return Container (
         child: Stack(
@@ -217,4 +219,42 @@ class BateriaMotor extends StatelessWidget {
       );
     }
 
-  } /// FIN DE CLASE
+  Widget motor_box(valueAh,context){
+    return GestureDetector(
+      onTap: (){
+        TabChanger tabChanger = new TabChanger(context);
+        tabChanger.changeTab(2);
+      },
+      child: MyContainer(
+          margin: EdgeInsets.all(SC.all(4)),
+          width: 100,
+          height: 89,
+          decoration: new BoxDecoration(
+              color: MyColors.baseColor
+          ), child: Stack(children: [
+        MyPositioned.fill( /// titulo
+          top: 4,
+          child: Align(
+            alignment: Alignment.topCenter,
+            child:Text(
+              "MOTOR",
+              style:MyTextStyle.estiloBold(16, MyColors.text),
+            ),
+          ),
+        ),
+        MyPositioned.fill(
+          top:10,
+          child: Align(
+            alignment: Alignment.center,
+            child: Text(valueAh,
+              style:MyTextStyle.estiloBold(20, MyColors.principal),
+            ),
+          ),
+        ),
+      ])
+      ),
+    );
+  }
+
+
+} /// FIN DE CLASE

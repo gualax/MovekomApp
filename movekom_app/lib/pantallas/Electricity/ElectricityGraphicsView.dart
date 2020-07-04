@@ -228,7 +228,7 @@ class _ElectricityGraphicsViewState extends State<ElectricityGraphicsView> {
             pointsMode: PointsMode.all,
             pointSize: SC.all(8),
             pointColor: Colors.lightGreenAccent,
-            fillMode: FillMode.below,
+           // fillMode: FillMode.below,
             fillGradient: new LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/Utils/animation_slide_effect.dart';
-import 'package:movekomapp/Utils/dart_anim.dart';
+import 'package:movekomapp/Utils/clima_page_view_changer.dart';
+import 'package:movekomapp/blocs/climatizacion/clima_page_bloc.dart';
 import 'package:movekomapp/pantallas/Wheater/WheaterGeneralView.dart';
 import 'package:movekomapp/pantallas/Wheater/WheaterHistoryView.dart';
 
@@ -23,8 +25,11 @@ class _ClimaPageState extends State<ClimaPage>  with SingleTickerProviderStateMi
   @override
   void initState() {
     // TODO: implement initState
-    super.initState();
     _tabController = new TabController(vsync: this, length: _children.length);
+    _currentIndex = 0;
+    ClimaPageChanger climaPageChanger =  ClimaPageChanger(context);
+    climaPageChanger.changeTab(0);
+    super.initState();
   }
 
   @override
@@ -36,8 +41,10 @@ class _ClimaPageState extends State<ClimaPage>  with SingleTickerProviderStateMi
 
   @override
   Widget build(BuildContext context) {
-    return
-      Scaffold(
+    return BlocBuilder<ClimaPageBloc,ClimaPageState>(
+        builder: ( context, state) {
+          _currentIndex = state.index;
+      return Scaffold(
         backgroundColor: Colors.black,
         body: Container(
          //  color: Colors.blueGrey,
@@ -46,7 +53,6 @@ class _ClimaPageState extends State<ClimaPage>  with SingleTickerProviderStateMi
               children: <Widget>[
                 Expanded(
                   flex: 7,
-                  
                   child: show(_currentIndex),
                  /*
                   TabBarView(
@@ -56,16 +62,21 @@ class _ClimaPageState extends State<ClimaPage>  with SingleTickerProviderStateMi
                   ),
                   */
                 ),
+            /*
                 Expanded(
                   child: Container(
              //         color: Colors.pink,
                     child: buttonTabTextMenu(),
                   ),
                 )
+
+             */
               ],
             )
         ),
       );
+    }
+    );
   }
 
 

@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sparkline/flutter_sparkline.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
+import 'package:movekomapp/Utils/clima_page_view_changer.dart';
 import 'package:movekomapp/pantallas/Wheater/weather_list.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
+import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
 
@@ -14,6 +16,9 @@ class WheaterHistoryView extends StatefulWidget {
 }
 
 class _WheaterHistoryViewState extends State<WheaterHistoryView> {
+
+
+
   @override
   Widget build(BuildContext context) {
     return contenido();
@@ -22,15 +27,41 @@ class _WheaterHistoryViewState extends State<WheaterHistoryView> {
 
 
   Widget contenido(){
-    return Container(
- //     color:Colors.blue,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          WeatherListWidget("Buenos Aires"),
-          electricityDatos(),
-        ],
+    return Material(
+      color:Colors.black,
+      child: Container(
+        child:
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                  child: Container(
+                    child: Stack(
+                      children: <Widget>[
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            WeatherListWidget("Buenos Aires"),
+                            electricityDatos(),
+                          ],
+                        ),
+                        MyContainer(
+                            child: MyPositioned.fill(
+                              right: 50,top: 50,
+                              child: Align(
+                                  alignment: Alignment.topRight,
+                                  child: closeButton()
+                              ),
+                            )
+                        ),
+                      ],
+                    )
+                  ),
+                ),
+              ],
+            ),
       ),
     );
   }
@@ -51,29 +82,35 @@ class _WheaterHistoryViewState extends State<WheaterHistoryView> {
 
 
   Widget daysAndHours(){
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget>[
-        days("24 HORAS"),
-        days("7 DIAS"),
-        days("15 DIAS"),
-        days("30 DIAS")
-      ],
+      return Material(
+        color: Colors.black,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          days("24 HORAS"),
+          days("7 DIAS"),
+          days("15 DIAS"),
+          days("30 DIAS"),
+        ],
+      ),
     );
   }
 
   Widget days(title){
-    return MyContainer(
-      margin: EdgeInsets.all(SC.all(3)),
-      width: 160,
-      height: 63,
-      decoration: BoxDecoration(
-          color: MyColors.baseColor
-      ),
-      child: Center(
-        child: Text(title,
-            style: MyTextStyle.estiloBold(18, MyColors.principal)),
+    return Material(
+      color: Colors.black,
+      child: MyContainer(
+        margin: EdgeInsets.all(SC.all(3)),
+        width: 160,
+        height: 63,
+        decoration: BoxDecoration(
+            color: MyColors.baseColor
+        ),
+        child: Center(
+          child: Text(title,
+              style: MyTextStyle.estiloBold(18, MyColors.principal)),
+        ),
       ),
     );
   }
@@ -214,6 +251,8 @@ class _WheaterHistoryViewState extends State<WheaterHistoryView> {
 
   Widget graphic(){
     var data = [0.0, 1.0, 1.5, 1.8, 0.9, 0.6, 0.2, 0.3, 0.4, 0.8, 1.0];
+    var data2 = [0.0, 1.2, 1.3, 1.4, 1.9, 1.6, 0.5, 0.3, 0.6, 0.8, 1.2];
+
     return MyContainer(
         margin: EdgeInsets.only(left: SC.left(10),top: SC.top(5),bottom: SC.bot(5)),
         width: 690,
@@ -225,23 +264,53 @@ class _WheaterHistoryViewState extends State<WheaterHistoryView> {
           child: MyContainer(
             width: 690,
             height: 130,
-            child: Sparkline(
-              data:data,
-              lineWidth: SC.all(2.0),
-              lineColor: Colors.white,
-              pointsMode: PointsMode.all,
-              pointSize: SC.all(8.0),
-              pointColor: Colors.lightGreenAccent,
-              fillMode: FillMode.below,
-              fillGradient: new LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [Colors.green[900], Colors.lightGreen],
-              ),
+            child: Stack(
+              children: <Widget>[
+                Sparkline(
+                  data:data,
+                  lineWidth: SC.all(2.0),
+                  lineColor: Colors.green,
+                  pointsMode: PointsMode.all,
+                  pointSize: SC.all(8.0),
+                  pointColor: Colors.lightGreenAccent,
+                  //    fillMode: FillMode.below,
+                  fillGradient: new LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Colors.green[900], Colors.lightGreen],
+                  ),
+                ),
+                Sparkline(
+                  data:data2,
+                  lineWidth: SC.all(2.0),
+                  lineColor: Colors.grey,
+                  pointsMode: PointsMode.all,
+                  pointSize: SC.all(8.0),
+                  pointColor: Colors.lightGreenAccent,
+                  //    fillMode: FillMode.below,
+                  fillGradient: new LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Colors.green[900], Colors.lightGreen],
+                  ),
+                ),
+              ],
             ),
           ),
         ),
     );
   }
-
+  Widget closeButton(){
+    return GestureDetector(
+      onTap: (){
+        ClimaPageChanger climaPageChanger =  ClimaPageChanger(context);
+        climaPageChanger.changeTab(0);
+      },
+      child: MyContainer(
+        height: 50,
+        width: 50,
+        child: iconSvgD("assets/icons/close_cross.svg", MyColors.text, 20),
+      ),
+    );
+  }
 }

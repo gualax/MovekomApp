@@ -24,7 +24,7 @@ class _TemperatureWWState extends State<TemperatureWW> {
 
   Widget temperature_widget(){
     return MyContainer(
-      margin: EdgeInsets.all(SC.all(5)),
+      margin: EdgeInsets.all(SC.all(7)),
       width: 225,
       height: 140,
       decoration: new BoxDecoration(

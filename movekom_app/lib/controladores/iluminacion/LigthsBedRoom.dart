@@ -14,22 +14,32 @@ import 'package:movekomapp/widgets/slider_theme.dart';
 
 class LigthsBedroom extends StatelessWidget {
   final String title = "LUZ HABITACION";
+  int widgetType;
+
+  LigthsBedroom(this.widgetType);
+
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     final ligthBedroomBloc = BlocProvider.of<LucesHabitacionBloc>(context);
-    return bedroom_widget(ligthBedroomBloc);
+
+    if(widgetType == 1){
+      return bedroom_widget(ligthBedroomBloc);
+    } else {
+      return _luz_bedroom_ww(ligthBedroomBloc);
+    }
   }
 
 
-  Widget bedroom_widget(ligthBedroomBloc){
+  Widget _luz_bedroom_ww(ligthBedroomBloc){
     return
       BlocBuilder<LucesHabitacionBloc,LucesHabitacionState>(
           builder: ( context, state) {
         return MyContainer(
-          margin: EdgeInsets.all(SC.all(5)),
-          width: 240,
-          height: 175,
+          margin: EdgeInsets.all(SC.all(7)),
+          width: 225,
+          height: 140,
           decoration: new BoxDecoration(
               color: MyColors.baseColor
           ),
@@ -39,14 +49,14 @@ class LigthsBedroom extends StatelessWidget {
                 right: 30,bottom: 20,
                 child: Align(
                   alignment: Alignment.centerRight,
-                  child: iconSvgD("assets/icons/bedroom.svg", Colors.lightGreenAccent.withAlpha(state.valueDimer.round() + 20), 70),
+                  child: iconSvgD("assets/icons/bedroom.svg",MyColors.white, 70),
                 ),
               ),
               MyPositioned.fill(
                 left: 30, bottom: 10,
                 child: Align(
                   alignment: Alignment.centerLeft,
-                  child: iconSvgD("assets/icons/lampara.svg",  Colors.lightGreenAccent.withAlpha(state.valueDimer.round()+20), 55),
+                  child: iconSvgD("assets/icons/lampara.svg",MyColors.white, 55),
                 ),
               ),
               MyPositioned.fill(
@@ -56,12 +66,12 @@ class LigthsBedroom extends StatelessWidget {
                   child: Container(
                     height:  SizeConfig.v * 3.2,
                     child: SliderTheme(
-                      data: sliderCustomTheme(context),
+                      data: sliderWWCustomTheme(context),
                       child: Slider(
                         value: state.valueDimer,
                         onChanged: (newValue) {
                         //  print(newValue);
-                          ligthBedroomBloc.add(Update(newValue));
+                        //  ligthBedroomBloc.add(Update(newValue));
                         },
                         min: 0,
                         max: 200,
@@ -82,6 +92,68 @@ class LigthsBedroom extends StatelessWidget {
         );
       }
     );
+  }
+
+  Widget bedroom_widget(ligthBedroomBloc){
+    return
+      BlocBuilder<LucesHabitacionBloc,LucesHabitacionState>(
+          builder: ( context, state) {
+            return MyContainer(
+              margin: EdgeInsets.all(SC.all(5)),
+              width: 240,
+              height: 175,
+              decoration: new BoxDecoration(
+                  color: MyColors.baseColor
+              ),
+              child: Stack(
+                children: [
+                  MyPositioned.fill(
+                    right: 30,bottom: 20,
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: iconSvgD("assets/icons/bedroom.svg", Colors.lightGreenAccent.withAlpha(state.valueDimer.round() + 20), 70),
+                    ),
+                  ),
+                  MyPositioned.fill(
+                    left: 30, bottom: 10,
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: iconSvgD("assets/icons/lampara.svg",  Colors.lightGreenAccent.withAlpha(state.valueDimer.round()+20), 55),
+                    ),
+                  ),
+                  MyPositioned.fill(
+                    bottom:  10,
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Container(
+                        height:  SizeConfig.v * 3.2,
+                        child: SliderTheme(
+                          data: sliderCustomTheme(context),
+                          child: Slider(
+                            value: state.valueDimer,
+                            onChanged: (newValue) {
+                              //  print(newValue);
+                              ligthBedroomBloc.add(Update(newValue));
+                            },
+                            min: 0,
+                            max: 200,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  MyPositioned.fill(
+                    top:5 ,left: 5,
+                    child: Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(title,style: MyTextStyle.estilo(18, MyColors.text),),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }
+      );
   }
 
 } /// Fin clase

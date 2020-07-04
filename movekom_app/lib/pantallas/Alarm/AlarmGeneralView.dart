@@ -23,7 +23,7 @@ class _AlarmGeneralViewState extends State<AlarmGeneralView> {
             mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                  Alarma(),
+                  Alarma(1),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,

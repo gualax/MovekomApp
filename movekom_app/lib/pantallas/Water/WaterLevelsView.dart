@@ -11,6 +11,7 @@ import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/temporizador_popup.dart';
+import 'package:movekomapp/widgets/temporizador_programable.dart';
 
 import 'WaterBoilerView.dart';
 
@@ -205,7 +206,7 @@ class _WaterLevelsViewState extends State<WaterLevelsView> {
               onPressed: () {
                 showDialog(
                   context: context,
-                  builder: (BuildContext context) => TemporizadorPopup(),
+                  builder: (BuildContext context) => TemporizadorProg(),
                 );
               },
             ),

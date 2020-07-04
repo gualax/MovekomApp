@@ -23,8 +23,10 @@ class LucesExterior extends StatelessWidget {
     SizeConfig().init(context);
     if(widgetType == 1){
       return exterior_chico();
-    }else {
+    }else if (widgetType == 2) {
       return exterior_grande();
+    }else {
+      return exterior_ww();
     }
   }
 
@@ -157,5 +159,71 @@ class LucesExterior extends StatelessWidget {
         }
       );
   }
+
+
+
+  Widget exterior_ww(){
+    return
+      BlocBuilder<LucesParqueBloc,LucesParqueState>(
+          builder: ( context, state) {
+            lucesCocinaBloc = BlocProvider.of<LucesParqueBloc>(context);
+            return MyContainer(
+              margin: EdgeInsets.all(SC.all(7)),
+              width: 225,
+              height: 140,
+              decoration: new BoxDecoration(
+                  color: MyColors.baseColor
+              ),
+              child: Stack(
+                children: [
+                  MyPositioned.fill(
+                    right: 30, bottom: 30,
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: iconSvgD("assets/icons/park.svg", MyColors.text, 85),
+                    ),
+                  ),
+                  MyPositioned.fill(
+                    left: 30, bottom: 10,
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: iconSvgD("assets/icons/lampara.svg",  MyColors.text, 55),
+                    ),
+                  ),
+                  MyPositioned.fill(
+                    bottom:  10,
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Container(
+                        height:  SC.hei(20),
+                        child: SliderTheme(
+                          data: sliderWWCustomTheme(context),
+                          child: Slider(
+                            value: state.valueDimer,
+                            onChanged: (newValue) {
+                              //   print(newValue);
+                              //lucesCocinaBloc.add(Update(newValue));
+                            },
+                            min: 0,
+                            max: 200,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  MyPositioned.fill(
+                    top:5 ,left: 5,
+                    child: Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(title,style: MyTextStyle.estilo(18, MyColors.text),),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }
+      );
+  }
+
 
 } /// Fin clase

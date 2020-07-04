@@ -24,8 +24,10 @@ ModoLuz1(this.widgetType);
     title2 = "MODO 1";
     if(widgetType == 1){
       return save_modo_luz_1();
-    }else{
+    }else if(widgetType == 2){
       return modo_luz_1();
+    } else {
+      return _modo_luz_1_ww();
     }
 
   }
@@ -63,9 +65,7 @@ ModoLuz1(this.widgetType);
 
 
 
-
   Widget modo_luz_1(){
-
     Color colorIcon;
     colorIcon = MyColors.principal;
     return MyContainer(
@@ -81,7 +81,51 @@ ModoLuz1(this.widgetType);
             top: 20,
             child: Align(
               alignment: Alignment.center,
-              child: iconSvgD("assets/icons/letter_m.svg",colorIcon, 90),
+              child: iconSvgD("assets/icons/letter_m.svg", colorIcon, 90),
+            ),
+          ),
+          MyPositioned.fill(
+              top: 10, left: 10,
+              child: Text(title2,
+                  style:MyTextStyle.estilo(18, MyColors.text))
+          ),
+          MyPositioned.fill(
+            right: 10, top: 10,
+            child: Align(
+              alignment: Alignment.topRight,
+              child: circuloConSombra(15, colorIcon),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+
+
+
+  Widget _modo_luz_1_ww(){
+    return MyContainer(
+      margin: EdgeInsets.all(SC.all(7)),
+      width: 225,
+      height: 140,
+      decoration: new BoxDecoration(
+          color: MyColors.baseColor
+      ),
+      child: Stack(
+        children: [
+          MyPositioned.fill(
+            top: 20, right: 30,
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: iconSvgD("assets/icons/letter_m.svg",MyColors.white, 70),
+            ),
+          ),
+          MyPositioned.fill(
+            top: 20, left: 30,
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: iconSvgD("assets/icons/lampara.svg",MyColors.white, 60),
             ),
           ),
           MyPositioned.fill(
@@ -92,11 +136,13 @@ ModoLuz1(this.widgetType);
           MyPositioned.fill(
               right: 10, top: 10,
               child: Align(
-                alignment: Alignment.topRight,
-                  child: circuloConSombra(15, colorIcon))
+                  alignment: Alignment.topRight,
+                  child: circuloConSombra(15, MyColors.white))
           ),
         ],
       ),
     );
   }
+
+
 }

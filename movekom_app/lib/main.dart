@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/FloatingMenu.dart';
 import 'package:movekomapp/blocs/alarma_blocs/alarma_bloc.dart';
 import 'package:movekomapp/blocs/climatizacion/aire_acondicionado_bloc.dart';
+import 'package:movekomapp/blocs/climatizacion/clima_page_bloc.dart';
 import 'package:movekomapp/blocs/climatizacion/extractor_bloc.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/alternador_bloc.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/bateria_aux_1_bloc.dart';
@@ -149,6 +150,7 @@ class MyApp extends StatelessWidget {
         BlocProvider<AlarmaBloc>(create:(context)=> AlarmaBloc()),
 
         BlocProvider<TabBloc>(create:(context)=> TabBloc()),
+        BlocProvider<ClimaPageBloc>(create:(context)=> ClimaPageBloc()),
 
       ],
       child: MaterialApp(

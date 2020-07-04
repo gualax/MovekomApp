@@ -22,9 +22,11 @@ class Inversor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if(widgetType == 1){
-      return inversor_widget();
-    }else{
+      return inversor_ww();
+    }else if (widgetType == 2){
      return inversor_accesorios();
+    } else {
+      return inversor_ww_blank();
     }
 
   }
@@ -133,7 +135,7 @@ Widget inversor_accesorios(){
 }
 
 
-  Widget inversor_widget(){
+  Widget inversor_ww(){
     Color color;
     Color colorText;
     String on_off;
@@ -232,6 +234,101 @@ Widget inversor_accesorios(){
     );
     }
     );
+  }
+
+
+  Widget inversor_ww_blank(){
+    String on_off;
+    return
+      BlocBuilder<InversorBloc,InversorState>(
+          builder: ( context, state) {
+            if(state.isEnabled){
+              on_off = "ON";
+            }else{
+              on_off = "OFF";
+            }
+            return  ClipRect(
+              child: MyContainer(
+                  margin: EdgeInsets.all(SC.all(7)),
+                  width: 225,
+                  height: 140,
+                  decoration: BoxDecoration(
+                      color: MyColors.baseColor
+                  ),
+                  child: Stack(children: [
+                    // Valvulas (Todas)
+                    MyPositioned.fill(  ///titulo
+                      top: 4,
+                      left: 8,
+                      child:   Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          title,
+                          style: MyTextStyle.estiloBold(18, MyColors.white),
+                        ),
+                      ),
+                    ),
+                    MyPositioned.fill(    ///textAbajoIzq
+                      left: 8,
+                      bottom: 6,
+                      child:  Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Text(
+                          on_off,
+                          style: MyTextStyle.estilo(18,  MyColors.white),
+                        ),
+                      ),
+                    ),
+                    MyPositioned.fill(  ///textAbajoDer
+                      right: 8,
+                      bottom: 6,
+                      child:  Align(
+                        alignment: Alignment.bottomRight,
+                        child: Text(
+                          "Consumo" + "2.65"+ "A",
+                          style: MyTextStyle.estilo(18,  MyColors.white),
+                        ),
+                      ),
+                    ),
+                    MyPositioned.fill(  ///icon
+                      left: 30,
+                      child:  Align(
+                        alignment: Alignment.centerLeft,
+                        child: iconSvgD("assets/icons/bat_enchufe.svg",  MyColors.white, 60),
+                      ),
+                    ),
+                    MyPositioned.fill(    ///textAbajoIzq
+                      right: 65,
+                      child:  Align(
+                        alignment: Alignment.centerRight,
+                        child: Text(
+                          state.valueAmp.toString(),
+                          style: MyTextStyle.estiloBold(45,  MyColors.white),
+                        ),
+                      ),
+                    ),
+                    MyPositioned.fill(    ///textAbajoIzq
+                      right: 20,top:10,
+                      child:  Align(
+                        alignment: Alignment.centerRight,
+                        child: Text(
+                          "Ah",
+                          style: MyTextStyle.estiloBold(30,  MyColors.white),
+                        ),
+                      ),
+                    ),
+                    MyPositioned.fill(/// circulito
+                        top: 10, right: 10,
+                        child: Align(
+                          alignment: Alignment.topRight,
+                          child: circuloConSombra(17.0,  MyColors.white),
+                        )
+                    ),
+                  ])
+              ),
+            );
+          }
+      );
   }
 
 

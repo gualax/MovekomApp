@@ -35,9 +35,11 @@ class _CalefaccionState extends State<Calefaccion> {
     SC().init(context);
      calefaccionBloc = BlocProvider.of<CalefaccionBloc>(context);
     if (widget.widgetType == 1) {
-      return _calefaccionWidget();
-    } else {
+      return _calefaccion_ww();
+    } else if (widget.widgetType == 2){
       return calefaccion_big(calefaccionBloc);
+    } else {
+      return _calefaccion_ww2();
     }
   }
 
@@ -265,7 +267,7 @@ class _CalefaccionState extends State<Calefaccion> {
   }
 
 
-  Widget _calefaccionWidget(){
+  Widget _calefaccion_ww(){
     Color color;
     Color colorText;
     String on_off;
@@ -354,5 +356,68 @@ class _CalefaccionState extends State<Calefaccion> {
    );
   }
 
+  Widget _calefaccion_ww2(){
+    return BlocBuilder<CalefaccionBloc,CalefaccionState>(
+        builder: ( context, state) {
+          return MyContainer(
+                margin: EdgeInsets.all(SC.all(7)),
+                width: 225,
+                height: 140,
+                decoration: BoxDecoration(
+                    color:  MyColors.baseColor
+                ),
+                child: Stack(children: [
+                  // Valvulas (Todas)
+                  MyPositioned.fill(  ///titulo
+                    top: 4,
+                    left: 8,
+                    child:   Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        title,
+                        style: MyTextStyle.estiloBold(18, MyColors.text),
+                      ),
+                    ),
+                  ),
+                  MyPositioned.fill(/// circulito
+                      top: 10, right: 10,
+                      child: Align(
+                        alignment: Alignment.topRight,
+                        child: circuloConSombra(17.0, MyColors.text),
+                      )
+                  ),
+                  MyPositioned.fill(  ///textAbajoDer
+                    right: 8,
+                    bottom: 6,
+                    child:  Align(
+                      alignment: Alignment.bottomRight,
+                      child: Text(
+                        "Consumo " + "2.65" + "A",
+                        style: MyTextStyle.estilo(18, MyColors.text),
+                      ),
+                    ),
+                  ),
+                  MyPositioned.fill(  ///icon
+                    left: 25,
+                    child:  Align(
+                      alignment: Alignment.centerLeft,
+                      child: iconSvgD("assets/icons/fire.svg", MyColors.text, 75),
+                    ),
+                  ),
+                  MyPositioned.fill(  ///textValue
+                    right: 20,
+                    child:  Align(
+                      alignment: Alignment.centerRight,
+                      child: Text(
+                        state.valueTemp.toString() + "ºC",
+                        style: MyTextStyle.estiloBold(45, MyColors.text),
+                      ),
+                    ),
+                  )
+                ])
+            );
+        }
+    );
+  }
 
 }

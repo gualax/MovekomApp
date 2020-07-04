@@ -20,7 +20,7 @@ class _ElectricityReleViewState extends State<ElectricityReleView> {
         children: <Widget>[
           Expanded(
             child: Container(
-              margin: EdgeInsets.only(right: SC.right(20)),
+             // margin: EdgeInsets.only(right: SC.right(20)),
          //        color: Colors.blue,
               alignment: Alignment.center,
               child: releContainer(),
@@ -34,7 +34,7 @@ class _ElectricityReleViewState extends State<ElectricityReleView> {
 
   Widget releContainer(){
     return MyContainer (
-      margin: EdgeInsets.only(right: SC.right(80)),
+  //    margin: EdgeInsets.only(right: SC.right(80)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[

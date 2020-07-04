@@ -1,37 +1,16 @@
 
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:movekomapp/Utils/MyColors.dart';
-import 'package:movekomapp/Utils/SC.dart';
-import 'package:movekomapp/Utils/SizeConf.dart';
 import 'package:movekomapp/controladores/agua/AguasLimpias.dart';
-import 'package:movekomapp/controladores/agua/AguasNegras.dart';
 import 'package:movekomapp/controladores/agua/AguasSucias.dart';
-import 'package:movekomapp/controladores/agua/BombaAgua.dart';
-import 'package:movekomapp/controladores/agua/ItemBoiler.dart';
-import 'package:movekomapp/controladores/climatizacion/Calefaccion.dart';
-import 'package:movekomapp/controladores/climatizacion/temperature_ext.dart';
-import 'package:movekomapp/controladores/climatizacion/temperature_int.dart';
 import 'package:movekomapp/controladores/electricidad/BateriaAux1.dart';
 import 'package:movekomapp/controladores/electricidad/BateriaMotor.dart';
-import 'package:movekomapp/controladores/electricidad/Inversor.dart';
+import 'package:movekomapp/controladores/electricidad/Cargador.dart';
+import 'package:movekomapp/controladores/electricidad/PanelSolar.dart';
 import 'package:movekomapp/controladores/electricidad/Totalizador.dart';
-import 'package:movekomapp/controladores/iluminacion/Downligth.dart';
-import 'package:movekomapp/controladores/iluminacion/LucesExterior.dart';
-import 'package:movekomapp/controladores/iluminacion/LuzGeneral.dart';
-import 'package:movekomapp/controladores/iluminacion/Upligth.dart';
-import 'package:movekomapp/controladores/nevera/nevera.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
-import 'package:movekomapp/responsive_ui/mi_positioned.dart';
-import 'package:movekomapp/widgets/MyTextStyle.dart';
-import 'package:movekomapp/widgets/box137x137.dart';
-import 'package:movekomapp/widgets/box137x64.dart';
-import 'package:movekomapp/widgets/box225x137.dart';
-import 'package:movekomapp/widgets/box_fecha.dart';
-
-import '../WidgetsMenu.dart';
+import 'package:movekomapp/widgets/principal_widgets_list.dart';
 
 
 class PrincipalHome extends StatefulWidget {
@@ -53,33 +32,20 @@ class _PrincipalHomeState extends State<PrincipalHome> {
       Scaffold(
           resizeToAvoidBottomPadding: false,
          // backgroundColor: Colors.black,
-        body:Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            contenido(),
-            horizontalList(),
-          ],
-        )
+        body: principalBody(),
       );
   }
 
-Widget horizontalList(){
-    return Container(
-      alignment: Alignment.center,
-      height: SC.hei(150),
-      margin: EdgeInsets.only(left: SC.left(40),top: SC.top(20)),
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: <Widget>[
-          widgetBoiler(),
-          Calefaccion(1),
-          Inversor(1),
-          //box225x140_1icon("VALVULAS",2.65 , "assets/icons/valvula.svg",false),
-          add_device(),
-        ],
-      ),
-    );
+
+  Widget principalBody(){
+  return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+              contenido(),
+              PrincipalWidgetsList(),
+          ],
+  );
 }
 
 
@@ -91,7 +57,7 @@ Widget horizontalList(){
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           BateriaMotor(1),
-          Totalizador(),
+          Totalizador(1),
           BateriaMotorAux1(1),
           columns(),
           AguasLimpias(1),
@@ -110,57 +76,15 @@ Widget horizontalList(){
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            box137x64_carga("MOTOR","25.5Ah",true),
-            box137x64_carga("SOLAR","12.5Ah",true),
-            box137x64_carga("220","12.5Ah",true),
+            BateriaMotor(3),
+            PanelSolar(3),
+            Cargador220(2),
           ],
         ),
       );
   }
 
 
-  Widget add_device(){
-    return  GestureDetector(
-      onTap: () {
-        print("TAP");
-        showDialog(
-          context: context,
-          builder: (BuildContext context) => WidgetsMenu(),
-        );
-      },
-      child: MyContainer(
-        width: 225,
-        height: 140,
-        margin: EdgeInsets.all(SC.all(10)),
-        child: DottedBorder(
-          dashPattern: [8, 4],
-          strokeWidth: 2,
-          color: Colors.white,
-          child: MyContainer(
-            width: 225,
-            height: 140,
-            child: Stack(
-              children: <Widget>[
-                MyPositioned.fill(
-                    child: Align(
-                        alignment: Alignment.center,
-                        child: Icon(Icons.add,size: 60,color: Colors.white,)
-                    )
-                ),
-                MyPositioned.fill(
-                    child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Text("AÑADIR DISPOSITIVO",
-                          style: MyTextStyle.estilo(16, Colors.white),)
-                    )
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
 
 
 

@@ -13,7 +13,7 @@ import 'package:movekomapp/widgets/slider_theme.dart';
 
 
 class Upligth extends StatelessWidget {
-  final String title = "UPLIGHT";
+  final String title = "LEDLIGHT";
   UpligthBloc uplightBloc;
   final int widgetType;
 
@@ -24,8 +24,10 @@ class Upligth extends StatelessWidget {
     SizeConfig().init(context);
     if(widgetType == 1){
      return uplight_chico();
-    }else {
+    }else if (widgetType == 2){
      return uplight_grande();
+    } else {
+      return _ledlight_ww();
     }
   }
 
@@ -153,6 +155,69 @@ class Upligth extends StatelessWidget {
                     )
                   ],
                 ),
+              ),
+            );
+          }
+      );
+  }
+
+  Widget _ledlight_ww(){
+    return
+      BlocBuilder<UpligthBloc,UplightState>(
+          builder: ( context, state) {
+            uplightBloc =  BlocProvider.of<UpligthBloc>(context);
+            return MyContainer(
+              margin: EdgeInsets.all(SC.all(7)),
+              width: 225,
+              height: 140,
+              decoration: new BoxDecoration(
+                  color: MyColors.baseColor
+              ),
+              child: Stack(
+                children: [
+                  MyPositioned.fill(
+                    right: 40, bottom: 20,
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: iconSvgD("assets/icons/tira_led.svg",MyColors.white, 85),
+                    ),
+                  ),
+                  MyPositioned.fill(
+                    left: 30, bottom: 10,
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: iconSvgD("assets/icons/lampara.svg",MyColors.white, 55),
+                    ),
+                  ),
+                  MyPositioned.fill(
+                    bottom:  10,
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Container(
+                        height:  SC.hei(20),
+                        child: SliderTheme(
+                          data: sliderWWCustomTheme(context),
+                          child: Slider(
+                            value: state.valueDimer,
+                            onChanged: (newValue) {
+                              //   print(newValue);
+                              //uplightBloc.add(Update(newValue));
+                            },
+                            min: 0,
+                            max: 200,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  MyPositioned.fill(
+                    top:5 ,left: 5,
+                    child: Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(title,style: MyTextStyle.estilo(18, MyColors.text),),
+                    ),
+                  ),
+                ],
               ),
             );
           }

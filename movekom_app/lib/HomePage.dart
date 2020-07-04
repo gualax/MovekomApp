@@ -15,6 +15,7 @@ import 'package:movekomapp/pantallas/ilumination/LigthsMenuPage.dart';
 import 'package:movekomapp/pantallas/Water/WaterMenuPage.dart';
 import 'package:movekomapp/pantallas/Wheater/WheaterMenuPage.dart';
 import 'package:movekomapp/pantallas/Electricity/ElectricityMenuPage.dart';
+import 'package:movekomapp/pantallas/test_page.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
@@ -38,6 +39,9 @@ class _HomePageState extends State<HomePage>{
   int _currentIndex;
   String barTitle = "HOME";
   String barSubTitle = " PANTALLA GENERAL";
+  double iconSize = 42;
+  double topBarSize = 60;
+
   int _lastIndex;
 
   List<Widget> pageList= [
@@ -53,7 +57,7 @@ class _HomePageState extends State<HomePage>{
     ToolsMenuPage(),
     WarningMenuPage(),
     ConfigMenuPage(),
-    //TestBtPage(),
+    TestPage(),
   ];
 
   @override
@@ -75,7 +79,7 @@ class _HomePageState extends State<HomePage>{
             return Scaffold(
                 resizeToAvoidBottomPadding: false,
                 appBar: PreferredSize(
-                  preferredSize: Size.fromHeight(SC.hei(70)),
+                  preferredSize: Size.fromHeight(SC.hei(topBarSize)),
                   child: CustomBar(),
                 ),
                 bottomSheet: Container(
@@ -155,11 +159,11 @@ class _HomePageState extends State<HomePage>{
                         activeIcon: activeIcon("assets/icons/config2.svg"),
                         title: new Text(""),
                       ),
-              //        new BottomNavigationBarItem(
-             //           icon: iconSvg("assets/icons/bluetooth_icon.svg", false),
-             //           activeIcon: activeIcon("assets/icons/bluetooth_icon.svg"),
-             //           title: new Text(""),
-             //         ),
+                      new BottomNavigationBarItem(
+                        icon: iconSvg("assets/icons/360.svg", false),
+                        activeIcon: activeIcon("assets/icons/360.svg"),
+                        title: new Text(""),
+                      ),
                     ]),
                 body: showWithTransition(_currentIndex, context) // new
             );
@@ -201,8 +205,8 @@ class _HomePageState extends State<HomePage>{
     }
      return  SvgPicture.asset(
         assetName,
-       height: SC.hei(42),
-       width: SC.wid(42),
+       height: SC.hei(iconSize),
+       width: SC.wid(iconSize),
         color: color,
     );
   }
@@ -211,8 +215,8 @@ class _HomePageState extends State<HomePage>{
   Widget iconSvgActive(assetName,color){
     return  SvgPicture.asset(
       assetName,
-      height: SC.hei(42),
-      width: SC.wid(42),
+      height: SC.hei(iconSize),
+      width: SC.wid(iconSize),
       color: color,
     );
   }
@@ -232,6 +236,7 @@ class _HomePageState extends State<HomePage>{
   }
 
 
+
   /// ver para emular el gradient cuadrado
   Widget activeConSombra(iconRoute){
     return Container(
@@ -243,7 +248,7 @@ class _HomePageState extends State<HomePage>{
           //  spreadRadius: 10
         )] ,
       ),
-      child: iconSvgD("assets/icons/sombra_rect.svg", Colors.lightGreenAccent,42),
+      child: iconSvgD("assets/icons/sombra_rect.svg", Colors.lightGreenAccent,iconSize),
 
     );
   }
@@ -263,7 +268,7 @@ class _HomePageState extends State<HomePage>{
     "ACCESORIOS",
     "AVISOS",
     "AJUSTES",
-  //  "TEST",
+    "TEST",
   ];
 
   List<String> subtitles = [
@@ -278,8 +283,8 @@ class _HomePageState extends State<HomePage>{
     "    MANUALES Y LIBROS DE INSTRUCCIONES",
     "    EQUIPOS ACCESORIOS DEL VEHICULO",
     "    REGISTRO DE AVERIAS Y FALLOS",
-    "    AJUSTES DEL SISTEMA"
- //   "    TEST",
+    "    AJUSTES DEL SISTEMA",
+    "    TEST",
   ];
 
 
@@ -297,7 +302,8 @@ Widget CustomBar(){
     bottom: PreferredSize(
      child: Container(
       color: MyColors.principal,
-      height: SC.hei(3)),
+      height: SC.hei(3)
+     ),
         preferredSize: Size.fromHeight(SC.hei(20))),
     title: PreferredSize(
       child: Container(

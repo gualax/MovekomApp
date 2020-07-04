@@ -153,9 +153,9 @@ class _LightsMenuPageState extends State<LightsMenuPage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          LucesCocina(),
-          LucesBano(),
-          LigthsBedroom(),
+          LucesCocina(1),
+          LucesBano(1),
+          LigthsBedroom(1),
         ],
       ),
     );
@@ -166,15 +166,12 @@ class _LightsMenuPageState extends State<LightsMenuPage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          LucesSalon(),
+          LucesSalon(1),
           LucesExterior(2),
           Upligth(2),
         ],
       ),
     );
   }
-
-
-
 
 }

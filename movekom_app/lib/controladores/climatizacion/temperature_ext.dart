@@ -23,15 +23,15 @@ class _TemperatureExtState extends State<TemperatureExt> {
     if (widget.widgetType == 1) {
     return temperatura_principal(context,title,"30%","21.5C");
     } else {
-      return temp_ext();
+      return temp_ext_clima();
     }
   }
 
-  Widget temp_ext() {
+  Widget temp_ext_clima() {
     return MyContainer(
       margin: EdgeInsets.all(SC.all(5)),
-      width: 185,
-      height: 67,
+      width: 130,
+      height: 63,
       decoration: new BoxDecoration(
         color: MyColors.baseColor,
       ),

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
+import 'package:movekomapp/Utils/tab_changer.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/panel_solar_bloc.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
@@ -21,8 +22,10 @@ class PanelSolar extends StatelessWidget {
 
    if(widget == 1){
       return panel_solar_widget();
-   }else {
+   }else if (widget == 2){
      return panel_solar_accesorios();
+   }else {
+     return solar_box(12.5.toString(),context);
    }
   }
 
@@ -33,7 +36,7 @@ class PanelSolar extends StatelessWidget {
           return MyContainer(
             margin: EdgeInsets.all(SC.all(5)),
             width: 200,
-            height: 204,
+            height: 198,
             decoration: new BoxDecoration(
                 color: MyColors.baseColor
             ),
@@ -192,6 +195,44 @@ class PanelSolar extends StatelessWidget {
             );
           }
       );
+  }
+
+
+  Widget solar_box(valueAh,context){
+    return GestureDetector(
+      onTap: (){
+        TabChanger tabChanger = new TabChanger(context);
+        tabChanger.changeTab(2);
+      },
+      child: MyContainer(
+          margin: EdgeInsets.all(SC.all(4)),
+          width: 100,
+          height: 89,
+          decoration: new BoxDecoration(
+              color: MyColors.baseColor
+          ), child: Stack(children: [
+        MyPositioned.fill( /// titulo
+          top: 4,
+          child: Align(
+            alignment: Alignment.topCenter,
+            child:Text(
+              "SOLAR",
+              style:MyTextStyle.estiloBold(16, MyColors.text),
+            ),
+          ),
+        ),
+        MyPositioned.fill(
+          top:10,
+          child: Align(
+            alignment: Alignment.center,
+            child: Text(valueAh,
+              style:MyTextStyle.estiloBold(20, MyColors.principal),
+            ),
+          ),
+        ),
+      ])
+      ),
+    );
   }
 
 }/// FIN clase

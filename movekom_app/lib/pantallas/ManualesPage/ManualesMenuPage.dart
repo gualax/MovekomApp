@@ -65,7 +65,7 @@ class _ManualesMenuPageState extends State<ManualesMenuPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-       margin: EdgeInsets.all(SC.all(40)),
+       margin: EdgeInsets.only(left:SC.left(40),right:SC.left(40), top: SC.left(15),bottom: SC.left(15) ),
         alignment: Alignment.center,
         child: pdfBox(),
       ),
@@ -75,14 +75,14 @@ class _ManualesMenuPageState extends State<ManualesMenuPage> {
 
   Widget pdfBox(){
        return Container(
-         padding: EdgeInsets.all(SC.all(20)),
+         padding: EdgeInsets.all(SC.all(15)),
           decoration: new BoxDecoration(
               color: MyColors.baseColor,
           ),
          child: Column(
            children: <Widget>[
              MyContainer(
-               margin: EdgeInsets.only(bottom: SC.bot(15)),
+               margin: EdgeInsets.only(bottom: SC.bot(20)),
                child: Align(
                  alignment: Alignment.centerLeft,
                  child: Text("SELECCIONA EL DOCUMENTO QUE DESEAS LEER",
