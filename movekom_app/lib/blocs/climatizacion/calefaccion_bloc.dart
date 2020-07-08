@@ -117,7 +117,7 @@ class CalefaccionBloc extends Bloc <CalefaccionEvent, CalefaccionState> {
     }else if (event is UpdateCalefaccion){
       yield CalefaccionState(
         isEnabled: true, // (_lastAngle / 6.5)
-        valueTemp: getTemp(event.valueAngle),
+        valueTemp:  getTemp(event.valueAngle), // getTemp(event.valueAngle)
         valueAngle: event.valueAngle,
         radAngle: event.radAngle,
         isAddedToCarousel: true,
@@ -142,8 +142,17 @@ class CalefaccionBloc extends Bloc <CalefaccionEvent, CalefaccionState> {
     }else{
       return value;
     }
-
   }
 
 
+  getTemp2(valueAngle){
+    int value =  25 + (valueAngle / 4.5).round();
+    if( value > 35 ){
+      return 35;
+    }else if(value < 15){
+      return 15;
+    }else{
+      return value;
+    }
+  }
 }

@@ -9,6 +9,7 @@ import 'package:movekomapp/Utils/my_radial_position.dart';
 import 'package:movekomapp/blocs/climatizacion/calefaccion_bloc.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
+import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/flecha_indicador.dart';
 import 'dart:math';
 
@@ -44,6 +45,9 @@ class _CalefaccionNewState extends State<CalefaccionNew> {
 
 
  Widget calefContainer(){
+   return
+     BlocBuilder<CalefaccionBloc,CalefaccionState>(
+         builder: ( context, state) {
    return MyContainer(
         margin: EdgeInsets.only(top: SC.top(6),bottom: SC.bot(6),left: SC.left(10),right: SC.right(10)),
         width: 600,
@@ -79,12 +83,11 @@ class _CalefaccionNewState extends State<CalefaccionNew> {
            child: MyContainer(
              height: 400,
              width: 150,
-             color: MyColors.baseColor,
+             color: Colors.transparent,
            ),
          ),
        ),
      ),
-
      Align(
        child: MyRadialPosition(
          radius: SC.all(150), //130
@@ -110,6 +113,8 @@ class _CalefaccionNewState extends State<CalefaccionNew> {
    ],
      ),
    );
+         }
+     );
  }
 
 
@@ -119,6 +124,7 @@ class _CalefaccionNewState extends State<CalefaccionNew> {
     print("*** Vertical dx : " + details.delta.dx.toString());
     print("*** Vertical dy : " + details.delta.dy.toString());
     angleDelta = angleDelta - ((details.delta.dy).roundToDouble() /2);
+  //  calefaccionBloc.add(UpdateCalefaccion(angleDelta,angleDelta));
     setState((){});
   }
 
@@ -126,11 +132,13 @@ class _CalefaccionNewState extends State<CalefaccionNew> {
     print("*** Horizontal dx : " + details.delta.dx.toString());
     print("*** Horizontal dy : " + details.delta.dy.toString());
     angleDelta = angleDelta + ((details.delta.dx).roundToDouble()/2);
+   // calefaccionBloc.add(UpdateCalefaccion(angleDelta,angleDelta));
     setState((){});
   }
 
   double angleToRad(angle){
     double converted = angle * pi / 180.0;
+    //calefaccionBloc.add(UpdateCalefaccion(converted,converted));
     print("converted: " + converted.toString());
       if (converted > ((pi / 2) + 0.5) && converted < ((pi * 1.5) - 0.5) ) {
         return converted;

@@ -26,7 +26,7 @@ class _LuzPerimetroState extends State<LuzPerimetro> {
     return MyContainer(
       margin: EdgeInsets.all(SC.all(5)),
       height: 116,
-      width: 274,
+      width: 422,
       color: MyColors.baseColor,
       child: Stack(
         children: <Widget>[

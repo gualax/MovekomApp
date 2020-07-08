@@ -29,7 +29,6 @@ class _AlarmGeneralViewState extends State<AlarmGeneralView> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     LuzPerimetro(),
-                    AlarmSettingsButton(),
                   ],
                 )
               ],

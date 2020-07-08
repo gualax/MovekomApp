@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
+import 'package:movekomapp/Utils/alarm_dialog.dart';
 import 'package:movekomapp/blocs/alarma_blocs/alarma_bloc.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
@@ -30,7 +31,6 @@ class Alarma extends StatelessWidget {
 
   Widget alarma() {
     Color colorIcon, colorText,colorPower;
-
     return
       BlocBuilder<AlarmaBloc, AlarmaState>(
           builder: (context, state) {
@@ -50,6 +50,10 @@ class Alarma extends StatelessWidget {
                 if (state.isEnabled) {
                   alarmaBloc.add(Disable());
                 } else {
+                  showDialog (
+                    context: context,
+                    builder: (BuildContext context) => AlarmDialog(),
+                  );
                   alarmaBloc.add(Enable());
                 }
               },
@@ -168,5 +172,7 @@ class Alarma extends StatelessWidget {
       ),
     );
   }
+
+
 
 }
