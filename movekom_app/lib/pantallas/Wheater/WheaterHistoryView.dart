@@ -3,6 +3,8 @@ import 'package:flutter_sparkline/flutter_sparkline.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/Utils/clima_page_view_changer.dart';
+import 'package:movekomapp/controladores/climatizacion/temperature_ext.dart';
+import 'package:movekomapp/controladores/climatizacion/temperature_int.dart';
 import 'package:movekomapp/pantallas/Wheater/weather_list.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
@@ -101,7 +103,7 @@ class _WheaterHistoryViewState extends State<WheaterHistoryView> {
     return Material(
       color: Colors.black,
       child: MyContainer(
-        margin: EdgeInsets.all(SC.all(3)),
+        margin: EdgeInsets.only(bottom: SC.bot(4),left:SC.left(4),top:SC.top(4), right: SC.right(7) ),
         width: 160,
         height: 63,
         decoration: BoxDecoration(
@@ -131,121 +133,13 @@ class _WheaterHistoryViewState extends State<WheaterHistoryView> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        temp_interior(),
-        temp_ext(),
+        TemperatureInt(1),
+        TemperatureExt(1),
       ],
     );
   }
 
-  Widget temp_interior(){
-    return MyContainer(
-      margin: EdgeInsets.all(SC.all(5)),
-      width: 160,
-      height: 130,
-      decoration: BoxDecoration(
-          color: MyColors.baseColor
-      ),
-      child: Stack (
-        children: <Widget>[
-          MyPositioned.fill(
-            top:10,
-            child: Align(
-              alignment: Alignment.topCenter,
-              child: Text("TEMPERATURA INTERIOR",
-                  style: MyTextStyle.estilo(14, MyColors.text),
-                  textAlign: TextAlign.center),
-            ),
-          ),
-          MyPositioned.fill(
-            child: Align(
-              alignment: Alignment.center,
-              child: Text("Maximas",
-                style: MyTextStyle.estiloBold(14, MyColors.text),),
-            ),
-          ),
-          MyPositioned.fill(
-            top:25,
-            child: Align(
-              alignment: Alignment.center,
-              child: Text("26.5" + "Cº",
-                style: MyTextStyle.estilo(12, MyColors.text),),
-            ),
-          ),
-          MyPositioned.fill(
-            bottom:35 ,
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: Text("Minimas",
-                style: MyTextStyle.estiloBold(14, MyColors.text),),
-            ),
-          ),
-          MyPositioned.fill(
-            bottom: 20,
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: Text("26.5" + "Cº",
-                style: MyTextStyle.estilo(12, MyColors.text),),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 
-  Widget temp_ext(){
-    return MyContainer(
-      margin: EdgeInsets.all(SC.all(5)),
-      width: 160,
-      height: 130,
-      decoration: BoxDecoration(
-          color: MyColors.baseColor
-      ),
-      child: Stack (
-        children: <Widget>[
-          MyPositioned.fill(
-            top:10,
-            child: Align(
-              alignment: Alignment.topCenter,
-              child: Text("TEMPERATURA EXTERIOR",
-                  style: MyTextStyle.estilo(14, MyColors.text),
-                  textAlign: TextAlign.center),
-            ),
-          ),
-          MyPositioned.fill(
-            child: Align(
-              alignment: Alignment.center,
-              child: Text("Maximas",
-                style: MyTextStyle.estiloBold(14, MyColors.text),),
-            ),
-          ),
-          MyPositioned.fill(
-            top:25,
-            child: Align(
-              alignment: Alignment.center,
-              child: Text("26.5" + "Cº",
-                style: MyTextStyle.estilo(12, MyColors.text),),
-            ),
-          ),
-          MyPositioned.fill(
-            bottom:35 ,
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: Text("Minimas",
-                style: MyTextStyle.estiloBold(14, MyColors.text),),
-            ),
-          ),
-          MyPositioned.fill(
-            bottom: 20,
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: Text("26.5" + "Cº",
-                style: MyTextStyle.estilo(12, MyColors.text),),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 
   //////////////////////////////////////////////////////////////
 
@@ -254,7 +148,7 @@ class _WheaterHistoryViewState extends State<WheaterHistoryView> {
     var data2 = [0.0, 1.2, 1.3, 1.4, 1.9, 1.6, 0.5, 0.3, 0.6, 0.8, 1.2];
 
     return MyContainer(
-        margin: EdgeInsets.only(left: SC.left(10),top: SC.top(5),bottom: SC.bot(5)),
+        margin: EdgeInsets.only(left: SC.left(7),top: SC.top(5),bottom: SC.bot(5)),
         width: 690,
         height: 130,
         decoration: new BoxDecoration(

@@ -275,7 +275,7 @@ class _HomePageState extends State<HomePage>{
     "    PANTALLA GENERAL",
     "    EQUIPOS DE CLIMATIAZACION",
     "    ESTADO DE BATERIAS",
-    "    AJUSTES Y CUADRO ELECTRICO",
+    "    FUSIBLES",
     "    NIVELES DEPOSITOS Y VALVULAS",
     "    SISTEMA BASICO DE ALARMA",
     "    ILUMINACION",

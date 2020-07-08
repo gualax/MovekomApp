@@ -40,13 +40,16 @@ class _WeatherListWidgetState extends State<WeatherListWidget> {
 
 
   Widget cabeceraYlista(){
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment:CrossAxisAlignment.center ,
-      children: <Widget>[
-        cabeceraClimas(),
-        RowOfWheaterWidgets(),
-      ],
+    return MyContainer(
+      margin: EdgeInsets.only(bottom: SC.bot(7)),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment:CrossAxisAlignment.center ,
+        children: <Widget>[
+          cabeceraClimas(),
+          RowOfWheaterWidgets(),
+        ],
+      ),
     );
   }
 

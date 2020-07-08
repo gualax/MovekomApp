@@ -20,11 +20,71 @@ class _TemperatureIntState extends State<TemperatureInt> {
   Widget build(BuildContext context) {
 
     if (widget.widgetType == 1) {
-      return temperatura_principal(context,title,"30%","21.5C");
+      return temp_int_clima();
     } else {
       return temp_int();
     }
   }
+
+
+
+  Widget temp_int_clima(){
+    return MyContainer(
+      margin: EdgeInsets.all(SC.all(7)),
+      width: 160,
+      height: 130,
+      decoration: BoxDecoration(
+          color: MyColors.baseColor
+      ),
+      child: Stack (
+        children: <Widget>[
+          MyPositioned.fill(
+            top:10,
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: Text("TEMPERATURA INTERIOR",
+                  style: MyTextStyle.estilo(14, MyColors.text),
+                  textAlign: TextAlign.center),
+            ),
+          ),
+          MyPositioned.fill(
+            bottom: 15,
+            child: Align(
+              alignment: Alignment.center,
+              child: Text("Maximas",
+                style: MyTextStyle.estiloBold(15, MyColors.text),),
+            ),
+          ),
+          MyPositioned.fill(
+            top:20,
+            child: Align(
+              alignment: Alignment.center,
+              child: Text("26.5" + "Cº",
+                style: MyTextStyle.estilo(13, MyColors.text),),
+            ),
+          ),
+          MyPositioned.fill(
+            bottom:25 ,
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Text("Minimas",
+                style: MyTextStyle.estiloBold(15, MyColors.text),),
+            ),
+          ),
+          MyPositioned.fill(
+            bottom: 10,
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Text("26.5" + "Cº",
+                style: MyTextStyle.estilo(13, MyColors.text),),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+
 
   Widget temp_int() {
     return MyContainer(

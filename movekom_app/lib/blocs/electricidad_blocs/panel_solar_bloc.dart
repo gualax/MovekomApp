@@ -21,7 +21,7 @@ class DisablePanelSolar extends PanelSolarEvent { /// Deshabilita la bateria
 
 class PanelSolarState extends Equatable {
   final bool isEnabled;
-  int valueAmp;
+  double valueAmp;
 
   PanelSolarState({
     @required this.isEnabled,
@@ -33,13 +33,13 @@ class PanelSolarState extends Equatable {
   factory PanelSolarState.initial() {
     return PanelSolarState(
       isEnabled: true,
-      valueAmp: 50,
+      valueAmp: 4.4,
     );
   }
 
   PanelSolarState copyWith({
     bool isEnabled,
-    int valueAmp,
+    double valueAmp,
   }) {
     return PanelSolarState(
       isEnabled: isEnabled ?? this.isEnabled,
@@ -65,7 +65,7 @@ class PanelSolarBloc extends Bloc <PanelSolarEvent, PanelSolarState> {
       yield PanelSolarState.initial();
     } else if (event is DisablePanelSolar) {
       yield PanelSolarState(
-        valueAmp: 0,
+        valueAmp: 0.0,
         isEnabled: false,
       );
     }

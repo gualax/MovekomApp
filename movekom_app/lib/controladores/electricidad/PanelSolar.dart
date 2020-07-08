@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
+import 'package:movekomapp/Utils/Dimensiones.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/Utils/tab_changer.dart';
@@ -30,63 +31,80 @@ class PanelSolar extends StatelessWidget {
   }
 
   Widget panel_solar_widget() {
+    Color colorText, colorIcon;
     return
       BlocBuilder<PanelSolarBloc,PanelSolarState>(
           builder: ( context, state) {
-          return MyContainer(
-            margin: EdgeInsets.all(SC.all(5)),
-            width: 200,
-            height: 198,
-            decoration: new BoxDecoration(
-                color: MyColors.baseColor
-            ),
-            child: Stack(
-              children: <Widget>[
-                MyPositioned.fill(
-                  right: 10,
-                  left: 10,
-                  bottom: 20,
-                  child: Align(
-                    alignment: Alignment.topRight,
-                    child: amperimetroImg(50, SC.all(30)),
+            if(state.isEnabled){
+              colorIcon = MyColors.principal;
+              colorText = MyColors.text;
+            } else {
+              colorIcon = MyColors.inactive;
+              colorText = MyColors.inactive;
+            }
+          return GestureDetector(
+            onTap: (){
+              if(state.isEnabled){
+                panelSolarBloc.add(DisablePanelSolar());
+              } else {
+                panelSolarBloc.add(EnablePanelSolar());
+              }
+            },
+            child: MyContainer(
+              margin: EdgeInsets.all(SC.all(5)),
+              width: 200,
+              height: 198,
+              decoration: new BoxDecoration(
+                  color: MyColors.baseColor
+              ),
+              child: Stack(
+                children: <Widget>[
+                  MyPositioned.fill(
+                    right: 10,
+                    left: 10,
+                    bottom: 20,
+                    child: Align(
+                      alignment: Alignment.topRight,
+                      child: amperimetroImg((state.valueAmp.truncate() * 10), SC.all(30)),
+                    ),
                   ),
-                ),
-                MyPositioned.fill(
-                  top: 10,
-                  left: 10,
-                  child: Align(
-                    alignment: Alignment.topCenter,
-                    child: Text(title,
-                        style: MyTextStyle.estiloBold(MyTextStyle.TITLE_DIM, MyColors.text)),
+                  MyPositioned.fill(
+                    top: 10,
+                    left: 10,
+                    child: Align(
+                      alignment: Alignment.topCenter,
+                      child: Text(title,
+                          style: MyTextStyle.estiloBold(MyTextStyle.TITLE_DIM, colorText)),
+                    ),
                   ),
-                ),
-                MyPositioned.fill(
-                  top: 10,
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                        "4.4",
-                        style: MyTextStyle.estiloBold(55, MyColors.text)),
+                  MyPositioned.fill(
+                    top: 10,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                          state.valueAmp != 0 ? state.valueAmp.toString() : "--",
+                          style: MyTextStyle.estiloBold(55, colorText)),
+                    ),
                   ),
-                ),
-                MyPositioned.fill(
-                  top: 85,
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                        "A", style: MyTextStyle.estiloBold(30, MyColors.text)),
+                  MyPositioned.fill(
+                    top: 85,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                          "A", style: MyTextStyle.estiloBold(30, colorText)),
+                    ),
                   ),
-                ),
-                MyPositioned.fill(
-                  left: 10,
-                  bottom: 20,
-                  child: Align(
-                    alignment: Alignment.bottomLeft,
-                    child: iconSvgD(
-                        "assets/icons/solar_panel_1.svg", MyColors.principal, 30),
+                  MyPositioned.fill(
+                    left: 10,
+                    bottom: 20,
+                    child: Align(
+                      alignment: Alignment.bottomLeft,
+                      child: iconSvgD(
+                          "assets/icons/solar_panel_1.svg", colorIcon, 30),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         }
@@ -122,7 +140,7 @@ class PanelSolar extends StatelessWidget {
                 }
               },
               child: MyContainer(
-                margin: EdgeInsets.all(SC.all(5)),
+                margin: EdgeInsets.all(SC.all(Dimens.TOOLS_SEPARATION)),
                 width: 420, height: 220,
                 decoration: new BoxDecoration(
                   color: MyColors.baseColor,
@@ -227,6 +245,15 @@ class PanelSolar extends StatelessWidget {
             alignment: Alignment.center,
             child: Text(valueAh,
               style:MyTextStyle.estiloBold(20, MyColors.principal),
+            ),
+          ),
+        ),
+        MyPositioned.fill(
+          left: 55,
+          child: Align(
+            alignment: Alignment.center,
+            child: Text("A",
+              style:MyTextStyle.estiloBold(13, MyColors.principal),
             ),
           ),
         ),

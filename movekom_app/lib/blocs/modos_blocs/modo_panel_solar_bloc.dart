@@ -9,16 +9,47 @@ abstract class ModoPanelSolarEvent extends Equatable {
 
 class Enable extends ModoPanelSolarEvent {  /// Habilita la bateria
   @override
-  String toString() => 'EnableBatery';
+  String toString() => 'EnableModoPanel';
+}
+
+
+class AddToList extends ModoPanelSolarEvent {  /// Habilita la bateria
+  @override
+  String toString() => 'AddToList';
 }
 
 class Disable extends ModoPanelSolarEvent { /// Deshabilita la bateria
   @override
-  String toString() => 'DisableBatery';
+  String toString() => 'DisableModoPanel';
 }
 /// Fin declaracion de eventos
 
 
+@immutable
+abstract class ModoPanelSolarState {
+  final bool isEnabled;
+  final bool isAddedToList;
+  ModoPanelSolarState({this.isEnabled, this.isAddedToList});
+}
+
+class InitialModoPanelSolarState extends ModoPanelSolarState {
+  InitialModoPanelSolarState()
+      : super(
+      isEnabled: false,
+      isAddedToList: false);
+}
+
+class NewModoPanelSolarState extends ModoPanelSolarState {
+  NewModoPanelSolarState.fromOldSettingState(ModoPanelSolarState oldState,
+      {bool isEnabled, bool isAddedToList})
+      : super(
+    isEnabled: isEnabled ?? oldState.isEnabled,
+    isAddedToList: isAddedToList ?? oldState.isAddedToList,
+  );
+}
+
+/*
+ 
 class ModoPanelSolarState extends Equatable {
   final bool isEnabled;
 
@@ -35,7 +66,6 @@ class ModoPanelSolarState extends Equatable {
 
   ModoPanelSolarState copyWith({
     bool isEnabled,
-    int valueAmp,
   }) {
     return ModoPanelSolarState(
       isEnabled: isEnabled ?? this.isEnabled,
@@ -48,20 +78,29 @@ class ModoPanelSolarState extends Equatable {
 }
 /// FIN  declaracion de STATE
 
+
+ */
 class ModoPanelSolarBloc extends Bloc <ModoPanelSolarEvent, ModoPanelSolarState> {
 
   @override
-  // TODO: implement initialState
-  ModoPanelSolarState get initialState => ModoPanelSolarState.initial();
+  ModoPanelSolarState get initialState => InitialModoPanelSolarState();
 
   @override
   Stream<ModoPanelSolarState> mapEventToState(ModoPanelSolarEvent event) async* {
+
     if (event is Enable) {
-      yield ModoPanelSolarState(
-        isEnabled: true,
-      );
-    } else if (event is Disable) {
-      yield ModoPanelSolarState.initial();
+      print(state);
+    yield NewModoPanelSolarState.fromOldSettingState(state,
+          isEnabled: true);
+    } else if (event is Disable){
+      print(state);
+      yield NewModoPanelSolarState.fromOldSettingState(state,
+          isEnabled: false);
+    } else if (event is AddToList){
+      print(state);
+      yield NewModoPanelSolarState.fromOldSettingState(state,
+          isAddedToList: true);
     }
+
   }
 }

@@ -47,7 +47,7 @@ class _ToolsMenuPageState extends State<ToolsMenuPage> {
 Widget column1(){
     return MyContainer(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Nevera(2),
@@ -61,7 +61,7 @@ Widget column1(){
   Widget column2(){
     return MyContainer(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           CargadorBaterias(1),

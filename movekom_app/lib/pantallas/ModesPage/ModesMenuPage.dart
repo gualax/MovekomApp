@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:movekomapp/Utils/Dimensiones.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/controladores/modos/ModoAntiHeladasAuto.dart';
@@ -93,7 +94,7 @@ class _ModesMenuPageState extends State<ModesMenuPage> {
 
   Widget box(){
     return MyContainer(
-      margin: EdgeInsets.only(top:SC.top(10),left:SC.left(15),right: SC.right(15)),
+      margin: EdgeInsets.all(SC.all(Dimens.MODES_SEPARATION)),
       width: 210,
       height: 230,
 

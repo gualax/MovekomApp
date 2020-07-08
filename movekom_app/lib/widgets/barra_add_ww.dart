@@ -8,10 +8,10 @@ import 'package:movekomapp/widgets/MyTextStyle.dart';
 class AddWWBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return big();
+    return add_bar();
   }
 
-  Widget big(){
+  Widget add_bar(){
     return MyContainer(
       margin: EdgeInsets.all(SC.all(7)),
       width: 225,

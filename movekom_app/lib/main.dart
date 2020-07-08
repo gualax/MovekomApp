@@ -1,4 +1,3 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -22,12 +21,10 @@ import 'package:movekomapp/blocs/iluminacion_blocs/luces_parque_bloc.dart';
 import 'package:movekomapp/blocs/iluminacion_blocs/luz_general_bloc.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/panel_solar_bloc.dart';
 import 'package:movekomapp/blocs/iluminacion_blocs/upligth_bloc.dart';
+import 'package:movekomapp/blocs/list_rebuild_bloc.dart';
 import 'package:movekomapp/blocs/modos_blocs/modo_ahorro_bloc.dart';
 import 'package:movekomapp/blocs/modos_blocs/modo_antiheladas_automatico_bloc.dart';
-import 'package:movekomapp/blocs/modos_blocs/modo_antiheladas_bloc.dart';
 import 'package:movekomapp/blocs/modos_blocs/modo_descanso_bloc.dart';
-import 'package:movekomapp/blocs/modos_blocs/modo_eco_bloc.dart';
-import 'package:movekomapp/blocs/modos_blocs/modo_emergencia_bloc.dart';
 import 'package:movekomapp/blocs/modos_blocs/modo_highway_to_hell_bloc.dart';
 import 'package:movekomapp/blocs/modos_blocs/modo_limpieza_bloc.dart';
 import 'package:movekomapp/blocs/modos_blocs/modo_panel_solar_bloc.dart';
@@ -43,7 +40,8 @@ import 'app.localizations.dart';
 import 'package:movekomapp/blocs/agua_blocs/aguas_negras_bloc.dart';
 import 'package:movekomapp/blocs/agua_blocs/aguas_sucias_bloc.dart';
 import 'package:movekomapp/blocs/agua_blocs/aguas_limpias_bloc.dart';
-
+import 'blocs/agua_blocs/resistencia1_bloc.dart';
+import 'blocs/agua_blocs/resistencia2_bloc.dart';
 import 'blocs/electricidad_blocs/bateria_aux_2_bloc.dart';
 import 'blocs/electricidad_blocs/bateria_motor_bloc.dart';
 import 'blocs/agua_blocs/bomba_agua_bloc.dart';
@@ -143,7 +141,6 @@ class MyApp extends StatelessWidget {
 
         BlocProvider<BluetoothControllerBloc>(create:(context)=> BluetoothControllerBloc()),
 
-
         BlocProvider<WeatherBloc>(create:(context)=> WeatherBloc(weatherRepository: weatherRepository,)),
         BlocProvider<AireAcondicionadoBloc>(create:(context)=> AireAcondicionadoBloc()),
         BlocProvider<NeveraBloc>(create:(context)=> NeveraBloc()),
@@ -151,6 +148,9 @@ class MyApp extends StatelessWidget {
 
         BlocProvider<TabBloc>(create:(context)=> TabBloc()),
         BlocProvider<ClimaPageBloc>(create:(context)=> ClimaPageBloc()),
+        BlocProvider<ListRebuildBloc>(create:(context)=> ListRebuildBloc()),
+        BlocProvider<Resistencia1Bloc>(create:(context)=> Resistencia1Bloc()),
+        BlocProvider<Resistencia2Bloc>(create:(context)=> Resistencia2Bloc()),
 
       ],
       child: MaterialApp(
@@ -197,6 +197,6 @@ class SimpleBlocDelegate extends BlocDelegate {
 
   @override
   void onTransition(Bloc bloc, Transition transition) {
-   //   print(transition);
+      print(transition);
   }
 }

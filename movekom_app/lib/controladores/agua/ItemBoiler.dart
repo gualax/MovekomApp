@@ -210,7 +210,6 @@ Widget textAligned(int number){
 }
 
 
-
 class widgetBoiler extends StatelessWidget {
   RadialListItemViewModel itemBoiler;
   String title = "BOILER";
@@ -226,7 +225,6 @@ class widgetBoiler extends StatelessWidget {
     }
   }
 
-
   Widget widget_boiler(){
     int index;
     return
@@ -241,7 +239,7 @@ class widgetBoiler extends StatelessWidget {
        }
       });
       return  ClipRect(
-      child: MyContainer(
+       child: MyContainer(
           margin: EdgeInsets.all(SC.all(7)),
           width: 225,
           height: 140,
@@ -329,81 +327,79 @@ class widgetBoiler extends StatelessWidget {
                 itemBoiler = item;
               }
             });
-            return  MyContainer(
-                  margin: EdgeInsets.all(SC.all(7)),
-                  width: 225,
-                  height: 140,
-                  decoration: BoxDecoration(
-                      color: MyColors.baseColor
-                  ),
-                  child: Stack(children: [
-                    // Valvulas (Todas)
-                    MyPositioned.fill(  ///titulo
-                      top: 4,
-                      left: 8,
-                      child:   Align(
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          title,
-                          style: MyTextStyle.estiloBold(18, MyColors.text),
+            return
+                MyContainer(
+                    margin: EdgeInsets.all(SC.all(7)),
+                    width: 225,
+                    height: 140,
+                    decoration: BoxDecoration(
+                        color: MyColors.baseColor
+                    ),
+                    child: Stack(children: [
+                      // Valvulas (Todas)
+                      MyPositioned.fill(  ///titulo
+                        top: 4,
+                        left: 8,
+                        child:   Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            title,
+                            style: MyTextStyle.estiloBold(18, MyColors.text),
+                          ),
                         ),
                       ),
-                    ),
-                    MyPositioned.fill(/// circulito
-                        top: 10, right: 10,
+                      MyPositioned.fill(/// circulito
+                          top: 10, right: 10,
+                          child: Align(
+                            alignment: Alignment.topRight,
+                            child: circuloConSombra(17.0, MyColors.white),
+                          )
+                      ),
+                      MyPositioned.fill(    ///textAbajoIzq
+                        left: 8,
+                        bottom: 6,
                         child: Align(
-                          alignment: Alignment.topRight,
-                          child: circuloConSombra(17.0, MyColors.white),
-                        )
-                    ),
-                    MyPositioned.fill(    ///textAbajoIzq
-                      left: 8,
-                      bottom: 6,
-                      child: Align(
-                        alignment: Alignment.bottomLeft,
-                        child: Text(
-                          "ON",
-                          style: MyTextStyle.estilo(18, MyColors.text),
+                          alignment: Alignment.bottomLeft,
+                          child: Text(
+                            "ON",
+                            style: MyTextStyle.estilo(18, MyColors.text),
+                          ),
                         ),
                       ),
-                    ),
-                    MyPositioned.fill(  ///textAbajoDer
-                      right: 8,
-                      bottom: 6,
-                      child:  Align(
-                        alignment: Alignment.bottomRight,
-                        child: Text(
-                          "Consumo " + "2.65" + "A",
-                          style: MyTextStyle.estilo(18, MyColors.text),
+                      MyPositioned.fill(  ///textAbajoDer
+                        right: 8,
+                        bottom: 6,
+                        child:  Align(
+                          alignment: Alignment.bottomRight,
+                          child: Text(
+                            "Consumo " + "2.65" + "A",
+                            style: MyTextStyle.estilo(18, MyColors.text),
+                          ),
                         ),
                       ),
-                    ),
-                    MyPositioned.fill(  ///icon
-                      left: 25,
-                      child:  Align(
-                        alignment: Alignment.centerLeft,
-                        child: iconSvgD(itemBoiler.iconRoute, MyColors.white, 30),
-                      ),
-                    ),
-                    MyPositioned.fill(  ///textValue
-                      right: 30,
-                      child:  Align(
-                        alignment: Alignment.centerRight,
-                        child: Text(
-                          itemBoiler.valueTemp.toString(),
-                          style: MyTextStyle.estiloBold(45, MyColors.text),
+                      MyPositioned.fill(  ///icon
+                        left: 25,
+                        child:  Align(
+                          alignment: Alignment.centerLeft,
+                          child: iconSvgD(itemBoiler.iconRoute, MyColors.white, 30),
                         ),
                       ),
-                    ),
-                  ])
-              );
+                      MyPositioned.fill(  ///textValue
+                        right: 30,
+                        child:  Align(
+                          alignment: Alignment.centerRight,
+                          child: Text(
+                            itemBoiler.valueTemp.toString(),
+                            style: MyTextStyle.estiloBold(45, MyColors.text),
+                          ),
+                        ),
+                      ),
+                    ])
+            );
           }
       );
   }
-
-
 }
-
 
 
 

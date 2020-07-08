@@ -251,6 +251,15 @@ class BateriaMotor extends StatelessWidget {
             ),
           ),
         ),
+        MyPositioned.fill(
+          left: 55,
+          child: Align(
+            alignment: Alignment.center,
+            child: Text("A",
+              style:MyTextStyle.estiloBold(13, MyColors.principal),
+            ),
+          ),
+        ),
       ])
       ),
     );

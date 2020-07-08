@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
+import 'package:movekomapp/Utils/Dimensiones.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/cargador_baterias_bloc.dart';
@@ -60,7 +61,7 @@ class CargadorBaterias extends StatelessWidget {
               }
             },
             child: MyContainer(
-              margin: EdgeInsets.all(SC.all(5)),
+              margin: EdgeInsets.all(SC.all(Dimens.TOOLS_SEPARATION)),
               width: 420, height: 220,
               decoration: new BoxDecoration(
                 color: MyColors.baseColor,

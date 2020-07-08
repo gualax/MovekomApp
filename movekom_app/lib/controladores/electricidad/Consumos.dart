@@ -19,7 +19,7 @@ class Consumos extends StatelessWidget {
   }
 
   Widget consumos(consumosBloc) {
-    Color colorIcon;
+    Color colorIcon, colorText;
     String textIcon;
     return
       BlocBuilder<ConsumosBloc,ConsumosState>(
@@ -27,9 +27,11 @@ class Consumos extends StatelessWidget {
           if(state.isEnabled){
             textIcon = "APAGAR TODO";
             colorIcon = MyColors.principal;
+            colorText = MyColors.text;
           }else{
             textIcon = "ENCENDER TODO";
             colorIcon = MyColors.text;
+            colorText = MyColors.inactive;
           }
           return GestureDetector(
             onTap: (){
@@ -63,15 +65,15 @@ class Consumos extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.topCenter,
                       child: Text(title,
-                          style: MyTextStyle.estiloBold(MyTextStyle.TITLE_DIM, MyColors.text)),
+                          style: MyTextStyle.estiloBold(MyTextStyle.TITLE_DIM, colorText)),
                     ),
                   ),
                   MyPositioned.fill(
                     child: Align(
                       alignment: Alignment.center,
                       child: Text(
-                          state.valueAmp.toString(),
-                          style: MyTextStyle.estiloBold(40, MyColors.text)),
+                          state.valueAmp != 0 ? state.valueAmp.toString() : "--",
+                          style: MyTextStyle.estiloBold(40, colorText)),
                     ),
                   ),
                   MyPositioned.fill(
@@ -79,7 +81,7 @@ class Consumos extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.center,
                       child: Text(
-                          "A", style: MyTextStyle.estiloBold(25, MyColors.text)),
+                          "A", style: MyTextStyle.estiloBold(25, colorText)),
                     ),
                   ),
                   MyPositioned.fill(

@@ -4,6 +4,7 @@ import 'package:circle_list/circle_list.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movekomapp/Utils/AllowMultipleGestureRecongnizer.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
@@ -166,8 +167,10 @@ class _CalefaccionState extends State<Calefaccion> {
                         child: GestureDetector(
                           onTap: (){
                             if(state.isEnabled){
+                              print("CALEFACCCION!!!!!");
                               calefaccionBloc.add(DisableCalefaccion());
                             }else{
+                              print("CALEFACCCION!!!!!");
                               calefaccionBloc.add(EnableCalefaccion());
                             }
                           },
@@ -357,65 +360,100 @@ class _CalefaccionState extends State<Calefaccion> {
   }
 
   Widget _calefaccion_ww2(){
+    Color color = MyColors.white;
+    Color colorText = MyColors.white;
     return BlocBuilder<CalefaccionBloc,CalefaccionState>(
         builder: ( context, state) {
-          return MyContainer(
-                margin: EdgeInsets.all(SC.all(7)),
-                width: 225,
-                height: 140,
-                decoration: BoxDecoration(
-                    color:  MyColors.baseColor
-                ),
-                child: Stack(children: [
-                  // Valvulas (Todas)
-                  MyPositioned.fill(  ///titulo
-                    top: 4,
-                    left: 8,
-                    child:   Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        title,
-                        style: MyTextStyle.estiloBold(18, MyColors.text),
+         if(state.isAddedToCarousel) {
+          if(state.isEnabled){
+            color = Colors.lightGreenAccent;
+            colorText = MyColors.text;
+          } else {
+            color = MyColors.inactive;
+            colorText = MyColors.inactive;
+          }
+         }
+          return RawGestureDetector(
+            gestures: {
+              AllowMultipleGestureRecognizer:
+              GestureRecognizerFactoryWithHandlers<
+                  AllowMultipleGestureRecognizer>(
+                    () => AllowMultipleGestureRecognizer(),  //constructor
+                    (AllowMultipleGestureRecognizer instance) {
+                      instance.onTap = () {
+                        if(!state.isAddedToCarousel) {
+                          print(" CALEFACCION ADDED TO CARRUSEL");
+                          calefaccionBloc.add(AddedWWToCarousel(true));
+                        } else {
+                          print(" CALEFACCION YA FUE AGREGADO AL CAROUSELL");
+                          if(state.isEnabled){
+                              calefaccionBloc.add(DisableCalefaccion());
+                          }else {
+                            calefaccionBloc.add(EnableCalefaccion());
+                          }
+                        }
+                      };
+                },
+              )
+            },
+            child: MyContainer(
+                  margin: EdgeInsets.all(SC.all(7)),
+                  width: 225,
+                  height: 140,
+                  decoration: BoxDecoration(
+                      color:  MyColors.baseColor
+                  ),
+                  child: Stack(children: [
+                    // Valvulas (Todas)
+                    MyPositioned.fill(  ///titulo
+                      top: 4,
+                      left: 8,
+                      child:   Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          title,
+                          style: MyTextStyle.estiloBold(18,colorText),
+                        ),
                       ),
                     ),
-                  ),
-                  MyPositioned.fill(/// circulito
-                      top: 10, right: 10,
-                      child: Align(
-                        alignment: Alignment.topRight,
-                        child: circuloConSombra(17.0, MyColors.text),
-                      )
-                  ),
-                  MyPositioned.fill(  ///textAbajoDer
-                    right: 8,
-                    bottom: 6,
-                    child:  Align(
-                      alignment: Alignment.bottomRight,
-                      child: Text(
-                        "Consumo " + "2.65" + "A",
-                        style: MyTextStyle.estilo(18, MyColors.text),
+                    MyPositioned.fill(/// circulito
+                        top: 10, right: 10,
+                        child: Align(
+                          alignment: Alignment.topRight,
+                          child: circuloConSombra(17.0, color),
+                        )
+                    ),
+                    MyPositioned.fill(  ///textAbajoDer
+                      right: 8,
+                      bottom: 6,
+                      child:  Align(
+                        alignment: Alignment.bottomRight,
+                        child: Text(
+                          "Consumo " + "2.65" + "A",
+                          style: MyTextStyle.estilo(18, colorText),
+                        ),
                       ),
                     ),
-                  ),
-                  MyPositioned.fill(  ///icon
-                    left: 25,
-                    child:  Align(
-                      alignment: Alignment.centerLeft,
-                      child: iconSvgD("assets/icons/fire.svg", MyColors.text, 75),
-                    ),
-                  ),
-                  MyPositioned.fill(  ///textValue
-                    right: 20,
-                    child:  Align(
-                      alignment: Alignment.centerRight,
-                      child: Text(
-                        state.valueTemp.toString() + "ºC",
-                        style: MyTextStyle.estiloBold(45, MyColors.text),
+                    MyPositioned.fill(  ///icon
+                      left: 25,
+                      child:  Align(
+                        alignment: Alignment.centerLeft,
+                        child: iconSvgD("assets/icons/fire.svg", color, 75),
                       ),
                     ),
-                  )
-                ])
-            );
+                    MyPositioned.fill(  ///textValue
+                      right: 20,
+                      child:  Align(
+                        alignment: Alignment.centerRight,
+                        child: Text(
+                          state.valueTemp.toString() + "ºC",
+                          style: MyTextStyle.estiloBold(45, colorText),
+                        ),
+                      ),
+                    )
+                  ])
+              ),
+          );
         }
     );
   }

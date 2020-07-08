@@ -6,6 +6,8 @@ import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/controladores/agua/AguasLimpias.dart';
 import 'package:movekomapp/controladores/agua/AguasSucias.dart';
 import 'package:movekomapp/controladores/agua/BombaAgua.dart';
+import 'package:movekomapp/controladores/agua/Resistencia1.dart';
+import 'package:movekomapp/controladores/agua/Resistencia2.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
@@ -58,90 +60,9 @@ class _WaterLevelsViewState extends State<WaterLevelsView> {
     return Row(
       children: <Widget>[
         temporizador(),
-        resistencia1(),
-        resistencia2(),
+        Resistencia1(),
+        Resistencia2(),
       ],
-    );
-  }
-
-  Widget resistencia1(){
-    return MyContainer(
-      margin: EdgeInsets.all(SC.all(5)),
-      width: 175,
-        height: 90,
-        decoration: new BoxDecoration(
-            color: MyColors.baseColor
-        ),
-      child: Stack(
-        children: <Widget>[
-          MyPositioned.fill(
-            top:10,
-              child: Align(
-                alignment: Alignment.center,
-                child: iconSvgD("assets/icons/enchufe_boiler.svg", MyColors.principal, 50),
-              )
-          ),
-          MyPositioned.fill(
-            top: 5,
-              child: Align(
-                alignment: Alignment.topCenter,
-                child: Text("Resistencia electrica 1",
-                  style: MyTextStyle.estilo(12, MyColors.text) ,),
-              )
-          ),
-          MyPositioned.fill(
-              top: 5,right: 5,
-              child: Align(
-                alignment: Alignment.topRight,
-                child: circuloConSombra(10, MyColors.principal),
-              )
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget resistencia2(){
-    return MyContainer(
-      margin: EdgeInsets.all(SC.all(5)),
-      width: 175,
-      height: 90,
-      decoration: new BoxDecoration(
-          color: MyColors.baseColor
-      ),
-      child: Stack(
-        children: <Widget>[
-          MyPositioned.fill(
-              left: 30, top: 10,
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: iconSvgD("assets/icons/enchufe_boiler.svg", MyColors.principal, 50),
-              )
-          ),
-          MyPositioned.fill(
-            right: 30,  top: 10,
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: iconSvgD("assets/icons/enchufe_boiler.svg", MyColors.principal, 50),
-              )
-          ),
-          MyPositioned.fill(
-              top: 5,
-              child: Align(
-                alignment: Alignment.topCenter,
-                child: Text("Resistencia electrica 1",
-                  style: MyTextStyle.estilo(12, MyColors.text) ,),
-              )
-          ),
-          MyPositioned.fill(
-              top: 5,right: 5,
-              child: Align(
-                alignment: Alignment.topRight,
-                child: circuloConSombra(10, MyColors.principal),
-              )
-          ),
-        ],
-      ),
     );
   }
 

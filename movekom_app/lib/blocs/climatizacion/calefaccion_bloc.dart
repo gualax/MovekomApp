@@ -12,6 +12,14 @@ class EnableCalefaccion extends CalefaccionEvent {  /// Habilita la bateria
   String toString() => 'EnableBatery';
 }
 
+class AddedWWToCarousel extends CalefaccionEvent {  /// Habilita la bateria
+ final bool isAdded;
+ AddedWWToCarousel(this.isAdded) : super([isAdded]);
+  @override
+  String toString() => 'AddedWWToCarousel : $isAdded ';
+}
+
+
 class DisableCalefaccion extends CalefaccionEvent { /// Deshabilita la bateria
   @override
   String toString() => 'DisableBatery';
@@ -26,7 +34,11 @@ class UpdateCalefaccion extends CalefaccionEvent { /// Deshabilita la bateria
   @override
   String toString() => 'Update  {valueAngle: $valueAngle},{radAngle: $radAngle}}' ;
 }
+
 /// Fin declaracion de eventos
+
+
+
 
 
 class CalefaccionState extends Equatable {
@@ -34,15 +46,16 @@ class CalefaccionState extends Equatable {
   double valueAngle;
   double radAngle;
   int valueTemp;
+  final bool isAddedToCarousel;
 
   CalefaccionState({
     @required this.isEnabled,
     @required this.valueTemp,
     @required this.valueAngle,
     @required this.radAngle,
+     this.isAddedToCarousel,
 
-
-  }) : super([isEnabled,valueTemp,valueAngle]);
+  }) : super([isEnabled,valueTemp,valueAngle,isAddedToCarousel]);
 
   /// Valores iniciales
   factory CalefaccionState.initial() {
@@ -51,6 +64,7 @@ class CalefaccionState extends Equatable {
       valueTemp: 25,
       valueAngle: 0.0,
       radAngle: 0.0,
+      isAddedToCarousel: false,
     );
   }
 
@@ -59,12 +73,15 @@ class CalefaccionState extends Equatable {
     int valueAmp,
     double valueAngle,
     double radAngle,
+    bool isAddedToCarousel,
+
   }) {
     return CalefaccionState(
       isEnabled: isEnabled ?? this.isEnabled,
       valueTemp: valueTemp ?? this.valueTemp,
       valueAngle: valueAngle ?? this.valueAngle,
       radAngle: radAngle ?? this.radAngle,
+      isAddedToCarousel: isAddedToCarousel ?? this.isAddedToCarousel
     );
   }
   @override
@@ -73,6 +90,8 @@ class CalefaccionState extends Equatable {
   }
 }
 /// FIN  declaracion de STATE
+
+
 
 class CalefaccionBloc extends Bloc <CalefaccionEvent, CalefaccionState> {
 
@@ -93,6 +112,7 @@ class CalefaccionBloc extends Bloc <CalefaccionEvent, CalefaccionState> {
         valueAngle: 0.0,
         radAngle: 0.0,
         isEnabled: false,
+        isAddedToCarousel: true,
       );
     }else if (event is UpdateCalefaccion){
       yield CalefaccionState(
@@ -100,6 +120,15 @@ class CalefaccionBloc extends Bloc <CalefaccionEvent, CalefaccionState> {
         valueTemp: getTemp(event.valueAngle),
         valueAngle: event.valueAngle,
         radAngle: event.radAngle,
+        isAddedToCarousel: true,
+      );
+    } else if (event is AddedWWToCarousel) {
+      yield CalefaccionState(
+        isEnabled: true,
+        valueTemp: 25,
+        valueAngle: 0.0,
+        radAngle: 0.0,
+        isAddedToCarousel: event.isAdded,
       );
     }
   }

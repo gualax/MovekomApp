@@ -99,7 +99,6 @@ class WidgetListBloc extends Bloc <WidgetListEvent, WidgetListState> {
     }
   }
 
-
   Stream<WidgetListState> _mapWidgetListToState(AddWidget event,WidgetListState state) async* {
     try {
       state.widgetList.add(event._widget);

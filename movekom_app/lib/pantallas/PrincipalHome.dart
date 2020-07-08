@@ -2,6 +2,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movekomapp/blocs/list_rebuild_bloc.dart';
 import 'package:movekomapp/controladores/agua/AguasLimpias.dart';
 import 'package:movekomapp/controladores/agua/AguasSucias.dart';
 import 'package:movekomapp/controladores/electricidad/BateriaAux1.dart';
@@ -24,9 +26,17 @@ class _PrincipalHomeState extends State<PrincipalHome> {
   List<String> lista = new List();
   CarouselSlider instance;
   BuildContext mContext;
+
+  @override
+  void initState() {
+    print("*** *- initState  *** *-");
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    print("build");
+    print("*** *- Principal build  *** *-");
     mContext = context;
     return
       Scaffold(
@@ -42,12 +52,22 @@ class _PrincipalHomeState extends State<PrincipalHome> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-              contenido(),
-              PrincipalWidgetsList(),
+            contenido(),
+            principalWidListReb(),
           ],
   );
 }
 
+
+Widget principalWidListReb(){
+  return
+    BlocBuilder<ListRebuildBloc,ListRebuildState>(
+        builder: ( context, state) {
+          print("state changed");
+          print(state.valueDimer);
+          return  PrincipalWidgetsList();
+        });
+}
 
   Widget contenido(){
     return MyContainer(

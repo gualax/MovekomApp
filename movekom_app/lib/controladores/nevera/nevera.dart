@@ -6,6 +6,7 @@ import 'package:circle_list/radial_drag_gesture_detector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
+import 'package:movekomapp/Utils/Dimensiones.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/nevera_bloc.dart';
@@ -84,7 +85,7 @@ class _ExtractorState extends State<Nevera> {
                 }
               },
               child: MyContainer(
-                margin: EdgeInsets.all(SC.all(5)),
+                margin: EdgeInsets.all(SC.all(Dimens.TOOLS_SEPARATION)),
                 width: 420, height: 220,
                 decoration: new BoxDecoration(
                   color: MyColors.baseColor,

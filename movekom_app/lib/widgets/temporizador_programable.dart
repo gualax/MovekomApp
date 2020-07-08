@@ -18,8 +18,6 @@ class _TemporizadorProgState extends State<TemporizadorProg> {
     return _buildTempDialog();
   }
 
-
-
   Widget _buildTempDialog() {
     return new AlertDialog(
       backgroundColor: Colors.black,

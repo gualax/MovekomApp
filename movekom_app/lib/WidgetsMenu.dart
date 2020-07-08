@@ -1,54 +1,31 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:movekomapp/controladores/electricidad/CargadorDeBateria.dart';
-import 'package:movekomapp/pantallas/Wheater/weather_box.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movekomapp/Utils/AllowMultipleGestureRecongnizer.dart';
+import 'package:movekomapp/blocs/list_rebuild_bloc.dart';
+import 'package:movekomapp/blocs/p_widget_list.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
-import 'package:movekomapp/widgets/barra_add_ww.dart';
-import 'package:movekomapp/ww/luz_exterior_widget.dart';
-import 'package:movekomapp/ww/luz_general_widget.dart';
-import 'package:movekomapp/ww/upligth_widget.dart';
+import 'package:movekomapp/ww_manager.dart';
 import 'Utils/MyColors.dart';
-import 'Utils/SC.dart';
-import 'controladores/agua/BombaAgua.dart';
-import 'controladores/agua/ItemBoiler.dart';
-import 'controladores/alarmas/alarma.dart';
-import 'controladores/climatizacion/Calefaccion.dart';
-import 'controladores/iluminacion/LigthsBedRoom.dart';
-import 'controladores/iluminacion/LucesBano.dart';
-import 'controladores/iluminacion/LucesCocina.dart';
-import 'controladores/iluminacion/LucesExterior.dart';
-import 'controladores/iluminacion/LucesSalon.dart';
-import 'controladores/iluminacion/LuzGeneral.dart';
-import 'controladores/iluminacion/ModoLuz1.dart';
-import 'controladores/iluminacion/ModoLuz2.dart';
-import 'controladores/iluminacion/Upligth.dart';
-import 'controladores/modos/ModoAntiHeladasAuto.dart';
-import 'controladores/modos/ModoDescanso.dart';
-import 'controladores/modos/ModoLargaDist.dart';
-import 'controladores/modos/ModoLimpiezaCalef.dart';
-import 'controladores/modos/ModoLimpiezaTuberias.dart';
-import 'controladores/modos/ModoPanelSolar.dart';
-import 'ww/temperature_widget.dart';
-import 'controladores/electricidad/Inversor.dart';
-import 'controladores/nevera/nevera.dart';
 
-class WidgetsMenu extends StatefulWidget {
+class WidgetsMenuDialog extends StatefulWidget {
   @override
-  _WidgetsMenuState createState() => _WidgetsMenuState();
+  _WidgetsMenuDialogState createState() => _WidgetsMenuDialogState();
 }
 
-class _WidgetsMenuState extends State<WidgetsMenu> {
+class _WidgetsMenuDialogState extends State<WidgetsMenuDialog> {
   @override
   Widget build(BuildContext context) {
+
     return _buildAboutDialog2();
   }
 
   Widget _buildAboutDialog2() {
     return new AlertDialog(
       backgroundColor: Colors.black,
-
       content: Container(
         width: MediaQuery.of(context).size.width,
         child: Stack(
@@ -85,18 +62,7 @@ class _WidgetsMenuState extends State<WidgetsMenu> {
             child: MyContainer(
               child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    row1(),
-                    row2(),
-                    row3(),
-                    row4(),
-                    row5(),
-                    row6(),
-                  ],
-                ),
+                child: ShopItemsWidget(),
               ),
             ),
           ),
@@ -124,148 +90,76 @@ class _WidgetsMenuState extends State<WidgetsMenu> {
       ),
     );
   }
-
-
-  Widget row1(){
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        withAddBig(widgetBoiler(2)),
-        withAddBig(Calefaccion(3)),
-        withAddBig(Inversor(3)),
-        withAddBig(CargadorBaterias(3)),
-      ],
-    );
 }
 
-Widget withAddBig(widget){
-    return MyContainer(
-      width: 240,
-      height: 185,
-      margin: EdgeInsets.only(bottom: SC.bot(7)),
-      child: Stack(
-        children: <Widget>[
-          widget,
-          Align(
-            alignment: Alignment.bottomCenter,
-              child: AddWWBar()),
-        ],
-      ),
-    );
-}
-  Widget withAddMed(widget){
-    return MyContainer(
-      margin: EdgeInsets.only(bottom: SC.bot(7)),
-      width: 120,
-      height: 185,
-      child: Stack(
-        children: <Widget>[
-          widget,
-          Align(
-              alignment: Alignment.bottomCenter,
-              child: AddWWBar()),
-        ],
-      ),
-    );
-  }
-  Widget withAddSmall(widget){
-    return MyContainer(
-      margin: EdgeInsets.only(bottom: SC.bot(7)),
-      width: 80,
-      height: 185,
-      child: Stack(
-        children: <Widget>[
-          widget,
-          Align(
-              alignment: Alignment.bottomCenter,
-              child: AddWWBar()),
-        ],
-      ),
+class ShopItemsWidget extends StatelessWidget {
+  ListRebuildBloc listRebuildBloc;
+
+  Widget build(BuildContext context) {
+    listRebuildBloc = BlocProvider.of<ListRebuildBloc>(context);
+    return StreamBuilder(
+      initialData: bloc.carrouselList,
+      stream: bloc.getCarrouselStream,
+      builder: (context, snapshot) {
+        return snapshot.data.length > 0
+            ? widgetsItemsListBuilder(snapshot)
+            : Center(child: Text("All items in shop have been taken"));
+      },
     );
   }
 
-  Widget row2(){
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        withAddBig(WeatherBox(0,2)),
-        withAddMed(Nevera(3)),
-        withAddMed(BombaAgua(3)),
-        withAddBig(TemperatureWW()),
-        withAddSmall( LuzExtWW()),
-        withAddSmall(LuzGenWW()),
-        withAddSmall(LuzUpligthWW()),
-      ],
-    );
-  }
 
-  Widget row3(){
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        withAddBig(LucesExterior(3)),
-        withAddBig(LucesCocina(2)),
-        withAddBig(LigthsBedroom(2)),
-        withAddBig(LucesBano(2)),
-      ],
-    );
-  }
+  Widget widgetsItemsListBuilder(snapshotCarousel) {
+    List<Widget> carlist = snapshotCarousel.data;
 
-  Widget row4(){
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        withAddBig(LucesSalon(2)),
-        withAddBig(Upligth(3)),
-        withAddBig(LuzGeneral(3)),
-        withAddBig(ModoLuz1(3)),
-      ],
-    );
-  }
-
-  Widget row5(){
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        withAddBig(ModoLuz2(3)),
-        withAddMed(ModoPanelSolar(2)),
-        withAddMed(ModoLimpiezaTuberias(2)),
-        withAddMed(ModoLimpiezaCalefaccion(2)),
-        withAddMed(ModoLargaDist(2)),
-        withAddMed(ModoDescanso(2)),
-        withAddMed(ModoAntiHeladasAuto(2)),
-      ],
-    );
-  }
-
-  Widget row6(){
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        withAddMed(Alarma(3)),
-      ],
-    );
-  }
-
-  Widget item(){
-    return MyContainer(
-      height: 100,
-      width: 100,
-      child:iconSvgD(
-          "assets/icons/pdf_view.svg",
-          Colors.white, 15),
+    /// BOLUDOOO TENES QUE FIJARTE EN LA OTRA LISTA NO ESTA! EN ESTA OBVIO Q ESTAN TODOS SI ES LA QUE MOSTRAS PARA ELEGIR
+    return StreamBuilder(
+        initialData: bloc.wwList,
+        stream: bloc.getWwListStream,
+        builder: (context, snapshot) {
+          return Wrap(
+              crossAxisAlignment: WrapCrossAlignment.center,
+              alignment: WrapAlignment.center,
+              children: snapshot.data.map<Widget>((item) {
+                return !carlist.contains(item) ?
+                RawGestureDetector(
+                  gestures: {
+                    AllowMultipleGestureRecognizer: GestureRecognizerFactoryWithHandlers<
+                        AllowMultipleGestureRecognizer>(
+                          () => AllowMultipleGestureRecognizer(),
+                          (AllowMultipleGestureRecognizer instance) {
+                        instance.onTap = () {
+                          print(" *** PARENT TAPPED ****");
+                          bloc.addToCarrousel(item);
+                          listRebuildBloc.add(Rebuild());
+                          Navigator.pop(context);
+                        };
+                      },
+                    )
+                  },
+                  behavior: HitTestBehavior.opaque,
+                  child: item,
+                ) : GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: () {
+                      print(" *** AbsorbPointer  ****");
+                      bloc.removeFromCarrousel(item);
+                      listRebuildBloc.add(Rebuild());
+                      Navigator.pop(context);
+                    },
+                 child: AbsorbPointer(
+                   absorbing: true,
+                    child: item,
+                  ),
+                );
+              }).toList()
+          );
+        }
     );
   }
 
 
 }
-
 
 
 
