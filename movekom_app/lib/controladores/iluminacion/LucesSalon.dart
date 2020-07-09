@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movekomapp/Utils/Constants.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
@@ -83,6 +84,24 @@ class LucesSalon extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.topLeft,
                     child: Text(title,style: MyTextStyle.estilo(18, MyColors.text),),
+                  ),
+                ),
+                MyPositioned.fill(
+                  top:5 ,left: 5,
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: GestureDetector(
+                      onHorizontalDragUpdate: (dragValue){
+                        print(dragValue);
+                        double newVlue = state.valueDimer + (dragValue.delta.dx * Constants.SLIDER_DRAG_FACTOR);
+                        lucesSalonBloc.add(Update(newVlue));
+                      },
+                      child: MyContainer(
+                        color: Colors.transparent,
+                        width: 240 ,
+                        height: 120,
+                      ),
+                    ),
                   ),
                 ),
               ],

@@ -273,7 +273,7 @@ class _HomePageState extends State<HomePage>{
 
   List<String> subtitles = [
     "    PANTALLA GENERAL",
-    "    EQUIPOS DE CLIMATIAZACION",
+    "    EQUIPOS DE CLIMATIZACION",
     "    ESTADO DE BATERIAS",
     "    FUSIBLES",
     "    NIVELES DEPOSITOS Y VALVULAS",

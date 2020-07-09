@@ -2,6 +2,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:movekomapp/Utils/slider_controller.dart';
 
 abstract class LucesCocinaEvent extends Equatable {
   LucesCocinaEvent([List props = const []]) : super(props);
@@ -46,7 +47,7 @@ class LucesCocinaState extends Equatable {
 
   LucesCocinaState copyWith({
     bool isEnabled,
-    int valueDimer,
+    double valueDimer,
   }) {
     return LucesCocinaState(
       isEnabled: isEnabled ?? this.isEnabled,
@@ -70,13 +71,12 @@ class LucesCocinaBloc extends Bloc <LucesCocinaEvent, LucesCocinaState> {
   Stream<LucesCocinaState> mapEventToState(LucesCocinaEvent event) async* {
     if (event is Enable) {
       yield LucesCocinaState.initial();
-    } else if (event is Update){
 
+    } else if (event is Update){
       yield LucesCocinaState(
         isEnabled: true,
-        valueDimer: event.valueDimer,
+        valueDimer: getValueUpdate(event.valueDimer),
       );
-
     } else if (event is Disable) {
       yield LucesCocinaState(
         valueDimer: 0.0,
@@ -85,3 +85,4 @@ class LucesCocinaBloc extends Bloc <LucesCocinaEvent, LucesCocinaState> {
     }
   }
 }
+

@@ -48,11 +48,15 @@ class Alarma extends StatelessWidget {
             return GestureDetector(
               onTap: () {
                 if (state.isEnabled) {
-                  alarmaBloc.add(Disable());
+                //  alarmaBloc.add(Disable());
+                  showDialog (
+                    context: context,
+                    builder: (BuildContext context) => AlarmDialog(false),
+                  );
                 } else {
                   showDialog (
                     context: context,
-                    builder: (BuildContext context) => AlarmDialog(),
+                    builder: (BuildContext context) => AlarmDialog(true),
                   );
                   alarmaBloc.add(Enable());
                 }

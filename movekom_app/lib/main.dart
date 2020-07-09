@@ -121,7 +121,7 @@ class MyApp extends StatelessWidget {
         BlocProvider<LucesCocinaBloc>(create:(context)=> LucesCocinaBloc()),
         BlocProvider<LucesBanoBloc>(create:(context)=> LucesBanoBloc()),
         BlocProvider<UpligthBloc>(create:(context)=> UpligthBloc()),
-        BlocProvider<LucesParqueBloc>(create:(context)=> LucesParqueBloc()),
+        BlocProvider<LucesExteriorBloc>(create:(context)=> LucesExteriorBloc()),
         BlocProvider<LuzGeneralBloc>(create:(context)=> LuzGeneralBloc()),
         BlocProvider<DownligthBloc>(create:(context)=> DownligthBloc()),
 

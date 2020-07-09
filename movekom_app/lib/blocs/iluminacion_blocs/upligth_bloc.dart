@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:movekomapp/Utils/slider_controller.dart';
 
 abstract class UplightEvent extends Equatable {
   UplightEvent([List props = const []]) : super(props);
@@ -73,7 +74,7 @@ class UpligthBloc extends Bloc <UplightEvent, UplightState> {
 
       yield UplightState.UpligthState(
         isEnabled: true,
-        valueDimer: event.valueDimer,
+        valueDimer: getValueUpdate(event.valueDimer),
       );
 
     } else if (event is Disable) {

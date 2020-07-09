@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movekomapp/Utils/Constants.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
@@ -14,7 +15,7 @@ import 'package:movekomapp/widgets/slider_theme.dart';
 
 class LucesExterior extends StatelessWidget {
   final String title = "LUZ EXTERIOR";
-  LucesParqueBloc lucesCocinaBloc;
+  LucesExteriorBloc lucesCocinaBloc;
   final int widgetType;
   LucesExterior(this.widgetType);
 
@@ -32,9 +33,9 @@ class LucesExterior extends StatelessWidget {
 
   Widget exterior_grande(){
     return
-      BlocBuilder<LucesParqueBloc,LucesParqueState>(
+      BlocBuilder<LucesExteriorBloc,LucesExteriorState>(
           builder: ( context, state) {
-             lucesCocinaBloc = BlocProvider.of<LucesParqueBloc>(context);
+             lucesCocinaBloc = BlocProvider.of<LucesExteriorBloc>(context);
             return MyContainer(
             margin: EdgeInsets.all(SC.all(5)),
             width: 240,
@@ -86,6 +87,24 @@ class LucesExterior extends StatelessWidget {
                     child: Text(title,style: MyTextStyle.estilo(18, MyColors.text),),
                   ),
                 ),
+                MyPositioned.fill(
+                  top:5 ,left: 5,
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: GestureDetector(
+                      onHorizontalDragUpdate: (dragValue){
+                        print(dragValue);
+                        double newVlue = state.valueDimer + (dragValue.delta.dx * Constants.SLIDER_DRAG_FACTOR);
+                        lucesCocinaBloc.add(Update(newVlue));
+                      },
+                      child: MyContainer(
+                        color: Colors.transparent,
+                        width: 240 ,
+                        height: 120,
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           );
@@ -99,9 +118,9 @@ class LucesExterior extends StatelessWidget {
     Color color;
     String text;
     return
-      BlocBuilder<LucesParqueBloc,LucesParqueState>(
+      BlocBuilder<LucesExteriorBloc,LucesExteriorState>(
       builder: ( context, state) {
-      lucesCocinaBloc = BlocProvider.of<LucesParqueBloc>(context);
+      lucesCocinaBloc = BlocProvider.of<LucesExteriorBloc>(context);
       if(state.isEnabled ){
         color = MyColors.principal;
         text = "ON";
@@ -164,9 +183,9 @@ class LucesExterior extends StatelessWidget {
 
   Widget exterior_ww(){
     return
-      BlocBuilder<LucesParqueBloc,LucesParqueState>(
+      BlocBuilder<LucesExteriorBloc,LucesExteriorState>(
           builder: ( context, state) {
-            lucesCocinaBloc = BlocProvider.of<LucesParqueBloc>(context);
+            lucesCocinaBloc = BlocProvider.of<LucesExteriorBloc>(context);
             return MyContainer(
               margin: EdgeInsets.all(SC.all(7)),
               width: 225,

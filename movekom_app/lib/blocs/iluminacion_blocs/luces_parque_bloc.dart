@@ -2,22 +2,23 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:movekomapp/Utils/slider_controller.dart';
 
-abstract class LucesParqueEvent extends Equatable {
-  LucesParqueEvent([List props = const []]) : super(props);
+abstract class LucesExteriorEvent extends Equatable {
+  LucesExteriorEvent([List props = const []]) : super(props);
 }
 
-class Enable extends LucesParqueEvent {  /// Habilita la bateria
+class Enable extends LucesExteriorEvent {  /// Habilita la bateria
   @override
   String toString() => 'EnableBatery';
 }
 
-class Disable extends LucesParqueEvent { /// Deshabilita la bateria
+class Disable extends LucesExteriorEvent { /// Deshabilita la bateria
   @override
   String toString() => 'DisableBatery';
 }
 
-class Update extends LucesParqueEvent {  /// Habilita la bateria
+class Update extends LucesExteriorEvent {  /// Habilita la bateria
   final double valueDimer;
 
   Update(this.valueDimer) : super([valueDimer]);
@@ -26,29 +27,29 @@ class Update extends LucesParqueEvent {  /// Habilita la bateria
   String toString() => 'Update  {valueDimer: $valueDimer}}' ;
 }
 
-class LucesParqueState extends Equatable {
+class LucesExteriorState extends Equatable {
   final bool isEnabled;
   double valueDimer;
 
-  LucesParqueState({
+  LucesExteriorState({
     @required this.isEnabled,
     @required this.valueDimer,
 
   }) : super([isEnabled,valueDimer]);
 
   /// Valores iniciales
-  factory LucesParqueState.initial() {
-    return LucesParqueState(
+  factory LucesExteriorState.initial() {
+    return LucesExteriorState(
       isEnabled: true,
       valueDimer: 0.0,
     );
   }
 
-  LucesParqueState copyWith({
+  LucesExteriorState copyWith({
     bool isEnabled,
     int valueDimer,
   }) {
-    return LucesParqueState(
+    return LucesExteriorState(
       isEnabled: isEnabled ?? this.isEnabled,
       valueDimer: valueDimer ?? this.valueDimer,
     );
@@ -60,25 +61,23 @@ class LucesParqueState extends Equatable {
 }
 /// FIN  declaracion de STATE
 
-class LucesParqueBloc extends Bloc <LucesParqueEvent, LucesParqueState> {
+class LucesExteriorBloc extends Bloc <LucesExteriorEvent, LucesExteriorState> {
 
   @override
   // TODO: implement initialState
-  LucesParqueState get initialState => LucesParqueState.initial();
+  LucesExteriorState get initialState => LucesExteriorState.initial();
 
   @override
-  Stream<LucesParqueState> mapEventToState(LucesParqueEvent event) async* {
+  Stream<LucesExteriorState> mapEventToState(LucesExteriorEvent event) async* {
     if (event is Enable) {
-      yield LucesParqueState.initial();
+      yield LucesExteriorState.initial();
     } else if (event is Update){
-
-      yield LucesParqueState(
+      yield LucesExteriorState(
         isEnabled: true,
-        valueDimer: event.valueDimer,
+        valueDimer: getValueUpdate(event.valueDimer),
       );
-
     } else if (event is Disable) {
-      yield LucesParqueState(
+      yield LucesExteriorState(
         valueDimer: 0.0,
         isEnabled: false,
       );

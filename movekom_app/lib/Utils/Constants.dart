@@ -11,6 +11,7 @@ static final String HARDWARE_VERSION  = "2";
 static final String SOFTWARE_VERSION  = "2.1.2";
 
 
+static final double SLIDER_DRAG_FACTOR  = 1.6;
 
 
 
