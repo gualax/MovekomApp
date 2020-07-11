@@ -8,56 +8,56 @@ abstract class LucesHabitacionEvent extends Equatable {
   LucesHabitacionEvent([List props = const []]) : super(props);
 }
 
-class Enable extends LucesHabitacionEvent {  /// Habilita la bateria
+class EnableLucesHabitacion extends LucesHabitacionEvent {  /// Habilita la bateria
   @override
   String toString() => 'EnableBatery';
 }
 
-class Disable extends LucesHabitacionEvent { /// Deshabilita la bateria
+class DisableLucesHabitacion extends LucesHabitacionEvent { /// Deshabilita la bateria
   @override
   String toString() => 'DisableBatery';
 }
 
-class Update extends LucesHabitacionEvent {  /// Habilita la bateria
+class UpdateLucesHabitacion extends LucesHabitacionEvent {  /// Habilita la bateria
  final double valueDimer;
-
- Update(this.valueDimer) : super([valueDimer]);
+ BuildContext _context;
+ UpdateLucesHabitacion(this.valueDimer,this._context) : super([valueDimer,_context]);
 
  @override
  String toString() => 'Update  {valueDimer: $valueDimer}}' ;
 }
 
-class LucesHabitacionState extends Equatable {
-  final bool isEnabled;
-  double valueDimer;
+class UpdateLucesHabitacionFromMode extends LucesHabitacionEvent {  /// Habilita la bateria
+  final double valueDimer;
+  UpdateLucesHabitacionFromMode(this.valueDimer) : super([valueDimer]);
 
-  LucesHabitacionState({
-    @required this.isEnabled,
-    @required this.valueDimer,
-
-  }) : super([isEnabled,valueDimer]);
-
-  /// Valores iniciales
-  factory LucesHabitacionState.initial() {
-    return LucesHabitacionState(
-      isEnabled: true,
-      valueDimer: 0.0,
-    );
-  }
-
-  LucesHabitacionState copyWith({
-    bool isEnabled,
-    int valueDimer,
-  }) {
-    return LucesHabitacionState(
-      isEnabled: isEnabled ?? this.isEnabled,
-      valueDimer: valueDimer ?? this.valueDimer,
-    );
-  }
   @override
-  String toString() {
-    return 'StopwatchState { isEnabled: $isEnabled, isInitial: $valueDimer }';
-  }
+  String toString() => 'Update  {valueDimer: $valueDimer}}' ;
+}
+
+@immutable
+abstract class LucesHabitacionState {
+  final bool isEnabled;
+  final double valueDimer;
+  LucesHabitacionState({this.isEnabled, this.valueDimer});
+}
+
+class InitialLucesHabitacionState extends LucesHabitacionState {
+  InitialLucesHabitacionState( {bool isEnabled, double valueDimer})
+      : super(
+    isEnabled: isEnabled ?? true,
+    valueDimer: valueDimer ?? 0.0,
+  );
+}
+
+
+class NewLucesHabitacionState extends LucesHabitacionState {
+  NewLucesHabitacionState.fromOldSettingState(LucesHabitacionState oldState,
+      {bool isEnabled, double valueDimer})
+      : super(
+    isEnabled: isEnabled ?? oldState.isEnabled,
+    valueDimer: valueDimer ?? oldState.valueDimer,
+  );
 }
 /// FIN  declaracion de STATE
 
@@ -65,24 +65,29 @@ class LucesHabitacionBloc extends Bloc <LucesHabitacionEvent, LucesHabitacionSta
 
   @override
   // TODO: implement initialState
-  LucesHabitacionState get initialState => LucesHabitacionState.initial();
+  LucesHabitacionState get initialState => InitialLucesHabitacionState();
 
   @override
   Stream<LucesHabitacionState> mapEventToState(LucesHabitacionEvent event) async* {
-    if (event is Enable) {
-      yield LucesHabitacionState.initial();
-    } else if (event is Update){
-
-      yield LucesHabitacionState(
+    if (event is EnableLucesHabitacion) {
+      yield NewLucesHabitacionState.fromOldSettingState(state,
+          isEnabled: true);
+    } else if (event is UpdateLucesHabitacion) {
+      disableModes(event._context);
+      yield NewLucesHabitacionState.fromOldSettingState(state,
         isEnabled: true,
         valueDimer: getValueUpdate(event.valueDimer),
       );
-
-    } else if (event is Disable) {
-      yield LucesHabitacionState(
-        valueDimer: 0.0,
-        isEnabled: false,
+    } else if (event is DisableLucesHabitacion) {
+      yield NewLucesHabitacionState.fromOldSettingState(state,
+          isEnabled: false);
+    }else if (event is UpdateLucesHabitacionFromMode) {
+      yield NewLucesHabitacionState.fromOldSettingState(state,
+        isEnabled: true,
+        valueDimer: getValueUpdate(event.valueDimer),
       );
     }
   }
+
 }
+

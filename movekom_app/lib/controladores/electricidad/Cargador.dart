@@ -39,7 +39,8 @@ class Cargador220 extends StatelessWidget {
               colorIcon = MyColors.inactive;
               colorText = MyColors.inactive;
             }
-          return GestureDetector(
+          return InkWell(
+            splashColor: MyColors.principal,
             onTap: (){
               if(state.isEnabled){
                 cargador220Bloc.add(DisableInversor());

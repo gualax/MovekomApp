@@ -28,28 +28,27 @@ bool isFisrtRender = true;
   }
 
   Widget circularListBoiler() {
-    AnimatedBoiler animatedBoiler = AnimatedBoiler();
+    //AnimatedBoiler animatedBoiler = AnimatedBoiler();
     return
       BlocBuilder<BoilerBloc,BoilerState>(
           builder: ( context, state) {
             boilerBloc = BlocProvider.of<BoilerBloc>(context);
             print("valueCord boiler: " + state.valueCord.toString());
             return MyContainer(
-
             //  color: Colors.amber,
               height: 400,
               width: 400,
               child:
               Center(
-                child: Transform.rotate(
+                child: Transform.rotate( /// ver si esto rota la felcha con el boiler poner dentro de AnimatedBoiler
                   angle: 0.5 * math.pi,
                 child: CircleList(
-                 //outerCircleColor: Colors.cyanAccent,
-               //   innerCircleColor: Colors.white70,
-                  centerWidget: animatedBoiler,
+               //  outerCircleColor: Colors.cyanAccent,
+                 // innerCircleColor: Colors.white70,
+                 // centerWidget: animatedBoiler,
                   rotateMode: RotateMode.stopRotate,
-                  outerRadius: SC.all(160),//150
-                  innerRadius: SC.all(115),
+                  outerRadius: SC.all(170),//150
+                  innerRadius: SC.all(95), //115 /// el problema es que si tapeo donde sta el inner circle no le llega a los hijos
                   origin: Offset(0, 0),
                   children: _radialListItems(),
             ),

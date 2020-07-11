@@ -20,6 +20,7 @@ import 'package:movekomapp/blocs/electricidad_blocs/inversor_bloc.dart';
 import 'package:movekomapp/blocs/iluminacion_blocs/luces_parque_bloc.dart';
 import 'package:movekomapp/blocs/iluminacion_blocs/luz_general_bloc.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/panel_solar_bloc.dart';
+import 'package:movekomapp/blocs/iluminacion_blocs/mode1_bloc.dart';
 import 'package:movekomapp/blocs/iluminacion_blocs/upligth_bloc.dart';
 import 'package:movekomapp/blocs/list_rebuild_bloc.dart';
 import 'package:movekomapp/blocs/modos_blocs/modo_ahorro_bloc.dart';
@@ -45,6 +46,7 @@ import 'blocs/agua_blocs/resistencia2_bloc.dart';
 import 'blocs/electricidad_blocs/bateria_aux_2_bloc.dart';
 import 'blocs/electricidad_blocs/bateria_motor_bloc.dart';
 import 'blocs/agua_blocs/bomba_agua_bloc.dart';
+import 'blocs/iluminacion_blocs/mode2_bloc.dart';
 import 'blocs/item_boiler_bloc.dart';
 import 'blocs/iluminacion_blocs/luces_bano_bloc.dart';
 import 'blocs/iluminacion_blocs/luces_cocina_bloc.dart';
@@ -151,6 +153,9 @@ class MyApp extends StatelessWidget {
         BlocProvider<ListRebuildBloc>(create:(context)=> ListRebuildBloc()),
         BlocProvider<Resistencia1Bloc>(create:(context)=> Resistencia1Bloc()),
         BlocProvider<Resistencia2Bloc>(create:(context)=> Resistencia2Bloc()),
+
+        BlocProvider<Mode1Bloc>(create:(context)=> Mode1Bloc()),
+        BlocProvider<Mode2Bloc>(create:(context)=> Mode2Bloc()),
 
       ],
       child: MaterialApp(

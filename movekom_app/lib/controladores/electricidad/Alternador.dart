@@ -34,8 +34,9 @@ class Alternador extends StatelessWidget {
             colorIcon = MyColors.inactive;
             colorText = MyColors.inactive;
           }
-    return GestureDetector(
-          onTap: (){
+    return InkWell(
+      splashColor: MyColors.principal,
+      onTap: (){
             if(state.isEnabled){
               alternadorBloc.add(DisableInversor());
             } else {

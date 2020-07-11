@@ -8,6 +8,7 @@ import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/Utils/SizeConfig.dart';
 import 'package:movekomapp/blocs/boiler_bloc.dart';
+import 'package:movekomapp/controladores/agua/AnimatedBoiler.dart';
 import 'package:movekomapp/controladores/agua/Boiler.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
@@ -24,9 +25,7 @@ class _WaterBoilerViewState extends State<WaterBoilerView> {
 
   @override
   Widget build(BuildContext context) {
-
-    SizeConfig().init(context);
-   final boilerBloc = BlocProvider.of<BoilerBloc>(context);
+    final boilerBloc = BlocProvider.of<BoilerBloc>(context);
     return boilerBox(boilerBloc);
   }
 
@@ -92,6 +91,13 @@ class _WaterBoilerViewState extends State<WaterBoilerView> {
                   style: MyTextStyle.estilo(17, Colors.white),),
               )
           ),
+          MyPositioned.fill(
+              left: 337, bottom: 5,//300 //5
+              child: Align(
+                alignment: Alignment.center,
+                child: AnimatedBoiler(190),
+              )
+          ),
              MyPositioned.fill(
                     left: 350, bottom: 5,//300 //5
                       child: Align(
@@ -99,12 +105,13 @@ class _WaterBoilerViewState extends State<WaterBoilerView> {
                         child: Boiler(),
                       )
                   ),
+
         ],
       ),
       ),
     );
   }
-  
+  // AnimatedBoiler()
 
 }
 

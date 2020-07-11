@@ -44,9 +44,13 @@ class _ItemBoilerState extends State<ItemBoiler> {
 
   Widget iconBuble() {
     String textoIcon;
+    int numberSelc;
     return
        BlocBuilder<BoilerBloc,BoilerState>(
         builder: ( context, state) {
+         // print("state vlue");
+       //   print(state.valueCord.round());
+          numberSelc = state.valueCord.round();
       if(state.valueCord.round() == widget.listItem.number){
         _selected = true;
       }else{
@@ -60,14 +64,14 @@ class _ItemBoilerState extends State<ItemBoiler> {
     return GestureDetector(
       onTap: widget.onSelect,
       child: MyContainer(
-          width: 120,
-          height: 120,
+          width: 200,
+          height: 200,
+          color: Colors.transparent,
           alignment: Alignment.center,
-          //color: Colors.blue,
           child: Stack(
             children: <Widget>[
-              iconAligned(widget.listItem.number,widget.listItem.iconRoute,_selected),
-              textAligned(widget.listItem.number),
+              iconAligned(widget.listItem.number,widget.listItem.iconRoute,_selected,numberSelc),
+              textAligned(widget.listItem.number,numberSelc),
             ],
         ),
       ),
@@ -82,7 +86,13 @@ class _ItemBoilerState extends State<ItemBoiler> {
 
 
 
-Widget iconAligned(int number, iconRoute, selected){
+Widget iconAligned(int number, iconRoute, selected,numberSelc){
+  Color normalColor;
+  if(numberSelc == 3){
+    normalColor = MyColors.inactive;
+  } else {
+    normalColor = MyColors.white;
+  }
   switch(number){
     case 0:
       return
@@ -90,7 +100,7 @@ Widget iconAligned(int number, iconRoute, selected){
           bottom: 35,
           child:Align(
               alignment: Alignment.center,
-              child: iconSvgD(iconRoute, selected ? MyColors.principal : MyColors.text, 30)
+              child: iconSvgD(iconRoute, selected ? MyColors.principal : normalColor, 30)
           ),
         );
       break;
@@ -99,7 +109,7 @@ Widget iconAligned(int number, iconRoute, selected){
         MyPositioned.fill(
           child:Align(
               alignment: Alignment.center,
-              child: iconSvgD(iconRoute, selected ? MyColors.principal : MyColors.text, 35)
+              child: iconSvgD(iconRoute, selected ? MyColors.principal : normalColor, 35)
           ),
         );
       break;
@@ -109,7 +119,7 @@ Widget iconAligned(int number, iconRoute, selected){
           right: 30,
         child:Align(
             alignment: Alignment.center,
-            child: iconSvgD(iconRoute, selected ? MyColors.principal : MyColors.text, 35)
+            child: iconSvgD(iconRoute, selected ? MyColors.principal : normalColor, 35)
         ),
       );
       break;
@@ -119,7 +129,7 @@ Widget iconAligned(int number, iconRoute, selected){
           top: 25,
         child:Align(
             alignment: Alignment.center,
-            child: iconSvgD(iconRoute, selected ? MyColors.principal : MyColors.text, 30)
+            child: iconSvgD(iconRoute, selected ? MyColors.principal :normalColor, 30)
         ),
       );
       break;
@@ -129,7 +139,7 @@ Widget iconAligned(int number, iconRoute, selected){
           left: 30,
         child:Align(
             alignment: Alignment.center,
-            child: iconSvgD(iconRoute, selected ? MyColors.principal : MyColors.text, 35)
+            child: iconSvgD(iconRoute, selected ? MyColors.principal :normalColor, 35)
         ),
       );
       break;
@@ -138,7 +148,7 @@ Widget iconAligned(int number, iconRoute, selected){
       MyPositioned.fill(
         child:Align(
             alignment: Alignment.center,
-            child: iconSvgD(iconRoute, selected ? MyColors.principal : MyColors.text, 35)
+            child: iconSvgD(iconRoute, selected ? MyColors.principal : normalColor, 35)
         ),
       );
       break;
@@ -146,7 +156,13 @@ Widget iconAligned(int number, iconRoute, selected){
 }
 
 
-Widget textAligned(int number){
+Widget textAligned(int number,numberSelc){
+  Color normalColor;
+  if(numberSelc == 3){
+    normalColor = MyColors.inactive;
+  } else {
+    normalColor = MyColors.white;
+  }
   switch(number){
     case 0:
       return
@@ -154,7 +170,7 @@ Widget textAligned(int number){
           top: 20,
           child: Align(
           alignment: Alignment.center,
-          child: Text("ELECTRICO",style: MyTextStyle.estiloBold(15, MyColors.text),
+          child: Text("ELECTRICO",style: MyTextStyle.estiloBold(15, normalColor),
               textAlign: TextAlign.center),
         ));
       break;
@@ -164,7 +180,7 @@ Widget textAligned(int number){
           left: 10, right: 10,
            child: Align(
             alignment: Alignment.bottomCenter,
-              child: Text("FROST CONTROL",style: MyTextStyle.estiloBold(15, MyColors.text),
+              child: Text("FROST CONTROL",style: MyTextStyle.estiloBold(15, normalColor),
                   textAlign: TextAlign.center,
               ),
           ));
@@ -175,7 +191,7 @@ Widget textAligned(int number){
           right: 15,
           child: Align(
           alignment: Alignment.centerRight,
-          child: Text("40º",style: MyTextStyle.estiloBold(25, MyColors.text),
+          child: Text("40º",style: MyTextStyle.estiloBold(25, normalColor),
               textAlign: TextAlign.center),
       ),
         );
@@ -190,7 +206,7 @@ Widget textAligned(int number){
         left: 20,
         child: Align(
           alignment: Alignment.centerLeft,
-          child: Text("70º",style: MyTextStyle.estiloBold(25, MyColors.text),
+          child: Text("70º",style: MyTextStyle.estiloBold(25, normalColor),
               textAlign: TextAlign.center),
         ),
       );
@@ -201,7 +217,7 @@ Widget textAligned(int number){
           bottom: 10,
          child:Align(
          alignment: Alignment.bottomCenter,
-         child: Text("DRENAJE",style: MyTextStyle.estiloBold(15, MyColors.text),
+         child: Text("DRENAJE",style: MyTextStyle.estiloBold(15, normalColor),
             textAlign: TextAlign.center),
       ));
       break;

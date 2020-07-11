@@ -12,12 +12,15 @@ import 'dart:math' as math;
 import '../../Utils/SizeConfig.dart';
 
 class AnimatedBoiler extends StatefulWidget {
+  double dim;
+  AnimatedBoiler(this.dim);
   @override
   _AnimatedBoilerState createState() => _AnimatedBoilerState();
 }
 
 class _AnimatedBoilerState extends State<AnimatedBoiler>
 with SingleTickerProviderStateMixin {
+  int numberSelc;
   AnimationController animationController;
   Animation<double> animation;
   double _angleValue;
@@ -50,21 +53,21 @@ with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     final boilerBloc = BlocProvider.of<BoilerBloc>(context);
- // print(_angleValue);
   return BlocBuilder(
     bloc: boilerBloc,
     builder: (BuildContext context, BoilerState state) {
-     // print("valueCord:" + state.valueCord.toString());
-    //  print("amgle:" + (state.valueCord * math.pi).toString());
+      //print(state.valueCord);
+      //print("animatedBoiler: "+ (state.valueCord/3 * math.pi).toString());
+      numberSelc = state.valueCord.round();
       return Container(
       //  color: Colors.amber,
         child: Transform.rotate(
-          angle: -0.5 * math.pi,
+          angle: -2 * math.pi,
           child: Container(
             padding: EdgeInsets.all(SC.all(10)),
             child: Transform.rotate(
-              angle: state.valueCord/3 * math.pi,  //el valor del num / la mitad d los elementos si son 6 enotnces divido *3
-              child: circuloBoiler(),
+              angle: state.valueCord / 3 * math.pi,  //el valor del num / la mitad d los elementos si son 6 enotnces divido *3
+              child: circuloBoiler(numberSelc),
             ),
           ),
         ),
@@ -80,7 +83,7 @@ with SingleTickerProviderStateMixin {
     super.dispose();
   }
 
-  Widget circuloBoiler(){
+  Widget circuloBoiler(numberSelc){
   return Container(
   //  color: Colors.pink,
       child: Stack(
@@ -88,22 +91,29 @@ with SingleTickerProviderStateMixin {
           MyPositioned.fill(
               child: Align(
                 alignment: Alignment.center,
-                child: iconSvgNc("assets/icons/circulo_boiler.svg", 300),
+                child: numberSelc != 3 ?  exported(SC.all(170)) :  exported(SC.all(10)),
               )
           ),
           MyPositioned.fill(
               child: Align(
                 alignment: Alignment.center,
-                child:exported(SC.all(155)),
+                child: iconSvgNc("assets/icons/circulo_boiler.svg", widget.dim),
               )
           ),
           MyPositioned.fill(
-              top: 170,
+              child: Align(
+                alignment: Alignment.center,
+                child:exported(SC.all(120)),
+              )
+          ),
+          MyPositioned.fill(
+              top: 200,
               child: Align(
                 alignment: Alignment.topCenter,
                 child:indicador(),
               )
           ),
+
         ],
       ),
   );

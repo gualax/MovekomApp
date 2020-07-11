@@ -51,7 +51,8 @@ class ModoPanelSolar extends StatelessWidget {
               colorText = MyColors.inactive;
               colorIcon = MyColors.inactive;
             }
-            return  GestureDetector(
+            return  InkWell(
+              splashColor: MyColors.principal,
               onTap: (){
                 if(state.isEnabled){
                   bloc.add(Disable());

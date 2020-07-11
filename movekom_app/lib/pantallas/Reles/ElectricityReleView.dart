@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
+import 'package:movekomapp/controladores/reles/reles_widget.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
+import 'package:movekomapp/widgets/rele_dialog.dart';
 
 
 class ElectricityReleView extends StatefulWidget {
@@ -34,111 +36,48 @@ class _ElectricityReleViewState extends State<ElectricityReleView> {
 
   Widget releContainer(){
     return MyContainer (
-  //    margin: EdgeInsets.only(right: SC.right(80)),
+      margin: EdgeInsets.only(right: SC.right(80),left: SC.left(80) ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          releRow(),
-          releRow2(),
-          releRow3(),
-        ],
-      ),
-    );
-  }
-
-Widget releRow(){
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          rele("LUZ 1"),
-          rele("LUZ 2"),
-          rele("LUZ 3"),
-          rele("LUZ 4"),
-          rele("LUZ 5"),
-          rele("LUZ 6"),
-          rele("AUXILIAR 1"),
-        ],
-      ),
-    );
-}
-
-  Widget releRow2(){
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          rele("INVERSOR"),
-          rele("CARGADOR"),
-          rele("PLACA SOLAR"),
-          rele("BAT. MOTOR"),
-          rele("BAT. AUXILIAR"),
-          rele("CONSUMIBLES"),
-          rele("AUXILIAR 2"),
-        ],
-      ),
-    );
-  }
-
-  Widget releRow3(){
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          rele("CALEFACCION"),
-          rele("BOILER"),
-          rele("NEVERA"),
-          rele("BOMBA AGUA"),
-          rele("VALV. DRENAJE"),
-          rele("AUXILIAR 3"),
-          rele("AUXILIAR 4"),
+          releRowW(),
+      //    releRow2(),
+       //   releRow3(),
         ],
       ),
     );
   }
 
 
-Widget rele(title){
-  return MyContainer(
-      margin: EdgeInsets.all(SC.all(10)),
-      width: 120,
-      height: 120,
-      decoration: new BoxDecoration(
-        color: MyColors.baseColor,
+  Widget releRowW(){
+    return Container(
+      child: Wrap(
+        children: <Widget>[
+          ReleWidget("LUZ 1",false),
+          ReleWidget("LUZ 2",true),
+          ReleWidget("LUZ 3",true),
+          ReleWidget("LUZ 4",true),
+          ReleWidget("LUZ 5",true),
+          ReleWidget("LUZ 6",true),
+          ReleWidget("AUXILIAR 1",true),
+          ReleWidget("INVERSOR",true),
+          ReleWidget("CARGADOR",false),
+          ReleWidget("PLACA SOLAR",true),
+          ReleWidget("BAT. MOTOR",true),
+          ReleWidget("BAT. AUXILIAR",true),
+          ReleWidget("CONSUMIBLES",true),
+          ReleWidget("AUXILIAR 2",true),
+          ReleWidget("CALEFACCION",true),
+          ReleWidget("BOILER",true),
+          ReleWidget("NEVERA",true),
+          ReleWidget("BOMBA AGUA",true),
+          ReleWidget("VALV. DRENAJE",true),
+          ReleWidget("AUXILIAR 3",true),
+          ReleWidget("AUXILIAR 4",true),
+        ],
       ),
-    child: Stack(
-      children: <Widget>[
-        MyPositioned.fill(
-          top: 5,
-            child: Align(
-              alignment: Alignment.topCenter,
-              child: Text(title,
-              style: MyTextStyle.estiloBold(14, MyColors.text),),
-            )
-        ),
-        MyPositioned.fill(
-            child: Align(
-              child: rele_img(),
-            )
-        ),
-      ],
-    ),
-  );
-}
-
-Widget rele_img(){
-    return MyContainer(
-      width: 80,
-        height: 80,
-        decoration: new BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/images/reles/rele10.png"),
-          fit: BoxFit.contain,
-      ),
-     ),
     );
-}
-
+  }
 
 
 }

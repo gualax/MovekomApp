@@ -96,79 +96,94 @@ class LigthsBedroom extends StatelessWidget {
   }
 
   Widget bedroom_widget(ligthBedroomBloc){
+    Color colorIcons;
     return
       BlocBuilder<LucesHabitacionBloc,LucesHabitacionState>(
           builder: ( context, state) {
-            return MyContainer(
-              margin: EdgeInsets.all(SC.all(5)),
-              width: 240,
-              height: 175,
-              decoration: new BoxDecoration(
-                  color: MyColors.baseColor
-              ),
-              child: Stack(
-                children: [
-                  MyPositioned.fill(
-                    right: 30,bottom: 20,
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: iconSvgD("assets/icons/bedroom.svg", Colors.lightGreenAccent.withAlpha(state.valueDimer.round() + 20), 70),
+            if ( state.isEnabled){
+              colorIcons = MyColors.principal;
+            } else {
+              colorIcons = MyColors.inactive;
+            }
+            return GestureDetector(
+              onTap: (){
+                if(state.isEnabled){
+                  ligthBedroomBloc.add(DisableLucesHabitacion());
+                }else {
+                  ligthBedroomBloc.add(EnableLucesHabitacion());
+                }
+              },
+              child: MyContainer(
+                margin: EdgeInsets.all(SC.all(5)),
+                width: 240,
+                height: 175,
+                decoration: new BoxDecoration(
+                    color: MyColors.baseColor
+                ),
+                child: Stack(
+                  children: [
+                    MyPositioned.fill(
+                      right: 30,bottom: 20,
+                      child: Align(
+                        alignment: Alignment.centerRight,
+                        child: iconSvgD("assets/icons/bedroom.svg", state.isEnabled ? MyColors.principal.withAlpha(state.valueDimer.round()+ 20): MyColors.inactive.withAlpha(100), 70),
+                      ),
                     ),
-                  ),
-                  MyPositioned.fill(
-                    left: 30, bottom: 10,
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: iconSvgD("assets/icons/lampara.svg",  Colors.lightGreenAccent.withAlpha(state.valueDimer.round()+20), 55),
+                    MyPositioned.fill(
+                      left: 30, bottom: 10,
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: iconSvgD("assets/icons/lampara.svg",  state.isEnabled ? MyColors.principal.withAlpha(state.valueDimer.round()+ 20): MyColors.inactive.withAlpha(100), 55),
+                      ),
                     ),
-                  ),
-                  MyPositioned.fill(
-                    bottom:  10,
-                    child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Container(
-                        height:  SizeConfig.v * 3.2,
-                        child: SliderTheme(
-                          data: sliderCustomTheme(context),
-                          child: Slider(
-                            value: state.valueDimer,
-                            onChanged: (newValue) {
-                              //  print(newValue);
-                              ligthBedroomBloc.add(Update(newValue));
-                            },
-                            min: 0,
-                            max: 200,
+                    MyPositioned.fill(
+                      bottom:  10,
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Container(
+                          height:  SizeConfig.v * 3.2,
+                          child: SliderTheme(
+                            data: sliderCustomTheme(context,colorIcons),
+                            child: Slider(
+                              value:  state.isEnabled ? state.valueDimer : 0.0,
+                              onChanged: (newValue) {
+                                //  print(newValue);
+                                ligthBedroomBloc.add(UpdateLucesHabitacion(newValue,context));
+                              },
+                              min: 0,
+                              max: 200,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  MyPositioned.fill(
-                    top:5 ,left: 5,
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(title,style: MyTextStyle.estilo(18, MyColors.text),),
+                    MyPositioned.fill(
+                      top:5 ,left: 5,
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(title,style: MyTextStyle.estilo(18, MyColors.text),),
+                      ),
                     ),
-                  ),
-                  MyPositioned.fill(
-                    top:5 ,left: 5,
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: GestureDetector(
-                        onHorizontalDragUpdate: (dragValue){
-                          print(dragValue);
-                          double newVlue = state.valueDimer + (dragValue.delta.dx * Constants.SLIDER_DRAG_FACTOR);
-                          ligthBedroomBloc.add(Update(newVlue));
-                        },
-                        child: MyContainer(
-                          color: Colors.transparent,
-                          width: 240 ,
-                          height: 120,
+                    MyPositioned.fill(
+                      top:5 ,left: 5,
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: GestureDetector(
+                          onHorizontalDragUpdate: (dragValue){
+                            print(dragValue);
+                            double newVlue = state.valueDimer + (dragValue.delta.dx * Constants.SLIDER_DRAG_FACTOR);
+                            ligthBedroomBloc.add(UpdateLucesHabitacion(newVlue,context));
+                          },
+                          child: MyContainer(
+                            color: Colors.transparent,
+                            width: 240 ,
+                            height: 120,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             );
           }

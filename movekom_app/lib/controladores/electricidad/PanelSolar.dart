@@ -42,7 +42,8 @@ class PanelSolar extends StatelessWidget {
               colorIcon = MyColors.inactive;
               colorText = MyColors.inactive;
             }
-          return GestureDetector(
+          return InkWell(
+            splashColor: MyColors.principal,
             onTap: (){
               if(state.isEnabled){
                 panelSolarBloc.add(DisablePanelSolar());

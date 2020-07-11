@@ -31,35 +31,51 @@ class LuzGeneral extends StatelessWidget {
   }
 
   Widget luz_general_grande(){
+    Color iconColor;
     return
       BlocBuilder<LuzGeneralBloc,LuzGeneralState>(
           builder: ( context, state) {
             luzGeneralBloc = BlocProvider.of<LuzGeneralBloc>(context);
-          return MyContainer(
-            margin: EdgeInsets.all(SC.all(5)),
-            width: 125,
-            height: 150,
-            decoration: new BoxDecoration(
-                color: MyColors.baseColor
-            ),
-            child: Stack(
-              children: [
-                MyPositioned.fill(
-                   top: 20,
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: iconSvgD("assets/icons/lampara.svg",  Colors.grey, 55),
+            if(state.isEnabled){
+              iconColor = MyColors.principal;
+            } else {
+              iconColor = MyColors.inactive;
+            }
+          return InkWell(
+            splashColor: MyColors.principal,
+            onTap: (){
+              if(state.isEnabled){
+                luzGeneralBloc.add(DisableGeneral(context));
+              } else {
+                luzGeneralBloc.add(EnableGeneral(context));
+              }
+            },
+            child: MyContainer(
+              margin: EdgeInsets.all(SC.all(5)),
+              width: 125,
+              height: 150,
+              decoration: new BoxDecoration(
+                  color: MyColors.baseColor
+              ),
+              child: Stack(
+                children: [
+                  MyPositioned.fill(
+                     top: 20,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: iconSvgD("assets/icons/lampara.svg",  iconColor, 55),
+                    ),
                   ),
-                ),
-                MyPositioned.fill(
-                  top:5 ,
-                  child: Align(
-                    alignment: Alignment.topCenter,
-                    child: Text(title,style: MyTextStyle.estilo(17, MyColors.text),
-                    textAlign: TextAlign.center,),
+                  MyPositioned.fill(
+                    top:5 ,
+                    child: Align(
+                      alignment: Alignment.topCenter,
+                      child: Text(title,style: MyTextStyle.estilo(17, MyColors.text),
+                      textAlign: TextAlign.center,),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         }
@@ -85,9 +101,9 @@ class LuzGeneral extends StatelessWidget {
             return GestureDetector(
               onTap: (){
                 if(state.isEnabled){
-                  luzGeneralBloc.add(Disable());
+                  luzGeneralBloc.add(DisableGeneral(context));
                 }else{
-                  luzGeneralBloc.add(Enable());
+                  luzGeneralBloc.add(EnableGeneral(context));
                 }
               },
               child: MyContainer(

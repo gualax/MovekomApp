@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
 
-SliderThemeData sliderCustomTheme(context){
+SliderThemeData sliderCustomTheme(context,colorIcons){
   return
       SliderTheme.of(context).copyWith(
       inactiveTrackColor: Colors.grey,
       activeTrackColor: Colors.white,
       trackShape: RectangularSliderTrackShape(),
       trackHeight: SC.all(10),
-      thumbColor: Colors.lightGreenAccent,
+      thumbColor: colorIcons,
       thumbShape: RoundSliderThumbShape(enabledThumbRadius:SC.all(15)),
       overlayColor: Colors.green.withAlpha(32),
       overlayShape: RoundSliderOverlayShape(overlayRadius: SC.all(10)),

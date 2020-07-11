@@ -32,82 +32,97 @@ class LucesExterior extends StatelessWidget {
   }
 
   Widget exterior_grande(){
+    Color colorIcons;
     return
       BlocBuilder<LucesExteriorBloc,LucesExteriorState>(
           builder: ( context, state) {
-             lucesCocinaBloc = BlocProvider.of<LucesExteriorBloc>(context);
-            return MyContainer(
-            margin: EdgeInsets.all(SC.all(5)),
-            width: 240,
-            height: 175,
-            decoration: new BoxDecoration(
-                color: MyColors.baseColor
-            ),
-            child: Stack(
-              children: [
-                MyPositioned.fill(
-                  right: 30, bottom: 30,
-                  child: Align(
-                    alignment: Alignment.centerRight,
-                    child: iconSvgD("assets/icons/park.svg", MyColors.principal.withAlpha(state.valueDimer.round() + 20), 85),
+            lucesCocinaBloc = BlocProvider.of<LucesExteriorBloc>(context);
+            if ( state.isEnabled){
+              colorIcons = MyColors.principal;
+            } else {
+              colorIcons = MyColors.inactive;
+            }
+            return GestureDetector(
+              onTap: (){
+                if(state.isEnabled){
+                  lucesCocinaBloc.add(Disable());
+                }else {
+                  lucesCocinaBloc.add(Enable());
+                }
+              },
+              child: MyContainer(
+              margin: EdgeInsets.all(SC.all(5)),
+              width: 240,
+              height: 175,
+              decoration: new BoxDecoration(
+                  color: MyColors.baseColor
+              ),
+              child: Stack(
+                children: [
+                  MyPositioned.fill(
+                    right: 30, bottom: 30,
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: iconSvgD("assets/icons/park.svg", state.isEnabled ? MyColors.principal.withAlpha(state.valueDimer.round()+ 20): MyColors.inactive.withAlpha(100), 85),
+                    ),
                   ),
-                ),
-                MyPositioned.fill(
-                  left: 30, bottom: 10,
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: iconSvgD("assets/icons/lampara.svg",  MyColors.principal.withAlpha(state.valueDimer.round() + 20), 55),
+                  MyPositioned.fill(
+                    left: 30, bottom: 10,
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: iconSvgD("assets/icons/lampara.svg", state.isEnabled ? MyColors.principal.withAlpha(state.valueDimer.round()+ 20): MyColors.inactive.withAlpha(100), 55),
+                    ),
                   ),
-                ),
-                MyPositioned.fill(
-                  bottom:  10,
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Container(
-                      height:  SC.hei(20),
-                      child: SliderTheme(
-                        data: sliderCustomTheme(context),
-                        child: Slider(
-                          value: state.valueDimer,
-                          onChanged: (newValue) {
-                            //   print(newValue);
-                            lucesCocinaBloc.add(Update(newValue));
-                          },
-                          min: 0,
-                          max: 200,
+                  MyPositioned.fill(
+                    bottom:  10,
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Container(
+                        height:  SC.hei(20),
+                        child: SliderTheme(
+                          data: sliderCustomTheme(context,colorIcons),
+                          child: Slider(
+                            value: state.isEnabled ? state.valueDimer : 0.0,
+                            onChanged: (newValue) {
+                              //   print(newValue);
+                              lucesCocinaBloc.add(UpdateLucesExterior(newValue,context));
+                            },
+                            min: 0,
+                            max: 200,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                MyPositioned.fill(
-                  top:5 ,left: 5,
-                  child: Align(
-                    alignment: Alignment.topLeft,
-                    child: Text(title,style: MyTextStyle.estilo(18, MyColors.text),),
+                  MyPositioned.fill(
+                    top:5 ,left: 5,
+                    child: Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(title,style: MyTextStyle.estilo(18, MyColors.text),),
+                    ),
                   ),
-                ),
-                MyPositioned.fill(
-                  top:5 ,left: 5,
-                  child: Align(
-                    alignment: Alignment.topLeft,
-                    child: GestureDetector(
-                      onHorizontalDragUpdate: (dragValue){
-                        print(dragValue);
-                        double newVlue = state.valueDimer + (dragValue.delta.dx * Constants.SLIDER_DRAG_FACTOR);
-                        lucesCocinaBloc.add(Update(newVlue));
-                      },
-                      child: MyContainer(
-                        color: Colors.transparent,
-                        width: 240 ,
-                        height: 120,
+                  MyPositioned.fill(
+                    top:5 ,left: 5,
+                    child: Align(
+                      alignment: Alignment.topLeft,
+                      child: GestureDetector(
+                        onHorizontalDragUpdate: (dragValue){
+                          print(dragValue);
+                          double newVlue = state.valueDimer + (dragValue.delta.dx * Constants.SLIDER_DRAG_FACTOR);
+                          lucesCocinaBloc.add(UpdateLucesExterior(newVlue,context));
+                        },
+                        child: MyContainer(
+                          color: Colors.transparent,
+                          width: 240 ,
+                          height: 120,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          );
+                ],
+              ),
+          ),
+            );
         }
     );
   }

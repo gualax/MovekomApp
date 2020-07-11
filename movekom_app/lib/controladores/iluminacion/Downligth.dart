@@ -29,6 +29,7 @@ class Downligth extends StatelessWidget {
   }
 
   Widget dowligth_grande(){
+    Color colorIcons = MyColors.principal;
     return
       BlocBuilder<DownligthBloc,DownligthState>(
           builder: ( context, state) {
@@ -63,7 +64,7 @@ class Downligth extends StatelessWidget {
                     child: Container(
                       height:  SizeConfig.v * 3.2,
                       child: SliderTheme(
-                        data: sliderCustomTheme(context),
+                        data: sliderCustomTheme(context,colorIcons),
                         child: Slider(
                           value: state.valueDimer,
                           onChanged: (newValue) {

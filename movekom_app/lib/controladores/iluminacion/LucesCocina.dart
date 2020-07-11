@@ -32,15 +32,21 @@ class LucesCocina extends StatelessWidget {
   }
 
   Widget cocina_widget(lucesCocinaBloc){
+    Color colorIcons;
     return
       BlocBuilder<LucesCocinaBloc,LucesCocinaState>(
           builder: ( context, state) {
+            if ( state.isEnabled){
+              colorIcons = MyColors.principal;
+            } else {
+              colorIcons = MyColors.inactive;
+            }
           return GestureDetector(
             onTap: (){
               if(state.isEnabled){
-                lucesCocinaBloc.add(Disable());
+                lucesCocinaBloc.add(DisableCocina());
               }else {
-                lucesCocinaBloc.add(Enable());
+                lucesCocinaBloc.add(EnableCocina());
               }
             },
             child: MyContainer(
@@ -56,14 +62,14 @@ class LucesCocina extends StatelessWidget {
                     right: 20, bottom: 20,
                     child: Align(
                       alignment: Alignment.centerRight,
-                      child: iconSvgD("assets/icons/kitchen.svg", Colors.lightGreenAccent.withAlpha(state.valueDimer.round() + 20), 75),
+                      child: iconSvgD("assets/icons/kitchen.svg", state.isEnabled ? MyColors.principal.withAlpha(state.valueDimer.round()+ 20): MyColors.inactive.withAlpha(100), 75),
                     ),
                   ),
                   MyPositioned.fill(
                     left: 20, bottom: 10,
                     child: Align(
                       alignment: Alignment.centerLeft,
-                      child: iconSvgD("assets/icons/lampara.svg",  Colors.lightGreenAccent.withAlpha(state.valueDimer.round() + 20), 55),
+                      child: iconSvgD("assets/icons/lampara.svg", state.isEnabled ? MyColors.principal.withAlpha(state.valueDimer.round()+ 20): MyColors.inactive.withAlpha(100), 55),
                     ),
                   ),
                   MyPositioned.fill(
@@ -73,12 +79,12 @@ class LucesCocina extends StatelessWidget {
                       child: Container(
                         height:  SC.hei(20),
                         child: SliderTheme(
-                          data: sliderCustomTheme(context),
+                          data: sliderCustomTheme(context,colorIcons),
                           child: Slider(
-                            value: state.valueDimer,
+                            value: state.isEnabled ? state.valueDimer : 0.0,
                             onChanged: (newValue) {
                               print(newValue);
-                              lucesCocinaBloc.add(Update(newValue));
+                              lucesCocinaBloc.add(UpdateLucesCocina(newValue,context));
                             },
                             min: 0,
                             max: 200,
@@ -102,7 +108,7 @@ class LucesCocina extends StatelessWidget {
                         onHorizontalDragUpdate: (dragValue){
                           print(dragValue);
                           double newVlue = state.valueDimer + (dragValue.delta.dx * Constants.SLIDER_DRAG_FACTOR);
-                          lucesCocinaBloc.add(Update(newVlue));
+                          lucesCocinaBloc.add(UpdateLucesCocina(newVlue,context));
                         },
                         child: MyContainer(
                           color: Colors.transparent,

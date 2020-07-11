@@ -33,7 +33,8 @@ class Consumos extends StatelessWidget {
             colorIcon = MyColors.text;
             colorText = MyColors.inactive;
           }
-          return GestureDetector(
+          return InkWell(
+            splashColor: MyColors.principal,
             onTap: (){
               if(state.isEnabled){
                 consumosBloc.add(DisableInversor());
