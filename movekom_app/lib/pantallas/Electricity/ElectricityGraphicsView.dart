@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sparkline/flutter_sparkline.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
+import 'package:movekomapp/controladores/graficos/graficos.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
@@ -13,6 +14,8 @@ class ElectricityGraphicsView extends StatefulWidget {
 }
 
 class _ElectricityGraphicsViewState extends State<ElectricityGraphicsView> {
+  int currentSelectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return MyContainer(
@@ -39,13 +42,28 @@ class _ElectricityGraphicsViewState extends State<ElectricityGraphicsView> {
   Widget daysAndHours(){
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        days("24 HORAS"),
-        days("7 DIAS"),
-        days("15 DIAS"),
-        days("30 DIAS")
-      ],
+      children: _dayBoxesWidgets(),
     );
+  }
+
+  List<Widget> _dayBoxesWidgets() {
+    print("REARMO?");
+    return dayBoxes.items.map((DayBox viewModel) {
+      final listItem =
+      GrphicDayItemBox(
+        listItem: viewModel,
+        index: viewModel.number,
+        isSelected: currentSelectedIndex == viewModel.number,
+        widgetType: 2,
+        onSelect: () {
+          setState(() {
+            currentSelectedIndex = viewModel.number;
+            print(currentSelectedIndex);
+          });
+        },
+      );
+      return listItem;
+    }).toList();
   }
 
   Widget days(title){
@@ -67,8 +85,8 @@ class _ElectricityGraphicsViewState extends State<ElectricityGraphicsView> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        graphic(),
-        graphic(),
+        graphic_image(dayBoxes.items[currentSelectedIndex].imageRoute),
+        graphic_image(dayBoxes.items[currentSelectedIndex].imageRoute),
       ],
     );
   }
@@ -206,6 +224,20 @@ class _ElectricityGraphicsViewState extends State<ElectricityGraphicsView> {
     );
   }
 
+
+  Widget graphic_image(imageRoute){
+    return MyContainer(
+        margin: EdgeInsets.all( SC.left(7)),
+        width: 699,
+        height: 160,
+      decoration: new BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(imageRoute),
+          fit: BoxFit.fill,
+        ),
+      ),
+    );
+  }
 
 
   Widget graphic(){

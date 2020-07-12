@@ -7,6 +7,9 @@ class AveriasHistory extends StatelessWidget {
   DateTime dateTime;
   String title = "AVERIA CALEFACTOR F02";
   String section = "CLIMA - Calefaccion";
+
+
+  AveriasHistory({this.title});
   @override
   Widget build(BuildContext context) {
     dateTime = DateTime.now();

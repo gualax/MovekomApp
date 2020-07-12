@@ -5,6 +5,7 @@ import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/Utils/clima_page_view_changer.dart';
 import 'package:movekomapp/controladores/climatizacion/temperature_ext.dart';
 import 'package:movekomapp/controladores/climatizacion/temperature_int.dart';
+import 'package:movekomapp/controladores/graficos/graficos.dart';
 import 'package:movekomapp/pantallas/Wheater/weather_list.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
@@ -19,7 +20,7 @@ class WheaterHistoryView extends StatefulWidget {
 
 class _WheaterHistoryViewState extends State<WheaterHistoryView> {
 
-
+  int currentSelectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +69,24 @@ class _WheaterHistoryViewState extends State<WheaterHistoryView> {
     );
   }
 
+  List<Widget> _dayBoxesWidgets() {
+    return dayBoxes.items.map((DayBox viewModel) {
+      final listItem =
+      GrphicDayItemBox(
+        listItem: viewModel,
+        index: viewModel.number,
+        isSelected: currentSelectedIndex == viewModel.number,
+        widgetType: 1,
+        onSelect: () {
+          setState(() {
+            currentSelectedIndex = viewModel.number;
+            print(currentSelectedIndex);
+          });
+        },
+      );
+      return listItem;
+    }).toList();
+  }
   Widget electricityDatos() {
     return MyContainer(
       child: Row(
@@ -89,12 +108,7 @@ class _WheaterHistoryViewState extends State<WheaterHistoryView> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          days("24 HORAS"),
-          days("7 DIAS"),
-          days("15 DIAS"),
-          days("30 DIAS"),
-        ],
+        children: _dayBoxesWidgets(),
       ),
     );
   }
@@ -122,8 +136,8 @@ class _WheaterHistoryViewState extends State<WheaterHistoryView> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        graphic(),
-        graphic(),
+        graphic_image(dayBoxes.items[currentSelectedIndex].imageRoute),
+        graphic_image(dayBoxes.items[currentSelectedIndex].imageRoute),
       ],
     );
   }
@@ -142,6 +156,21 @@ class _WheaterHistoryViewState extends State<WheaterHistoryView> {
 
 
   //////////////////////////////////////////////////////////////
+
+
+  Widget graphic_image(imageRoute){
+    return MyContainer(
+      margin: EdgeInsets.all( SC.left(7)),
+      width: 699,
+      height: 160,
+      decoration: new BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(imageRoute),
+          fit: BoxFit.fill,
+        ),
+      ),
+    );
+  }
 
   Widget graphic(){
     var data = [0.0, 1.0, 1.5, 1.8, 0.9, 0.6, 0.2, 0.3, 0.4, 0.8, 1.0];

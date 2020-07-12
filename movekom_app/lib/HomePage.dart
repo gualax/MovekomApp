@@ -1,6 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
@@ -323,10 +324,17 @@ Widget CustomBar(){
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   BarTitle(barTitle,barSubTitle),
-                  Image.asset(
-                    'assets/images/drawable-mdpi/fondo_negro_e_verde.png',
-                    fit: BoxFit.contain,
-                    height:SC.hei(60),
+                  InkWell(
+                    splashColor: MyColors.principal,
+                    onLongPress:(){
+                      print("TAP MOVEKOM");
+                      SystemNavigator.pop();
+                    } ,
+                    child: Image.asset(
+                      'assets/images/drawable-mdpi/fondo_negro_e_verde.png',
+                      fit: BoxFit.contain,
+                      height:SC.hei(60),
+                    ),
                   ),
                 ],
               ),

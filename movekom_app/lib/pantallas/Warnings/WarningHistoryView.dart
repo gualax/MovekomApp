@@ -20,15 +20,10 @@ class _WarningHistoryViewState extends State<WarningHistoryView> {
       margin: EdgeInsets.only(top:15, left:60, right: 60),
       child: ListView(
         children: <Widget>[
-          AveriasHistory(),
-          AveriasHistory(),
-          AveriasHistory(),
-          AveriasHistory(),
-          AveriasHistory(),
-          AveriasHistory(),
-          AveriasHistory(),
-          AveriasHistory(),
-          AveriasHistory(),
+          AveriasHistory(title: "AVERIA CALEFACTOR F12",),
+          AveriasHistory(title: "BAJO VOLTAJE EN BATERIA 1",),
+          AveriasHistory(title: "ALTO VOLTAJE EN BATERIA 2",),
+          AveriasHistory(title: "BOILER DESCONECTADO",),
         ],
       ),
     );

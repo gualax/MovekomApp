@@ -1,15 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movekomapp/Utils/AllowMultipleGestureRecongnizer.dart';
 import 'package:movekomapp/blocs/list_rebuild_bloc.dart';
 import 'package:movekomapp/blocs/p_widget_list.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
-import 'package:movekomapp/ww_manager.dart';
 import 'Utils/MyColors.dart';
+import 'controladores/climatizacion/Calefaccion.dart';
 
 class WidgetsMenuDialog extends StatefulWidget {
   @override
@@ -17,9 +16,9 @@ class WidgetsMenuDialog extends StatefulWidget {
 }
 
 class _WidgetsMenuDialogState extends State<WidgetsMenuDialog> {
+
   @override
   Widget build(BuildContext context) {
-
     return _buildAboutDialog2();
   }
 
@@ -62,7 +61,7 @@ class _WidgetsMenuDialogState extends State<WidgetsMenuDialog> {
             child: MyContainer(
               child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
-                child: ShopItemsWidget(),
+                child: WidgetItemList(),
               ),
             ),
           ),
@@ -92,9 +91,23 @@ class _WidgetsMenuDialogState extends State<WidgetsMenuDialog> {
   }
 }
 
-class ShopItemsWidget extends StatelessWidget {
+
+class WidgetItemList extends StatefulWidget {
+  @override
+  _WidgetItemListState createState() => _WidgetItemListState();
+}
+
+class _WidgetItemListState extends State<WidgetItemList> {
+  final _saved = Set<Widget>(); ///
   ListRebuildBloc listRebuildBloc;
 
+  @override
+  void initState() {
+    super.initState();
+  }
+
+
+  @override
   Widget build(BuildContext context) {
     listRebuildBloc = BlocProvider.of<ListRebuildBloc>(context);
     return StreamBuilder(
@@ -110,9 +123,7 @@ class ShopItemsWidget extends StatelessWidget {
 
 
   Widget widgetsItemsListBuilder(snapshotCarousel) {
-    List<Widget> carlist = snapshotCarousel.data;
-
-    /// BOLUDOOO TENES QUE FIJARTE EN LA OTRA LISTA NO ESTA! EN ESTA OBVIO Q ESTAN TODOS SI ES LA QUE MOSTRAS PARA ELEGIR
+    List<Widget> carlist = snapshotCarousel.data; /// BOLUDOOO TENES QUE FIJARTE EN LA OTRA LISTA NO ESTA! EN ESTA OBVIO Q ESTAN TODOS SI ES LA QUE MOSTRAS PARA ELEGIR
     return StreamBuilder(
         initialData: bloc.wwList,
         stream: bloc.getWwListStream,
@@ -121,7 +132,131 @@ class ShopItemsWidget extends StatelessWidget {
               crossAxisAlignment: WrapCrossAlignment.center,
               alignment: WrapAlignment.center,
               children: snapshot.data.map<Widget>((item) {
-                return !carlist.contains(item) ?
+                return withAddBar(item,snapshotCarousel);
+              }).toList()
+          );
+        }
+    );
+  }
+
+
+  Widget withAddBar(Widget myWidget,snapshotCarousel){
+    List<Widget> carlist = snapshotCarousel.data;
+
+    final alreadySaved = carlist.contains(myWidget) ;
+    return GestureDetector(
+          onTap: () {      /// interactividad del boton
+            setState(() {
+              if (alreadySaved) {
+                _saved.remove(myWidget);
+                bloc.removeFromCarrousel(myWidget);
+              } else {
+                _saved.add(myWidget);
+                bloc.addToCarrousel(myWidget);
+              }
+              listRebuildBloc.add(Rebuild());
+            });
+          },
+      child: MyContainer(
+        child: Column(
+          children: <Widget>[
+            AbsorbPointer(
+                 absorbing: true,
+                child: myWidget,
+            ),
+           MyContainer(
+                height: 20,
+                width: 70,
+                color: MyColors.baseColor,
+                child: Text("AÑADIR",
+                  style: MyTextStyle.estilo(15, alreadySaved ? MyColors.principal : MyColors.white),
+                  textAlign: TextAlign.center,),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+/*
+class ShopItemsWidget extends StatelessWidget {
+  final _saved = Set<Widget>(); ///
+  ListRebuildBloc listRebuildBloc;
+  Widget build(BuildContext context) {
+    listRebuildBloc = BlocProvider.of<ListRebuildBloc>(context);
+    return StreamBuilder(
+      initialData: bloc.carrouselList,
+      stream: bloc.getCarrouselStream,
+      builder: (context, snapshot) {
+        return snapshot.data.length > 0
+            ? widgetsItemsListBuilder(snapshot)
+            : Center(child: Text("All items in shop have been taken"));
+      },
+    );
+  }
+
+
+
+
+
+
+
+  Widget widgetsItemsListBuilder(snapshotCarousel) {
+    List<Widget> carlist = snapshotCarousel.data; /// BOLUDOOO TENES QUE FIJARTE EN LA OTRA LISTA NO ESTA! EN ESTA OBVIO Q ESTAN TODOS SI ES LA QUE MOSTRAS PARA ELEGIR
+    return StreamBuilder(
+        initialData: bloc.wwList,
+        stream: bloc.getWwListStream,
+        builder: (context, snapshot) {
+          return Wrap(
+              crossAxisAlignment: WrapCrossAlignment.center,
+              alignment: WrapAlignment.center,
+              children: snapshot.data.map<Widget>((item) {
+                return withAddBar(item,snapshotCarousel);
+              }).toList()
+          );
+        }
+    );
+  }
+
+
+  Widget withAddBar(Widget myWidget,snapshotCarousel){
+    List<Widget> carlist = snapshotCarousel.data;
+    final alreadySaved = _saved.contains(myWidget); ///
+    return MyContainer(
+      child: Column(
+        children: <Widget>[
+          AbsorbPointer(
+              absorbing: true,
+              child: myWidget
+          ),
+          MyContainer(
+            height: 20,
+            width: 70,
+            color: MyColors.baseColor,
+            child: Text("AÑADIR",
+              style: MyTextStyle.estilo(15, MyColors.principal),
+            textAlign: TextAlign.center,),
+          )
+        ],
+      ),
+    );
+  }
+
+
+/*
+  Widget widgetsItemsListBuilder(snapshotCarousel) {
+    List<Widget> carlist = snapshotCarousel.data; /// BOLUDOOO TENES QUE FIJARTE EN LA OTRA LISTA NO ESTA! EN ESTA OBVIO Q ESTAN TODOS SI ES LA QUE MOSTRAS PARA ELEGIR
+    return StreamBuilder(
+        initialData: bloc.wwList,
+        stream: bloc.getWwListStream,
+        builder: (context, snapshot) {
+          return Wrap(
+              crossAxisAlignment: WrapCrossAlignment.center,
+              alignment: WrapAlignment.center,
+              children: snapshot.data.map<Widget>((item) {
+                return !carlist.contains(item) ?     /// si el elemento no esta en el carrusel
                 RawGestureDetector(
                   gestures: {
                     AllowMultipleGestureRecognizer: GestureRecognizerFactoryWithHandlers<
@@ -159,8 +294,12 @@ class ShopItemsWidget extends StatelessWidget {
   }
 
 
-}
+ */
 
+
+
+}
+ */
 
 
 

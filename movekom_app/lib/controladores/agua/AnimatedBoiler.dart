@@ -113,7 +113,6 @@ with SingleTickerProviderStateMixin {
                 child:indicador(),
               )
           ),
-
         ],
       ),
   );
