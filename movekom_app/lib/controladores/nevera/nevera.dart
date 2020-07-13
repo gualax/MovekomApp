@@ -24,10 +24,6 @@ class Nevera extends StatefulWidget {
   _ExtractorState createState() => _ExtractorState();
 }
 
-
-
-
-
 class _ExtractorState extends State<Nevera> {
   String title = "NEVERA";
   NeveraBloc bloc;

@@ -11,7 +11,7 @@ class TabChanger {
     tabBloc = BlocProvider.of<TabBloc>(context);
   }
 
-   changeTab(index){
+    changeTab(index){
     tabBloc.add(UpdateTab(index));
   }
 

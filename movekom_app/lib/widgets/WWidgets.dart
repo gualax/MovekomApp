@@ -2,13 +2,20 @@
 
 import 'package:flutter/material.dart';
 
-class WWidgets {
-  Widget widget;
-  Size size;
+class WWidget extends StatelessWidget {
 
-  WWidgets(this.widget);
+  Widget wActive;
+  Widget wInactive;
+  double width;
 
+  WWidget({this.wActive,this.width,this.wInactive});
+
+  @override
+  Widget build(BuildContext context) {
+    return wInactive;
+  }
 }
+
 
 
 

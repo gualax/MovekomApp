@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/blocs/p_widget_list.dart';
 
+import 'WWidgets.dart';
+
 
 class PrincipalWidgetsList extends StatefulWidget {
   @override

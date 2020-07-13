@@ -7,8 +7,9 @@ import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
+import 'package:movekomapp/widgets/WWidgets.dart';
 import 'Utils/MyColors.dart';
-import 'controladores/climatizacion/Calefaccion.dart';
+import 'Utils/SC.dart';
 
 class WidgetsMenuDialog extends StatefulWidget {
   @override
@@ -59,6 +60,7 @@ class _WidgetsMenuDialogState extends State<WidgetsMenuDialog> {
           top: 80,
           child: Align(
             child: MyContainer(
+              margin: EdgeInsets.only(left: SC.left(50),right: SC.right(50)),
               child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
                 child: WidgetItemList(),
@@ -123,7 +125,6 @@ class _WidgetItemListState extends State<WidgetItemList> {
 
 
   Widget widgetsItemsListBuilder(snapshotCarousel) {
-    List<Widget> carlist = snapshotCarousel.data; /// BOLUDOOO TENES QUE FIJARTE EN LA OTRA LISTA NO ESTA! EN ESTA OBVIO Q ESTAN TODOS SI ES LA QUE MOSTRAS PARA ELEGIR
     return StreamBuilder(
         initialData: bloc.wwList,
         stream: bloc.getWwListStream,
@@ -140,24 +141,24 @@ class _WidgetItemListState extends State<WidgetItemList> {
   }
 
 
-  Widget withAddBar(Widget myWidget,snapshotCarousel){
+  Widget withAddBar(WWidget myWidget,snapshotCarousel){
     List<Widget> carlist = snapshotCarousel.data;
-
-    final alreadySaved = carlist.contains(myWidget) ;
+    final alreadySaved = carlist.contains(myWidget.wActive) ;
     return GestureDetector(
           onTap: () {      /// interactividad del boton
             setState(() {
               if (alreadySaved) {
-                _saved.remove(myWidget);
+                _saved.remove(myWidget.wActive);
                 bloc.removeFromCarrousel(myWidget);
               } else {
-                _saved.add(myWidget);
+                _saved.add(myWidget.wActive);
                 bloc.addToCarrousel(myWidget);
               }
               listRebuildBloc.add(Rebuild());
             });
           },
       child: MyContainer(
+        margin: EdgeInsets.only(bottom:SC.bot(7)),
         child: Column(
           children: <Widget>[
             AbsorbPointer(
@@ -166,11 +167,13 @@ class _WidgetItemListState extends State<WidgetItemList> {
             ),
            MyContainer(
                 height: 20,
-                width: 70,
+                width: myWidget.width,
                 color: MyColors.baseColor,
-                child: Text("AÑADIR",
-                  style: MyTextStyle.estilo(15, alreadySaved ? MyColors.principal : MyColors.white),
-                  textAlign: TextAlign.center,),
+                child: Center(
+                  child: Text( alreadySaved ? "AÑADIDO" : "AÑADIR",
+                    style: MyTextStyle.estilo(14, alreadySaved ? MyColors.principal : MyColors.white),
+                    textAlign: TextAlign.center,),
+                ),
               ),
           ],
         ),

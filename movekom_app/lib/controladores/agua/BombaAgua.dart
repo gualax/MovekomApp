@@ -30,8 +30,6 @@ class BombaAgua extends StatelessWidget {
       return WaterBomb_principal();
     }else if(widgetType == 2) {
       return WaterBomb_water();
-    }else {
-      return WaterBomb_widget();
     }
   }
 
@@ -239,7 +237,7 @@ class BombaAgua extends StatelessWidget {
       );
   }
 
-
+/*
   Widget WaterBomb_widget() {
     Color colorIcon, colorTxt, colorButton;
     String txtState;
@@ -296,5 +294,7 @@ class BombaAgua extends StatelessWidget {
           }
       );
   }
+
+ */
 
 }

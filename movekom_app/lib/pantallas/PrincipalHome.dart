@@ -12,6 +12,7 @@ import 'package:movekomapp/controladores/electricidad/Cargador.dart';
 import 'package:movekomapp/controladores/electricidad/PanelSolar.dart';
 import 'package:movekomapp/controladores/electricidad/Totalizador.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
+import 'package:movekomapp/widgets/WWidgets.dart';
 import 'package:movekomapp/widgets/principal_widgets_list.dart';
 
 
@@ -22,7 +23,6 @@ class PrincipalHome extends StatefulWidget {
 
 class _PrincipalHomeState extends State<PrincipalHome> {
 
-  List<Widget> carouselList = new List();
   List<String> lista = new List();
   CarouselSlider instance;
   BuildContext mContext;

@@ -196,11 +196,6 @@ class LucesBano extends StatelessWidget {
   }
 
 
-  Widget animatedWidget()
-  {
-
-  }
-
 } /// Fin clase
 
 
