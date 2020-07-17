@@ -434,7 +434,7 @@ class RadialListItemViewModel{
   int number;
   String iconRoute;
   bool selected;
-  int valueTemp;
+  String valueTemp;
 
   RadialListItemViewModel({
     this.number,
@@ -451,36 +451,36 @@ final RadialListViewModel radialNumbers = new RadialListViewModel(
         number: 0,  //6
         iconRoute:"assets/icons/enchufe_boiler.svg",
         selected: false,
-        valueTemp:0,
+        valueTemp:"EL",
       ),
       new RadialListItemViewModel(
         number: 1,  //7
         iconRoute:"assets/icons/icon_boiler_4.svg",
         selected: false,
-        valueTemp:0,
+        valueTemp:"FR",
       ),
       new RadialListItemViewModel(
         number: 2, //0
         iconRoute:"assets/icons/fire_boiler.svg",
         selected: false,
-        valueTemp: 40,
+        valueTemp: "40",
       ),new RadialListItemViewModel(
         number: 3, //1
         iconRoute:"assets/icons/off.svg",
         selected: true,
-        valueTemp:0
+        valueTemp: "--"
       ),
       new RadialListItemViewModel(
         number: 4,   //2
         iconRoute:"assets/icons/fire_boiler.svg",
         selected: false,
-        valueTemp:70,
+        valueTemp:"70",
       ),
       new RadialListItemViewModel(
         number: 5,  // 3
         iconRoute:"assets/icons/valvula.svg",
         selected: false,
-        valueTemp: 0,
+        valueTemp: "DR",
       ),
     ]
 );

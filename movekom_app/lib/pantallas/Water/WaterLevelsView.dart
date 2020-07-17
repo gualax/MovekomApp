@@ -106,42 +106,51 @@ class _WaterLevelsViewState extends State<WaterLevelsView> {
   }
 
   Widget temporizador(){
-    return MyContainer(
-        margin: EdgeInsets.all(SC.all(5)),
-        width: 350,
-        height: 90,
-        decoration: new BoxDecoration(
-            color: MyColors.baseColor
-        ),
-      child: Stack(
-        children: <Widget>[
-         MyPositioned.fill(
-           bottom: 20,
-          child: Align(
-            alignment: Alignment.center,
-            child: IconButton(
-              icon: Icon(Icons.access_time),
-              iconSize: SC.all(40),
-              color: MyColors.text,
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) => TimerDialog(),
-                );
-              },
-            ),
-          )
-      ),
-          MyPositioned.fill(
-              bottom: 10,
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: Text("Establecer temporizador",
-                  style: MyTextStyle.estilo(16, MyColors.text) ,),
-              )
+    return InkWell(
+      splashColor: MyColors.inkSplashColor,
+      onTap: (){
+        showDialog(
+          context: context,
+          builder: (BuildContext context) => TimerDialog(),
+        );
+      },
+      child: MyContainer(
+          margin: EdgeInsets.all(SC.all(5)),
+          width: 350,
+          height: 90,
+          decoration: new BoxDecoration(
+              color: MyColors.baseColor
           ),
-      ],
-    ),
+        child: Stack(
+          children: <Widget>[
+           MyPositioned.fill(
+             bottom: 20,
+            child: Align(
+              alignment: Alignment.center,
+              child: IconButton(
+                icon: Icon(Icons.access_time),
+                iconSize: SC.all(40),
+                color: MyColors.text,
+                onPressed: (){
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) => TimerDialog(),
+                  );
+                },
+              ),
+            )
+        ),
+            MyPositioned.fill(
+                bottom: 10,
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Text("Establecer temporizador",
+                    style: MyTextStyle.estilo(16, MyColors.text) ,),
+                )
+            ),
+        ],
+      ),
+      ),
     );
   }
 

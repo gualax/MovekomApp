@@ -7,6 +7,7 @@ import 'package:movekomapp/Utils/SizeConfig.dart';
 import 'package:movekomapp/blocs/boiler_bloc.dart';
 import 'package:movekomapp/controladores/agua/AnimatedBoiler.dart';
 import 'package:movekomapp/controladores/agua/Boiler.dart';
+import 'package:movekomapp/controladores/agua/ItemBoiler.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
@@ -18,6 +19,8 @@ class WaterBoilerView extends StatefulWidget {
 }
 
 class _WaterBoilerViewState extends State<WaterBoilerView> {
+  RadialListItemViewModel itemBoiler;
+
   @override
   Widget build(BuildContext context) {
     final boilerBloc = BlocProvider.of<BoilerBloc>(context);
@@ -25,8 +28,16 @@ class _WaterBoilerViewState extends State<WaterBoilerView> {
   }
 
   Widget boilerBox(boilerBloc) {
+    int index;
     Color colorIcon, colorText;
     return BlocBuilder<BoilerBloc, BoilerState>(builder: (context, state) {
+      index = state.valueCord.round();
+      radialNumbers.items.forEach((item) {
+        if (item.number == index) {
+          print(index);
+          itemBoiler = item;
+        }
+      });
     if(state.valueCord.round() != 3){
       colorIcon = MyColors.principal;
       colorText = MyColors.text;
@@ -82,7 +93,7 @@ class _WaterBoilerViewState extends State<WaterBoilerView> {
                   child: Align(
                     alignment: Alignment.center,
                     child: Text(
-                      "21",
+                      itemBoiler.valueTemp,
                       style: MyTextStyle.estiloBold(100, colorText),
                     ),
                   )),
@@ -117,5 +128,7 @@ class _WaterBoilerViewState extends State<WaterBoilerView> {
     });
   }
   // AnimatedBoiler()
+
+
 
 }

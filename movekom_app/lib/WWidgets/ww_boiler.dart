@@ -52,13 +52,6 @@ class WWBoiler extends StatelessWidget {
                 colorTxt = MyColors.inactive;
               }
             }
-            index = state.valueCord.round();
-            radialNumbers.items.forEach((item) {
-              if (item.number == index) {
-                print(index);
-                itemBoiler = item;
-              }
-            });
             return
               InkWell(
                 splashColor: MyColors.principal,
@@ -143,7 +136,7 @@ class WWBoiler extends StatelessWidget {
                         child: Align(
                           alignment: Alignment.centerRight,
                           child: Text(
-                            itemBoiler.valueTemp != 0 ? itemBoiler.valueTemp.toString() : "--",
+                            itemBoiler.valueTemp,
                             style: MyTextStyle.estiloBold(45, colorTxt),
                           ),
                         ),
