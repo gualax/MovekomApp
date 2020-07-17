@@ -83,7 +83,7 @@ class AlertRowList extends StatelessWidget {
 
   Widget deleteBox(Averia widList) {
     return InkWell(
-      splashColor: MyColors.principal,
+      splashColor: MyColors.inkSplashColor,
       onTap: (){
         bloc.remove(widList);
       },

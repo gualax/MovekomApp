@@ -29,6 +29,37 @@ class UpdateExtractor extends ExtractorEvent { /// Deshabilita la bateria
 /// Fin declaracion de eventos
 
 
+@immutable
+abstract class ExtractorState {
+  bool isEnabled;
+  double valueAngle;
+  double radAngle;
+  int valueExt;
+  ExtractorState({this.isEnabled, this.valueAngle,this.radAngle,this.valueExt});
+}
+
+class InitialExtractorState extends ExtractorState {
+  InitialExtractorState( {bool isEnabled, int valueExt,double valueAngle, double radAngle })
+      : super(
+    isEnabled: isEnabled ?? true,
+    valueExt: valueExt ?? 25,
+    valueAngle:  valueAngle ?? 0.0,
+    radAngle:  radAngle ?? 0.0,
+  );
+}
+
+
+class NewExtractorState extends ExtractorState {
+  NewExtractorState.fromOldSettingState(ExtractorState oldState,
+      {bool isEnabled, int valueExt, double valueAngle ,double radAngle})
+      : super(
+    isEnabled: isEnabled ?? oldState.isEnabled,
+    valueExt: valueExt ?? oldState.valueExt,
+    valueAngle: valueAngle ?? oldState.valueAngle,
+    radAngle: radAngle ?? oldState.radAngle,
+  );
+}
+/*
 class ExtractorState extends Equatable {
   final bool isEnabled;
   double valueAngle;
@@ -74,32 +105,30 @@ class ExtractorState extends Equatable {
 }
 /// FIN  declaracion de STATE
 
+
+ */
 class ExtractorBloc extends Bloc <ExtractorEvent, ExtractorState> {
 
 
 
   @override
   // TODO: implement initialState
-  ExtractorState get initialState => ExtractorState.initial();
+  ExtractorState get initialState => InitialExtractorState();
 
 
   @override
   Stream<ExtractorState> mapEventToState(ExtractorEvent event) async* {
     if (event is EnableExtractor) {
-      yield ExtractorState.initial();
+      yield NewExtractorState.fromOldSettingState(state,
+          isEnabled: true);
     } else if (event is DisableExtractor) {
-      yield ExtractorState(
-        valueExt: 0,
-        valueAngle: 0.0,
-        radAngle: 0.0,
-        isEnabled: false,
-      );
+      yield NewExtractorState.fromOldSettingState(state,
+          isEnabled: false);
     }else if (event is UpdateExtractor){
-      yield ExtractorState(
-        isEnabled: true, // (_lastAngle / 6.5)
-        valueExt: 25 + (event.valueAngle / 5.5).round(),
+      yield NewExtractorState.fromOldSettingState(state,
         valueAngle: event.valueAngle,
         radAngle: event.radAngle,
+        valueExt: 25 + (event.valueAngle / 5.5).round(),
       );
     }
   }

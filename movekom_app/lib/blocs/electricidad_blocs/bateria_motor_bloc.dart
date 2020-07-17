@@ -21,7 +21,7 @@ class DisableBatery extends BateriaMotorEvent { /// Deshabilita la bateria
 class BateriaMotorState extends Equatable {
   final bool isInitial;
   final bool isEnabled;
-  int valueBat;
+  double valueBat;
   double valueVolt;
   double valueAmp;
 
@@ -39,16 +39,16 @@ class BateriaMotorState extends Equatable {
     return BateriaMotorState(
       isInitial: true,
       isEnabled: true,
-      valueBat: 75,
-      valueVolt: 11.46,
-      valueAmp: 20.65,
+      valueBat: 12.5,
+      valueVolt: 14.4,
+      valueAmp: 11.3,
     );
   }
 
   BateriaMotorState copyWith({
     bool isInitial,
     bool isEnabled,
-    int valueBat,
+    double valueBat,
   }) {
     return BateriaMotorState(
       isInitial: isInitial ?? this.isInitial,
@@ -80,7 +80,7 @@ class BateriaMotorBloc extends Bloc <BateriaMotorEvent, BateriaMotorState> {
       yield BateriaMotorState.initial();
     } else if (event is DisableBatery) {
       yield BateriaMotorState(
-        valueBat: 0,
+        valueBat: 0.0,
         valueAmp: 0.0,
         valueVolt: 0.0,
         isEnabled: false,

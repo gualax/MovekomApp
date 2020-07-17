@@ -12,6 +12,8 @@ class  MyColors{
   static Color inactive = Colors.grey;
 
 
+  static Color inkSplashColor = Colors.lightGreenAccent;
+
 
   static Color white = Colors.white;
 

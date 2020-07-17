@@ -136,7 +136,7 @@ Widget indicadorCircularLleno(value, color,radius){
     radius: radius,
     lineWidth: SC.all(12),
     percent: (value)/100,
-    center: new Text((value).toString() +"%",
+    center: new Text((value).toString() +"v",
       style: MyTextStyle.estiloBold(25, Colors.white),),
     progressColor: color,
     backgroundColor: MyColors.baseColor,

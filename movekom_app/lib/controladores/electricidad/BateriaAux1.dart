@@ -93,7 +93,7 @@ class BateriaMotorAux1 extends StatelessWidget {
                         MyPositioned.fill(
 
                           /// valueVolt
-                          left: 7,
+                          left: 10,
                           bottom: 30,
                           child: Align(
                             alignment: Alignment.centerLeft,
@@ -115,7 +115,7 @@ class BateriaMotorAux1 extends StatelessWidget {
                         ),
                         MyPositioned.fill(
                             top: 90,
-                            left: 7,
+                            left: 10,
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text(

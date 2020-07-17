@@ -95,7 +95,7 @@ class _AlarmDialogState extends State<AlarmDialog> {
         backgroundColor: MyColors.baseColor,
         content:
         widget.mode ? Container(
-            height: 600,
+            height: SC.hei(500),
             width: MediaQuery.of(context).size.width,
         child: _start > 0 ? Stack(
             children: <Widget>[
@@ -117,7 +117,7 @@ class _AlarmDialogState extends State<AlarmDialog> {
                 left: 150,
                   child: Align(
                     alignment: Alignment.centerLeft,
-                    child: iconSvgD( "assets/icons/shield.svg", MyColors.principal, 370),
+                    child: iconSvgD( "assets/icons/shield.svg", MyColors.principal, 350),
                   )
               ),
             ],
@@ -142,7 +142,7 @@ class _AlarmDialogState extends State<AlarmDialog> {
                 left: 150,
                 child: Align(
                   alignment: Alignment.centerLeft,
-                  child: iconSvgD( "assets/icons/shield.svg", MyColors.principal, 370),
+                  child: iconSvgD( "assets/icons/shield.svg", MyColors.principal, 350),
                 )
             ),
           ],
@@ -152,7 +152,7 @@ class _AlarmDialogState extends State<AlarmDialog> {
         SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Container(
-            height: 600,
+            height: SC.hei(500),
               width: MediaQuery.of(context).size.width,
               child: Stack(
                 children: <Widget>[
@@ -184,8 +184,10 @@ class _AlarmDialogState extends State<AlarmDialog> {
                           height: 80,
                           width: 200,
                           child: TextField(
+                            onSubmitted: (value) {
+                            },
                             style: MyTextStyle.estiloBold(17, Colors.white),
-                            focusNode: FocusNode(),
+                          //  focusNode: FocusNode(),
                             textAlign: TextAlign.center,
                             maxLength: 14,
                             textAlignVertical: TextAlignVertical.bottom,

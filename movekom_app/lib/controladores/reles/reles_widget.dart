@@ -18,10 +18,11 @@ class ReleWidget extends StatefulWidget {
 
 
 class _ReleWidgetState extends State<ReleWidget> {
-  bool _isActive;
+  bool _isActive = true;
 
   @override
   void initState() {
+    print("rele initState");
     _isActive = widget.isActive;
     super.initState();
   }

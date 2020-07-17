@@ -12,21 +12,13 @@ class EnableCalefaccion extends CalefaccionEvent {  /// Habilita la bateria
   String toString() => 'EnableBatery';
 }
 
-class AddedWWToCarousel extends CalefaccionEvent {  /// Habilita la bateria
- final bool isAdded;
- AddedWWToCarousel(this.isAdded) : super([isAdded]);
-  @override
-  String toString() => 'AddedWWToCarousel : $isAdded ';
-}
-
-
 class DisableCalefaccion extends CalefaccionEvent { /// Deshabilita la bateria
   @override
   String toString() => 'DisableBatery';
 }
 
 class UpdateCalefaccion extends CalefaccionEvent { /// Deshabilita la bateria
- // final int valueTemp;
+  // final int valueTemp;
   final double valueAngle;
   final double radAngle;
   UpdateCalefaccion(this.valueAngle,this.radAngle) : super([valueAngle,radAngle]);
@@ -35,27 +27,66 @@ class UpdateCalefaccion extends CalefaccionEvent { /// Deshabilita la bateria
   String toString() => 'Update  {valueAngle: $valueAngle},{radAngle: $radAngle}}' ;
 }
 
+
+class UpdateCalefaccionTemp extends CalefaccionEvent { /// Deshabilita la bateria
+  // final int valueTemp;
+  final int valueTemp;
+  UpdateCalefaccionTemp(this.valueTemp) : super([valueTemp]);
+
+  @override
+  String toString() => 'Update  {valueTemp: $valueTemp}}' ;
+}
+
 /// Fin declaracion de eventos
 
 
 
+@immutable
+abstract class CalefaccionState {
+  bool isEnabled;
+  double valueAngle;
+  double radAngle;
+  int valueTemp;
+  CalefaccionState({this.isEnabled, this.valueAngle,this.radAngle,this.valueTemp});
+}
 
+class InitialCalefaccionStateState extends CalefaccionState {
+  InitialCalefaccionStateState( {bool isEnabled, int valueTemp,double valueAngle, double radAngle })
+      : super(
+    isEnabled: isEnabled ?? true,
+    valueTemp: valueTemp ?? 25,
+      valueAngle:  valueAngle ?? 0.0,
+      radAngle:  radAngle ?? 0.0,
+  );
+}
+
+
+class NewCalefaccionState extends CalefaccionState {
+  NewCalefaccionState.fromOldSettingState(CalefaccionState oldState,
+      {bool isEnabled, int valueTemp, double valueAngle ,double radAngle})
+      : super(
+    isEnabled: isEnabled ?? oldState.isEnabled,
+    valueTemp: valueTemp ?? oldState.valueTemp,
+    valueAngle: valueAngle ?? oldState.valueAngle,
+    radAngle: radAngle ?? oldState.radAngle,
+
+  );
+}
+/*
 
 class CalefaccionState extends Equatable {
   final bool isEnabled;
   double valueAngle;
   double radAngle;
   int valueTemp;
-  final bool isAddedToCarousel;
 
   CalefaccionState({
     @required this.isEnabled,
     @required this.valueTemp,
     @required this.valueAngle,
     @required this.radAngle,
-     this.isAddedToCarousel,
 
-  }) : super([isEnabled,valueTemp,valueAngle,isAddedToCarousel]);
+  }) : super([isEnabled,valueTemp,valueAngle]);
 
   /// Valores iniciales
   factory CalefaccionState.initial() {
@@ -64,7 +95,6 @@ class CalefaccionState extends Equatable {
       valueTemp: 25,
       valueAngle: 0.0,
       radAngle: 0.0,
-      isAddedToCarousel: false,
     );
   }
 
@@ -73,7 +103,6 @@ class CalefaccionState extends Equatable {
     int valueAmp,
     double valueAngle,
     double radAngle,
-    bool isAddedToCarousel,
 
   }) {
     return CalefaccionState(
@@ -81,7 +110,6 @@ class CalefaccionState extends Equatable {
       valueTemp: valueTemp ?? this.valueTemp,
       valueAngle: valueAngle ?? this.valueAngle,
       radAngle: radAngle ?? this.radAngle,
-      isAddedToCarousel: isAddedToCarousel ?? this.isAddedToCarousel
     );
   }
   @override
@@ -89,6 +117,8 @@ class CalefaccionState extends Equatable {
     return 'StopwatchState { isEnabled: $isEnabled, isInitial: $valueTemp }';
   }
 }
+
+ */
 /// FIN  declaracion de STATE
 
 
@@ -99,36 +129,27 @@ class CalefaccionBloc extends Bloc <CalefaccionEvent, CalefaccionState> {
 
   @override
   // TODO: implement initialState
-  CalefaccionState get initialState => CalefaccionState.initial();
+  CalefaccionState get initialState => InitialCalefaccionStateState();
 
 
   @override
   Stream<CalefaccionState> mapEventToState(CalefaccionEvent event) async* {
     if (event is EnableCalefaccion) {
-      yield CalefaccionState.initial();
+      yield NewCalefaccionState.fromOldSettingState(state,
+          isEnabled: true);
     } else if (event is DisableCalefaccion) {
-      yield CalefaccionState(
-        valueTemp: 0,
-        valueAngle: 0.0,
-        radAngle: 0.0,
-        isEnabled: false,
-        isAddedToCarousel: true,
-      );
+      yield NewCalefaccionState.fromOldSettingState(state,
+          isEnabled: false);
     }else if (event is UpdateCalefaccion){
-      yield CalefaccionState(
-        isEnabled: true, // (_lastAngle / 6.5)
-        valueTemp:  getTemp(event.valueAngle), // getTemp(event.valueAngle)
+      yield NewCalefaccionState.fromOldSettingState(state,
         valueAngle: event.valueAngle,
         radAngle: event.radAngle,
-        isAddedToCarousel: true,
+        valueTemp: getTemp(event.valueAngle),
       );
-    } else if (event is AddedWWToCarousel) {
-      yield CalefaccionState(
-        isEnabled: true,
-        valueTemp: 25,
-        valueAngle: 0.0,
-        radAngle: 0.0,
-        isAddedToCarousel: event.isAdded,
+    }
+    else if (event is UpdateCalefaccionTemp) {
+      yield NewCalefaccionState.fromOldSettingState(state,
+        valueTemp: event.valueTemp,
       );
     }
   }

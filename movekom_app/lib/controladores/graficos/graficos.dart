@@ -129,3 +129,68 @@ final DayBoxes dayBoxes = new DayBoxes(
       )
     ]
 );
+
+
+final DayBoxes dayBoxesVolt = new DayBoxes(
+    items: [
+      new DayBox(
+        number: 0,  //6
+        imageRoute:"assets/images/graficos/grafico_volt_24h.png",
+        selected: true,
+        title: "24 HORAS",
+      ),
+      new DayBox(
+        number: 1,  //7
+        imageRoute:"assets/images/graficos/grafico_volt_7d.png",
+        selected: false,
+        title: "7 DIAS",
+
+      ),
+      new DayBox(
+        number: 2, //0
+        imageRoute:"assets/images/graficos/grafico_volt_15d.png",
+        selected: false,
+        title: "15 DIAS",
+
+      ),new DayBox(
+        number: 3, //1
+        imageRoute:"assets/images/graficos/grafico_volt_30d.png",
+        selected: false,
+        title: "30 DIAS",
+
+      )
+    ]
+);
+
+final DayBoxes dayBoxesAmp = new DayBoxes(
+    items: [
+      new DayBox(
+        number: 0,  //6
+        imageRoute:"assets/images/graficos/grafico_corriente_24h.png",
+        selected: true,
+        title: "24 HORAS",
+      ),
+      new DayBox(
+        number: 1,  //7
+        imageRoute:"assets/images/graficos/grafico_corriente_7d.png",
+        selected: false,
+        title: "7 DIAS",
+
+      ),
+      new DayBox(
+        number: 2, //0
+        imageRoute:"assets/images/graficos/grafico_corriente_15d.png",
+        selected: false,
+        title: "15 DIAS",
+
+      ),new DayBox(
+        number: 3, //1
+        imageRoute:"assets/images/graficos/grafico_corriente_30d.png",
+        selected: false,
+        title: "30 DIAS",
+
+      )
+    ]
+);
+
+

@@ -26,44 +26,34 @@ class LuzGeneral extends StatelessWidget {
     }else if(widgetType == 2){
       return luz_general_grande();
     } else{
-      return _luz_general_ww();
+      return _luz_general_off();
     }
   }
 
   Widget luz_general_grande(){
-    Color iconColor;
     return
       BlocBuilder<LuzGeneralBloc,LuzGeneralState>(
           builder: ( context, state) {
             luzGeneralBloc = BlocProvider.of<LuzGeneralBloc>(context);
-            if(state.isEnabled){
-              iconColor = MyColors.principal;
-            } else {
-              iconColor = MyColors.inactive;
-            }
           return InkWell(
             splashColor: MyColors.principal,
             onTap: (){
-              if(state.isEnabled){
-                luzGeneralBloc.add(DisableGeneral(context));
-              } else {
                 luzGeneralBloc.add(EnableGeneral(context));
-              }
             },
             child: MyContainer(
               margin: EdgeInsets.all(SC.all(5)),
               width: 125,
-              height: 150,
+              height: 175,
               decoration: new BoxDecoration(
                   color: MyColors.baseColor
               ),
               child: Stack(
                 children: [
                   MyPositioned.fill(
-                     top: 20,
+                    bottom: 15,
                     child: Align(
                       alignment: Alignment.center,
-                      child: iconSvgD("assets/icons/lampara.svg",  iconColor, 55),
+                      child: iconSvgD("assets/icons/lampara.svg",  MyColors.principal, 55),
                     ),
                   ),
                   MyPositioned.fill(
@@ -72,6 +62,14 @@ class LuzGeneral extends StatelessWidget {
                       alignment: Alignment.topCenter,
                       child: Text(title,style: MyTextStyle.estilo(17, MyColors.text),
                       textAlign: TextAlign.center,),
+                    ),
+                  ),
+                  MyPositioned.fill(
+                    bottom:10 ,
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Text("ENCENDER TODO",style: MyTextStyle.estilo(16, MyColors.text),
+                        textAlign: TextAlign.center,),
                     ),
                   ),
                 ],
@@ -150,62 +148,50 @@ class LuzGeneral extends StatelessWidget {
   }
 
 
-  Widget _luz_general_ww(){
+  Widget _luz_general_off(){
     return
       BlocBuilder<LuzGeneralBloc,LuzGeneralState>(
           builder: ( context, state) {
-            return MyContainer(
-              margin: EdgeInsets.all(SC.all(7)),
-              width: 225,
-              height: 140,
-              decoration: new BoxDecoration(
-                  color: MyColors.baseColor
-              ),
-              child: Stack(
-                children: [
-                  MyPositioned.fill(
-                    right:20, bottom: 10,
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: iconSvgD("assets/icons/todas_luces.svg", MyColors.white, 70),
-                    ),
-                  ),
-                  MyPositioned.fill(
-                    left: 30, bottom: 10,
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: iconSvgD("assets/icons/lampara.svg", MyColors.white, 55),
-                    ),
-                  ),
-                  MyPositioned.fill(
-                    bottom: 10,
-                    child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Container(
-                        height:  SC.hei(20),
-                        child: SliderTheme(
-                          data: sliderWWCustomTheme(context),
-                          child: Slider(
-                            value: state.valueDimer,
-                            onChanged: (newValue) {
-                              // print(newValue);
-                              // lucesSalonBloc.add(Update(newValue));
-                            },
-                            min: 0,
-                            max: 200,
-                          ),
-                        ),
+            luzGeneralBloc = BlocProvider.of<LuzGeneralBloc>(context);
+            return InkWell(
+              splashColor: MyColors.principal,
+              onTap: (){
+                 luzGeneralBloc.add(DisableGeneral(context));
+              },
+              child: MyContainer(
+                margin: EdgeInsets.all(SC.all(5)),
+                width: 125,
+                height: 175,
+                decoration: new BoxDecoration(
+                    color: MyColors.baseColor
+                ),
+                child: Stack(
+                  children: [
+                    MyPositioned.fill(
+                      bottom: 15,
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: iconSvgD("assets/icons/lampara.svg",  MyColors.white, 55),
                       ),
                     ),
-                  ),
-                  MyPositioned.fill(
-                    top:5 ,left: 5,
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(title,style: MyTextStyle.estilo(18, MyColors.text),),
+                    MyPositioned.fill(
+                      top:5 ,
+                      child: Align(
+                        alignment: Alignment.topCenter,
+                        child: Text(title,style: MyTextStyle.estilo(17, MyColors.text),
+                          textAlign: TextAlign.center,),
+                      ),
                     ),
-                  ),
-                ],
+                    MyPositioned.fill(
+                      bottom:10 , left: 20, right: 20,
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text("APAGAR TODO",style: MyTextStyle.estilo(16, MyColors.text),
+                          textAlign: TextAlign.center,),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             );
           }

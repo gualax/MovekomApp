@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
@@ -35,7 +36,8 @@ class _LuzPerimetroState extends State<LuzPerimetro> {
             } else {
               colorIcon = MyColors.inactive;
             }
-            return GestureDetector(
+            return InkWell(
+              splashColor: MyColors.principal,
               onTap: (){
                 if(state.isEnabled){
                   lucesExtBloc.add(Disable());

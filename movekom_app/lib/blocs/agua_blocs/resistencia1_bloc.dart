@@ -8,12 +8,12 @@ abstract class Resistencia1Event extends Equatable {
   Resistencia1Event([List props = const []]) : super(props);
 }
 
-class Enable extends Resistencia1Event {  /// Habilita la bateria
+class EnableRes1 extends Resistencia1Event {  /// Habilita la bateria
   @override
   String toString() => 'EnableBatery';
 }
 
-class Disable extends Resistencia1Event { /// Deshabilita la bateria
+class DisableRes1 extends Resistencia1Event { /// Deshabilita la bateria
   @override
   String toString() => 'DisableBatery';
 }
@@ -57,11 +57,11 @@ class Resistencia1Bloc extends Bloc <Resistencia1Event, Resistencia1State> {
 
   @override
   Stream<Resistencia1State> mapEventToState(Resistencia1Event event) async* {
-    if (event is Enable) {
+    if (event is EnableRes1) {
       yield Resistencia1State(
         isEnabled: true,
       );
-    } else if (event is Disable) {
+    } else if (event is DisableRes1) {
       yield Resistencia1State.initial();
     }
   }

@@ -28,6 +28,6 @@ static final int PAGE_TOOLS = 9;
 static final int PAGE_WARNINGS = 10;
 static final int PAGE_CONFIG = 11;
 
-
+static final String ON_OFF_ICON_ROUTE = "assets/icons/on_off.svg";
 
 }

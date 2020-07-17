@@ -36,6 +36,13 @@ import 'package:movekomapp/pantallas/PrincipalHome.dart';
 import 'package:movekomapp/pantallas/Wheater/whater_api_client.dart';
 import 'package:movekomapp/pantallas/Wheater/wheater_bloc.dart';
 import 'package:movekomapp/pantallas/Wheater/wheather_repository.dart';
+import 'package:movekomapp/widgets/temp_programas/blocs/general_timer_dialog_bloc.dart';
+import 'package:movekomapp/widgets/temp_programas/blocs/temp_program_bloc.dart';
+import 'package:movekomapp/widgets/temp_programas/blocs/temp_program_bloc2.dart';
+import 'package:movekomapp/widgets/temp_programas/blocs/temp_program_bloc3.dart';
+import 'package:movekomapp/widgets/temp_programas/blocs/temp_program_bloc4.dart';
+import 'package:movekomapp/widgets/temp_programas/blocs/temp_program_bloc5.dart';
+import 'package:movekomapp/widgets/temp_programas/blocs/temp_program_bloc6.dart';
 import 'HomePage.dart';
 import 'app.localizations.dart';
 import 'package:movekomapp/blocs/agua_blocs/aguas_negras_bloc.dart';
@@ -156,6 +163,14 @@ class MyApp extends StatelessWidget {
 
         BlocProvider<Mode1Bloc>(create:(context)=> Mode1Bloc()),
         BlocProvider<Mode2Bloc>(create:(context)=> Mode2Bloc()),
+
+        BlocProvider<TimerProgramBloc>(create:(context)=> TimerProgramBloc()),
+        BlocProvider<TimerProgram2Bloc>(create:(context)=> TimerProgram2Bloc()),
+        BlocProvider<TimerProgram6Bloc>(create:(context)=> TimerProgram6Bloc()),
+        BlocProvider<TimerProgram3Bloc>(create:(context)=> TimerProgram3Bloc()),
+        BlocProvider<TimerProgram4Bloc>(create:(context)=> TimerProgram4Bloc()),
+        BlocProvider<TimerProgram5Bloc>(create:(context)=> TimerProgram5Bloc()),
+        BlocProvider<GeneralTimerProgramBloc>(create:(context)=> GeneralTimerProgramBloc()),
 
       ],
       child: MaterialApp(

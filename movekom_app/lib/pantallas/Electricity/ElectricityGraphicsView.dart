@@ -47,7 +47,6 @@ class _ElectricityGraphicsViewState extends State<ElectricityGraphicsView> {
   }
 
   List<Widget> _dayBoxesWidgets() {
-    print("REARMO?");
     return dayBoxes.items.map((DayBox viewModel) {
       final listItem =
       GrphicDayItemBox(
@@ -85,8 +84,8 @@ class _ElectricityGraphicsViewState extends State<ElectricityGraphicsView> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        graphic_image(dayBoxes.items[currentSelectedIndex].imageRoute),
-        graphic_image(dayBoxes.items[currentSelectedIndex].imageRoute),
+        graphic_image(dayBoxesVolt.items[currentSelectedIndex].imageRoute),
+        graphic_image(dayBoxesAmp.items[currentSelectedIndex].imageRoute),
       ],
     );
   }

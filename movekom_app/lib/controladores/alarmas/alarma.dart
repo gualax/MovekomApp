@@ -45,7 +45,8 @@ class Alarma extends StatelessWidget {
               colorPower = MyColors.text;
               on_off_text = "Pulsar para encender";
             }
-            return GestureDetector(
+            return InkWell(
+              splashColor: MyColors.principal,
               onTap: () {
                 if (state.isEnabled) {
                 //  alarmaBloc.add(Disable());

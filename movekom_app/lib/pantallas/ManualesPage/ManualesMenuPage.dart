@@ -1,8 +1,6 @@
 
 import 'dart:async';
 import 'dart:io';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_full_pdf_viewer/full_pdf_viewer_scaffold.dart';
@@ -12,6 +10,7 @@ import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart' as p;
 
 
 class ManualesMenuPage extends StatefulWidget {
@@ -27,19 +26,6 @@ class _ManualesMenuPageState extends State<ManualesMenuPage> {
   @override
   void initState() {
     super.initState();
-    createFileOfPdfUrl().then((f) {
-      setState(() {
-        pathPDF = f;
-        print(pathPDF);
-      });
-    });
-  }
-
-  void write() async {
-    final filename = 'test.pdf';
-    var bytes = await rootBundle.load("assets/pdf/movekom1.pdf");
-    String dir = (await getApplicationDocumentsDirectory()).path;
-    writeToFile(bytes,'$dir/$filename');
   }
 
 
@@ -50,9 +36,10 @@ class _ManualesMenuPageState extends State<ManualesMenuPage> {
         buffer.asUint8List(data.offsetInBytes, data.lengthInBytes));
   }
 
-  Future<String> createFileOfPdfUrl() async {
-    final filename = 'movekom1.pdf';
-    var bytes = await rootBundle.load("assets/pdf/movekom1.pdf");
+  Future<String> createFileOfPdfUrl(pathToUse) async {
+    File file = new File(pathToUse);
+    final filename = p.basename(file.path);
+    var bytes = await rootBundle.load(pathToUse);
     String dir = (await getApplicationDocumentsDirectory()).path;
     String path = '$dir/$filename';
     writeToFile(bytes,path);
@@ -89,11 +76,13 @@ class _ManualesMenuPageState extends State<ManualesMenuPage> {
                    style:MyTextStyle.estilo(20, MyColors.text) ,),
                ),
              ),
+
              GridView.count(
+               mainAxisSpacing: SC.wid(12),
                shrinkWrap: true,
                crossAxisCount: 7,
-               children: List.generate(10, (index) {
-                 return item();
+               children: List.generate(7, (index) {
+                 return item(pdfListNames[index]);
                }),
              ),
            ],
@@ -101,16 +90,57 @@ class _ManualesMenuPageState extends State<ManualesMenuPage> {
      );
   }
 
-  Widget item(){
+  Widget item(pathOfFile){
+    File file = new File(pathOfFile);
+    var fname = p.basenameWithoutExtension(file.path);
+    fname = fname.toUpperCase();
     return GestureDetector(
       onTap: (){
-        return Navigator.push(context,  MaterialPageRoute(builder: (context) => PDFScreen(pathPDF,"movekom_manual")));
+        createFileOfPdfUrl(pathOfFile).then((finalPath) {
+          File file = new File(finalPath);
+          var filename = p.basenameWithoutExtension(file.path);
+           filename = filename.toUpperCase();
+           print(filename);
+            return Navigator.push(context,  MaterialPageRoute(builder: (context) => PDFScreen(finalPath,filename)));
+        });
       },
-      child:iconSvgD(
-        "assets/icons/pdf_view.svg",
-        Colors.white, 15),
+      child:  MyContainer(
+        margin: EdgeInsets.all(10),
+        height: 200,
+        width: 150,
+        //color: Colors.pink,
+        child: Stack(
+          children: <Widget>[
+            Positioned.fill(
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: iconSvgD(
+                    "assets/icons/pdf_view.svg",
+                    Colors.white, 80
+                ),
+              ),
+            ),
+            Positioned.fill(
+              child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Text(fname,style: MyTextStyle.estilo(18, MyColors.white),
+                    textAlign: TextAlign.center ,)),
+            )
+          ],
+        ),
+      ),
     );
   }
+
+  List<String> pdfListNames = [
+    "assets/pdf/manejo airtop.pdf",
+    "assets/pdf/manejo bomba whale.pdf",
+    "assets/pdf/manejo whale.pdf",
+    "assets/pdf/manual cargador.pdf",
+    "assets/pdf/manual carrocero benimar.pdf",
+    "assets/pdf/manual nevera cruise.pdf",
+    "assets/pdf/manual regulador solar.pdf",
+  ];
 
 }
 

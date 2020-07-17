@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/WWidgets/modo_limpieza_calef.dart';
 import 'package:movekomapp/WWidgets/ww_alarma.dart';
@@ -202,8 +203,9 @@ class AddWidget extends StatelessWidget {
   Widget add_device(context){
     return AbsorbPointer(
         absorbing: false,
-        child: GestureDetector(
-      onTap: () {
+        child: InkWell(
+          splashColor: MyColors.inkSplashColor,
+          onTap: () {
         print("TAP");
         showDialog (
           context: context,

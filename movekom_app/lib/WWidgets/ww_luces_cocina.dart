@@ -14,7 +14,7 @@ import 'package:movekomapp/widgets/slider_theme.dart';
 class WWLucesCocina extends StatelessWidget {
 
   bool isAdded;
-  String title = "LUZ EXTERIOR";
+  String title = "LUZ COCINA";
   WWLucesCocina(this.isAdded);
 
   LucesCocinaBloc bloc;

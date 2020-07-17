@@ -107,7 +107,7 @@ class _WWCalefaccionState extends State<WWCalefaccion> {
                   child:  Align(
                     alignment: Alignment.centerRight,
                     child: Text(
-                      state.valueTemp.toString() + "ºC",
+                      state.valueTemp != 0 ? state.valueTemp.toString() + "ºC" : "--ºC",
                       style: MyTextStyle.estiloBold(45, colorText),
                     ),
                   ),

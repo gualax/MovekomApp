@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
+import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 
@@ -46,34 +47,31 @@ class _BrokenReleDialogState extends State<BrokenReleDialog> {
   Widget _buildBrokenReleDialog() {
     return new AlertDialog(
       backgroundColor: Colors.black,
-      content: MyContainer(
-        height: 500,
-       //width: 500,
+      content: Container(
+        height: SC.hei(500),
         width: MediaQuery.of(context).size.width,
         child: !reseted?  Stack(
           children: <Widget>[
             MyPositioned.fill(
                 right: 200, top: 100,
                 child: Align(
-                  alignment: Alignment.topRight,
+                  alignment: Alignment.topCenter,
                   child: Text("AVERIA EN FUSIBLE",style: MyTextStyle.estiloBold(50, MyColors.white),),
                 )
             ),
             MyPositioned.fill(
-                right: 320, top: 250,
                 child: Align(
-                  alignment: Alignment.topRight,
+                  alignment: Alignment.center,
                   child: Text("¿REARMAR?",style: MyTextStyle.estiloBold(40, MyColors.white),),
                 )
             ),
             MyPositioned.fill(
-                bottom: 100,
+                bottom: 100, right: 200,
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: InkWell(
                     splashColor: MyColors.principal,
                     onTap: (){
-                      print("SI");
                       setState(() {
                         reseted = true;
                         print("RESETED" + reseted.toString());
@@ -86,14 +84,14 @@ class _BrokenReleDialogState extends State<BrokenReleDialog> {
                 )
             ),
             MyPositioned.fill(
-                bottom: 100, left: 600,
+                bottom: 100, left: 200,
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: InkWell(
                     splashColor: MyColors.principal,
                     onTap: (){
                       print("NO");
-                      Navigator.of(context).pop();
+                      Navigator.of(context).pop(reseted);
                     },
                     child: MyContainer(
                         child: Text("NO",style: MyTextStyle.estiloBold(40, MyColors.white),)),
@@ -101,7 +99,7 @@ class _BrokenReleDialogState extends State<BrokenReleDialog> {
                 )
             ),
             MyPositioned.fill(
-                left: 150,
+                left: 100,
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: rele_roto_img(150.0),

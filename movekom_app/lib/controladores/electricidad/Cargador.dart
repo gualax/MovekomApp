@@ -5,6 +5,7 @@ import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/Utils/tab_changer.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/cargador_220.dart';
+import 'package:movekomapp/blocs/electricidad_blocs/cargador_baterias_bloc.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
@@ -18,7 +19,7 @@ class Cargador220 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cargador220Bloc = BlocProvider.of<Cargador220Bloc>(context);
+    final cargador220Bloc = BlocProvider.of<CargadorBateriaBloc>(context);
 
     if(widgetType == 1){
       return cargador220(cargador220Bloc);
@@ -30,7 +31,7 @@ class Cargador220 extends StatelessWidget {
   Widget cargador220(cargador220Bloc) {
     Color colorIcon, colorText;
     return
-      BlocBuilder<Cargador220Bloc,Cargador220State>(
+      BlocBuilder<CargadorBateriaBloc,CargadorBateriaState>(
           builder: ( context, state) {
             if(state.isEnabled){
               colorIcon = MyColors.principal;
@@ -43,9 +44,9 @@ class Cargador220 extends StatelessWidget {
             splashColor: MyColors.principal,
             onTap: (){
               if(state.isEnabled){
-                cargador220Bloc.add(DisableInversor());
+                cargador220Bloc.add(DisableCargador());
               } else {
-                cargador220Bloc.add(EnableInversor());
+                cargador220Bloc.add(EnableCargador());
               }
             },
             child: MyContainer(
@@ -89,7 +90,7 @@ class Cargador220 extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.center,
                       child: Text(
-                          "Ah", style: MyTextStyle.estiloBold(30, colorText)),
+                          "A", style: MyTextStyle.estiloBold(30, colorText)),
                     ),
                   ),
                   MyPositioned.fill(

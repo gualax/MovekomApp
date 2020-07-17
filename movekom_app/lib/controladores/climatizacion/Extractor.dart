@@ -2,7 +2,6 @@ import 'package:circle_list/circle_list.dart';
 import 'package:circle_list/radial_drag_gesture_detector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movekomapp/Utils/AllowMultipleGestureRecongnizer.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';

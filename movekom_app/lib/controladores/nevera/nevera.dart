@@ -71,7 +71,8 @@ class _ExtractorState extends State<Nevera> {
               colorText = MyColors.inactive;
               on_off = "Pulsar para encender";
             }
-            return GestureDetector(
+            return InkWell(
+              splashColor: MyColors.principal,
               onTap: (){
                 print("state" + state.isEnabled.toString());
                 if(state.isEnabled){
@@ -98,7 +99,7 @@ class _ExtractorState extends State<Nevera> {
                           )
                       ),
                       MyPositioned.fill(
-                          left: 20,
+                          left: 35,
                           top: 10,
                           child: Align(
                             alignment: Alignment.centerLeft,

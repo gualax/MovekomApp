@@ -52,7 +52,8 @@ class BombaAgua extends StatelessWidget {
               colorTxt = MyColors.inactive;
             }
 
-            return GestureDetector(
+            return InkWell(
+              splashColor: MyColors.principal,
               onTap: (){
                 if (state.isEnabled) {
                   bomabaAguaBloc.add(DisableBomba());

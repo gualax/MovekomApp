@@ -77,7 +77,7 @@ flutter:
   assets:
     - lang/es.json
     - lang/en.json
-    - assets/pdf/movekom1.pdf
+    - assets/pdf/
     - assets/images/
     - assets/iconos/
     - assets/icons/

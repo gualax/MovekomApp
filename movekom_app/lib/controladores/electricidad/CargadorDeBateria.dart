@@ -51,9 +51,9 @@ class CargadorBaterias extends StatelessWidget {
             iconColor = MyColors.text;
             on_off_Text = "Pulsar para encender";
           }
-          return GestureDetector(
+          return  InkWell(
+            splashColor: MyColors.inkSplashColor,
             onTap: (){
-
               if(state.isEnabled){
                 cargadorBateriaBloc.add(DisableCargador());
               }else{

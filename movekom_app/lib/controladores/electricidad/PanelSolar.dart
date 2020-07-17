@@ -43,7 +43,7 @@ class PanelSolar extends StatelessWidget {
               colorText = MyColors.inactive;
             }
           return InkWell(
-            splashColor: MyColors.principal,
+            splashColor: MyColors.inkSplashColor,
             onTap: (){
               if(state.isEnabled){
                 panelSolarBloc.add(DisablePanelSolar());
@@ -132,7 +132,8 @@ class PanelSolar extends StatelessWidget {
               iconColor = MyColors.text;
               on_off_Text = "Pulsar para encender";
             }
-            return GestureDetector(
+            return InkWell(
+              splashColor: MyColors.inkSplashColor,
               onTap: (){
                 if(state.isEnabled){
                   panelSolarBloc.add(DisablePanelSolar());

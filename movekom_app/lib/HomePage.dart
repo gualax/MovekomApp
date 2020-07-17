@@ -58,7 +58,7 @@ class _HomePageState extends State<HomePage>{
     ToolsMenuPage(),
     WarningMenuPage(),
     ConfigMenuPage(),
-    TestPage(),
+   // TestPage(),
   ];
 
   @override
@@ -160,11 +160,15 @@ class _HomePageState extends State<HomePage>{
                         activeIcon: activeIcon("assets/icons/config2.svg"),
                         title: new Text(""),
                       ),
+                      /*
                       new BottomNavigationBarItem(
                         icon: iconSvg("assets/icons/360.svg", false),
                         activeIcon: activeIcon("assets/icons/360.svg"),
                         title: new Text(""),
+
                       ),
+
+                       */
                     ]),
                 body: showWithTransition(_currentIndex, context) // new
             );
@@ -269,7 +273,7 @@ class _HomePageState extends State<HomePage>{
     "ACCESORIOS",
     "AVISOS",
     "AJUSTES",
-    "TEST",
+  //  "TEST",
   ];
 
   List<String> subtitles = [
@@ -285,7 +289,7 @@ class _HomePageState extends State<HomePage>{
     "    EQUIPOS ACCESORIOS DEL VEHICULO",
     "    REGISTRO DE AVERIAS Y FALLOS",
     "    AJUSTES DEL SISTEMA",
-    "    TEST",
+  // "    TEST",
   ];
 
 

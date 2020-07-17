@@ -22,7 +22,7 @@ class DisableBatery extends BateriaAux1Event { /// Deshabilita la bateria
 class BateriaAux1State extends Equatable {
   final bool isInitial;
   final bool isEnabled;
-  final int valueBat;
+  final double valueBat;
   double valueVolt;
   double valueAmp;
 
@@ -40,18 +40,18 @@ class BateriaAux1State extends Equatable {
     return BateriaAux1State(
       isInitial: true,
       isEnabled: true,
-      valueBat: 40,
-      valueVolt: 12.46,
-      valueAmp: 23.65,
+      valueBat: 13.3,
+      valueVolt: 14.4,
+      valueAmp: 10.8,
     );
   }
 
   BateriaAux1State copyWith({
     bool isInitial,
     bool isEnabled,
-    int valueBat,
-    int valueVolt,
-    int valueAmp,
+    double valueBat,
+    double valueVolt,
+    double valueAmp,
 
   }) {
     return BateriaAux1State(
@@ -84,7 +84,7 @@ class BateriaAux1Bloc extends Bloc <BateriaAux1Event, BateriaAux1State> {
       yield BateriaAux1State.initial();
     } else if (event is DisableBatery) {
       yield BateriaAux1State(
-        valueBat: 0,
+        valueBat: 0.0,
         valueAmp: 0.0,
         valueVolt: 0.0,
         isEnabled: false,

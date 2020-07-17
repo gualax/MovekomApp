@@ -4,7 +4,9 @@ import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/Utils/clima_page_view_changer.dart';
 import 'package:movekomapp/controladores/climatizacion/Calefaccion.dart';
+import 'package:movekomapp/controladores/climatizacion/CalefaccionNew.dart';
 import 'package:movekomapp/controladores/climatizacion/Extractor.dart';
+import 'package:movekomapp/controladores/climatizacion/ExtractorNew.dart';
 import 'package:movekomapp/controladores/climatizacion/temperature_ext.dart';
 import 'package:movekomapp/controladores/climatizacion/temperature_int.dart';
 import 'package:movekomapp/pantallas/Wheater/weather_box.dart';
@@ -48,7 +50,8 @@ class _WheaterCalefactionViewState extends State<WheaterCalefactionView> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Calefaccion(2),
+           // Calefaccion(2),
+            CalefaccionNew(1),
             container(),
            // AireAcondicionado(2),
           ],
@@ -85,7 +88,7 @@ class _WheaterCalefactionViewState extends State<WheaterCalefactionView> {
         ) // box247x144(),
       ],
     ),
-          Extractor(),
+          ExtractorNew(),
           historialButton(),
         ],
       ),

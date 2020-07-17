@@ -34,6 +34,7 @@ class UpdateLucesSalonFromMode extends LucesSalonEvent {  /// Habilita la bateri
   @override
   String toString() => 'Update  {valueDimer: $valueDimer}}' ;
 }
+
 @immutable
 abstract class LucesSalonState {
   final bool isEnabled;

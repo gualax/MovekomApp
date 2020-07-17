@@ -75,7 +75,7 @@ class _LightsMenuPageState extends State<LightsMenuPage> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         LuzGeneral(2),
-        consumoActual(),
+        LuzGeneral(3),
         //rowTimeSave(),
       ],
     );

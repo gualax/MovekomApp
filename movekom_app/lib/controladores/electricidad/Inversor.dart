@@ -50,7 +50,8 @@ Widget inversor_accesorios(){
         iconColor = MyColors.text;
         on_off_Text = "Pulsar para encender";
       }
-      return GestureDetector(
+      return InkWell(
+        splashColor: MyColors.principal,
         onTap: (){
           if(state.isEnabled){
             inversorBloc.add(DisableInversor());

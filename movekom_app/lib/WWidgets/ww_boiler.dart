@@ -62,8 +62,12 @@ class WWBoiler extends StatelessWidget {
             return
               InkWell(
                 splashColor: MyColors.principal,
-                onTap: (){
-
+                onTap: () {
+                    if(index != 3) {
+                      bloc.add(Update(3.0));
+                    } else {
+                      bloc.add(Enable());
+                    }
                 },
                 onLongPress: (){
                   TabChanger tabChanger =  TabChanger(context);
