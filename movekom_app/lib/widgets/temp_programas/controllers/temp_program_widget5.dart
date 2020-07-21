@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/Constants.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
+import 'package:movekomapp/Utils/timer_utils.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
@@ -29,6 +30,9 @@ class _TimerProgramWidget5State extends State<TimerProgramWidget5> {
   TimerProgram timerProgram;
   GeneralTimerProgramBloc _generalTimerProgramBloc;
   int index = 5;
+  TimeOfDay startTimeDesde =  TimeOfDay(hour: 10, minute: 00);
+  TimeOfDay startTimeHasta =  TimeOfDay(hour: 10, minute: 00);
+
   @override
   Widget build(BuildContext context) {
     bloc = BlocProvider.of<TimerProgram5Bloc>(context);
@@ -79,7 +83,7 @@ class _TimerProgramWidget5State extends State<TimerProgramWidget5> {
                         ),
                       )),
                   MyPositioned.fill(
-                      left: 10, top:20,
+                      left: 10, top:30,
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: MyContainer(
@@ -95,7 +99,7 @@ class _TimerProgramWidget5State extends State<TimerProgramWidget5> {
                                   child: Text(
                                     item,
                                     style: MyTextStyle.estiloBold(
-                                        14,
+                                        15,
                                         state.isEnabled ?
                                         state.timerProgram.daysList.contains(item)
                                             ? MyColors.principal
@@ -112,14 +116,26 @@ class _TimerProgramWidget5State extends State<TimerProgramWidget5> {
                       )),
                   MyPositioned.fill(
                       left: 10,
-                      bottom: 30,
+                      bottom: 25,
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          "10:00 - 10:00",
+                          state.timerProgram.horaHasta.hour.toString() + ":" + state.timerProgram.horaHasta.minute.toString() ,
                           style: MyTextStyle.estilo(15, colorText),
                         ),
-                      )),
+                      )
+                  ),
+                  MyPositioned.fill(
+                      left: 60,
+                      bottom: 25,
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          state.timerProgram.horaDesde.hour.toString() + ":" + state.timerProgram.horaDesde.minute.toString() ,
+                          style: MyTextStyle.estilo(15, colorText),
+                        ),
+                      )
+                  ),
                   MyPositioned.fill(
                       right: 30,
                       top: 30,
@@ -175,14 +191,14 @@ class _TimerProgramWidget5State extends State<TimerProgramWidget5> {
                     right: 20,
                     child: Align(
                       alignment: Alignment.topRight,
-                      child: boxTimeSeter(),
+                      child: boxTimeSeterDesde(),
                     )),
                 MyPositioned.fill(
                     top: 70,
                     left: 20,
                     child: Align(
                       alignment: Alignment.topLeft,
-                      child: boxTimeSeter(),
+                      child: boxTimeSeterHasta(),
                     )),
                 MyPositioned.fill(
                     child: Align(
@@ -353,7 +369,7 @@ class _TimerProgramWidget5State extends State<TimerProgramWidget5> {
 
 
 
-  Widget boxTimeSeter() {
+  Widget boxTimeSeterDesde() {
     return MyContainer(
       height: 100,
       width: 150,
@@ -362,10 +378,23 @@ class _TimerProgramWidget5State extends State<TimerProgramWidget5> {
           MyPositioned.fill(
             child: Align(
               alignment: Alignment.centerRight,
-              child: Icon(
-                Icons.add_circle_outline,
-                color: MyColors.text,
-                size: SC.all(30),
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  customBorder: CircleBorder(),
+                  splashColor: MyColors.inkSplashColor,
+                  onTap:() {
+                    setState(() {
+                      startTimeDesde = incrementTime(startTimeDesde);
+                      timerProgram.horaDesde  = startTimeDesde;
+                    });
+                  },
+                  child: Icon(
+                    Icons.add_circle_outline,
+                    color: MyColors.text,
+                    size: SC.all(30),
+                  ),
+                ),
               ),
             ),
           ),
@@ -382,7 +411,9 @@ class _TimerProgramWidget5State extends State<TimerProgramWidget5> {
             child: Align(
               alignment: Alignment.center,
               child: Text(
-                "10:00",
+                startTimeDesde.minute < 10?
+                startTimeDesde.hour.toString() + ":0" + startTimeDesde.minute.toString() :
+                startTimeDesde.hour.toString() + ":" +  startTimeDesde.minute.toString(),
                 style: MyTextStyle.estilo(17, MyColors.text),
               ),
             ),
@@ -390,10 +421,23 @@ class _TimerProgramWidget5State extends State<TimerProgramWidget5> {
           MyPositioned.fill(
             child: Align(
               alignment: Alignment.centerLeft,
-              child: Icon(
-                Icons.remove_circle_outline,
-                color: MyColors.text,
-                size: SC.all(30),
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  customBorder: CircleBorder(),
+                  splashColor: MyColors.inkSplashColor,
+                  onTap:() {
+                    setState(() {
+                      startTimeDesde = decrementTime(startTimeDesde);
+                      timerProgram.horaDesde  = startTimeDesde;
+                    });
+                  },
+                  child: Icon(
+                    Icons.remove_circle_outline,
+                    color: MyColors.text,
+                    size: SC.all(30),
+                  ),
+                ),
               ),
             ),
           ),
@@ -401,7 +445,82 @@ class _TimerProgramWidget5State extends State<TimerProgramWidget5> {
       ),
     );
   }
-
+  Widget boxTimeSeterHasta() {
+    return MyContainer(
+      height: 100,
+      width: 150,
+      child: Stack(
+        children: <Widget>[
+          MyPositioned.fill(
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  customBorder: CircleBorder(),
+                  splashColor: MyColors.inkSplashColor,
+                  onTap:() {
+                    setState(() {
+                      startTimeHasta = incrementTime(startTimeHasta);
+                      timerProgram.horaHasta  = startTimeHasta;
+                    });
+                  },
+                  child: Icon(
+                    Icons.add_circle_outline,
+                    color: MyColors.text,
+                    size: SC.all(30),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          MyPositioned.fill(
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: Text(
+                "ON",
+                style: MyTextStyle.estiloBold(20, MyColors.text),
+              ),
+            ),
+          ),
+          MyPositioned.fill(
+            child: Align(
+              alignment: Alignment.center,
+              child: Text(
+                startTimeHasta.minute < 10?
+                startTimeHasta.hour.toString() + ":0" + startTimeHasta.minute.toString() :
+                startTimeHasta.hour.toString() + ":" +  startTimeHasta.minute.toString(),
+                style: MyTextStyle.estilo(17, MyColors.text),
+              ),
+            ),
+          ),
+          MyPositioned.fill(
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  customBorder: CircleBorder(),
+                  splashColor: MyColors.inkSplashColor,
+                  onTap:() {
+                    setState(() {
+                      startTimeHasta = decrementTime(startTimeHasta);
+                      timerProgram.horaHasta  = startTimeHasta;
+                    });
+                  },
+                  child: Icon(
+                    Icons.remove_circle_outline,
+                    color: MyColors.text,
+                    size: SC.all(30),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
   List<String> daysStr = [
     "L",
     "M",

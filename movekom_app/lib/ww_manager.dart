@@ -20,7 +20,7 @@ class ItemsWidget extends StatelessWidget {
   }
 
   Widget widgetsItemsListBuilder(snapshot) {
-    List<Widget> wwList = snapshot.data;  /// BOLUDOOO TENES QUE FIJARTE EN LA OTRA LISTA NO ESTA! EN ESTA OBVIO Q ESTAN TODOS SI ES LA QUE MOSTRAS PARA ELEGIR
+    List<Widget> wwList = snapshot.data;
     return Wrap(
               crossAxisAlignment: WrapCrossAlignment.center,
               alignment: WrapAlignment.center,
@@ -28,8 +28,6 @@ class ItemsWidget extends StatelessWidget {
                 return GestureDetector(
                     onTap: () {
                       print(" *** AbsorbPointer  ****");
-                      // bloc.removeFromCarrousel(item);
-                      // listRebuildBloc.add(Rebuild());
                     },
               child:    AbsorbPointer( // SI EL ITEM YA EXISTE LO REMUEVO
                     absorbing: true,
