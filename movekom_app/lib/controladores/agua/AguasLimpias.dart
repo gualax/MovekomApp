@@ -10,7 +10,6 @@ import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/aguas.dart';
-import 'package:rxdart/rxdart.dart';
 
 import '../../app.localizations.dart';
 

@@ -4,13 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movekomapp/Utils/Circulos.dart';
 import 'package:movekomapp/Utils/MyColors.dart';
 import 'package:movekomapp/Utils/SC.dart';
-import 'package:movekomapp/Utils/SizeConf.dart';
-import 'package:movekomapp/Utils/SizeConfig.dart';
 import 'package:movekomapp/Utils/tab_changer.dart';
 import 'package:movekomapp/blocs/electricidad_blocs/bateria_motor_bloc.dart';
 import 'package:movekomapp/responsive_ui/mi_container.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
-import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 
 

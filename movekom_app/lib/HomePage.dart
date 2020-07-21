@@ -12,11 +12,10 @@ import 'package:movekomapp/pantallas/ModesPage/ModesMenuPage.dart';
 import 'package:movekomapp/pantallas/Reles/ElectricityReleView.dart';
 import 'package:movekomapp/pantallas/Tools/ToolsMenuPage.dart';
 import 'package:movekomapp/pantallas/Warnings/WarningMenuPage.dart';
+import 'package:movekomapp/pantallas/Water/WaterPage.dart';
+import 'package:movekomapp/pantallas/Wheater/WheaterCalefaccionView.dart';
 import 'package:movekomapp/pantallas/ilumination/LigthsMenuPage.dart';
-import 'package:movekomapp/pantallas/Water/WaterMenuPage.dart';
-import 'package:movekomapp/pantallas/Wheater/WheaterMenuPage.dart';
 import 'package:movekomapp/pantallas/Electricity/ElectricityMenuPage.dart';
-import 'package:movekomapp/pantallas/test_page.dart';
 import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
@@ -43,14 +42,12 @@ class _HomePageState extends State<HomePage>{
   double iconSize = 42;
   double topBarSize = 60;
 
-  int _lastIndex;
-
   List<Widget> pageList= [
     PrincipalHome(),
-    ClimaPage(),
+    WheaterCalefactionView(),
     ElectricityPage(),
     ElectricityReleView(),
-    WaterMenuPage(),
+    WaterPage(),
     AlarmMenuPage(),
     LightsMenuPage(),
     ModesMenuPage(),
@@ -58,7 +55,6 @@ class _HomePageState extends State<HomePage>{
     ToolsMenuPage(),
     WarningMenuPage(),
     ConfigMenuPage(),
-   // TestPage(),
   ];
 
   @override
@@ -160,15 +156,6 @@ class _HomePageState extends State<HomePage>{
                         activeIcon: activeIcon("assets/icons/config2.svg"),
                         title: new Text(""),
                       ),
-                      /*
-                      new BottomNavigationBarItem(
-                        icon: iconSvg("assets/icons/360.svg", false),
-                        activeIcon: activeIcon("assets/icons/360.svg"),
-                        title: new Text(""),
-
-                      ),
-
-                       */
                     ]),
                 body: showWithTransition(_currentIndex, context) // new
             );
@@ -190,7 +177,6 @@ class _HomePageState extends State<HomePage>{
     print("HomePage -> onTabTapped");
     print("index :" + index.toString());
     print("_currentIndex :" + _currentIndex.toString());
-    _lastIndex = _currentIndex;
     if(index != _currentIndex) {
       setState(() {
         tabBloc.add(UpdateTab(index));
@@ -273,7 +259,6 @@ class _HomePageState extends State<HomePage>{
     "ACCESORIOS",
     "AVISOS",
     "AJUSTES",
-  //  "TEST",
   ];
 
   List<String> subtitles = [
@@ -289,7 +274,6 @@ class _HomePageState extends State<HomePage>{
     "    EQUIPOS ACCESORIOS DEL VEHICULO",
     "    REGISTRO DE AVERIAS Y FALLOS",
     "    AJUSTES DEL SISTEMA",
-  // "    TEST",
   ];
 
 

@@ -1,21 +1,13 @@
 
 import 'package:flutter/material.dart';
-import 'package:movekomapp/Utils/MyColors.dart';
-import 'package:movekomapp/blocs/electricidad_blocs/panel_solar_bloc.dart';
 import 'package:movekomapp/controladores/electricidad/Alternador.dart';
-import 'package:movekomapp/controladores/electricidad/AmperimetroGeneral.dart';
 import 'package:movekomapp/controladores/electricidad/BateriaAux1.dart';
-import 'package:movekomapp/controladores/electricidad/BateriaAux2.dart';
 import 'package:movekomapp/controladores/electricidad/BateriaMotor.dart';
 import 'package:movekomapp/controladores/electricidad/Cargador.dart';
-import 'package:movekomapp/controladores/electricidad/CargadorDeBateria.dart';
 import 'package:movekomapp/controladores/electricidad/Consumos.dart';
-import 'package:movekomapp/controladores/electricidad/Inversor.dart';
 import 'package:movekomapp/controladores/electricidad/PanelSolar.dart';
 import 'package:movekomapp/controladores/electricidad/Totalizador.dart';
-import 'package:movekomapp/responsive_ui/mi_container.dart';
-import 'package:movekomapp/widgets/IconSvg.dart';
-import 'package:movekomapp/widgets/MyTextStyle.dart';
+
 
 
 class ElectricityGeneralView extends StatefulWidget {
