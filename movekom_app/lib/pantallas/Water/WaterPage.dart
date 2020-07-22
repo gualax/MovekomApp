@@ -12,17 +12,16 @@ import 'package:movekomapp/responsive_ui/mi_positioned.dart';
 import 'package:movekomapp/widgets/IconSvg.dart';
 import 'package:movekomapp/widgets/MyTextStyle.dart';
 import 'package:movekomapp/widgets/temp_programas/timer_dialog.dart';
-import 'package:movekomapp/widgets/temporizador_programable.dart';
 
 import 'WaterBoilerView.dart';
 
 
-class WaterLevelsView extends StatefulWidget {
+class WaterPage extends StatefulWidget {
   @override
-  _WaterLevelsViewState createState() => _WaterLevelsViewState();
+  _WaterPageState createState() => _WaterPageState();
 }
 
-class _WaterLevelsViewState extends State<WaterLevelsView> {
+class _WaterPageState extends State<WaterPage> {
   @override
   Widget build(BuildContext context) {
     SC().init(context);

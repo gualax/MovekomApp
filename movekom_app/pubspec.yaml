@@ -52,6 +52,7 @@ dependencies:
   scoped_model: ^1.0.1
   convert: ^2.1.1
   shared_preferences: ^0.5.8
+  wifi_iot: ^0.1.1
 
 
 

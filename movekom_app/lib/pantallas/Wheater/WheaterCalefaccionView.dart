@@ -3,9 +3,7 @@ import 'package:movekomapp/Utils/MyColors.dart';
 
 import 'package:movekomapp/Utils/SC.dart';
 import 'package:movekomapp/Utils/clima_page_view_changer.dart';
-import 'package:movekomapp/controladores/climatizacion/Calefaccion.dart';
 import 'package:movekomapp/controladores/climatizacion/CalefaccionNew.dart';
-import 'package:movekomapp/controladores/climatizacion/Extractor.dart';
 import 'package:movekomapp/controladores/climatizacion/ExtractorNew.dart';
 import 'package:movekomapp/controladores/climatizacion/temperature_ext.dart';
 import 'package:movekomapp/controladores/climatizacion/temperature_int.dart';
@@ -25,6 +23,8 @@ class _WheaterCalefactionViewState extends State<WheaterCalefactionView> {
 
   int _currentIndex = 0 ;
   List<Widget> children ;
+
+
   @override
   void initState() {
     // TODO: implement initState
@@ -109,7 +109,7 @@ class _WheaterCalefactionViewState extends State<WheaterCalefactionView> {
         width: 450,
         color: MyColors.baseColor,
         child: Center(
-          child: Text("HISTORIAL",
+          child: Text("HISTORIAL2",
             style:MyTextStyle.estilo(20, MyColors.text),),
         ),
       ),
